@@ -1,0 +1,3 @@
+Place,Swim,Bike,Run
+First,12:20,38:47,17:12
+Second,12:40,39:55,18:01
