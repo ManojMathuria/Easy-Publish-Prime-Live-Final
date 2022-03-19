@@ -384,35 +384,37 @@ Begin VB.MDIForm MdiMainMenu
    Begin VB.Menu MnuMasters 
       Caption         =   "&Masters"
       Enabled         =   0   'False
-      Tag             =   "0100"
+      Tag             =   "01000000"
       Begin VB.Menu mnuAccountMaster 
          Caption         =   "Account"
-         Tag             =   "0101"
+         Tag             =   "01010000"
       End
       Begin VB.Menu mnuAccountGroupMaster 
          Caption         =   "Account Group"
+         Tag             =   "01020000"
       End
       Begin VB.Menu mnuRateMaster 
          Caption         =   "Rate"
-         Begin VB.Menu mnuRate 
-            Caption         =   "Processing"
-            Index           =   1
-         End
+         Tag             =   "01030000"
          Begin VB.Menu mnuRate 
             Caption         =   "Printing"
+            Index           =   1
+            Tag             =   "01030100"
+         End
+         Begin VB.Menu mnuRate 
+            Caption         =   "Misc Operation"
             Index           =   2
+            Tag             =   "01030200"
          End
          Begin VB.Menu mnuRate 
-            Caption         =   "Plate"
+            Caption         =   "Binding Process"
             Index           =   3
+            Tag             =   "01030300"
          End
          Begin VB.Menu mnuRate 
-            Caption         =   "Miscellaneous Operation"
+            Caption         =   "Processing"
             Index           =   4
-         End
-         Begin VB.Menu mnuRate 
-            Caption         =   "Binding"
-            Index           =   5
+            Tag             =   "01030400"
          End
       End
       Begin VB.Menu mnuLine7 
@@ -420,115 +422,123 @@ Begin VB.MDIForm MdiMainMenu
       End
       Begin VB.Menu mnuBook 
          Caption         =   "Item"
-         Tag             =   "0102"
+         Tag             =   "01040000"
          Begin VB.Menu mnuFreshBookMaster 
             Caption         =   "FG"
+            Tag             =   "01040100"
          End
          Begin VB.Menu mnuRepairBookMaster 
             Caption         =   "UFG"
+            Tag             =   "01040200"
          End
       End
       Begin VB.Menu mnuItemGroupMaster 
          Caption         =   "Item Group"
-         Tag             =   "0106"
+         Tag             =   "01050000"
       End
       Begin VB.Menu mnuBindingTypeMaster 
          Caption         =   "Binding Type"
-         Tag             =   "0107"
+         Tag             =   "01060000"
       End
       Begin VB.Menu mnuOperationMaster 
          Caption         =   "Misc. Operation"
-         Tag             =   "0108"
+         Tag             =   "01070000"
       End
       Begin VB.Menu MnuLine5 
          Caption         =   "-"
       End
       Begin VB.Menu mnuSizeMaster 
          Caption         =   "Size"
-         Tag             =   "0109"
+         Tag             =   "01080000"
       End
       Begin VB.Menu mnuFinishSizeMaster 
          Caption         =   "Finish Size"
+         Tag             =   "01090000"
       End
       Begin VB.Menu mnuSizeGroupMaster 
          Caption         =   "Size Group"
+         Tag             =   "01100000"
       End
       Begin VB.Menu MnuLine8 
          Caption         =   "-"
       End
       Begin VB.Menu mnuPaperMaster 
          Caption         =   "Paper"
-         Tag             =   "0110"
+         Tag             =   "01110000"
          Begin VB.Menu mnuPaper 
             Caption         =   "Sheet"
             Index           =   1
+            Tag             =   "01110100"
          End
          Begin VB.Menu mnuPaper 
             Caption         =   "Reel"
             Index           =   2
+            Tag             =   "01110200"
          End
       End
       Begin VB.Menu mnuPaperUnitMaster 
          Caption         =   "Paper Unit"
+         Tag             =   "01120000"
       End
       Begin VB.Menu mnuLine11 
          Caption         =   "-"
       End
       Begin VB.Menu mnuColorMaster 
          Caption         =   "Color"
+         Tag             =   "01130000"
       End
       Begin VB.Menu mnuLine13 
          Caption         =   "-"
       End
       Begin VB.Menu mnuMaterialCentreMaster 
          Caption         =   "Material Centre"
+         Tag             =   "01140000"
       End
       Begin VB.Menu mnu777 
          Caption         =   "-"
       End
       Begin VB.Menu mnuTaxMaster 
          Caption         =   "Tax"
+         Tag             =   "01150000"
       End
       Begin VB.Menu mnuLine9 
          Caption         =   "-"
       End
       Begin VB.Menu mnuOutsourceItemMaster 
          Caption         =   "BOM Item"
-         Tag             =   "0111"
+         Tag             =   "01160000"
       End
       Begin VB.Menu MnuLine58 
          Caption         =   "-"
       End
       Begin VB.Menu mnuHSNCodeMaster 
          Caption         =   "HSN Code"
+         Tag             =   "01170000"
       End
       Begin VB.Menu mnuBillingNarrationMaster 
          Caption         =   "Std. Narration"
+         Tag             =   "01180000"
       End
       Begin VB.Menu MnuLine15 
          Caption         =   "-"
       End
-      Begin VB.Menu mnuProjectManagementParent 
+      Begin VB.Menu mnuProjectManagementMaster 
          Caption         =   "Project Management"
+         Tag             =   "01190000"
          Begin VB.Menu mnuProjectManagement 
             Caption         =   "Department"
             Index           =   1
+            Tag             =   "01190100"
          End
          Begin VB.Menu mnuProjectManagement 
             Caption         =   "Designation"
             Index           =   2
+            Tag             =   "01190200"
          End
          Begin VB.Menu mnuProjectManagement 
             Caption         =   "Project Member"
             Index           =   3
-         End
-         Begin VB.Menu mnuProjectManagement 
-            Caption         =   "Project Assigner"
-            Index           =   4
-         End
-         Begin VB.Menu mnuProjectManagement 
-            Caption         =   "Project Tracker"
-            Index           =   5
+            Tag             =   "01190300"
          End
       End
       Begin VB.Menu MnuLine1500 
@@ -536,27 +546,33 @@ Begin VB.MDIForm MdiMainMenu
       End
       Begin VB.Menu mnuMachineMaster 
          Caption         =   "Machine"
+         Tag             =   "01200000"
       End
       Begin VB.Menu mnuLine676 
          Caption         =   "-"
       End
       Begin VB.Menu mnuDespatchManagementParent 
          Caption         =   "Despatch Management"
+         Tag             =   "01210000"
          Begin VB.Menu mnuDespatchManagement 
             Caption         =   "Packer"
             Index           =   1
+            Tag             =   "01210100"
          End
          Begin VB.Menu mnuDespatchManagement 
             Caption         =   "Deliverer"
             Index           =   2
+            Tag             =   "01210200"
          End
          Begin VB.Menu mnuDespatchManagement 
             Caption         =   "Transporter"
             Index           =   3
+            Tag             =   "01210300"
          End
          Begin VB.Menu mnuDespatchManagement 
             Caption         =   "Booking Route"
             Index           =   4
+            Tag             =   "01210400"
          End
       End
       Begin VB.Menu mnuLine001 
@@ -564,162 +580,205 @@ Begin VB.MDIForm MdiMainMenu
       End
       Begin VB.Menu mnuUserMaster 
          Caption         =   "User"
-         Tag             =   "0112"
+         Tag             =   "01220000"
       End
    End
    Begin VB.Menu MnuTransactions 
       Caption         =   "&Transactions"
       Enabled         =   0   'False
-      Tag             =   "0200"
+      Tag             =   "02000000"
       Begin VB.Menu mnuPrintPlanningModule 
          Caption         =   "Print Planning"
-         Tag             =   "0201"
+         Tag             =   "02010000"
          Begin VB.Menu mnuPrintPlanning 
             Caption         =   "Multi Form Format"
             Index           =   1
+            Tag             =   "02010100"
          End
          Begin VB.Menu mnuPrintPlanning 
             Caption         =   "Spread Form Format"
             Index           =   2
+            Tag             =   "02010200"
          End
       End
       Begin VB.Menu mnuPurchaseQuotation 
          Caption         =   "Purchase Quotation"
+         Tag             =   "02020000"
          Begin VB.Menu mnuPurchaseQuotationJW 
             Caption         =   "Job Work"
+            Tag             =   "02020100"
             Begin VB.Menu mnuPurchaseQuotationJobWork 
                Caption         =   "Unit Cost"
                Index           =   10
+               Tag             =   "02020101"
             End
             Begin VB.Menu mnuPurchaseQuotationJobWork 
                Caption         =   "Job Work Unit Cost"
                Index           =   11
+               Tag             =   "02020102"
             End
             Begin VB.Menu mnuPurchaseQuotationJobWork 
                Caption         =   "Job Work"
                Index           =   12
+               Tag             =   "02020103"
             End
          End
          Begin VB.Menu mnuQuotationSupplyInwardFinishedItem 
             Caption         =   "Supply Inward"
+            Tag             =   "02020200"
          End
       End
       Begin VB.Menu mnuSalesQuotation 
          Caption         =   "Sale Quotation"
+         Tag             =   "02030000"
          Begin VB.Menu mnuSalesQuotationJW 
             Caption         =   "Job Work"
+            Tag             =   "02030100"
             Begin VB.Menu mnuSalesQuotationJobWork 
                Caption         =   "Unit Cost"
                Index           =   7
+               Tag             =   "02030101"
             End
             Begin VB.Menu mnuSalesQuotationJobWork 
                Caption         =   "Job Work Unit Cost"
                Index           =   8
+               Tag             =   "02030102"
             End
             Begin VB.Menu mnuSalesQuotationJobWork 
                Caption         =   "Job Work"
                Index           =   9
+               Tag             =   "02030103"
             End
          End
          Begin VB.Menu mnuQuotationSupplyOutwardFinishedItem 
             Caption         =   "Supply Outward"
+            Tag             =   "02030200"
          End
       End
       Begin VB.Menu mnuPurchasesOrder 
          Caption         =   "Purchase Order"
-         Tag             =   "0202"
+         Tag             =   "02040000"
          Begin VB.Menu mnuPurchaseOrderJobWork 
             Caption         =   "Job Work"
+            Tag             =   "02040100"
             Begin VB.Menu mnuPurchaseOrderJobWorkFinishedItem 
                Caption         =   "FG Item"
+               Tag             =   "02040101"
             End
             Begin VB.Menu mnuPurchaseOrderJobWorkUnfinishedItem 
                Caption         =   "UFG Item"
+               Tag             =   "02040102"
             End
             Begin VB.Menu mnuPurchaseOrderJobWorkDigital 
                Caption         =   "Digital"
+               Tag             =   "02040103"
             End
          End
          Begin VB.Menu mnuPurchaseOrderSupplyInward 
             Caption         =   "Supply Inward"
+            Tag             =   "02040200"
             Begin VB.Menu mnuPurchaseOrderSupplyInwardFinishedItem 
                Caption         =   "FG Item"
+               Tag             =   "02040201"
             End
             Begin VB.Menu mnuPurchaseOrderSupplyInwardBOMItem 
                Caption         =   "BOM Item"
+               Tag             =   "02040202"
             End
          End
       End
       Begin VB.Menu mnuSalesOrder 
          Caption         =   "Sales Order"
+         Tag             =   "02050000"
          Begin VB.Menu mnuSalesOrderJobWork 
             Caption         =   "Job Work"
+            Tag             =   "02050100"
             Begin VB.Menu mnuSalesOrderJobWorkFinishedItem 
                Caption         =   "FG Item"
+               Tag             =   "02050101"
             End
             Begin VB.Menu mnuSalesOrderJobWorkUnfinishedItem 
                Caption         =   "UFG Item"
+               Tag             =   "02050102"
             End
             Begin VB.Menu mnuSalesOrderJobWorkDigital 
                Caption         =   "Digital"
+               Tag             =   "02050103"
             End
          End
          Begin VB.Menu mnuSalesOrderSupplyOutwardFinishedItem 
             Caption         =   "Supply Outward"
+            Tag             =   "02050200"
          End
       End
       Begin VB.Menu mnuSales 
          Caption         =   "Sales"
+         Tag             =   "02060000"
          Begin VB.Menu mnuSalesJW 
             Caption         =   "Job Work"
+            Tag             =   "02060100"
             Begin VB.Menu mnuSalesJobWork 
                Caption         =   "Unit Cost"
                Index           =   1
+               Tag             =   "02060101"
             End
             Begin VB.Menu mnuSalesJobWork 
                Caption         =   "Job Work Unit Cost"
                Index           =   2
+               Tag             =   "02060102"
             End
             Begin VB.Menu mnuSalesJobWork 
                Caption         =   "Job Work"
                Index           =   3
+               Tag             =   "02060103"
             End
          End
          Begin VB.Menu mnuSalesSupplyOutwardFinishedItem 
             Caption         =   "Supply Outward"
+            Tag             =   "02060200"
          End
       End
       Begin VB.Menu mnuSalesReturn 
          Caption         =   "Sales Return"
+         Tag             =   "02070000"
          Begin VB.Menu mnuSalesReturnSupplyOutwardReturnFinishedItem 
             Caption         =   "Supply Outward Return"
+            Tag             =   "02070100"
          End
       End
       Begin VB.Menu mnuPurchase 
          Caption         =   "Purchase"
+         Tag             =   "02080000"
          Begin VB.Menu mnuPurchaseJW 
             Caption         =   "Job Work"
+            Tag             =   "02080100"
             Begin VB.Menu mnuPurchaseJobWork 
                Caption         =   "Unit Cost"
                Index           =   4
+               Tag             =   "02080101"
             End
             Begin VB.Menu mnuPurchaseJobWork 
                Caption         =   "Job Work Unit Cost"
                Index           =   5
+               Tag             =   "02080102"
             End
             Begin VB.Menu mnuPurchaseJobWork 
                Caption         =   "Jobwork"
                Index           =   6
+               Tag             =   "02080103"
             End
          End
          Begin VB.Menu mnuPurchaseSupplyInwardFinishedItem 
             Caption         =   "Supply Inward"
+            Tag             =   "02080200"
          End
       End
       Begin VB.Menu mnuPurchaseReturn 
          Caption         =   "Purchase Return"
+         Tag             =   "02090000"
          Begin VB.Menu mnuPurchaseReturnSupplyInwardReturnFinishedItem 
             Caption         =   "Supply Inward Return"
+            Tag             =   "02090100"
          End
       End
       Begin VB.Menu MnuLine3 
@@ -727,29 +786,36 @@ Begin VB.MDIForm MdiMainMenu
       End
       Begin VB.Menu mnuFinanceModuleParent 
          Caption         =   "Finance"
+         Tag             =   "02100000"
          Begin VB.Menu mnuFinanceModule 
             Caption         =   "Payment"
             Index           =   1
+            Tag             =   "02100100"
          End
          Begin VB.Menu mnuFinanceModule 
             Caption         =   "Receipt"
             Index           =   2
+            Tag             =   "02100200"
          End
          Begin VB.Menu mnuFinanceModule 
             Caption         =   "Journal"
             Index           =   3
+            Tag             =   "02100300"
          End
          Begin VB.Menu mnuFinanceModule 
             Caption         =   "Contra"
             Index           =   4
+            Tag             =   "02100400"
          End
          Begin VB.Menu mnuFinanceModule 
             Caption         =   "Debit Note"
             Index           =   5
+            Tag             =   "02100500"
          End
          Begin VB.Menu mnuFinanceModule 
             Caption         =   "Credit Note"
             Index           =   6
+            Tag             =   "02100600"
          End
       End
       Begin VB.Menu MnuLine324 
@@ -757,58 +823,71 @@ Begin VB.MDIForm MdiMainMenu
       End
       Begin VB.Menu mnuStockTranferFinishedItem 
          Caption         =   "Stock Tranfer"
+         Tag             =   "02110000"
       End
       Begin VB.Menu mnuMaterialIn 
          Caption         =   "Material In"
+         Tag             =   "02120000"
          Begin VB.Menu mnuMaterialInJobWork 
             Caption         =   "Job Work"
+            Tag             =   "02120100"
          End
          Begin VB.Menu mnuMaterialInSupplyInward 
             Caption         =   "Supply Inward"
+            Tag             =   "02120200"
          End
       End
       Begin VB.Menu mnuMaterialOut 
          Caption         =   "Material Out"
+         Tag             =   "02130000"
          Begin VB.Menu mnuMaterialOutJobWork 
             Caption         =   "Job Work"
+            Tag             =   "02130100"
          End
          Begin VB.Menu mnuMaterialOutSupplyOutward 
             Caption         =   "Supply Outward"
+            Tag             =   "02130200"
          End
       End
       Begin VB.Menu mnuBookProcessOrder 
          Caption         =   "Item Processing Order"
-         Tag             =   "0204"
+         Tag             =   "02140000"
       End
       Begin VB.Menu MnuLine12 
          Caption         =   "-"
       End
       Begin VB.Menu mnuPaperModuleParent 
          Caption         =   "Paper"
+         Tag             =   "02150000"
          Begin VB.Menu mnuPaperModule 
             Caption         =   "Purchase Order"
             Index           =   1
+            Tag             =   "02150100"
          End
          Begin VB.Menu mnuPaperModule 
             Caption         =   "Issue"
             Index           =   2
+            Tag             =   "02150200"
          End
          Begin VB.Menu mnuPaperModule 
             Caption         =   "Receipt"
             Index           =   3
+            Tag             =   "02150300"
          End
          Begin VB.Menu mnuPaperModule 
             Caption         =   "Transfer"
             Index           =   4
-            Tag             =   "0210"
+            Tag             =   "02150400"
          End
          Begin VB.Menu mnuPaperModule 
             Caption         =   "Debit Note"
             Index           =   5
+            Tag             =   "02150500"
          End
          Begin VB.Menu mnuPaperModule 
             Caption         =   "Credit Note"
             Index           =   6
+            Tag             =   "02150600"
          End
       End
       Begin VB.Menu mnuLine10 
@@ -816,23 +895,25 @@ Begin VB.MDIForm MdiMainMenu
       End
       Begin VB.Menu MnuMaterialIssueOrder 
          Caption         =   "Material Issue Order"
-         Tag             =   "0213"
+         Tag             =   "02160000"
       End
       Begin VB.Menu MnuMaterialMovement 
          Caption         =   "BOM Item Movement"
-         Tag             =   "0214"
+         Tag             =   "02170000"
       End
       Begin VB.Menu MnuLine16 
          Caption         =   "-"
       End
       Begin VB.Menu mnuStockJournal 
          Caption         =   "Stock Journal"
-         Tag             =   "0215"
+         Tag             =   "02180000"
          Begin VB.Menu mnuStockJournalRawMaterial 
             Caption         =   "Raw Material"
+            Tag             =   "02180100"
          End
          Begin VB.Menu mnuStockJournalFinishedGoods 
             Caption         =   "Finished Goods"
+            Tag             =   "02180200"
          End
       End
       Begin VB.Menu mnu000 
@@ -840,69 +921,107 @@ Begin VB.MDIForm MdiMainMenu
       End
       Begin VB.Menu mnuPackingSlip 
          Caption         =   "Packing Slip"
+         Tag             =   "02190000"
       End
    End
    Begin VB.Menu MnuDisplay 
       Caption         =   "&Display"
       Enabled         =   0   'False
-      Tag             =   "0700"
+      Tag             =   "03000000"
       Begin VB.Menu MnuFinalResult 
          Caption         =   "Final Result"
+         Tag             =   "03010000"
       End
       Begin VB.Menu MnuTrialBalance 
          Caption         =   "Trial Balance"
+         Tag             =   "03020000"
       End
       Begin VB.Menu MnuAccountBooks 
          Caption         =   "Account Books"
+         Tag             =   "03030000"
          Begin VB.Menu MnuDay 
             Caption         =   "Day Book"
+            Tag             =   "03030100"
          End
          Begin VB.Menu MnuLedger 
             Caption         =   "Ledger"
+            Tag             =   "03030200"
             Begin VB.Menu MnuAccountWise 
                Caption         =   "Account-Wise"
                Index           =   23
+               Tag             =   "03030201"
             End
          End
       End
       Begin VB.Menu MnuAccountSummary 
          Caption         =   "Account Summary"
+         Tag             =   "03040000"
       End
       Begin VB.Menu MnuCostCentre 
          Caption         =   "Cost Centre Report"
+         Tag             =   "03050000"
       End
       Begin VB.Menu MnuOutStandingAnalysis 
          Caption         =   "Outstanding Analysis"
+         Tag             =   "03060000"
       End
       Begin VB.Menu MnuInterestCalculation 
          Caption         =   "Interest Calculation"
+         Tag             =   "03070000"
       End
       Begin VB.Menu MnuProduction 
          Caption         =   "Production Scheduling"
+         Tag             =   "03080000"
          Begin VB.Menu MnuProductionScheduling 
-            Caption         =   "Production Scheduling"
+            Caption         =   "Print Production Scheduling"
+            Index           =   1
+            Tag             =   "03080100"
          End
-         Begin VB.Menu MnuProductionSchedule 
+         Begin VB.Menu MnuProductionScheduling 
+            Caption         =   "Plate Production Scheduling"
+            Index           =   2
+            Tag             =   "03080200"
+         End
+         Begin VB.Menu MnuProductionScheduling 
+            Caption         =   "Paper Cutting Scheduling"
+            Index           =   3
+            Tag             =   "03080300"
+         End
+         Begin VB.Menu MnuProductionScheduling 
+            Caption         =   "Update Dispatch"
+            Index           =   4
+            Tag             =   "03080400"
+            Visible         =   0   'False
+         End
+         Begin VB.Menu MnuProductionScheduling 
             Caption         =   "Production Schedule Print"
+            Index           =   5
+            Tag             =   "03080500"
+            Visible         =   0   'False
          End
       End
       Begin VB.Menu MnuStockStatus 
          Caption         =   "Stock Status"
+         Tag             =   "03090000"
          Begin VB.Menu MnuStockLedger 
             Caption         =   "Physical Stock Audit"
             Index           =   0
+            Tag             =   "03090100"
          End
          Begin VB.Menu MnuStockLedger 
             Caption         =   "Inventory Ledger "
             Index           =   1
+            Tag             =   "03090200"
          End
          Begin VB.Menu MnuStockLedger 
             Caption         =   "Closing Stock Alphabetical "
             Index           =   2
+            Tag             =   "03090300"
          End
          Begin VB.Menu MnuStockLedger 
             Caption         =   "Stock List - Short Item Analysis "
             Index           =   33
+            Tag             =   "03090400"
          End
       End
       Begin VB.Menu MnuLine59 
@@ -911,15 +1030,19 @@ Begin VB.MDIForm MdiMainMenu
       End
       Begin VB.Menu MnuOrderProcessingStatus 
          Caption         =   "Order Status"
+         Tag             =   "03100000"
          Begin VB.Menu MnuOrdersSJW 
             Caption         =   "Job-Work"
+            Tag             =   "03100100"
             Begin VB.Menu MnuOrdersPartyWise 
                Caption         =   "Purchase Orders-Party-Wise-Detailed"
                Index           =   35
+               Tag             =   "03100101"
             End
             Begin VB.Menu MnuOrdersPartyWise 
                Caption         =   "Purchase Orders-Party-wise-Summarised"
                Index           =   36
+               Tag             =   "03100102"
             End
             Begin VB.Menu MnuOrdersPartyWise 
                Caption         =   "-"
@@ -928,60 +1051,75 @@ Begin VB.MDIForm MdiMainMenu
             Begin VB.Menu MnuOrdersPartyWise 
                Caption         =   "Sales Orders-Party-Wise-Detailed"
                Index           =   38
+               Tag             =   "03100103"
             End
             Begin VB.Menu MnuOrdersPartyWise 
                Caption         =   "Sales Orders-Party-wise-Summarised"
                Index           =   39
+               Tag             =   "03100104"
             End
          End
          Begin VB.Menu MnuOrdersSIW 
             Caption         =   "Supply IN-Ward"
+            Tag             =   "03100200"
             Begin VB.Menu MnuPOrdersPartyWise 
                Caption         =   "Purchase Orders Order-Wise"
                Index           =   39
+               Tag             =   "03100201"
             End
             Begin VB.Menu MnuPOrdersPartyWise 
                Caption         =   "Purchase Orders Party-wise"
                Index           =   40
+               Tag             =   "03100202"
             End
             Begin VB.Menu MnuPOrdersPartyWise 
                Caption         =   "Purchase Orders Item-wise"
                Index           =   41
+               Tag             =   "03100203"
             End
          End
          Begin VB.Menu MnuOrdersSOW 
             Caption         =   "Supply Out-Ward"
+            Tag             =   "03100300"
             Begin VB.Menu MnuSOrdersPartyWise 
                Caption         =   "Sale Orders Order-wise"
                Index           =   42
+               Tag             =   "03100301"
             End
             Begin VB.Menu MnuSOrdersPartyWise 
                Caption         =   "Sale Orders Party-wise"
                Index           =   43
+               Tag             =   "03100302"
             End
             Begin VB.Menu MnuSOrdersPartyWise 
                Caption         =   "Sale Orders Item-wise"
                Index           =   44
+               Tag             =   "03100303"
             End
          End
       End
       Begin VB.Menu MenuSaleAnalysis 
          Caption         =   "Sales Analysis"
+         Tag             =   "03110000"
          Begin VB.Menu MenuSaleLedger 
             Caption         =   "Sales Item-Wise"
             Index           =   3
+            Tag             =   "03110100"
          End
          Begin VB.Menu MenuSaleLedger 
             Caption         =   "Sales Return Item-Wise"
             Index           =   4
+            Tag             =   "03110200"
          End
          Begin VB.Menu MenuSaleLedger 
             Caption         =   "Sales And Sales Return Item-Wise"
             Index           =   5
+            Tag             =   "03110300"
          End
          Begin VB.Menu MenuSaleLedger 
             Caption         =   "Net Sales Item-Wise"
             Index           =   6
+            Tag             =   "03110400"
          End
          Begin VB.Menu MenuSaleLedger 
             Caption         =   "-"
@@ -990,18 +1128,22 @@ Begin VB.MDIForm MdiMainMenu
          Begin VB.Menu MenuSaleLedger 
             Caption         =   "Sales One Party Item-Wise"
             Index           =   8
+            Tag             =   "03110500"
          End
          Begin VB.Menu MenuSaleLedger 
             Caption         =   "Sales Return One Party Item-Wise"
             Index           =   9
+            Tag             =   "03110600"
          End
          Begin VB.Menu MenuSaleLedger 
             Caption         =   "Sales And Sales Return One Party Item-Wise"
             Index           =   10
+            Tag             =   "03110700"
          End
          Begin VB.Menu MenuSaleLedger 
             Caption         =   "Net Sales One Party Item-Wise"
             Index           =   11
+            Tag             =   "03110800"
          End
          Begin VB.Menu MenuSaleLedger 
             Caption         =   "-"
@@ -1010,18 +1152,22 @@ Begin VB.MDIForm MdiMainMenu
          Begin VB.Menu MenuSaleLedger 
             Caption         =   "Sales Party-Wise"
             Index           =   22
+            Tag             =   "03110900"
          End
          Begin VB.Menu MenuSaleLedger 
             Caption         =   "Sales Return Party-Wise"
             Index           =   23
+            Tag             =   "03111000"
          End
          Begin VB.Menu MenuSaleLedger 
             Caption         =   "Sales And Sales Return Party-Wise"
             Index           =   24
+            Tag             =   "03111100"
          End
          Begin VB.Menu MenuSaleLedger 
             Caption         =   "Net Sales Party-Wise"
             Index           =   25
+            Tag             =   "03111200"
          End
          Begin VB.Menu MenuSaleLedger 
             Caption         =   "-"
@@ -1030,18 +1176,22 @@ Begin VB.MDIForm MdiMainMenu
          Begin VB.Menu MenuSaleLedger 
             Caption         =   "Sales One Item Party-Wise"
             Index           =   27
+            Tag             =   "03111300"
          End
          Begin VB.Menu MenuSaleLedger 
             Caption         =   "Sales Return One Item Party-Wise"
             Index           =   28
+            Tag             =   "03111400"
          End
          Begin VB.Menu MenuSaleLedger 
             Caption         =   "Sales And Sales Return One Item Party-Wise"
             Index           =   29
+            Tag             =   "03111500"
          End
          Begin VB.Menu MenuSaleLedger 
             Caption         =   "Net Sales One Item Party-Wise"
             Index           =   30
+            Tag             =   "03111600"
          End
          Begin VB.Menu MenuSaleLedger 
             Caption         =   "-"
@@ -1050,25 +1200,31 @@ Begin VB.MDIForm MdiMainMenu
          Begin VB.Menu MenuSaleLedger 
             Caption         =   "Sales Voucher-Wise"
             Index           =   32
+            Tag             =   "03111700"
          End
       End
       Begin VB.Menu MenuPurchaseAnalysis 
          Caption         =   "Purchase Analysis"
+         Tag             =   "03120000"
          Begin VB.Menu MenuPurchaseLedger 
             Caption         =   "Purchase Item-Wise"
             Index           =   53
+            Tag             =   "03120100"
          End
          Begin VB.Menu MenuPurchaseLedger 
             Caption         =   "Purchase Return Item-Wise"
             Index           =   54
+            Tag             =   "03120200"
          End
          Begin VB.Menu MenuPurchaseLedger 
             Caption         =   "Purchase And Purchase Return Item-Wise"
             Index           =   55
+            Tag             =   "03120300"
          End
          Begin VB.Menu MenuPurchaseLedger 
             Caption         =   "Net Purchase Item-Wise"
             Index           =   56
+            Tag             =   "03120400"
          End
          Begin VB.Menu MenuPurchaseLedger 
             Caption         =   "-"
@@ -1077,18 +1233,22 @@ Begin VB.MDIForm MdiMainMenu
          Begin VB.Menu MenuPurchaseLedger 
             Caption         =   "Purchase One Party Item-Wise"
             Index           =   58
+            Tag             =   "03120500"
          End
          Begin VB.Menu MenuPurchaseLedger 
             Caption         =   "Purchase Return One Party Item-Wise"
             Index           =   59
+            Tag             =   "03120600"
          End
          Begin VB.Menu MenuPurchaseLedger 
             Caption         =   "Purchase And Purchase Return One Party Item-Wise"
             Index           =   60
+            Tag             =   "03120700"
          End
          Begin VB.Menu MenuPurchaseLedger 
             Caption         =   "Net Purchase One Party Item-Wise"
             Index           =   61
+            Tag             =   "03120800"
          End
          Begin VB.Menu MenuPurchaseLedger 
             Caption         =   "-"
@@ -1097,18 +1257,22 @@ Begin VB.MDIForm MdiMainMenu
          Begin VB.Menu MenuPurchaseLedger 
             Caption         =   "Purchase Party-Wise"
             Index           =   63
+            Tag             =   "03120900"
          End
          Begin VB.Menu MenuPurchaseLedger 
             Caption         =   "Purchase Return Party-Wise"
             Index           =   64
+            Tag             =   "03121000"
          End
          Begin VB.Menu MenuPurchaseLedger 
             Caption         =   "Purchase And Purchase Return Party-Wise"
             Index           =   65
+            Tag             =   "03121100"
          End
          Begin VB.Menu MenuPurchaseLedger 
             Caption         =   "Net Purchase Party-Wise"
             Index           =   66
+            Tag             =   "03121200"
          End
          Begin VB.Menu MenuPurchaseLedger 
             Caption         =   "-"
@@ -1117,18 +1281,22 @@ Begin VB.MDIForm MdiMainMenu
          Begin VB.Menu MenuPurchaseLedger 
             Caption         =   "Purchase One Item Party-Wise"
             Index           =   68
+            Tag             =   "03121300"
          End
          Begin VB.Menu MenuPurchaseLedger 
             Caption         =   "Purchase Return One Item Party-Wise"
             Index           =   69
+            Tag             =   "03121400"
          End
          Begin VB.Menu MenuPurchaseLedger 
             Caption         =   "Purchase And Purchase Return One Item Party-Wise"
             Index           =   70
+            Tag             =   "03121500"
          End
          Begin VB.Menu MenuPurchaseLedger 
             Caption         =   "Net Purchase One Item Party-Wise"
             Index           =   71
+            Tag             =   "03121600"
          End
          Begin VB.Menu MenuPurchaseLedger 
             Caption         =   "-"
@@ -1137,6 +1305,7 @@ Begin VB.MDIForm MdiMainMenu
          Begin VB.Menu MenuPurchaseLedger 
             Caption         =   "Purchase Voucher-Wise"
             Index           =   73
+            Tag             =   "03121700"
          End
       End
       Begin VB.Menu MnuLine60 
@@ -1145,71 +1314,87 @@ Begin VB.MDIForm MdiMainMenu
       End
       Begin VB.Menu MenuPaperIssueReceipt 
          Caption         =   "Paper Ledger"
+         Tag             =   "03130000"
          Begin VB.Menu MenuPaperLedger 
             Caption         =   "Receipt Party-Wise"
             Index           =   11
+            Tag             =   "03130100"
          End
          Begin VB.Menu MenuPaperLedger 
             Caption         =   "Receipt Order-Wise"
             Index           =   12
+            Tag             =   "03130200"
          End
          Begin VB.Menu MenuPaperLedger 
             Caption         =   "Receipt Without-Order"
             Index           =   13
+            Tag             =   "03130300"
          End
          Begin VB.Menu MenuPaperLedger 
             Caption         =   "Issue Party-Wise"
             Index           =   14
+            Tag             =   "03130400"
          End
          Begin VB.Menu MenuPaperLedger 
             Caption         =   "Issue Order-Wise"
             Index           =   15
+            Tag             =   "03130500"
          End
          Begin VB.Menu MenuPaperLedger 
             Caption         =   "Issue Without-Order"
             Index           =   16
+            Tag             =   "03130600"
          End
          Begin VB.Menu MenuPaperLedger 
             Caption         =   "Paper Transfer Ledger"
             Index           =   17
+            Tag             =   "03130700"
          End
          Begin VB.Menu MenuPaperLedger 
             Caption         =   "Paper Pending Order"
             Index           =   18
+            Tag             =   "03130800"
          End
       End
    End
    Begin VB.Menu MnuReports 
       Caption         =   "&Reports"
       Enabled         =   0   'False
-      Tag             =   "0300"
+      Tag             =   "04000000"
       Begin VB.Menu MnuPrintPlanningRegister 
          Caption         =   "Print Planning Register"
-         Tag             =   "0301"
+         Tag             =   "04010000"
          Begin VB.Menu MnuBookPrintPlanningRegister 
             Caption         =   "Multi Form Format"
+            Tag             =   "04010100"
          End
          Begin VB.Menu MnuTitlePrintPlanningRegister 
             Caption         =   "Single Form Format"
+            Tag             =   "04010200"
          End
       End
       Begin VB.Menu MnuPOStatusRegister 
          Caption         =   "Order Status Register"
-         Tag             =   "0302"
+         Tag             =   "04020000"
          Begin VB.Menu MnuPOStatusRegister01 
             Caption         =   "Itemwise"
+            Tag             =   "04020100"
          End
          Begin VB.Menu MnuPOStatusRegister05 
             Caption         =   "Orderwise"
+            Tag             =   "04020200"
          End
          Begin VB.Menu MnuPOStatusRegister03 
             Caption         =   "Multi Form Partywise"
+            Tag             =   "04020300"
          End
          Begin VB.Menu MnuPOStatusRegister02 
             Caption         =   "Spread Form Partywise"
+            Tag             =   "04020400"
          End
          Begin VB.Menu MnuPOStatusRegister04 
             Caption         =   "Binding Partywise"
+            Tag             =   "04020500"
          End
       End
       Begin VB.Menu MnuLine50 
@@ -1217,26 +1402,29 @@ Begin VB.MDIForm MdiMainMenu
       End
       Begin VB.Menu MnuPaperIssueRegister 
          Caption         =   "Paper Purchase Ledger"
-         Tag             =   "0303"
+         Tag             =   "04030000"
       End
       Begin VB.Menu MnuPaperStockRegister 
          Caption         =   "Paper Stock Ledger"
-         Tag             =   "0304"
+         Tag             =   "04040000"
       End
       Begin VB.Menu MnuOpBal 
          Caption         =   "Paper Opening Balance"
+         Tag             =   "04050000"
       End
       Begin VB.Menu MnuLine51 
          Caption         =   "-"
       End
       Begin VB.Menu MnuMaterialStockRegister 
          Caption         =   "BOM Item Stock Register"
-         Tag             =   "0305"
+         Tag             =   "04060000"
          Begin VB.Menu MnuMaterialStockRegister01 
             Caption         =   "Godownwise/Itemwise/BOM Itemwise"
+            Tag             =   "04060100"
          End
          Begin VB.Menu MnuMaterialStockRegister02 
             Caption         =   "Godownwise/BOM Itemwise"
+            Tag             =   "04060200"
          End
       End
       Begin VB.Menu MnuLine52 
@@ -1244,20 +1432,25 @@ Begin VB.MDIForm MdiMainMenu
       End
       Begin VB.Menu MnuPOStatusReg 
          Caption         =   "Purchase Order Status"
-         Tag             =   "0306"
+         Tag             =   "04070000"
          Begin VB.Menu MnuPOStatusReg02 
             Caption         =   "BOM Item"
+            Tag             =   "04070100"
          End
          Begin VB.Menu MnuPOStatusReg03 
             Caption         =   "Printed Items (BOM)"
+            Tag             =   "04070200"
             Begin VB.Menu MnuPOStatusReg0301 
                Caption         =   "FG Item"
+               Tag             =   "04070201"
             End
             Begin VB.Menu MnuPOStatusReg0302 
                Caption         =   "UFG Item"
+               Tag             =   "04070202"
             End
             Begin VB.Menu MnuPOStatusReg0303 
                Caption         =   "Spread Format"
+               Tag             =   "04070204"
             End
          End
       End
@@ -1266,112 +1459,139 @@ Begin VB.MDIForm MdiMainMenu
       End
       Begin VB.Menu mnuOrderLedger 
          Caption         =   "Order Ledger"
+         Tag             =   "04080000"
          Begin VB.Menu mnuPurchaseOrder 
             Caption         =   "Purchase Order"
+            Tag             =   "04080100"
             Begin VB.Menu MnuPOLedgerParty 
                Caption         =   "Party-Wise- Detailed"
                Index           =   11
+               Tag             =   "04080101"
             End
             Begin VB.Menu MnuPOLedgerParty 
                Caption         =   "Party-Wise- Summrised"
                Index           =   12
+               Tag             =   "04080102"
             End
          End
          Begin VB.Menu mnuSaleOrder 
             Caption         =   "Sale Order"
+            Tag             =   "04080200"
             Begin VB.Menu MnuSOLedgerParty 
                Caption         =   "Party-Wise- Detailed"
                Index           =   21
-               Tag             =   "0307"
+               Tag             =   "04080201"
             End
             Begin VB.Menu MnuSOLedgerParty 
                Caption         =   "Party-Wise- Summrised"
                Index           =   22
+               Tag             =   "04080202"
             End
          End
       End
       Begin VB.Menu MnuOrderProcessing 
          Caption         =   "Order Status"
+         Tag             =   "04090000"
          Begin VB.Menu MnuPendingOrders 
             Caption         =   "Job-Work"
             Index           =   1
+            Tag             =   "04090100"
             Begin VB.Menu MnuPurchaseSaleOrderParty 
                Caption         =   "Purchase Orders-Party-Wise-Detailed"
                Index           =   11
+               Tag             =   "04090101"
             End
             Begin VB.Menu MnuPurchaseSaleOrderParty 
                Caption         =   "Purchase Orders-Party-wise-Summarised"
                Index           =   12
+               Tag             =   "04090102"
             End
             Begin VB.Menu MnuPurchaseSaleOrderParty 
                Caption         =   "Sale Orders-Party-wise-Detailed"
                Index           =   21
+               Tag             =   "04090103"
             End
             Begin VB.Menu MnuPurchaseSaleOrderParty 
                Caption         =   "Sale Orders-Party-wise-Summarised"
                Index           =   22
+               Tag             =   "04090104"
             End
          End
          Begin VB.Menu MnuPendingOrdersPO 
             Caption         =   "Supply INward"
             Index           =   2
+            Tag             =   "04090200"
             Begin VB.Menu MnuPurchaseSaleOrderPartyPO 
                Caption         =   "Purchase Orders Order-Wise"
                Index           =   13
+               Tag             =   "04090201"
             End
             Begin VB.Menu MnuPurchaseSaleOrderPartyPO 
                Caption         =   "Purchase Orders-Party-wise"
                Index           =   14
+               Tag             =   "04090202"
             End
             Begin VB.Menu MnuPurchaseSaleOrderPartyPO 
                Caption         =   "Purchase Orders-Item-wise"
                Index           =   15
+               Tag             =   "04090203"
             End
          End
          Begin VB.Menu MnuPendingOrdersSO 
             Caption         =   "Supply Outward"
             Index           =   3
+            Tag             =   "04090300"
             Begin VB.Menu MnuPurchaseSaleOrderPartySO 
                Caption         =   "Sale Orders Order-wise"
                Index           =   23
+               Tag             =   "04090301"
             End
             Begin VB.Menu MnuPurchaseSaleOrderPartySO 
                Caption         =   "Sale Orders-Party-wise"
                Index           =   24
+               Tag             =   "04090302"
             End
             Begin VB.Menu MnuPurchaseSaleOrderPartySO 
                Caption         =   "Sale Orders-Item-wise"
                Index           =   25
+               Tag             =   "04090303"
             End
          End
       End
       Begin VB.Menu MenuQuotation 
          Caption         =   "Quotation Processing"
+         Tag             =   "04100000"
       End
       Begin VB.Menu MnuLine1 
          Caption         =   "-"
       End
       Begin VB.Menu MnuIssueReceipt 
          Caption         =   "Issue-Receipt Analysis"
+         Tag             =   "04110000"
          Begin VB.Menu MnuItemIssueReceipt 
             Caption         =   "Item-wise"
             Index           =   16
+            Tag             =   "04110100"
          End
          Begin VB.Menu MnuItemIssueReceipt 
             Caption         =   "Item Party-wise"
             Index           =   17
+            Tag             =   "04110200"
          End
          Begin VB.Menu MnuItemIssueReceipt 
             Caption         =   "Item Group-wise"
             Index           =   18
+            Tag             =   "04110300"
          End
          Begin VB.Menu MnuItemIssueReceipt 
             Caption         =   "Item Voucher-wise"
             Index           =   19
+            Tag             =   "04110400"
          End
          Begin VB.Menu MnuItemIssueReceipt 
             Caption         =   "Item Date-wise"
             Index           =   20
+            Tag             =   "04110500"
          End
       End
       Begin VB.Menu MnuLine56 
@@ -1379,77 +1599,93 @@ Begin VB.MDIForm MdiMainMenu
       End
       Begin VB.Menu MnuPendingPaymentRegister 
          Caption         =   "Pending Payment Register"
-         Tag             =   "0308"
+         Tag             =   "04120000"
          Visible         =   0   'False
       End
       Begin VB.Menu MnuPendingDNRegister 
          Caption         =   "Pending Debit Notes Register"
-         Tag             =   "0309"
+         Tag             =   "04130000"
       End
       Begin VB.Menu MnuLine54 
          Caption         =   "-"
       End
       Begin VB.Menu MnuBookList1 
          Caption         =   "List of Items"
-         Tag             =   "0310"
+         Tag             =   "04140000"
          Begin VB.Menu MnuBookList 
             Caption         =   "Items Details"
             Index           =   1
+            Tag             =   "04140100"
          End
          Begin VB.Menu MnuBookList 
             Caption         =   "Items Weight"
             Index           =   2
+            Tag             =   "04140200"
          End
       End
       Begin VB.Menu MnuCorrectionList 
          Caption         =   "Project Status Report"
-         Tag             =   "0311"
+         Tag             =   "04150000"
       End
       Begin VB.Menu MnuLine55 
          Caption         =   "-"
       End
       Begin VB.Menu MnuProductionPlanning 
          Caption         =   "Production Fore-Casting"
-         Tag             =   "0313"
+         Tag             =   "04160000"
          Begin VB.Menu MnuProductionPlanning01 
             Caption         =   "Main Orders"
+            Tag             =   "04160100"
          End
          Begin VB.Menu MnuProductionPlanning02 
             Caption         =   "Supplement Orders"
+            Tag             =   "04160200"
          End
       End
    End
    Begin VB.Menu MnuUtilities 
       Caption         =   "&Utilities"
       Enabled         =   0   'False
+      Tag             =   "05000000"
+      Begin VB.Menu MnuEmailUtilities 
+         Caption         =   "Email Profile"
+         Tag             =   "05010000"
+      End
       Begin VB.Menu MnuPrintUtilities 
          Caption         =   "Print Utilities"
-         Tag             =   "0315"
+         Tag             =   "05020000"
          Begin VB.Menu MnuBookPOPrintUtility1 
             Caption         =   "Item Order"
+            Tag             =   "05020100"
             Begin VB.Menu MnuBookPOPrintUtility 
                Caption         =   "Jobwork And Unit Cost"
                Index           =   1
+               Tag             =   "05020101"
             End
             Begin VB.Menu MnuBookPOPrintUtility 
                Caption         =   "JobCard"
                Index           =   2
+               Tag             =   "05020102"
             End
             Begin VB.Menu MnuBookPOPrintUtility 
                Caption         =   "Plate Orders"
                Index           =   3
+               Tag             =   "05020103"
             End
             Begin VB.Menu MnuBookPOPrintUtility 
                Caption         =   "Paper-Requisition-Slip"
                Index           =   4
+               Tag             =   "05020104"
             End
             Begin VB.Menu MnuBookPOPrintUtility 
                Caption         =   "Quotation Format"
                Index           =   5
+               Tag             =   "05020105"
             End
          End
          Begin VB.Menu MnuPaperPOPrintUtility 
             Caption         =   "Paper Order"
+            Tag             =   "05020200"
          End
       End
       Begin VB.Menu MnuLine44 
@@ -1457,28 +1693,62 @@ Begin VB.MDIForm MdiMainMenu
       End
       Begin VB.Menu MnuBookReceiptBusy 
          Caption         =   "Item Receipt (Busy)"
-         Tag             =   "0206"
+         Tag             =   "05030000"
       End
       Begin VB.Menu mnuCostSheet 
          Caption         =   "Cost Estimation"
+         Tag             =   "05040000"
       End
       Begin VB.Menu mnuItemOpBal 
          Caption         =   "Mat Centrewise Item Op Bal"
+         Tag             =   "05050000"
       End
       Begin VB.Menu mnuDiscount 
          Caption         =   "Discount Structure"
+         Tag             =   "05060000"
       End
       Begin VB.Menu MnuImportBal 
          Caption         =   "Import Balances"
+         Tag             =   "05070000"
          Begin VB.Menu MnuImportBal01 
             Caption         =   "Order"
+            Tag             =   "05070100"
          End
          Begin VB.Menu MnuImportBal02 
             Caption         =   "Paper"
+            Tag             =   "05070200"
          End
          Begin VB.Menu MnuImportBal03 
             Caption         =   "BOM Item"
+            Tag             =   "05070300"
          End
+      End
+   End
+   Begin VB.Menu mnuProjectManagementParent 
+      Caption         =   "&Project Management"
+      Enabled         =   0   'False
+      Tag             =   "06000000"
+      Begin VB.Menu mnuEditorial 
+         Caption         =   "Editorial"
+         Tag             =   "06010000"
+         Begin VB.Menu mnuProject 
+            Caption         =   "Project Assigner"
+            Index           =   1
+            Tag             =   "06000100"
+         End
+         Begin VB.Menu mnuProject 
+            Caption         =   "Project Tracker"
+            Index           =   2
+            Tag             =   "06000200"
+         End
+      End
+   End
+   Begin VB.Menu MnuHelpm 
+      Caption         =   "&Help"
+      Tag             =   "07000000"
+      Begin VB.Menu MnuHelp 
+         Caption         =   "Users Manual – Easy Publish"
+         Tag             =   "07010000"
       End
    End
 End
@@ -1554,7 +1824,7 @@ Private Function Decrypted(Encrypt As Variant, Decrypt)
     Decrypted = True
 End Function
 Private Sub MDIForm_Load()
-Version = "EasyPublish |Rel 21.05 Ver " & App.Minor & "." & App.Revision & " |Production & Inventory Management System"
+Version = "EasyPublish |Rel " & Format(App.Major, "00") & "." & Format(App.Minor, "00") & " Ver " & App.Minor & "." & App.Revision & " |Production & Inventory Management System"
 MdiMainMenu.Caption = Version
 If Dir(App.Path & "\Icon\ICON.ICO", vbDirectory) <> "" Then Me.Icon = LoadPicture(App.Path & "\Icon\ICON.ICO")
     If GetSystemMetrics(SM_CXSCREEN) < 800 Or GetSystemMetrics(SM_CYSCREEN) < 600 Then Call MsgBox("Easy Publish requires atleast 800 x 600 screen resolution.", vbInformation, "Cannot Continue !"): Call CloseForm(MdiMainMenu): Exit Sub
@@ -1609,7 +1879,7 @@ If Dir(App.Path & "\Icon\ICON.ICO", vbDirectory) <> "" Then Me.Icon = LoadPictur
              ElseIf DaysLeft <= 30 Then
                     Call MsgBox("You have  " & DaysLeft & " Days Left..." & Chr(13) & "You are using a Demo/Unlicened Version or Subscription of" & Chr(13) & "Easy Publish ERP that will be expired soon." & Chr(13) & "If you would like to purchase or continue to Subcribe, Please contact" & Chr(13) & "Easy Info Solutions International" & Chr(13) & "E-Mail:sales@easyinfosolution.com" & Chr(13) & "Mobile:+91-987-342-2907", vbInformation, App.Title)
              End If
-             
+            
     Loop
             If RenewFlag = True Then Call MsgBox("Your Easy Publish ERP Subscription is renewed now " & Chr(13) & " till  :" & dueDate & ". " & Chr(13) & "If you would have any query, Please contact" & Chr(13) & "Easy Info Solutions International" & Chr(13) & "E-Mail:sales@easyinfosolution.com" & Chr(13) & "Mobile:+91-987-342-2907", vbInformation, App.Title): RenewFlag = False
 End Sub
@@ -1723,6 +1993,7 @@ Private Sub SetMenuOptions(bVal As Boolean)
     MnuRestore.Enabled = Not bVal
     MnuLicenceAgreement.Enabled = True
     MnuUtilities.Enabled = bVal
+    mnuProjectManagementParent.Enabled = bVal
     If bVal Then
         rstUserChild.Open "Select [Module] From UserChild Where Code = '" & FixQuote(UserCode) & "' Order by [Module]", cnDatabase, adOpenKeyset, adLockReadOnly
         For Each Object In Me
@@ -1745,6 +2016,7 @@ Private Sub SetMenuOptions(bVal As Boolean)
         MnuDisplay.Enabled = bVal
         MnuTransactions.Enabled = bVal
         MnuReports.Enabled = bVal
+        mnuProjectManagementParent.Enabled = bVal
     End If
 ErrorHandler:
     Call CloseRecordset(rstUserChild)
@@ -1918,11 +2190,35 @@ End Sub
 '    Load FrmDayBook
 '    If Err.Number <> 364 Then FrmDayBook.Show
 'End Sub
-Private Sub mnuProductionScheduling_Click()
+Private Sub mnuProductionScheduling_Click(Index As Integer)
     On Error Resume Next
-    Load FrmProductionScheduling
-    If Err.Number <> 364 Then FrmProductionScheduling.Show
+    If Trim(Index) = 1 Then
+        FrmProductionScheduling.VchType = Trim(Index)
+        FrmProductionScheduling.Caption = "Print Production Scheduling"
+        Load FrmProductionScheduling
+        If Err.Number <> 364 Then FrmProductionScheduling.Show
+    ElseIf Trim(Index) = 2 Then
+        FrmProductionScheduling.Caption = "Plate Production Scheduling"
+        FrmProductionScheduling.VchType = Trim(Index)
+        Load FrmProductionScheduling
+        If Err.Number <> 364 Then FrmProductionScheduling.Show
+    ElseIf Trim(Index) = 3 Then
+        FrmProductionScheduling.Caption = "Paper Cutting Scheduling"
+        FrmProductionScheduling.VchType = Trim(Index)
+        Load FrmProductionScheduling
+        If Err.Number <> 364 Then FrmProductionScheduling.Show
+    Else
+        FrmProductionSchedule.VchType = Trim(Index)
+        Load FrmProductionSchedule
+        If Err.Number <> 364 Then FrmProductionSchedule.Show
+    End If
 End Sub
+'Private Sub mnuProductionSchedule_Click()
+'    On Error Resume Next
+'    Load FrmProductionSchedule
+'    If Err.Number <> 364 Then FrmProductionSchedule.Show
+'End Sub
+
 Private Sub mnuStockLedger_Click(Index As Integer)
     On Error Resume Next
     FrmItemSelectionList.VchType = Trim(Index)
@@ -2224,11 +2520,6 @@ End Sub
 '    Load FrmBillRegister
 '    If Err.Number <> 364 Then FrmBillRegister.Show
 'End Sub
-Private Sub mnuProductionSchedule_Click()
-    On Error Resume Next
-    Load FrmProductionSchedule
-    If Err.Number <> 364 Then FrmProductionSchedule.Show
-End Sub
 Private Sub mnuPurchaseSaleOrderParty_Click(Index As Integer)
     On Error Resume Next
     FrmOrderProcessing.VchCodeType = Trim(Index)
@@ -2970,23 +3261,23 @@ Private Sub mnuAccountMaster_Click()
     Load FrmAccountMaster
     If Err.Number <> 364 Then FrmAccountMaster.Show vbModal
 End Sub
+'Private Sub mnuRate_Click(Index As Integer)
+'    On Error Resume Next
+'    FrmAccountMaster.AccountType = Choose(Index, "04", "05", "06", "07", "08")
+'    FrmAccountMaster.AccountGroup = ""
+'    FrmAccountMaster.RateType = "S"
+'    FrmAccountMaster.SL = False
+'    Load FrmAccountMaster
+'    If Err.Number <> 364 Then FrmAccountMaster.Show vbModal
+'End Sub
 Private Sub mnuRate_Click(Index As Integer)
     On Error Resume Next
-    FrmAccountMaster.AccountType = Choose(Index, "04", "05", "06", "07", "08")
-    FrmAccountMaster.AccountGroup = ""
-    FrmAccountMaster.RateType = "S"
+    FrmAccountMaster.AccountType = Choose(Index, "05", "07", "08", "04")
     FrmAccountMaster.SL = False
+    FrmAccountMaster.Caption = Choose(Index, "Printing", "Misc Operation", "Binding", "Processing") & " Rate Master"
     Load FrmAccountMaster
-    If Err.Number <> 364 Then FrmAccountMaster.Show vbModal
+    If Err.Number <> 364 Then FrmAccountMaster.Show
 End Sub
-'Private Sub mnuRate_Click(Index As Integer)
-'   On Error Resume Next
-'   FrmAccountMaster.AccountType = Choose(Index, "05", "07", "08", "04")
-'   FrmAccountMaster.SL = False
-'    FrmAccountMaster.Caption = Choose(Index, "Printing", "Misc Operation", "Binding", "Processing") & " Rate Master"
-'    Load FrmAccountMaster
-'    If Err.Number <> 364 Then FrmAccountMaster.Show
-'End Sub
 Private Sub mnuMaterialCentreMaster_Click()
     On Error Resume Next
     FrmAccountMaster.AccountType = "01"
@@ -3052,21 +3343,21 @@ Private Sub mnuBillingNarrationMaster_Click()
 End Sub
 Private Sub mnuMachineMaster_Click()
     On Error Resume Next
-    FrmGeneralMaster.MasterType = "21"
-    FrmGeneralMaster.SL = False
-    Load FrmGeneralMaster
-    If Err.Number <> 364 Then FrmGeneralMaster.Caption = "Machine Master": FrmGeneralMaster.Show
+    'FrmGeneralMaster.MasterType = "21"
+    FrmMachineMaster.SL = False
+    Load FrmMachineMaster
+    If Err.Number <> 364 Then FrmMachineMaster.Caption = "Machine Master": FrmMachineMaster.Show
 End Sub
 Private Sub mnuFreshBookMaster_Click()
     On Error Resume Next
-    FrmBookMaster.ItemType = "F"
+    FrmBookMaster.BookType = "F"
     FrmBookMaster.SL = False
     Load FrmBookMaster
     If Err.Number <> 364 Then FrmBookMaster.Show
 End Sub
 Private Sub mnuRepairBookMaster_Click()
     On Error Resume Next
-    FrmBookMaster.ItemType = "R"
+    FrmBookMaster.BookType = "R"
     FrmBookMaster.SL = False
     Load FrmBookMaster
     If Err.Number <> 364 Then FrmBookMaster.Show
@@ -3154,10 +3445,20 @@ Private Sub mnuProjectManagement_Click(Index As Integer)
     ElseIf Index = 3 Then
         Load FrmTeamMemberMaster
         If Err.Number <> 364 Then FrmTeamMemberMaster.Show
-    ElseIf Index = 4 Then
+'    ElseIf Index = 4 Then
+'        Load FrmProjectAssigner
+'        If Err.Number <> 364 Then FrmProjectAssigner.Show
+'    ElseIf Index = 5 Then
+'        Load FrmProjectTracker
+'        If Err.Number <> 364 Then FrmProjectTracker.Show
+    End If
+End Sub
+Private Sub mnuProject_Click(Index As Integer)
+    On Error Resume Next
+    If Index = 1 Then
         Load FrmProjectAssigner
         If Err.Number <> 364 Then FrmProjectAssigner.Show
-    ElseIf Index = 5 Then
+    ElseIf Index = 2 Then
         Load FrmProjectTracker
         If Err.Number <> 364 Then FrmProjectTracker.Show
     End If
@@ -3212,3 +3513,19 @@ Private Sub mnuColorMaster_Click()
     Load FrmGeneralMaster
     If Err.Number <> 364 Then FrmGeneralMaster.Caption = "Color Master": FrmGeneralMaster.Show
 End Sub
+Private Sub MnuEmailUtilities_Click()
+    On Error Resume Next
+    Load FrmEmailing
+    If Err.Number <> 364 Then FrmEmailing.Caption = "Emailing ": FrmEmailing.Show
+End Sub
+Private Sub MnuHelp_Click()
+    On Error Resume Next
+    Dim R As Long
+    If Dir(App.Path & "\HelpFiles\Easy Publish Prime v22.chm", vbDirectory) = "" Then
+            R = ShellExecute(0, "open", "http://www.easyinfosolution.com", 0, 0, 1)
+    Else
+            R = ShellExecute(0, "open", App.Path & "\HelpFiles\Easy Publish Prime v22.chm", 0, 0, 1)
+    End If
+End Sub
+
+
