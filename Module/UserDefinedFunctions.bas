@@ -1437,6 +1437,20 @@ Call UpdateMinor10
     cnDatabase.Execute "IF EXISTS (SELECT *FROM EasyPublishVersion WHERE Version='21.10.24') Print 'Version_Exist' ELSE Insert Into EasyPublishVersion VALUES (GetDate(),21,10,24,'21.10.24')"
 End If
 '***************************************************************************************************************************************************************
+'Update=11
+UpdateVersion = True
+    If rstEasyPublishVersion.RecordCount <> 0 Then rstEasyPublishVersion.MoveFirst
+    Do While Not rstEasyPublishVersion.EOF
+    If Trim(rstEasyPublishVersion.Fields("Version").Value) = "21.10.25" Then UpdateVersion = False
+    rstEasyPublishVersion.MoveNext
+    Loop
+If UpdateVersion = True Then
+Call UpdateMinor11
+'EasyPublishVersion
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM EasyPublishVersion WHERE Version='21.10.25') Print 'Version_Exist' ELSE Insert Into EasyPublishVersion VALUES (GetDate(),21,10,25,'21.10.25')"
+End If
+
+'***************************************************************************************************************************************************************
 '***************************************************************************************************************************************************************
 '***************************************************************************************************************************************************************
 'MajorUpdate=01
@@ -1562,7 +1576,7 @@ End If
     'TeamMemberMaster Update
     cnDatabase.Execute "IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'TeamMemberMaster' AND COLUMN_NAME='email') Print 'Column_Exist' Else CREATE TABLE dbo.Tmp_TeamMemberMaster(Code nvarchar(6) NOT NULL,Name nvarchar(40) NOT NULL,PrintName nvarchar(40) NOT NULL,Department nvarchar(6) NOT NULL,Designation nvarchar(6) NOT NULL,LoginId nvarchar(6) NOT NULL,ReportingTo nvarchar(6) NULL,eMail nvarchar(50) NULL,CreatedBy nvarchar(6) NOT NULL,CreatedOn datetime NOT NULL,ModifiedBy nvarchar(6) NULL,ModifiedOn datetime NULL,Recordstatus nvarchar(1) NOT NULL,Printstatus nvarchar(1) NOT NULL)  ON [PRIMARY]"
     cnDatabase.Execute "IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'TeamMemberMaster' AND COLUMN_NAME='email') Print 'Column_Exist' Else ALTER TABLE dbo.Tmp_TeamMemberMaster SET (LOCK_ESCALATION = TABLE)"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'TeamMemberMaster' AND COLUMN_NAME='email') Print 'Column_Exist' Else IF EXISTS(SELECT * FROM dbo.TeamMemberMaster) EXEC('INSERT INTO dbo.Tmp_TeamMemberMaster (Code, Name, PrintName, Department, Designation, LoginId, ReportingTo, CreatedBy, CreatedOn, ModifiedBy, ModifiedOn, Recordstatus, Printstatus) SELECT Code, Name, PrintName, Department, Designation, LoginId, ReportingTo, CreatedBy, CreatedOn, ModifiedBy, ModifiedOn, Recordstatus, Printstatus FROM dbo.TeamMemberMaster WITH (HOLDLOCK TABLOCKX)')"
+    cnDatabase.Execute "IF EXISTS(SELECT * FROM dbo.TeamMemberMaster) EXEC('INSERT INTO dbo.Tmp_TeamMemberMaster (Code, Name, PrintName, Department, Designation, LoginId, ReportingTo, CreatedBy, CreatedOn, ModifiedBy, ModifiedOn, Recordstatus, Printstatus) SELECT Code, Name, PrintName, Department, Designation, LoginId, ReportingTo, CreatedBy, CreatedOn, ModifiedBy, ModifiedOn, Recordstatus, Printstatus FROM dbo.TeamMemberMaster WITH (HOLDLOCK TABLOCKX)')"
     cnDatabase.Execute "IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'TeamMemberMaster' AND COLUMN_NAME='email') Print 'Column_Exist' Else DROP TABLE dbo.TeamMemberMaster"
     cnDatabase.Execute "IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'TeamMemberMaster' AND COLUMN_NAME='email') Print 'Column_Exist' Else EXECUTE sp_rename N'dbo.Tmp_TeamMemberMaster', N'TeamMemberMaster', 'OBJECT' "
 '***************************************************************************************************************************************************************
@@ -3688,3 +3702,15 @@ Public Function UpdateMinor10()
     cnDatabase.Execute "CREATE TABLE dbo.BookPOChild0501(Code nvarchar(15) NOT NULL,Color nvarchar(8) NOT NULL,Machine nvarchar(6) NULL,[Plan] decimal(5, 2) NOT NULL,formsPrinted decimal(5, 2) NOT NULL,platesIssued decimal(5, 2) NOT NULL,paperIssued decimal(12, 2) NOT NULL,SNo int NULL) ON [PRIMARY]"
     cnDatabase.Execute "Insert Into MachineMaster VALUES('*21046','Z-Machine To Be Decide','Z-Machine To Be Decide',0,15,3000,0,0,0,0,'09:00:00','17:30:00',1,'000001','2021-09-21 10:55:08.527','000001','2022-01-13 01:02:44.000','M','N')"
 End Function
+Public Function UpdateMinor11()
+cnDatabase.Execute "IF EXISTS (SELECT *FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = 'BookPOChild06' AND COLUMN_NAME = 'aPaperWastage%') Print 'Col_Exist' Else Alter Table BookPOChild06 Add aTotalPlates decimal(12, 0) NOT NULL DEFAULT (0),aTotalPlatesBack decimal(12, 0) NULL DEFAULT (0),[aPaperWastage%] decimal(4, 2) NOT NULL DEFAULT (0),[aPaperWastage%Back] decimal(4, 2) NULL DEFAULT (0),aPaperWastageMin decimal(6, 0) NOT NULL DEFAULT (0),aPaperWastageMinBack decimal(6, 0) NULL DEFAULT (0),[aWastage/Set] decimal(12, 0) NOT NULL DEFAULT (0),aPaperWastageFinal decimal(12, 3) NOT NULL DEFAULT (0),aPaperConsumptionOther decimal(12, 3) NOT NULL DEFAULT (0),aPaperConsumptionsheets decimal(12, 0) NOT NULL DEFAULT (0),aPaperConsumptionKg decimal(12, 3) NULL DEFAULT (0)"
+'TotalPlates As aTotalPlates,TotalPlatesBack As aTotalPlatesBack
+
+'[PaperWastage%] As [aPaperWastage%],[PaperWastage%Back] As [aPaperWastage%Back],PaperWastageMin AS aPaperWastageMin,PaperWastageMinBack AS aPaperWastageMinBack," & _
+                                    "PARSENAME(PaperWastageFinal,2)*U.Value1+(PARSENAME(PaperWastageFinal,1)/Sets) AS [aWastage/Set]," & _
+                                    "PaperWastageFinal As aPaperWastageFinal,PaperConsumptionOther As aPaperConsumptionOther,PaperConsumptionsheets As aPaperConsumptionsheets,PaperConsumptionKg As aPaperConsumptionKg
+cnDatabase.Execute "IF EXISTS (SELECT *FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = 'BookPOChild05' AND COLUMN_NAME = 'aTotalPlates-¼') Print 'Col_Exist' Else Alter Table BookPOChild05 Add [aPaperWastage%] decimal(4, 2) NOT NULL DEFAULT (0),aPaperWastageMin smallint NOT NULL DEFAULT (0),[aWastage/Set] decimal(12, 0) NOT NULL DEFAULT (0),aPaperWastageFinal decimal(12, 3) NOT NULL DEFAULT (0),aPaperConsumptionOther decimal(12, 3) NOT NULL DEFAULT (0),aPaperConsumptionsheets decimal(12, 0) NOT NULL DEFAULT (0),aPaperConsumptionKg decimal(12, 3) NOT NULL DEFAULT (0),[aTotalPlates-¼] decimal(12, 0) NOT NULL DEFAULT (0),[aTotalPlates-½] decimal(12, 0) NOT NULL DEFAULT (0),[aTotalPlates-1-F&B] decimal(12, 0) NOT NULL DEFAULT (0),[aTotalPlates-1-W&T] decimal(12, 0) NOT NULL DEFAULT (0),aRevisedPlates decimal(12 DEFAULT (0), 0) NOT NULL DEFAULT (0)"
+'[TotalPlates1-¼] As [aTotalPlates-¼],[TotalPlates1-½] As [aTotalPlates-½],Convert(INT,Convert(INT,([TotalPlates1-1]/1/2))*2*1) As [aTotalPlates-1-F&B],Convert(INT,[TotalPlates1-1]*1- Convert(INT,([TotalPlates1-1]/1/2))*2*1) As [aTotalPlates-1-W&T],RevisedPlates1*1 As aRevisedPlates
+'[PaperWastage1%] As [aPaperWastage%],[PaperWastageMin1] As [aPaperWastageMin],(Select (((PARSENAME(PaperWastageFinal1,2)*U.Value1)+(PARSENAME(PaperWastageFinal1,1)))/(Forms1)) From GeneralMaster U INNER JOIN PaperMaster P1 ON U.Code=P1.UOM Where C.Paper1=P1.Code) AS [aWastage/Set],[PaperWastageFinal1] As [aPaperWastageFinal],[PaperConsumptionOther1] As [aPaperConsumptionOther],[PaperConsumptionsheets1] As [aPaperConsumptionsheets],(SELECT ROUND(([Weight/Unit]/U.Value1)*[PaperConsumptionsheets1],3) FROM PaperMaster R INNER JOIN GeneralMaster U ON R.UOM=U.Code WHERE R.Code=Paper1) As [aPaperConsumptionKg]
+End Function
+    

@@ -129,11 +129,11 @@ Begin VB.Form FrmProjectTracker
          TabCaption(1)   =   "&Details"
          TabPicture(1)   =   "ProjectTracker.frx":0038
          Tab(1).ControlEnabled=   0   'False
-         Tab(1).Control(0)=   "Mh3dFrame3"
+         Tab(1).Control(0)=   "Mh3dFrame5"
          Tab(1).Control(0).Enabled=   0   'False
          Tab(1).Control(1)=   "Mh3dFrame2"
          Tab(1).Control(1).Enabled=   0   'False
-         Tab(1).Control(2)=   "Mh3dFrame5"
+         Tab(1).Control(2)=   "Mh3dFrame3"
          Tab(1).Control(2).Enabled=   0   'False
          Tab(1).ControlCount=   3
          Begin VB.PictureBox Picture1 
@@ -1966,11 +1966,11 @@ With cdoMsg
     .From = rstCompanyMaster.Fields("UserName").Value
     .Subject = MsgSubject
     .HTMLBody = "<Font Face='Calibri' Size='3'>Dear Sir,<Br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" & MsgText & "<Br><Br><b><I>" & Task & "<Br><b>Task Status: " & TaskComments & "<Br><Br><b>Kindly do acknowledge the receipt of the mail</b>.<Br><Br>Thanks & Regards<Br>" & rstItemList.Fields("AssignTo").Value & "<Br>" & Trim(rstCompanyMaster.Fields("PrintName").Value) & "<Br>Phone : " & Trim(rstCompanyMaster.Fields("Phone").Value) & "<Br>E-Mail : <a HRef='mailto:" & Trim(rstCompanyMaster.Fields("EMail").Value) & "'>" & Trim(rstCompanyMaster.Fields("EMail").Value) & "</a></Font>"
-    If ShotFlag = False Then Call Screen_Shot
-    If Dir(App.Path & "\Screen Shot\Screen Shot.bmp", vbDirectory) <> "" Then
-    .AddAttachment App.Path & "\Screen Shot\Screen Shot.bmp"
-    ShotFlag = True
-    End If
+'    If ShotFlag = False Then Call Screen_Shot
+'    If Dir(App.Path & "\Screen Shot\Screen Shot.bmp", vbDirectory) <> "" Then
+'    .AddAttachment App.Path & "\Screen Shot\Screen Shot.bmp"
+'    ShotFlag = True
+'    End If
     Set .Configuration = cdoConf
 'Status Bar
     MdiMainMenu.StatusBar1.Panels(2).Text = "Sending Email..!!!"

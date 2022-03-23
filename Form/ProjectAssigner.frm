@@ -122,8 +122,8 @@ Begin VB.Form FrmProjectAssigner
          TabCaption(1)   =   "&Details"
          TabPicture(1)   =   "ProjectAssigner.frx":0038
          Tab(1).ControlEnabled=   0   'False
-         Tab(1).Control(0)=   "Mh3dFrame2"
-         Tab(1).Control(1)=   "Mh3dFrame3"
+         Tab(1).Control(0)=   "Mh3dFrame3"
+         Tab(1).Control(1)=   "Mh3dFrame2"
          Tab(1).ControlCount=   2
          Begin MSComDlg.CommonDialog CommonDialog1 
             Left            =   4320
@@ -1876,7 +1876,7 @@ With cdoMsg
     .Send
 End With
 If Err.Number = 0 Then
-    MsgBox "Email Send To : " & rstItemList.Fields("AssignTo").Value, , "Email"
+    MsgBox "Email Send To : " & ToEmail, , "Email" '" & rstItemList.Fields("AssignTo").Value, , "Email"
 Else
     MsgBox "Email Error" & Err.Description, , "Email"
 End If
