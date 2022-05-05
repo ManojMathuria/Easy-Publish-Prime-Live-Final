@@ -431,8 +431,8 @@ Begin VB.Form frmStockJournalVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "StockJournalVoucher.frx":07C3
-               Picture         =   "StockJournalVoucher.frx":07DF
+               Picture         =   "StockJournalVoucher.frx":07E7
+               Picture         =   "StockJournalVoucher.frx":0803
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
                Height          =   330
@@ -459,8 +459,8 @@ Begin VB.Form frmStockJournalVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "StockJournalVoucher.frx":07FB
-               Picture         =   "StockJournalVoucher.frx":0817
+               Picture         =   "StockJournalVoucher.frx":081F
+               Picture         =   "StockJournalVoucher.frx":083B
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel3 
                Height          =   330
@@ -486,8 +486,8 @@ Begin VB.Form frmStockJournalVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "StockJournalVoucher.frx":0833
-               Picture         =   "StockJournalVoucher.frx":084F
+               Picture         =   "StockJournalVoucher.frx":0857
+               Picture         =   "StockJournalVoucher.frx":0873
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel11 
                Height          =   330
@@ -513,8 +513,8 @@ Begin VB.Form frmStockJournalVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "StockJournalVoucher.frx":086B
-               Picture         =   "StockJournalVoucher.frx":0887
+               Picture         =   "StockJournalVoucher.frx":088F
+               Picture         =   "StockJournalVoucher.frx":08AB
             End
             Begin TDBDate6Ctl.TDBDate MhDateInput1 
                Height          =   330
@@ -525,8 +525,8 @@ Begin VB.Form frmStockJournalVoucher
                _Version        =   65536
                _ExtentX        =   2778
                _ExtentY        =   582
-               Calendar        =   "StockJournalVoucher.frx":08A3
-               Caption         =   "StockJournalVoucher.frx":09BB
+               Calendar        =   "StockJournalVoucher.frx":08C7
+               Caption         =   "StockJournalVoucher.frx":09DF
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -536,9 +536,9 @@ Begin VB.Form frmStockJournalVoucher
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "StockJournalVoucher.frx":0A27
-               Keys            =   "StockJournalVoucher.frx":0A45
-               Spin            =   "StockJournalVoucher.frx":0AA3
+               DropDown        =   "StockJournalVoucher.frx":0A4B
+               Keys            =   "StockJournalVoucher.frx":0A69
+               Spin            =   "StockJournalVoucher.frx":0AC7
                AlignHorizontal =   0
                AlignVertical   =   0
                Appearance      =   0
@@ -618,7 +618,7 @@ Begin VB.Form frmStockJournalVoucher
                GridColor       =   4227327
                MaxCols         =   6
                MaxRows         =   2000
-               SpreadDesigner  =   "StockJournalVoucher.frx":0ACB
+               SpreadDesigner  =   "StockJournalVoucher.frx":0AEF
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel2 
                Height          =   330
@@ -644,8 +644,8 @@ Begin VB.Form frmStockJournalVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "StockJournalVoucher.frx":1222
-               Picture         =   "StockJournalVoucher.frx":123E
+               Picture         =   "StockJournalVoucher.frx":126A
+               Picture         =   "StockJournalVoucher.frx":1286
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel15 
                Height          =   330
@@ -671,8 +671,8 @@ Begin VB.Form frmStockJournalVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "StockJournalVoucher.frx":125A
-               Picture         =   "StockJournalVoucher.frx":1276
+               Picture         =   "StockJournalVoucher.frx":12A2
+               Picture         =   "StockJournalVoucher.frx":12BE
             End
             Begin VB.Line Line3 
                X1              =   0
@@ -718,8 +718,8 @@ Begin VB.Form frmStockJournalVoucher
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "StockJournalVoucher.frx":1292
-            Picture         =   "StockJournalVoucher.frx":12AE
+            Picture         =   "StockJournalVoucher.frx":12DA
+            Picture         =   "StockJournalVoucher.frx":12F6
          End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat
@@ -1765,7 +1765,25 @@ Private Sub LoadMasterList(Optional ByVal LoadSelected As Boolean)
     rstMaterialCentreList.ActiveConnection = Nothing
     If rstItemList.State = adStateOpen Then rstItemList.Close
     If LoadSelected Then
-        rstItemList.Open "SELECT I.Name As Col0,FORMAT(dbo.ufnGetItemStock('" & MaterialCentreCode & "',I.Code,'" & Left(VchPrefix, 2) & "','" & CheckNull(rstStockJournalVoucherParent.Fields("Code").Value) & "','" & GetDate(MhDateInput1.Text) & "'),'#0') As Col1,0 As Quantity,I.Price,I.Code,H.Code As HSNCode,H.Name As HSNName FROM BookMaster I INNER JOIN GeneralMaster H ON I.HSNCode=H.Code WHERE I.Type='F' ORDER BY I.Name", cnStockJournalVoucher, adOpenKeyset, adLockReadOnly
+        'rstItemList.Open "SELECT I.Name As Col0,FORMAT(dbo.ufnGetItemStock('" & MaterialCentreCode & "',I.Code,'" & Left(VchPrefix, 2) & "','" & CheckNull(rstStockJournalVoucherParent.Fields("Code").Value) & "','" & GetDate(MhDateInput1.Text) & "'),'#0') As Col1,0 As Quantity,I.Price,I.Code,H.Code As HSNCode,H.Name As HSNName FROM BookMaster I INNER JOIN GeneralMaster H ON I.HSNCode=H.Code WHERE I.Type='F' ORDER BY I.Name", cnStockJournalVoucher, adOpenKeyset, adLockReadOnly
+        rstItemList.Open "SELECT * FROM(SELECT I.Name As Col0," & _
+                "FORMAT((ISNULL((SELECT SUM(OPBAL) FROM BookChild C WHERE C.MaterialCentre ='" & MaterialCentreCode & "' AND C.Item=I.Code),0) " & _
+                "+ISNULL((SELECT SUM(C.Quantity) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='01' AND P.Date <='" & GetDate(MhDateInput1.Text) & "' AND P.MaterialCentre ='" & MaterialCentreCode & "' AND C.Item=I.Code And SubString(P.Type,3,2)='10'),0)" & _
+                "+ISNULL((SELECT SUM(C.Quantity) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='03' AND P.Date <='" & GetDate(MhDateInput1.Text) & "' AND P.MaterialCentre ='" & MaterialCentreCode & "' AND C.Item=I.Code),0)" & _
+                "+ISNULL((SELECT SUM(C.Quantity) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='05' AND P.Date <='" & GetDate(MhDateInput1.Text) & "' AND P.MaterialCentre ='" & MaterialCentreCode & "' AND C.Item=I.Code),0)" & _
+                "+ISNULL((SELECT SUM(C.Quantity) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='08' AND P.Date <='" & GetDate(MhDateInput1.Text) & "' AND P.MaterialCentre ='" & MaterialCentreCode & "' AND C.Item=I.Code),0)" & _
+                "+ISNULL((SELECT SUM(C.Quantity) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='19' AND P.Date <='" & GetDate(MhDateInput1.Text) & "' AND MaterialCentre ='" & MaterialCentreCode & "' AND C.Item=I.Code AND C.Quantity>0),0)" & _
+                "+ISNULL((SELECT SUM(C.Quantity) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='20' AND P.Date <='" & GetDate(MhDateInput1.Text) & "' AND Party ='" & MaterialCentreCode & "' AND C.Item=I.Code AND C.Quantity>0),0)" & _
+                "-ISNULL((SELECT SUM(ABS(C.Quantity)) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='02' AND P.Date <='" & GetDate(MhDateInput1.Text) & "' AND P.MaterialCentre ='" & MaterialCentreCode & "' AND C.Item=I.Code),0)" & _
+                "-ISNULL((SELECT SUM(ABS(C.Quantity)) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='04' AND P.Date <='" & GetDate(MhDateInput1.Text) & "' AND P.MaterialCentre ='" & MaterialCentreCode & "' AND C.Item=I.Code And SubString(P.Type,3,2)='10'),0)" & _
+                "-ISNULL((SELECT SUM(ABS(C.Quantity)) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='06' AND P.Date <='" & GetDate(MhDateInput1.Text) & "' AND P.MaterialCentre ='" & MaterialCentreCode & "' AND C.Item=I.Code),0)" & _
+                "-ISNULL((SELECT SUM(ABS(C.Quantity)) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='07' AND P.Date <='" & GetDate(MhDateInput1.Text) & "' AND P.MaterialCentre ='" & MaterialCentreCode & "' AND C.Item=I.Code),0)" & _
+                "-ISNULL((SELECT SUM(ABS(C.Quantity)) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='19' AND P.Date <='" & GetDate(MhDateInput1.Text) & "' AND Party ='" & MaterialCentreCode & "' AND C.Item=I.Code AND C.Quantity<0),0)" & _
+                "-ISNULL((SELECT SUM(ABS(C.Quantity)) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='20' AND P.Date <='" & GetDate(MhDateInput1.Text) & "' AND MaterialCentre ='" & MaterialCentreCode & "' AND C.Item=I.Code AND C.Quantity<0),0)" & _
+                "),'#0') As Col1,0 As Quantity,I.Price,I.Code As code,H.Code As HSNCode,H.Name As HSNName " & _
+                " FROM (BookMaster I INNER Join GeneralMaster H ON H.Code=I.HSNCode)" & _
+                "WHERE I.Type='F') As Tbl ORDER BY Col0 ASC", cnStockJournalVoucher, adOpenKeyset, adLockReadOnly
+    
     Else
         rstItemList.Open "SELECT I.Name As Col0,FORMAT(0,'#0') As Col1,0 As Quantity,I.Price,I.Code,H.Code As HSNCode FROM BookMaster I INNER JOIN GeneralMaster H ON I.HSNCode=H.Code WHERE I.Type='F' ORDER BY I.Name", cnStockJournalVoucher, adOpenKeyset, adLockReadOnly
     End If
