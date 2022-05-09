@@ -1581,6 +1581,9 @@ End If
     cnDatabase.Execute "IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'Tmp_TeamMemberMaster' AND COLUMN_NAME='email') Print 'Column_Exist' Else EXECUTE sp_rename N'dbo.Tmp_TeamMemberMaster', N'TeamMemberMaster', 'OBJECT' "
     'PaperIOChild Update [Units/Bundle]
     cnDatabase.Execute "IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'PaperIOChild' AND COLUMN_NAME='Units/Bundle' AND NUMERIC_PRECISION<12) Print 'NUMERIC_PRECISION_NOT_12' Else Alter Table PaperIOChild Alter Column [Units/Bundle] decimal(12, 2) NOT NULL"
+    'BookMaster Update [ItemIntegrationName]
+    cnDatabase.Execute "IF COL_LENGTH('BookMaster', 'ItemIntegrationName') IS NOT NULL PRINT 'Exists' ELSE ALTER TABLE BookMaster ADD ItemIntegrationName text NULL ALTER TABLE BookMaster SET (LOCK_ESCALATION = TABLE) "
+    cnDatabase.Execute "IF EXISTS (SELECT ItemIntegrationName FROM BookMaster) Update BookMaster Set ItemIntegrationName=Name Where ItemIntegrationName IS NULL  ELSE Print 'Exist'"
 '***************************************************************************************************************************************************************
 NXT:
     cnDatabase.CommitTrans
