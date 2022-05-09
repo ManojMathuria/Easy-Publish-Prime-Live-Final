@@ -2,18 +2,18 @@ Private Sub PushVch()
     Dim xmlstr, SaleAccount, UOM, i
     With rstCompanyMaster
         If .State = adStateOpen Then .Close
-        .Open "SELECT VchSeries,Account,UOM FROM AppConfig WHERE VchType='" & VchType & "'", cnJobworkBill, adOpenKeyset, adLockReadOnly
+        .Open "SELECT VchSeries,Account,UOM FROM AppConfig WHERE VchType='SF'", cnSalesVoucher, adOpenKeyset, adLockReadOnly
         VchSeries = .Fields("VchSeries").Value: SaleAccount = .Fields("Account").Value: UOM = .Fields("UOM").Value
     End With
-    With rstJobworkBVChild
+    With rstSalesVoucherChild
         If .State = adStateOpen Then .Close
-        xmlstr = "SELECT LTRIM(H.Name) As BillNo,H.Date As BillDate,ISNULL(M.PrintName,'Main Location') As MatCentre," + _
+        xmlstr = "SELECT LTRIM(H.Name) As BillNo,H.Date As BillDate,M.PrintName As MatCentre," + _
                         "B.PrintName As Buyer,B.Address1 As bAddress1,B.Address2 As bAddress2,B.Address3 As bAddress3,B.Address4 As bAddress4,B.TIN As bGSTIN,C.PrintName As Consignee,C.Address1 As cAddress1,C.Address2 As cAddress2,C.Address3 As cAddress3,C.Address4 As cAddress4,C.TIN As cGSTIN," + _
                         "H.TaxableAmount,H.[Rebate%],H.Rebate,H.Freight,H.Adjustment,H.Tax,H.[IGST%],H.IGST,H.[SGST%],H.SGST,H.[CGST%],H.CGST,H.Amount As FinalAmount,H.Remarks," + _
-                        "I.BusyCode As Item,D.Rate,D.[Disc%],D.Quantity,D.Amount " & _
-                        "FROM ((((JobWorkBVParent H INNER JOIN AccountMaster B ON H.Party=B.Code) INNER JOIN AccountMaster C ON H.Consignee=C.Code) LEFT JOIN AccountMaster M ON H.MaterialCentre=M.Code) INNER JOIN JobWorkBVChild D ON H.Code=D.Code) INNER JOIN BookMaster I ON D.Item=I.Code " + _
-                        "WHERE H.Code='" + rstJobworkBVList.Fields("Code").Value + "'"
-        .Open xmlstr, cnJobworkBill, adOpenKeyset, adLockReadOnly
+                        "I.Name As Item,D.Rate,D.[Disc%],D.Quantity,D.Amount " & _
+                        "FROM ((((JobWorkBVParent H INNER JOIN AccountMaster B ON H.Party=B.Code) INNER JOIN AccountMaster C ON H.Consignee=C.Code) INNER JOIN AccountMaster M ON H.MaterialCentre=M.Code) INNER JOIN JobWorkBVChild D ON H.Code=D.Code) INNER JOIN BookMaster I ON D.Item=I.Code " + _
+                        "WHERE H.Code='" + rstSalesVoucherList.Fields("Code").Value + "'"
+        .Open xmlstr, cnSalesVoucher, adOpenKeyset, adLockReadOnly
         xmlstr = ""
         If TallyIntegration Then
             Dim Dom As Object
@@ -188,6 +188,30 @@ Private Sub PushVch()
                     End If
                 Loop
             End With
+'        ElseIf BusyIntegration Then
+'            Dim VchSeriesName, VchDate, VchNo, STName, AccountCode, AccountName, MCName, XMLStr
+'            Dim ItemCode, ItemName, Qty, Price
+'            AccountCode = IIf(Not CheckEmpty(BookPrinterCode, False), BookPrinterCode, BinderCode)
+'            If CheckEmpty(AccountCode, False) Then Set FI = Nothing: Exit Sub
+'            VchSeriesName = IIf(BookPOType = "F", "Main", "Repair"): MCName = "Noida Godown": VchNo = Trim(Text2.Text): VchDate = FI.FormatDate(rstBookPOChild08.Fields("OrderDate").Value): Qty = Val(rstBookPOChild08.Fields("ActualQuantity").Value)
+'            Set rstSaral = FI.GetRecordset("SELECT Name,GSTNo FROM Master1 P INNER JOIN MasterAddressInfo C ON P.Code=C.MasterCode WHERE Code=" & AccountCode)
+'            AccountName = Replace(rstSaral.Fields("Name").Value, "&", "&amp;", 1)
+'            STName = IIf(Left(rstSaral.Fields("GSTNo").Value, 2) = "07", "L/GST-Exempt", "I/GST-Exempt")
+'            ItemCode = Mid(BookCode, 2, 6)
+'            Set rstSaral = FI.GetRecordset("SELECT Name,D3 As Price FROM Master1 WHERE Code=" & ItemCode)
+'            ItemName = Replace(rstSaral.Fields("Name").Value, "&", "&amp;", 1): Price = Val(rstSaral.Fields("Price").Value)
+'            XMLStr = "<PurchaseOrder>"
+'                XMLStr = XMLStr & "<VchSeriesName>" & VchSeriesName & "</VchSeriesName><Date>" & VchDate & "</Date><VchType>13</VchType><VchNo>" & VchNo & "</VchNo><STPTName>" & STName & "</STPTName><MasterName1>" & AccountName & "</MasterName1><MasterName2>" & MCName & "</MasterName2>"
+'                XMLStr = XMLStr & "<ItemEntries>"
+'                XMLStr = XMLStr & "<ItemDetail><SrNo>1</SrNo><ItemName>" & ItemName & "</ItemName><UnitName>Nos</UnitName><Qty>" & Trim(Qty) & "</Qty><QtyMainUnit>" & Trim(Qty) & "</QtyMainUnit><QtyAltUnit>" & Trim(Qty) & "</QtyAltUnit><Price>" & Trim(Price) & "</Price><Amt>" & Trim(Qty * Price) & "</Amt><STAmount>0</STAmount><STPercent>0</STPercent><TaxBeforeSurcharge>0</TaxBeforeSurcharge><MC>" & MCName & "</MC></ItemDetail>"
+'                XMLStr = XMLStr & "</ItemEntries>"
+'                XMLStr = XMLStr & "<PendingOrders>"
+'                    XMLStr = XMLStr & "<OrderDetail><MasterName1>" & ItemName & "</MasterName1><MasterName2>" & AccountName & "</MasterName2>"
+'                    XMLStr = XMLStr & "<OrderRefs><Method>1</Method><SrNo>1</SrNo><RefNo>" & VchNo & "</RefNo><Date>" & VchDate & "</Date><DueDate>" & VchDate & "</DueDate><Value1>" & Trim(0 - Qty) & "</Value1><Value2>" & Trim(0 - Qty) & "</Value2><ItemSrNo>1</ItemSrNo><tmpMasterCode1>" & Trim(ItemCode) & "</tmpMasterCode1><tmpMasterCode2>" & Trim(AccountCode) & "</tmpMasterCode2></OrderRefs>"
+'                    XMLStr = XMLStr & "</OrderDetail>"
+'                XMLStr = XMLStr & "</PendingOrders>"
+'            XMLStr = XMLStr & "</PurchaseOrder>"
+'            If Not FI.SaveVchFromXML(13, XMLStr, ErrMsg, True, 2) Then DisplayError (ErrMsg)
         End If
     End With
 End Sub
