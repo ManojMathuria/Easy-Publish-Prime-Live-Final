@@ -152,7 +152,7 @@ Begin VB.Form frmPaperIssueReceiptVoucher
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            ColumnCount     =   6
+            ColumnCount     =   7
             BeginProperty Column00 
                DataField       =   "Name"
                Caption         =   "        Vch No."
@@ -223,12 +223,25 @@ Begin VB.Form frmPaperIssueReceiptVoucher
                Caption         =   "Challan Date"
                BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
                   Type            =   1
+                  Format          =   "dd-MMM-yyyy"
+                  HaveTrueFalseNull=   0
+                  FirstDayOfWeek  =   0
+                  FirstWeekOfYear =   0
+                  LCID            =   16393
+                  SubFormatType   =   3
+               EndProperty
+            EndProperty
+            BeginProperty Column06 
+               DataField       =   "Ref"
+               Caption         =   "Ref"
+               BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
+                  Type            =   0
                   Format          =   "dd-MM-yyyy"
                   HaveTrueFalseNull=   0
                   FirstDayOfWeek  =   0
                   FirstWeekOfYear =   0
                   LCID            =   1033
-                  SubFormatType   =   3
+                  SubFormatType   =   0
                EndProperty
             EndProperty
             SplitCount      =   1
@@ -257,11 +270,14 @@ Begin VB.Form frmPaperIssueReceiptVoucher
                EndProperty
                BeginProperty Column04 
                   Locked          =   -1  'True
-                  ColumnWidth     =   2429.858
+                  ColumnWidth     =   1590.236
                EndProperty
                BeginProperty Column05 
+                  ColumnWidth     =   1154.835
+               EndProperty
+               BeginProperty Column06 
                   Locked          =   -1  'True
-                  ColumnWidth     =   1080
+                  ColumnWidth     =   764.787
                EndProperty
             EndProperty
          End
@@ -1220,9 +1236,9 @@ Private Sub Form_Load()
     Me.Caption = "Paper " & IIf(VchType = "T", "Transfer", IIf(VchType = "I", "Issue", "Receipt")) & " Voucher"
     If VchType <> "R" Then DataGrid1.Columns(2).Caption = " Source": DataGrid1.Columns(3).Caption = " Destination": Mh3dLabel3.Caption = " Source": Mh3dLabel2.Caption = " Destination"
     If VchType = "R" Then
-        rstPaperIRVList.Open "SELECT DISTINCT P.Code,P.Name,Date,M1.Name As Account1Name,M2.Name As Account2Name,BiltyNo As ChallanNo,BiltyDate As ChallanDate FROM ((PaperPOParent P INNER JOIN PaperIOChild C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON C.Account=M1.Code) INNER JOIN AccountMaster M2 ON P.Supplier=M2.Code WHERE OrderType='" & VchType & "' AND FYCode='" & FYCode & "' ORDER BY P.Name", cnPaperIRVch, adOpenKeyset, adLockOptimistic
+        rstPaperIRVList.Open "SELECT DISTINCT P.Code,P.Name,Date,M1.Name As Account1Name,M2.Name As Account2Name,BiltyNo As ChallanNo,BiltyDate As ChallanDate,(Select Name From PaperPOParent Where Code=Ref) As Ref FROM ((PaperPOParent P INNER JOIN PaperIOChild C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON C.Account=M1.Code) INNER JOIN AccountMaster M2 ON P.Supplier=M2.Code WHERE OrderType='" & VchType & "' AND FYCode='" & FYCode & "' ORDER BY P.Name", cnPaperIRVch, adOpenKeyset, adLockOptimistic
     Else
-        rstPaperIRVList.Open "SELECT DISTINCT T.Code,T.Name,Date,M1.Name As Account1Name,M2.Name As Account2Name,BiltyNo As ChallanNo,BiltyDate As ChallanDate FROM (PaperMVParent T INNER JOIN AccountMaster M1 ON T.AccountFrom=M1.Code) INNER JOIN AccountMaster M2 ON T.AccountTo=M2.Code WHERE [Type]='" & VchType & "' AND FYCode='" & FYCode & "' ORDER BY T.Name", cnPaperIRVch, adOpenKeyset, adLockOptimistic
+        rstPaperIRVList.Open "SELECT DISTINCT T.Code,T.Name,Date,M1.Name As Account1Name,M2.Name As Account2Name,BiltyNo As ChallanNo,BiltyDate As ChallanDate,'' As Ref  FROM (PaperMVParent T INNER JOIN AccountMaster M1 ON T.AccountFrom=M1.Code) INNER JOIN AccountMaster M2 ON T.AccountTo=M2.Code WHERE [Type]='" & VchType & "' AND FYCode='" & FYCode & "' ORDER BY T.Name", cnPaperIRVch, adOpenKeyset, adLockOptimistic
     End If
     rstPaperIRVParent.CursorLocation = adUseClient
     rstPaperIRVList.Filter = adFilterNone
@@ -1467,6 +1483,7 @@ Public Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
             MdiMainMenu.MousePointer = vbHourglass
             cnPaperIRVch.BeginTrans
             cnPaperIRVch.Execute "DELETE FROM " & IIf(VchType = "R", "PaperPOParent", "PaperMVParent") & " WHERE Code='" & rstPaperIRVList.Fields("Code").Value & "'"
+            cnPaperIRVch.Execute "DELETE FROM " & IIf(VchType = "R", "PaperIOChild", "PaperIOChild") & " WHERE Code='" & rstPaperIRVList.Fields("Code").Value & "'"
             MdiMainMenu.MousePointer = vbNormal
             If Err.Number = 0 Then
                 rstPaperIRVList.Delete

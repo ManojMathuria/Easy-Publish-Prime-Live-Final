@@ -2813,7 +2813,9 @@ Public Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
         If MsgBox("Are you sure to delete the Record?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Delete !") = vbYes Then
             On Error Resume Next
             MdiMainMenu.MousePointer = vbHourglass
-            cnPaperPurchaseOrder.Execute "DELETE FROM PaperPOParent WHERE Code='" & rstPaperPOList.Fields("Code").Value & "'"
+'            cnPaperPurchaseOrder.Execute "DELETE FROM PaperPOParent WHERE Code='" & rstPaperPOList.Fields("Code").Value & "'"
+            cnPaperPurchaseOrder.Execute "DELETE FROM PaperPOParent WHERE Code IN (Select Code From PaperIOChild Where Ref= '" & rstPaperPOList.Fields("Code").Value & "')"
+            cnPaperPurchaseOrder.Execute "DELETE FROM PaperIOChild WHERE Ref='" & rstPaperPOList.Fields("Code").Value & "'"
             MdiMainMenu.MousePointer = vbNormal
             If Err.Number = 0 Then
                 rstPaperPOList.Delete
