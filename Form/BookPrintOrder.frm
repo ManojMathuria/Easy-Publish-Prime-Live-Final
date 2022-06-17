@@ -2665,7 +2665,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   0
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   184811525
+               ValueVT         =   5
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -3936,7 +3936,7 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
-Dim FI As Object, rstEasyPublish As DAO.Recordset
+Dim FI As Object, rstEasyPublish As Dao.Recordset
 Public BookPOType As String, DisplayListType As String
 Dim cnBookPrintOrder As New ADODB.Connection
 Dim rstCompanyMaster As New ADODB.Recordset, rstBookPOList As New ADODB.Recordset, rstBookPOParent As New ADODB.Recordset, rstBookPOChild05 As New ADODB.Recordset, rstBookPOChild06 As New ADODB.Recordset, rstBookPOChild09 As New ADODB.Recordset, rstBookPOChild10 As New ADODB.Recordset, rstBookPOChild0901 As New ADODB.Recordset, rstBookPOChild07 As New ADODB.Recordset, rstBookPOChild08 As New ADODB.Recordset, rstBookPOChild0801 As New ADODB.Recordset, rstCorrections As New ADODB.Recordset, rstAccountList As New ADODB.Recordset, rstMaterialCentreList As New ADODB.Recordset, srmPicMgr As New ADODB.Stream
@@ -3966,6 +3966,8 @@ Private Sub Form_Load()
     SSTab1.Tab = 0
 '    SortOrder = "Name"
     If FrmStockLedger.dSortBy = True Then
+    SortOrder = "Code"
+    ElseIf frmJobworkBill.dSortBy = True Then
     SortOrder = "Code"
     Else
     SortOrder = "NAME"
@@ -4121,7 +4123,6 @@ On Error Resume Next
 End Sub
 Private Sub Text1_KeyDown(KeyCode As Integer, Shift As Integer)
     Dim KeyProcessed As Boolean
-    
     If rstBookPOList.RecordCount = 0 Then Exit Sub
     If Shift = 0 And KeyCode = vbKeyUp Then
         With rstBookPOList
@@ -4917,6 +4918,7 @@ Private Sub SaveFields()
         .Fields("Type").Value = BookPOType
         .Fields("FYCode").Value = FYCode
         .Fields("PrintStatus").Value = "N"
+        If frmJobworkBill.dSortBy = True Then frmJobworkBill.uRate = MhRealInput9.Value
     End With
 End Sub
 Private Function CheckMandatoryFields() As Boolean
