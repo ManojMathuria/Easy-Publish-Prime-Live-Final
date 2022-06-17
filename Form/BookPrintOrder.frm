@@ -101,15 +101,10 @@ Begin VB.Form FrmBookPrintOrder
          TabPicture(1)   =   "BookPrintOrder.frx":0038
          Tab(1).ControlEnabled=   0   'False
          Tab(1).Control(0)=   "Mh3dFrame7"
-         Tab(1).Control(0).Enabled=   0   'False
          Tab(1).Control(1)=   "Mh3dFrame3"
-         Tab(1).Control(1).Enabled=   0   'False
          Tab(1).Control(2)=   "Mh3dFrame5"
-         Tab(1).Control(2).Enabled=   0   'False
          Tab(1).Control(3)=   "Mh3dFrame2"
-         Tab(1).Control(3).Enabled=   0   'False
          Tab(1).Control(4)=   "Mh3dFrame6"
-         Tab(1).Control(4).Enabled=   0   'False
          Tab(1).ControlCount=   5
          Begin VB.CommandButton cmdProceed 
             Caption         =   " Show Combo Item List Only"
@@ -8288,7 +8283,7 @@ Private Sub cmdProceed_Click()
 End Sub
 Private Sub PushVch() 'PushPO2Busy
 'To Be Confirm---FI.FormatDate,FI.GetRecordset
-    Dim VchSeriesName, VchDate, VchNo, STName, AccountCode, AccountName, MCName, xmlstr
+    Dim VchSeriesName, VchDate, VchNo, STName, AccountCode, AccountName, MCName, XMLStr
     Dim ItemCode, ItemName, Qty, Price
     AccountCode = IIf(Not CheckEmpty(BookPrinterCode, False), BookPrinterCode, BinderCode)
     If CheckEmpty(AccountCode, False) Then Set FI = Nothing: Exit Sub
@@ -8299,17 +8294,17 @@ Private Sub PushVch() 'PushPO2Busy
     ItemCode = Mid(ItemCode, 2, 6)
     Set rstEasyPublish = FI.GetRecordset("SELECT Name,D3 As Price FROM Master1 WHERE Code=" & ItemCode)
     ItemName = Replace(rstEasyPublish.Fields("Name").Value, "&", "&amp;", 1): Price = Val(rstEasyPublish.Fields("Price").Value)
-    xmlstr = "<PurchaseOrder>"
-        xmlstr = xmlstr & "<VchSeriesName>" & VchSeriesName & "</VchSeriesName><Date>" & VchDate & "</Date><VchType>13</VchType><VchNo>" & VchNo & "</VchNo><STPTName>" & STName & "</STPTName><MasterName1>" & AccountName & "</MasterName1><MasterName2>" & MCName & "</MasterName2>"
-        xmlstr = xmlstr & "<ItemEntries>"
-        xmlstr = xmlstr & "<ItemDetail><SrNo>1</SrNo><ItemName>" & ItemName & "</ItemName><UnitName>Nos</UnitName><Qty>" & Trim(Qty) & "</Qty><QtyMainUnit>" & Trim(Qty) & "</QtyMainUnit><QtyAltUnit>" & Trim(Qty) & "</QtyAltUnit><Price>" & Trim(Price) & "</Price><Amt>" & Trim(Qty * Price) & "</Amt><STAmount>0</STAmount><STPercent>0</STPercent><TaxBeforeSurcharge>0</TaxBeforeSurcharge><MC>" & MCName & "</MC></ItemDetail>"
-        xmlstr = xmlstr & "</ItemEntries>"
-        xmlstr = xmlstr & "<PendingOrders>"
-            xmlstr = xmlstr & "<OrderDetail><MasterName1>" & ItemName & "</MasterName1><MasterName2>" & AccountName & "</MasterName2>"
-            xmlstr = xmlstr & "<OrderRefs><Method>1</Method><SrNo>1</SrNo><RefNo>" & VchNo & "</RefNo><Date>" & VchDate & "</Date><DueDate>" & VchDate & "</DueDate><Value1>" & Trim(0 - Qty) & "</Value1><Value2>" & Trim(0 - Qty) & "</Value2><ItemSrNo>1</ItemSrNo><tmpMasterCode1>" & Trim(ItemCode) & "</tmpMasterCode1><tmpMasterCode2>" & Trim(AccountCode) & "</tmpMasterCode2></OrderRefs>"
-            xmlstr = xmlstr & "</OrderDetail>"
-        xmlstr = xmlstr & "</PendingOrders>"
-    xmlstr = xmlstr & "</PurchaseOrder>"
-    If Not FI.SaveVchFromXML(13, xmlstr, Err, True, 2) Then DisplayError (Err)
+    XMLStr = "<PurchaseOrder>"
+        XMLStr = XMLStr & "<VchSeriesName>" & VchSeriesName & "</VchSeriesName><Date>" & VchDate & "</Date><VchType>13</VchType><VchNo>" & VchNo & "</VchNo><STPTName>" & STName & "</STPTName><MasterName1>" & AccountName & "</MasterName1><MasterName2>" & MCName & "</MasterName2>"
+        XMLStr = XMLStr & "<ItemEntries>"
+        XMLStr = XMLStr & "<ItemDetail><SrNo>1</SrNo><ItemName>" & ItemName & "</ItemName><UnitName>Nos</UnitName><Qty>" & Trim(Qty) & "</Qty><QtyMainUnit>" & Trim(Qty) & "</QtyMainUnit><QtyAltUnit>" & Trim(Qty) & "</QtyAltUnit><Price>" & Trim(Price) & "</Price><Amt>" & Trim(Qty * Price) & "</Amt><STAmount>0</STAmount><STPercent>0</STPercent><TaxBeforeSurcharge>0</TaxBeforeSurcharge><MC>" & MCName & "</MC></ItemDetail>"
+        XMLStr = XMLStr & "</ItemEntries>"
+        XMLStr = XMLStr & "<PendingOrders>"
+            XMLStr = XMLStr & "<OrderDetail><MasterName1>" & ItemName & "</MasterName1><MasterName2>" & AccountName & "</MasterName2>"
+            XMLStr = XMLStr & "<OrderRefs><Method>1</Method><SrNo>1</SrNo><RefNo>" & VchNo & "</RefNo><Date>" & VchDate & "</Date><DueDate>" & VchDate & "</DueDate><Value1>" & Trim(0 - Qty) & "</Value1><Value2>" & Trim(0 - Qty) & "</Value2><ItemSrNo>1</ItemSrNo><tmpMasterCode1>" & Trim(ItemCode) & "</tmpMasterCode1><tmpMasterCode2>" & Trim(AccountCode) & "</tmpMasterCode2></OrderRefs>"
+            XMLStr = XMLStr & "</OrderDetail>"
+        XMLStr = XMLStr & "</PendingOrders>"
+    XMLStr = XMLStr & "</PurchaseOrder>"
+    If Not FI.SaveVchFromXML(13, XMLStr, Err, True, 2) Then DisplayError (Err)
 End Sub
 

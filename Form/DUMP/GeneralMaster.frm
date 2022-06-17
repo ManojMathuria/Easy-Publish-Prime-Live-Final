@@ -106,7 +106,9 @@ Begin VB.Form FrmGeneralMaster
          TabPicture(1)   =   "GeneralMaster.frx":0044
          Tab(1).ControlEnabled=   0   'False
          Tab(1).Control(0)=   "Mh3dLabel1(1)"
+         Tab(1).Control(0).Enabled=   0   'False
          Tab(1).Control(1)=   "Mh3dFrame2"
+         Tab(1).Control(1).Enabled=   0   'False
          Tab(1).ControlCount=   2
          Begin VB.TextBox Text1 
             Appearance      =   0  'Flat
@@ -475,7 +477,7 @@ Begin VB.Form FrmGeneralMaster
                NoPrefix        =   0   'False
                FormatString    =   ""
                Caption         =   ""
-               Picture         =   "GeneralMaster.frx":075D
+               Picture         =   "GeneralMaster.frx":07A5
                Begin VB.CheckBox cbValue 
                   Caption         =   "Check1"
                   Height          =   210
@@ -511,8 +513,8 @@ Begin VB.Form FrmGeneralMaster
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "GeneralMaster.frx":0779
-            Picture         =   "GeneralMaster.frx":0795
+            Picture         =   "GeneralMaster.frx":07C1
+            Picture         =   "GeneralMaster.frx":07DD
          End
          Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
             Height          =   300
@@ -539,8 +541,8 @@ Begin VB.Form FrmGeneralMaster
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "GeneralMaster.frx":07B1
-            Picture         =   "GeneralMaster.frx":07CD
+            Picture         =   "GeneralMaster.frx":07F9
+            Picture         =   "GeneralMaster.frx":0815
          End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat

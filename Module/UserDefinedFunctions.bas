@@ -3,12 +3,13 @@ Option Explicit
 Dim CompAlias As String, compName As String, ClientID As Variant
 Dim rstCompanyMaster As New ADODB.Recordset
 Dim rstEasyPublishVersion As New ADODB.Recordset
+Public Logo, LogoLine As String, LogoW, LogoH, Header, HeaderL As Integer
 Public MajorFlag As Boolean
 Public RenewFlag As Boolean, LaterFlag As Boolean
 Public dueDate As String, DaysLeft As Variant, dDay As String, dMonth As String, dYear As String
 Public ServerID As String, UniqueDate As String
 Public Major As Variant, Minor As Variant, Revision As Variant
-Public slCode As String, slName As String   'Selection List Code & Name
+Public slCode As String, slName As String, slValue1 As Double, slUGroupName As String, slUGroupCode As String, slUGroupValue1 As Double 'Selection List Code & Name & Value1
 Public cnDatabase As New ADODB.Connection
 Public cnCompany As New ADODB.Connection
 Public cnBusy As New ADODB.Connection
@@ -1024,7 +1025,7 @@ Public Function GetChildGroup() As String
     On Error GoTo ErrHandler
     Dim DatabaseName, CurrentGroup, MCPrimary
     Dim rstEasyPublish As New ADODB.Recordset
-    DatabaseName = Trim(ReadFromFile("Busy Database Name"))
+    DatabaseName = Trim(ReadFromFile("Database Name"))
     DatabaseName = StrReverse(Left(StrReverse(DatabaseName), InStr(1, StrReverse(DatabaseName), ",") - 1))
     If ConnectToBusy(DatabaseName) Then
         rstEasyPublish.Open "SELECT MCPrimary FROM CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
@@ -1085,8 +1086,7 @@ Public Sub Sendkeys(Text As Variant, Optional Wait As Boolean = False)
    Dim WshShell As Object
    Set WshShell = CreateObject("wscript.shell")
    WshShell.Sendkeys CStr(Text), Wait
-            
-            Set WshShell = Nothing
+   Set WshShell = Nothing
 End Sub
 Public Sub RetrievePic(ByVal PicData As Variant, ByVal imgFile As String, ByVal srmPicMgr As ADODB.Stream)
     With srmPicMgr
@@ -1585,7 +1585,14 @@ End If
     cnDatabase.Execute "IF EXISTS (SELECT ItemIntegrationName FROM BookMaster) Update BookMaster Set ItemIntegrationName=Name Where ItemIntegrationName IS NULL  ELSE Print 'Exist'"
     cnDatabase.Execute "IF COL_LENGTH('JobworkBVParent', 'IntegrationStatus') IS NOT NULL PRINT 'Exists' ELSE ALTER TABLE JobworkBVParent ADD IntegrationStatus bit DEFAULT (0) ALTER TABLE JobworkBVParent SET (LOCK_ESCALATION = TABLE)"
     cnDatabase.Execute "IF EXISTS (SELECT IntegrationStatus FROM JobworkBVParent) Update JobworkBVParent Set IntegrationStatus=0 Where IntegrationStatus IS NULL  ELSE Print 'Exist'"
-'***************************************************************************************************************************************************************
+       'BookMaster Update [JobworkParent]
+    cnDatabase.Execute "IF (SELECT Data_Type FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'JobworkBVParent' AND COLUMN_NAME='VehicleNo') ='nvarchar' Print 'DataType_Ok' ELSE ALTER TABLE JobworkBVParent Alter Column VehicleNo nvarchar(40) NULL "
+        'UserChild Update
+    cnDatabase.Execute "IF(SELECT CHARACTER_MAXIMUM_LENGTH FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'UserChild' AND COLUMN_NAME='Module') ='8' Print 'DataField_Ok' ELSE ALTER TABLE UserChild Alter Column Module nvarchar(8) NOT NULL"
+        'Create Table CustomSettings
+    cnDatabase.Execute "IF EXISTS (SELECT ORDINAL_POSITION FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'CustomSettings' AND COLUMN_NAME='Logo') Print 'Done'Else CREATE TABLE [dbo].[CustomSettings]([Logo] [nchar](10) NOT NULL,[LogoLine] [nchar](10) NOT NULL,[LogoW] [int] NOT NULL,[LogoH] [int] NOT NULL,[Header] [int] NOT NULL,[HeaderL] [int] NOT NULL) ON [PRIMARY]"
+    cnDatabase.Execute "IF EXISTS (SELECT logo From CustomSettings) Print'Done' Else INSERT INTO CustomSettings VALUES ('S','N',1440,960,7800,1680)"
+    '***************************************************************************************************************************************************************
 NXT:
     cnDatabase.CommitTrans
     Call CloseRecordset(rstCompanyMaster)
@@ -3725,4 +3732,16 @@ Public Function UpdateMinor11()
 ''BookPOChild06 Actual Wastage Update
 'cnDatabase.Execute "IF Not EXISTS (SELECT *FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = 'BookPOChild06' AND COLUMN_NAME = 'aPaperWastage%') Print 'Col_Not_Exist' Else Update BookPOChild06 Set [PaperWastage%] = [aPaperWastage%],[PaperWastage%Back] = [aPaperWastage%Back],PaperWastageMin = aPaperWastageMin,PaperWastageMinBack = aPaperWastageMinBack,PARSENAME(PaperWastageFinal,2)*U.Value1+(PARSENAME(PaperWastageFinal,1)/Sets) = [aWastage/Set],PaperWastageFinal = aPaperWastageFinal,PaperConsumptionOther = aPaperConsumptionOther,PaperConsumptionsheets = aPaperConsumptionsheets,PaperConsumptionKg = aPaperConsumptionKg Where aPaperConsumptionsheets=0"
 End Function
-    
+Public Function CustomSettings()
+Dim rstCustomList As New ADODB.Recordset
+    If rstCustomList.State = adStateOpen Then rstCustomList.Close
+    rstCustomList.Open "Select * From CustomSettings", cnDatabase, adOpenKeyset, adLockReadOnly
+    Logo = Trim(rstCustomList.Fields("Logo").Value)
+    LogoW = Trim(rstCustomList.Fields("LogoW").Value)
+    LogoH = Trim(rstCustomList.Fields("LogoH").Value)
+    LogoLine = Trim(rstCustomList.Fields("LogoLine").Value)
+    Header = Trim(rstCustomList.Fields("Header").Value)
+    HeaderL = Trim(rstCustomList.Fields("HeaderL").Value)
+    rstCustomList.Close
+End Function
+

@@ -109,18 +109,23 @@ Begin VB.Form FrmBookMaster
          TabPicture(1)   =   "BookMaster.frx":0038
          Tab(1).ControlEnabled=   0   'False
          Tab(1).Control(0)=   "Mh3dFrame2"
+         Tab(1).Control(0).Enabled=   0   'False
          Tab(1).Control(1)=   "btnNotes"
+         Tab(1).Control(1).Enabled=   0   'False
          Tab(1).Control(2)=   "txtNotes"
+         Tab(1).Control(2).Enabled=   0   'False
          Tab(1).ControlCount=   3
          TabCaption(2)   =   "&BOM"
          TabPicture(2)   =   "BookMaster.frx":0054
          Tab(2).ControlEnabled=   0   'False
          Tab(2).Control(0)=   "Mh3dFrame3"
+         Tab(2).Control(0).Enabled=   0   'False
          Tab(2).ControlCount=   1
          TabCaption(3)   =   "&Editorial Components"
          TabPicture(3)   =   "BookMaster.frx":0070
          Tab(3).ControlEnabled=   0   'False
          Tab(3).Control(0)=   "Mh3dFrame5"
+         Tab(3).Control(0).Enabled=   0   'False
          Tab(3).ControlCount=   1
          Begin VB.TextBox txtNotes 
             Appearance      =   0  'Flat

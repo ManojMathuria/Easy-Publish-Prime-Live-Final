@@ -2351,6 +2351,7 @@ Dim SortOrder, PrevStr, dblBookMark As Double, blnRecordExist As Boolean, EditMo
 Dim frmDlvChDespatchDetails As New FrmDespatchDetails, frmDlvChConsigneeDetails As New FrmConsigneeDetails
 Private Sub Form_Load()
     On Error GoTo ErrorHandler
+    CustomSettings
     CenterForm Me
     WheelHook DataGrid1
     BusySystemIndicator True
@@ -3653,6 +3654,18 @@ Public Sub PrintDlvChVch(ByVal VchCode As String, ByVal VchType As String, ByVal
     If rstDeliveryCVChild.RecordCount = 0 Then On Error GoTo 0: Exit Sub
     rstDeliveryCVChild.ActiveConnection = Nothing
     With rptItemIssueReceiptVoucher
+    If Logo = "S" Then
+    .Picture1.Width = LogoW
+    .Picture1.Height = LogoH
+    End If
+    .Text2.Width = Header '9000 '7800
+    .Text2.Left = HeaderL '1000 '1680
+    If LogoLine = "N" Then
+    .Picture1.LeftLineStyle = crLSNoLine
+    .Picture1.RightLineStyle = crLSNoLine
+    .Picture1.TopLineStyle = crLSNoLine
+    .Picture1.BottomLineStyle = crLSNoLine
+    End If
         .Text1.SetText IIf(InStr(1, "05_07", Left(VchType, 2)) > 0, "Receipt Note", "Delivery Challan") & " " & IIf(Left(VchType, 2) = "05", "", IIf(Left(VchType, 2) = "06", "(Purchase Return)", IIf(Left(VchType, 2) = "07", "(Sales Return)", "")))
         .Text13.SetText IIf(Left(VchType, 2) = "05", "Supplier", IIf(InStr(1, "06_07", Left(VchType, 2)) > 0, "Party", "Bill To")) & " :"
         .Text7.SetText IIf(InStr(1, "05_07", Left(VchType, 2)) > 0, "Material Centre", "Ship To")

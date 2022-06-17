@@ -232,7 +232,6 @@ Begin VB.Form FrmGeneralMaster
                EndProperty
                Height          =   330
                Left            =   1680
-               Locked          =   -1  'True
                MaxLength       =   120
                TabIndex        =   2
                Top             =   735
@@ -664,8 +663,10 @@ Option Explicit
 Public SL As Boolean 'Selection List
 Public MasterCode As String  'Master to Modify
 Public MasterType As String
+Public oAccountGroup As String
 Dim rstGeneralList As New ADODB.Recordset, rstAccountGroup As New ADODB.Recordset, rstGeneralMaster As New ADODB.Recordset, rstchkRef As New ADODB.Recordset
-Dim UnderGroupCode As Variant
+Dim UnderGroupCode As Variant, oKeyCode As Variant
+Dim UnderGroup As Variant
 Dim SortCol, PrevStr As String, dblBookMark As Double, blnRecordExist As Boolean
 Private Sub Form_Load()
     If Not SL Then MasterCode = ""
@@ -678,10 +679,11 @@ Private Sub Form_Load()
     If MasterType = "18" Then Me.Caption = "HSN Code Master"
     If MasterType = "1" Then 'Size Master
         Mh3dLabel2.Caption = " Group (s)": Text4.Visible = True: Text4.Locked = True
-    ElseIf MasterType = "5" Or MasterType = "12" Then 'Item/Account Group Master
+    ElseIf MasterType = "5" Or MasterType = "12" Or MasterType = "26" Or MasterType = "12','26" Then 'Item/Account Group Master
         Mh3dLabel2.Caption = " Under Group ": Text4.Visible = True
     ElseIf MasterType = "7" Then 'Operation Master
         Mh3dLabel2.Caption = " Use Numb in Calc": Mh3dFrame4.Visible = True
+        Text4.Visible = True: Text4.Locked = False
     ElseIf MasterType = "15" Or MasterType = "20" Or MasterType = "23" Then  'Paper Unit/Calc Mode/Color Master
         Mh3dLabel2.Caption = IIf(MasterType = "15", " Sheets/Unit", IIf(MasterType = "20", " Value (0 if varies)", " Color")): MhRealInput1.Visible = True
     Else
@@ -691,7 +693,12 @@ Private Sub Form_Load()
     CenterForm Me
     BusySystemIndicator True
     If rstGeneralList.State Then rstGeneralList.Close
-    rstGeneralList.Open "SELECT Name,Code FROM GeneralMaster WHERE Type IN ('" & IIf(MasterType = 12, "12" & "','" & "26", MasterType) & "') ORDER BY Name", cnDatabase, adOpenKeyset, adLockOptimistic
+    'rstGeneralList.Open "SELECT Name,Code,Value1,UnderGroup As UGroupName,(Select Name From GeneralMaster Where UnderGroup=Code) As UGroupName FROM GeneralMaster WHERE Type IN ('" & IIf(MasterType = 12, "12" & "','" & "26", MasterType) & "') ORDER BY Name", cnDatabase, adOpenKeyset, adLockOptimistic
+    If oAccountGroup > "*99999" Then
+        rstGeneralList.Open "SELECT G.Name,G.Code,G.Value1,ISNULL(G.UnderGroup,'') As UGroupCode,ISNULL(G1.Name,'') As UGroupName,ISNULL(G1.Value1,0) As UGroupValue1 FROM GeneralMaster G Left Join GeneralMaster G1 on G.UnderGroup=G1.Code WHERE G.Type IN ('" & IIf(MasterType = "12", "12" & "','" & "26", MasterType) & "') AND (G.UnderGroup='" & oAccountGroup & "' OR G.Code='" & oAccountGroup & "') ORDER BY G.Name", cnDatabase, adOpenKeyset, adLockOptimistic
+    Else
+        rstGeneralList.Open "SELECT G.Name,G.Code,G.Value1,ISNULL(G.UnderGroup,'') As UGroupCode,ISNULL(G1.Name,'') As UGroupName,ISNULL(G1.Value1,0) As UGroupValue1 FROM GeneralMaster G Left Join GeneralMaster G1 on G.UnderGroup=G1.Code WHERE G.Type IN ('" & IIf(MasterType = "12", "12" & "','" & "26", MasterType) & "') ORDER BY G.Name", cnDatabase, adOpenKeyset, adLockOptimistic
+    End If
     rstGeneralMaster.CursorLocation = adUseClient
     rstGeneralList.Filter = adFilterNone
     If rstGeneralList.RecordCount > 0 Then
@@ -761,19 +768,26 @@ Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
     ElseIf Shift = 0 And KeyCode = vbKeyReturn Then
         If Toolbar1.Buttons.Item(1).Enabled Then
             If SL Then
-                If SSTab1.Tab = 0 Then Me.Tag = "S": slCode = rstGeneralList.Fields("Code").Value: slName = rstGeneralList.Fields("Name").Value: KeyCode = 0: Unload Me: Exit Sub
+                If SSTab1.Tab = 0 Then Me.Tag = "S": slCode = rstGeneralList.Fields("Code").Value: slName = rstGeneralList.Fields("Name").Value: slValue1 = rstGeneralList.Fields("Value1").Value: slUGroupName = rstGeneralList.Fields("UGroupName").Value: slUGroupCode = rstGeneralList.Fields("UGroupCode").Value: slUGroupValue1 = rstGeneralList.Fields("UGroupValue1").Value: KeyCode = 0: Unload Me: Exit Sub
             Else
-                SSTab1.Tab = 1
-                SSTab1.SetFocus
+                SSTab1.Tab = 1: SSTab1.SetFocus
             End If
         Else
-            Sendkeys "{TAB}"
+            'Sendkeys "{TAB}"
+            If Me.ActiveControl.Name = "Text4" Then
+                fpSpread1.GetText 1, fpSpread1.ActiveRow, UnderGroup: Text4.Text = UnderGroup
+                fpSpread1.GetText 3, fpSpread1.ActiveRow, UnderGroupCode
+            ElseIf Me.ActiveControl.Name <> "fpSpread1" Then
+                Sendkeys "{TAB}":
+            End If
         End If
-        KeyCode = 0
+        'KeyCode = 0
+         oKeyCode = KeyCode
+        If Me.ActiveControl.Name <> "fpSpread1" Then KeyCode = 0
     End If
 End Sub
 Private Sub Form_QueryUnload(Cancel As Integer, UnloadMode As Integer)
-    If Toolbar1.Buttons.Item(4).Enabled Then Call Form_KeyDown(vbKeyEscape, 0): Cancel = 1 Else If Me.Tag <> "S" Then slCode = "": slName = ""
+    If Toolbar1.Buttons.Item(4).Enabled Then Call Form_KeyDown(vbKeyEscape, 0): Cancel = 1 Else If Me.Tag <> "S" Then slCode = "": slName = "": slValue1 = 0: slUGroupName = "": slUGroupCode = "": slUGroupValue1 = 0
 End Sub
 Private Sub Form_Unload(Cancel As Integer)
     Call CloseRecordset(rstGeneralList)
@@ -868,6 +882,7 @@ Private Sub SSTab1_Click(PreviousTab As Integer)
                     .Add DataGrid1.Bookmark
                 End With
             End If
+            MasterType = Left(MasterType, 2)
             If MasterType = 5 Or MasterType = 12 Then Mh3dFrame2.Height = 1170: fpSpread1.Visible = False
             Text1.SetFocus
         End If
@@ -1052,6 +1067,7 @@ Private Sub Text2_Validate(Cancel As Boolean)
     ElseIf CheckDuplicate(cnDatabase, "GeneralMaster", "Code", "Name+Type", Trim(Text2.Text) & MasterType, rstGeneralMaster.Fields("Code").Value, False) Then
         Cancel = True
     ElseIf CheckEmpty(Text3, False) Then
+    MasterType = Left(MasterType, 2)
         If MasterType <> 56 Then Text3.Text = Text2.Text
     End If
 End Sub
@@ -1079,7 +1095,7 @@ Private Sub LoadFields()
         Text2.Text = .Fields("Name").Value
         Text3.Text = .Fields("PrintName").Value
         MhRealInput1.Value = .Fields("Value1").Value
-        cbValue.Value = .Fields("Value1").Value
+        If .Fields("Value1").Value > 1 Then cbValue.Value = 1 Else cbValue.Value = .Fields("Value1").Value
         UnderGroupCode = .Fields("UnderGroup").Value
         If MasterType = "1" Then    'Size Master
             With rstchkRef
@@ -1087,7 +1103,7 @@ Private Sub LoadFields()
                 .Open "SELECT STUFF((SELECT ', '+(LTRIM(M.Name)) FROM SizeGroupChild C INNER JOIN GeneralMaster M ON C.Code=M.Code WHERE [Size]='" & rstGeneralMaster.Fields("Code").Value & "' ORDER BY M.Name FOR XML PATH('')),1,1,'') As Name", cnDatabase, adOpenKeyset, adLockReadOnly
                 If .RecordCount > 0 Then Text4.Text = CheckNull(Trim(.Fields("Name").Value))
             End With
-        ElseIf MasterType = "12" Or MasterType = "5" Then 'Account Group Master
+        ElseIf MasterType = "12" Or MasterType = "5" Or MasterType = "12','26" Then  'Account Group Master
             With rstAccountGroup
                 If .State = adStateOpen Then rstAccountGroup.Close
                 .Open "SELECT M.Name FROM GeneralMaster M WHERE M.Code='" & UnderGroupCode & "' ORDER BY M.Name", cnDatabase, adOpenKeyset, adLockReadOnly
@@ -1117,11 +1133,11 @@ ErrorHandler:
     SSTab1.Tab = 0
 End Sub
 Private Sub fpSpread1_KeyDown(KeyCode As Integer, Shift As Integer) 'Item And Account Group
-    Dim UnderGroup As Variant
-    If Shift = 0 And KeyCode = 144 Then
+    
+    If Shift = 0 And KeyCode = vbKeyReturn Then
         With fpSpread1
-            .GetText 1, .ActiveRow, UnderGroup: Text4.Text = UnderGroup
             .GetText 3, .ActiveRow, UnderGroupCode
+            .GetText 1, .ActiveRow, UnderGroup: Text4.Text = UnderGroup
         End With
     End If
 End Sub
@@ -1140,7 +1156,7 @@ Private Sub SaveFields()
         End If
         .Fields("Name").Value = Trim(Text2.Text)
         .Fields("PrintName").Value = Trim(Text3.Text)
-        .Fields("Type").Value = MasterType
+        .Fields("Type").Value = Left(MasterType, 2)
         .Fields("Value1").Value = IIf(MasterType = "7", cbValue.Value, MhRealInput1.Value)
         .Fields("PrintStatus").Value = "N"
         .Fields("UnderGroup").Value = UnderGroupCode
@@ -1229,7 +1245,7 @@ Private Sub SetMenuOptions(bVal As Boolean)
 End Sub
 Private Sub Text4_KeyDown(KeyCode As Integer, Shift As Integer) 'Item And Account Group
     Dim i As Long, cndn As String
-    If Not (MasterType = 5 Or MasterType = 12) Then Exit Sub
+    If Not (MasterType = "5" Or MasterType = "7" Or MasterType = "12" Or MasterType = "12','26") Then Exit Sub
     If KeyCode = vbKeySpace Or KeyCode = vbKeyDown Or KeyCode = 144 Then
         On Error Resume Next
         Mh3dFrame2.Height = 4680
@@ -1239,10 +1255,16 @@ Private Sub Text4_KeyDown(KeyCode As Integer, Shift As Integer) 'Item And Accoun
             If .State = adStateOpen Then .Close
             If MasterType = "5" Then
                 cndn = "Type = '" & MasterType & "'"
-            ElseIf MasterType = "12" Then
+            ElseIf MasterType = "7" Then
+                cndn = "Type = 20"
+            ElseIf MasterType = "12" Or MasterType = "12','26" Then
                 cndn = "Type IN ('" & MasterType & "','26') AND Code NOT IN ('" & slCode & "','*26001','*26002','*26003')"
             End If
+    If oAccountGroup > "*99000" Then
+            .Open "SELECT Name As Col0,Code,Name,Value1,(SELECT Name FROM GeneralMaster WHERE Code=G.UnderGroup) As UGroup FROM GeneralMaster G  WHERE (G.UnderGroup='" & oAccountGroup & "' OR G.Code='" & oAccountGroup & "') ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
+    Else
             .Open "SELECT Name As Col0,Code,Name,Value1,(SELECT Name FROM GeneralMaster WHERE Code=G.UnderGroup) As UGroup FROM GeneralMaster G  WHERE " & cndn & " ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
+    End If
             If .RecordCount = 0 Then Screen.MousePointer = vbNormal: Exit Sub
         End With
         With fpSpread1
@@ -1263,14 +1285,23 @@ Private Sub Text4_KeyDown(KeyCode As Integer, Shift As Integer) 'Item And Accoun
 End Sub
 Private Sub Text4_Change()
     Dim i As Integer, cVal As Variant
+    If oKeyCode <> vbKeyReturn Then
     With fpSpread1
+        For i = 1 To .DataRowCnt
+            .Row = i: .RowHidden = False
+        Next
         For i = 1 To .DataRowCnt
             .GetText 1, i, cVal
             If CheckEmpty(Text4.Text, False) Then
                 .SetActiveCell 1, 1
             ElseIf InStr(StrConv(cVal, vbUpperCase), StrConv(Text4.Text, vbUpperCase)) > 0 Then
+                '.SetActiveCell 1, i: Exit Sub
                 .SetActiveCell 1, i
+            ElseIf InStr(StrConv(cVal, vbUpperCase), StrConv(Text4.Text, vbUpperCase)) < 0 Then
+            .Row = i: .RowHidden = True
             End If
         Next
     End With
+    End If
+    oKeyCode = 0
 End Sub

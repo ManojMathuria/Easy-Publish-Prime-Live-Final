@@ -3,10 +3,10 @@ Object = "{3AE5AE83-A6DA-101B-9313-00AA00575482}#1.0#0"; "mhfram32.ocx"
 Object = "{49CBFCC0-1337-11D2-9BBF-00A024695830}#1.0#0"; "tinumb8.ocx"
 Object = "{A49CE0E0-C0F9-11D2-B0EA-00A024695830}#1.0#0"; "tidate8.ocx"
 Object = "{886939C3-7807-101C-BB03-00AA00575482}#1.0#0"; "mhlabl32.ocx"
-Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDatGrd.ocx"
+Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
 Object = "{F856EC8B-F03C-4515-BDC6-64CBD617566A}#8.0#0"; "fpSPR80.OCX"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "mscomctl.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
 Begin VB.Form frmPaperIssueReceiptVoucher 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Paper Receipt Voucher"
@@ -2014,12 +2014,18 @@ Private Sub LoadOrderList()
     If rstOrderList.RecordCount = 0 Then DisplayError ("No Pending Order Exists"): fpSpread1.SetFocus: Exit Sub
     With FrmOrderList.fpSpread1
         .ClearRange 1, 1, .MaxCols, .MaxRows, True
-        .Col = 5: .ColHidden = True 'Billed
+        .MaxCols = 13
+        .Col = 1: .Row = SpreadHeader: .Text = "Paper Name"
+        .Col = 5: .Row = SpreadHeader + 1: .Text = "Delivered" '.ColHidden = True 'Billed
         .Col = 6: .ColHidden = True 'Unbilled
-        .Col = 7: .ColHidden = True 'Challan
+        .Col = 7: '.ColHidden = True 'Challan
         .Col = 8: .ColHidden = True 'Direct Sale
-        .Col = 11: .ColHidden = True 'Status
-        .ColWidth(1) = 74.1
+        .Col = 11: .ColHidden = True '
+        .Col = 12: .ColHidden = True '
+        .Col = 13: .ColHidden = True '
+        .ColWidth(1) = 75
+        .ColWidth(9) = 7.25
+        
     End With
     Load FrmOrderList
     FrmOrderList.Text2 = Text3.Text
@@ -2034,19 +2040,21 @@ Private Sub LoadOrderList()
         i = 0
         Do While Not .EOF
             i = i + 1
-            FrmOrderList.fpSpread1.SetText 1, i, .Fields("Paper").Value
-            FrmOrderList.fpSpread1.SetText 2, i, .Fields("VchNo").Value: FrmOrderList.fpSpread1.SetText 13, i, .Fields("UniqCode").Value
-            FrmOrderList.fpSpread1.SetText 3, i, Format(.Fields("VchDate").Value, "dd-MMM-yy")
+            FrmOrderList.fpSpread1.SetText 1, i, .Fields("Paper").Value 'Paper Name
+            FrmOrderList.fpSpread1.SetText 2, i, .Fields("VchNo").Value 'Order No
+            FrmOrderList.fpSpread1.SetText 3, i, Format(.Fields("VchDate").Value, "dd-MMM-yy") 'Date
             FrmOrderList.fpSpread1.SetText 4, i, S2U(Val(.Fields("Ordered").Value), Val(.Fields("SPU").Value)) 'Ordered
-            FrmOrderList.fpSpread1.SetText 9, i, S2U(Val(.Fields("Received").Value), Val(.Fields("SPU").Value)) 'Delivered
-            FrmOrderList.fpSpread1.SetText 10, i, S2U(Val(.Fields("Ordered").Value) - Val(.Fields("Received").Value), Val(.Fields("SPU").Value)) 'Pending
-            FrmOrderList.fpSpread1.SetText 12, i, 0
+            FrmOrderList.fpSpread1.SetText 5, i, S2U(Val(.Fields("Received").Value), Val(.Fields("SPU").Value)) 'Delivered 9
+            FrmOrderList.fpSpread1.SetText 7, i, S2U(Val(.Fields("Ordered").Value) - Val(.Fields("Received").Value), Val(.Fields("SPU").Value)) 'Pending 10
+            FrmOrderList.fpSpread1.SetText 9, i, 1 'Check Box
+            FrmOrderList.fpSpread1.SetText 10, i, .Fields("UniqCode").Value 'UniqueCode
             .MoveNext
         Loop
-        FrmOrderList.fpSpread1.SetActiveCell 12, 1
+        FrmOrderList.fpSpread1.SetActiveCell 1, 1
     End With
     With FrmOrderList
         .Check1.Visible = False
+        .Check2.Value = 1
         .Text2.Width = 13005
         CenterForm FrmOrderList
         .Show vbModal
