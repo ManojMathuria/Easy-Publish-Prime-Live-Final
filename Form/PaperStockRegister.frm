@@ -622,6 +622,7 @@ Dim rstCompanyMaster As New ADODB.Recordset, rstPaperStockRegister As New ADODB.
 Dim EMailID As String, Attachment As String, Message As String, OutputTo As String, PaperTbl
 Private Sub Form_Load()
     On Error GoTo ErrorHandler
+    CustomSettings
     CenterForm Me
     BusySystemIndicator True
     PaperTbl = "SELECT Code As Paper FROM PaperChild UNION " & _
@@ -886,6 +887,22 @@ Private Sub PrintPaperStockRegister()
     rstPaperStockRegister.Open SQL, cnDatabase, adOpenKeyset, adLockOptimistic
     rstPaperStockRegister.ActiveConnection = Nothing
     Screen.MousePointer = vbNormal
+    
+    With rptPaperStockRegister
+        If Logo = "S" Then
+        .Picture1.Width = LogoW
+        .Picture1.Height = LogoH
+        End If
+        .Text2.Width = Header '9000 '7800
+        .Text2.Left = HeaderL '1000 '1680
+        If LogoLine = "N" Then
+        .Picture1.LeftLineStyle = crLSNoLine
+        .Picture1.RightLineStyle = crLSNoLine
+        .Picture1.TopLineStyle = crLSNoLine
+        .Picture1.BottomLineStyle = crLSNoLine
+        End If
+    End With
+    
     If rstPaperStockRegister.RecordCount = 0 Then On Error GoTo 0: Exit Sub
     rptPaperStockRegister.Database.SetDataSource rstPaperStockRegister, 3, 1
     rptPaperStockRegister.DiscardSavedData

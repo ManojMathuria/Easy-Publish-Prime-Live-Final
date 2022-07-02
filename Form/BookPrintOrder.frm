@@ -5434,7 +5434,7 @@ Public Sub PaperSlip(ByVal OrderCode As String, Optional ByVal Note As String, O
                                   "(SELECT LTrim(M3.PrintName) FROM PaperMaster M3 INNER JOIN GeneralMaster M4 ON M3.UOM=M4.Code WHERE M3.Code=C.Paper2) As Paper2Name,[PaperWastage2%],PaperConsumptionOther2,(SELECT '('+LTrim(M6.PrintName)+')' FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C.Paper2) As UOM2," & _
                                   "(SELECT PrintName+'/'+CHOOSE(M1.FormType,'08','16','04','12','24','32','64','06') FROM GeneralMaster WHERE Code=C.Size4) As [Size4],Pages4,[Forms4-¼],[Forms4-½],[Forms4-1],CHOOSE(CONVERT(NUMERIC,PlateType4),'Deep-etch','PS','Wipe-on','CTP') As Plate4,PrintRate4,PrintAmount4,PlateRate4,PlateAmount4," & _
                                   "(SELECT LTrim(M3.PrintName) FROM PaperMaster M3 INNER JOIN GeneralMaster M4 ON M3.UOM=M4.Code WHERE M3.Code=C.Paper4) As Paper4Name,[PaperWastage4%],PaperConsumptionOther4,(SELECT '('+LTrim(M6.PrintName)+')' FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C.Paper4) As UOM4," & _
-                                  "TotalPaperConsumption,Adjustment,PAdjustment,[VAT%],VAT,[PVAT%],PVAT,BillAmount,PBillAmount,C.Remarks,(SELECT LTrim(eMail) FROM AccountMaster WHERE CODE=P.BookPrinter) As EMailId,M1.Narration,P.BookPrinter,PlateMaker,PaperWastageMin1,PaperWastageMin2,PaperWastageMin4,PaperRate1,PaperRate2,PaperRate4,PaperAmount1,PaperAmount2,PaperAmount4,RBillAmount,RAdjustment,[RVAT%],RVAT,C.Processing,P.EstQty01 As FinalQuantity,C.Ref  " & _
+                                  "TotalPaperConsumption,Adjustment,PAdjustment,[VAT%],VAT,[PVAT%],PVAT,BillAmount,PBillAmount,C.Remarks,(SELECT LTrim(eMail) FROM AccountMaster WHERE CODE=P.BookPrinter) As EMailId,M1.Narration,P.BookPrinter,PlateMaker,PaperWastageMin1,PaperWastageMin2,PaperWastageMin4,PaperRate1,PaperRate2,PaperRate4,PaperAmount1,PaperAmount2,PaperAmount4,RBillAmount,RAdjustment,[RVAT%],RVAT,C.Processing,P.EstQty01 As FinalQuantity,C.Ref,PaperConsumptionsheets1,PaperConsumptionsheets2,PaperConsumptionsheets4   " & _
                                   "FROM ((BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code) INNER JOIN BookMaster M1 ON P.Book=M1.Code) INNER JOIN GeneralMaster M2 ON M1.FinishSize=M2.Code WHERE P.Code='" & OrderCode & "' AND P.BookPrinter='" & rstBookPOChild0801.Fields("Vendor").Value & "'", cnDatabase, adOpenKeyset, adLockOptimistic
     Else
             rstBookPOChild05.Open "SELECT Trim(M1.PrintName)+iif(M1.Price=0,'',' (Price : Rs. '+Format(M1.Price,'0.00')+')') As Item,M2.PrintName As FinishSize,TRIM(TRIM(M1.Pages)+'pages/'+TRIM(M1.Forms)+'f ('+IIF(M1.OneColorForms=0,'','1-Col_'+TRIM(M1.OneColorForms)+'f +')+IIF(M1.TwoColorForms=0,'',' 2-Col_'+TRIM(M1.TwoColorForms)+'f ')+IIF(M1.FourColorForms=0,'','+ 4-Col_'+TRIM(M1.FourColorForms)+'f '))+' )' As Forme,TRIM(P.Name) As OrderNo,P.Date As OrderDate,(SELECT PrintName FROM AccountMaster WHERE Code=P.BookPrinter) As TextPrinter,C.ActualQuantity,M1.DuplexPrinting,BillingQuantity01,BillingQuantity02,(SELECT PrintName+'/'+CHOOSE(M1.FormType,'08','16','04','12','24','32','64','06') FROM GeneralMaster WHERE Code=C.Size1) As [Size1],Pages1,[Forms1-¼],[Forms1-½],[Forms1-1],CHOOSE(VAL(PlateType1),'Deep-etch','PS','Wipe-on','CTP') As Plate1,PrintRate1,PrintAmount1,PlateRate1,PlateAmount1," & _
@@ -5443,7 +5443,7 @@ Public Sub PaperSlip(ByVal OrderCode As String, Optional ByVal Note As String, O
                                   "(SELECT TRIM(M3.PrintName) FROM PaperMaster M3 INNER JOIN GeneralMaster M4 ON M3.UOM=M4.Code WHERE M3.Code=C.Paper2) As Paper2Name,[PaperWastage2%],PaperConsumptionOther2,(SELECT '('+TRIM(M6.PrintName)+')' FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C.Paper2) As UOM2," & _
                                   "(SELECT PrintName+'/'+CHOOSE(M1.FormType,'08','16','04','12','24','32','64','06') FROM GeneralMaster WHERE Code=C.Size4) As [Size4],Pages4,[Forms4-¼],[Forms4-½],[Forms4-1],CHOOSE(VAL(PlateType4),'Deep-etch','PS','Wipe-on','CTP') As Plate4,PrintRate4,PrintAmount4,PlateRate4,PlateAmount4," & _
                                   "(SELECT TRIM(M3.PrintName) FROM PaperMaster M3 INNER JOIN GeneralMaster M4 ON M3.UOM=M4.Code WHERE M3.Code=C.Paper4) As Paper4Name,[PaperWastage4%],PaperConsumptionOther4,(SELECT '('+TRIM(M6.PrintName)+')' FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C.Paper4) As UOM4," & _
-                                  "TotalPaperConsumption,Adjustment,PAdjustment,[VAT%],VAT,[PVAT%],PVAT,BillAmount,PBillAmount,C.Remarks,(SELECT TRIM(eMail) FROM AccountMaster WHERE CODE=P.BookPrinter) As EMailId,M1.Narration,P.BookPrinter,PlateMaker,PaperWastageMin1,PaperWastageMin2,PaperWastageMin4,PaperRate1,PaperRate2,PaperRate4,PaperAmount1,PaperAmount2,PaperAmount4,RBillAmount,RAdjustment,[RVAT%],RVAT,C.Processing,P.EstQty01 As FinalQuantity,C.Ref  " & _
+                                  "TotalPaperConsumption,Adjustment,PAdjustment,[VAT%],VAT,[PVAT%],PVAT,BillAmount,PBillAmount,C.Remarks,(SELECT TRIM(eMail) FROM AccountMaster WHERE CODE=P.BookPrinter) As EMailId,M1.Narration,P.BookPrinter,PlateMaker,PaperWastageMin1,PaperWastageMin2,PaperWastageMin4,PaperRate1,PaperRate2,PaperRate4,PaperAmount1,PaperAmount2,PaperAmount4,RBillAmount,RAdjustment,[RVAT%],RVAT,C.Processing,P.EstQty01 As FinalQuantity,C.Ref,PaperConsumptionsheets1,PaperConsumptionsheets2,PaperConsumptionsheets4  " & _
                                   "FROM ((BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code) INNER JOIN BookMaster M1 ON P.Book=M1.Code) INNER JOIN GeneralMaster M2 ON M1.FinishSize=M2.Code WHERE P.Code='" & OrderCode & "' AND P.BookPrinter='" & rstBookPOChild0801.Fields("Vendor").Value & "'", cnDatabase, adOpenKeyset, adLockOptimistic
     End If
                 rptPaperSlip.Text22.SetText rstBookPOChild08.Fields("BindingType").Value
@@ -5628,6 +5628,20 @@ Public Sub PaperSlip(ByVal OrderCode As String, Optional ByVal Note As String, O
                               "FROM BookPOChild0801 T WHERE T.Code='" & OrderCode & "' AND T.Vendor='" & rstBookPOChild0801.Fields("Vendor").Value & "'", cnDatabase, adOpenKeyset, adLockOptimistic
             If rstBookPOChild09.RecordCount = 0 Then rptPaperSlip.Section12.Suppress = True
             Screen.MousePointer = vbNormal
+        With rptPaperSlip
+            If Logo = "S" Then
+                .Picture1.Width = LogoW
+                .Picture1.Height = LogoH
+            End If
+                 .Text2.Font.Size = 20
+                 .Text2.Font.Bold = True
+            If LogoLine = "N" Then
+                .Picture1.LeftLineStyle = crLSNoLine
+                .Picture1.RightLineStyle = crLSNoLine
+                .Picture1.TopLineStyle = crLSNoLine
+                .Picture1.BottomLineStyle = crLSNoLine
+            End If
+        End With
             If rstCompanyMaster.State = adStateClosed Then rstCompanyMaster.Open "SELECT PrintName,Address1,Address2,Address3,Address4,Phone,Fax,EMail,Website FROM CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
             rptPaperSlip.Text2.SetText Trim(rstCompanyMaster.Fields("PrintName").Value)
             rptPaperSlip.Text3.SetText Trim(rstCompanyMaster.Fields("Address1").Value) & Space(1) & Trim(rstCompanyMaster.Fields("Address2").Value) & Space(1) & Trim(rstCompanyMaster.Fields("Address3").Value) & Space(1) & Trim(rstCompanyMaster.Fields("Address4").Value)
@@ -5751,7 +5765,7 @@ Public Sub JobCard(ByVal OrderCode As String, Optional ByVal Note As String, Opt
                                   "(SELECT LTrim(M3.PrintName) FROM PaperMaster M3 INNER JOIN GeneralMaster M4 ON M3.UOM=M4.Code WHERE M3.Code=C.Paper2) As Paper2Name,[PaperWastage2%],PaperConsumptionOther2,(SELECT '('+LTrim(M6.PrintName)+')' FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C.Paper2) As UOM2," & _
                                   "(SELECT PrintName+'/'+CHOOSE(M1.FormType,'08','16','04','12','24','32','64','06') FROM GeneralMaster WHERE Code=C.Size4) As [Size4],Pages4,[Forms4-¼],[Forms4-½],[Forms4-1],CHOOSE(CONVERT(NUMERIC,PlateType4),'Deep-etch','PS','Wipe-on','CTP') As Plate4,PrintRate4,PrintAmount4,PlateRate4,PlateAmount4," & _
                                   "(SELECT LTrim(M3.PrintName) FROM PaperMaster M3 INNER JOIN GeneralMaster M4 ON M3.UOM=M4.Code WHERE M3.Code=C.Paper4) As Paper4Name,[PaperWastage4%],PaperConsumptionOther4,(SELECT '('+LTrim(M6.PrintName)+')' FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C.Paper4) As UOM4," & _
-                                  "TotalPaperConsumption,Adjustment,PAdjustment,[VAT%],VAT,[PVAT%],PVAT,BillAmount,PBillAmount,C.Remarks,(SELECT LTrim(eMail) FROM AccountMaster WHERE CODE=P.BookPrinter) As EMailId,M1.Narration,P.BookPrinter,PlateMaker,PaperWastageMin1,PaperWastageMin2,PaperWastageMin4,PaperRate1,PaperRate2,PaperRate4,PaperAmount1,PaperAmount2,PaperAmount4,RBillAmount,RAdjustment,[RVAT%],RVAT,C.Processing,P.EstQty01 As FinalQuantity,C.Ref  " & _
+                                  "TotalPaperConsumption,Adjustment,PAdjustment,[VAT%],VAT,[PVAT%],PVAT,BillAmount,PBillAmount,C.Remarks,(SELECT LTrim(eMail) FROM AccountMaster WHERE CODE=P.BookPrinter) As EMailId,M1.Narration,P.BookPrinter,PlateMaker,PaperWastageMin1,PaperWastageMin2,PaperWastageMin4,PaperRate1,PaperRate2,PaperRate4,PaperAmount1,PaperAmount2,PaperAmount4,RBillAmount,RAdjustment,[RVAT%],RVAT,C.Processing,P.EstQty01 As FinalQuantity,C.Ref,PaperConsumptionsheets1,PaperConsumptionsheets2,PaperConsumptionsheets4 " & _
                                   "FROM ((BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code) INNER JOIN BookMaster M1 ON P.Book=M1.Code) INNER JOIN GeneralMaster M2 ON M1.FinishSize=M2.Code WHERE P.Code='" & OrderCode & "' AND P.BookPrinter='" & rstBookPOChild0801.Fields("Vendor").Value & "'", cnDatabase, adOpenKeyset, adLockOptimistic
     Else
             rstBookPOChild05.Open "SELECT LTrim(M1.PrintName)+iif(M1.Price=0,'',' (Price : Rs. '+Format(M1.Price,'0.00')+')') As Item,M2.PrintName As FinishSize,LTrim(LTrim(M1.Pages)+'pages/'+LTrim(M1.Forms)+'f ('+IIF(M1.OneColorForms=0,'','1-Col_'+LTrim(M1.OneColorForms)+'f  +')+IIF(M1.TwoColorForms=0,'',' 2-Col_'+LTrim(M1.TwoColorForms)+'f ')+IIF(M1.FourColorForms=0,'','+ 4-Col_'+LTrim(M1.FourColorForms)+'f '))+' )' As Forme,LTrim(P.Name) As OrderNo,P.Date As OrderDate,(SELECT PrintName FROM AccountMaster WHERE Code=P.BookPrinter) As TextPrinter,C.ActualQuantity,M1.DuplexPrinting,BillingQuantity01,BillingQuantity02,(SELECT PrintName+'/'+CHOOSE(M1.FormType,'08','16','04','12','24','32','64','06') FROM GeneralMaster WHERE Code=C.Size1) As [Size1],Pages1,[Forms1-¼],[Forms1-½],[Forms1-1],CHOOSE(VAL(PlateType1),'Deep-etch','PS','Wipe-on','CTP') As Plate1,PrintRate1,PrintAmount1,PlateRate1,PlateAmount1," & _
@@ -5939,6 +5953,20 @@ Public Sub JobCard(ByVal OrderCode As String, Optional ByVal Note As String, Opt
         
         If rstBookPOChild09.RecordCount = 0 Then rptJobCard.Section12.Suppress = True
         Screen.MousePointer = vbNormal
+        With rptJobCard
+            If Logo = "S" Then
+                .Picture1.Width = LogoW
+                .Picture1.Height = LogoH
+            End If
+                 .Text2.Font.Size = 20
+                 .Text2.Font.Bold = True
+            If LogoLine = "N" Then
+                .Picture1.LeftLineStyle = crLSNoLine
+                .Picture1.RightLineStyle = crLSNoLine
+                .Picture1.TopLineStyle = crLSNoLine
+                .Picture1.BottomLineStyle = crLSNoLine
+            End If
+        End With
         If rstCompanyMaster.State = adStateClosed Then rstCompanyMaster.Open "SELECT PrintName,Address1,Address2,Address3,Address4,Phone,Fax,EMail,Website FROM CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
         rptJobCard.Text2.SetText Trim(rstCompanyMaster.Fields("PrintName").Value)
         rptJobCard.Text3.SetText Trim(rstCompanyMaster.Fields("Address1").Value) & Space(1) & Trim(rstCompanyMaster.Fields("Address2").Value) & Space(1) & Trim(rstCompanyMaster.Fields("Address3").Value) & Space(1) & Trim(rstCompanyMaster.Fields("Address4").Value)
@@ -6302,6 +6330,27 @@ Public Sub PrintBookPrintOrder01(ByVal OrderCode As String, Optional ByVal Note 
         rptBookPrintOrder01.Text60.SetText Format(GST, "#0.00")
         rptBookPrintOrder01.Text50.SetText Format(Round(FinalAmount + GST, 0), "#0.00")
         Screen.MousePointer = vbNormal
+        With rptBookPrintOrder01
+            If Logo = "S" Then
+                .Picture1.Width = LogoW
+                .Picture1.Height = LogoH
+            End If
+            If Len(LTrim(rstCompanyMaster.Fields("PrintName").Value)) <= 30 Then
+                .Text2.Font.Size = 20
+            ElseIf Len(LTrim(rstCompanyMaster.Fields("PrintName").Value)) <= 40 Then
+                .Text2.Font.Size = 18
+            ElseIf Len(LTrim(rstCompanyMaster.Fields("PrintName").Value)) <= 50 Then
+                .Text2.Font.Size = 16
+            ElseIf Len(LTrim(rstCompanyMaster.Fields("PrintName").Value)) <= 60 Then
+                .Text2.Font.Size = 14
+            End If
+            If LogoLine = "N" Then
+                .Picture1.LeftLineStyle = crLSNoLine
+                .Picture1.RightLineStyle = crLSNoLine
+                .Picture1.TopLineStyle = crLSNoLine
+                .Picture1.BottomLineStyle = crLSNoLine
+            End If
+        End With
         If rstCompanyMaster.State = adStateClosed Then rstCompanyMaster.Open "SELECT PrintName,Address1,Address2,Address3,Address4,Phone,Fax,EMail,Website FROM CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
         rptBookPrintOrder01.Text2.SetText Trim(rstCompanyMaster.Fields("PrintName").Value)
         rptBookPrintOrder01.Text3.SetText Trim(rstCompanyMaster.Fields("Address1").Value) & Space(1) & Trim(rstCompanyMaster.Fields("Address2").Value) & Space(1) & Trim(rstCompanyMaster.Fields("Address3").Value) & Space(1) & Trim(rstCompanyMaster.Fields("Address4").Value)
@@ -6314,7 +6363,7 @@ Public Sub PrintBookPrintOrder01(ByVal OrderCode As String, Optional ByVal Note 
         rptBookPrintOrder01.Subreport3.OpenSubreport.Database.SetDataSource rstBookPOChild07, 3, 1
         rptBookPrintOrder01.Subreport4.OpenSubreport.Database.SetDataSource rstBookPOChild10, 3, 1
         
-                Attachment = Mid(Attachment, InStr(4, Attachment, "/") + 1)
+        Attachment = Mid(Attachment, InStr(4, Attachment, "/") + 1)
         Message = "Dear Sir,<Br>Please find attached herewith PO #" & Trim(rstBookPOChild08.Fields("OrderNo").Value) & " for doing the needful at your end. An early finish of the job assigned to you will be highly appreciated.<Br>Kindly acknowledge the receipt of mail and confirm the date of completion of job.<Br><Br>" & IIf(Note = "", "", "<b><u>Note : " & Note & "</b></u><Br><Br>") & Trim(rstCompanyMaster.Fields("PrintName").Value) & "<Br>Phone : " & Trim(rstCompanyMaster.Fields("Phone").Value) & "<Br>E-Mail : <a HRef='mailto:" & Trim(rstCompanyMaster.Fields("EMail").Value) & "'>" & Trim(rstCompanyMaster.Fields("EMail").Value) & "</a>"
         If OutputTo = "S" Then
             FrmReportViewer.EMailID = EMailID
@@ -6654,6 +6703,20 @@ Public Sub PrintQuotationFormat(ByVal OrderCode As String, Optional ByVal Note A
 '
 '
         Screen.MousePointer = vbNormal
+        With rptQuotationFormat
+            If Logo = "S" Then
+                .Picture1.Width = LogoW
+                .Picture1.Height = LogoH
+            End If
+                .Text2.Width = Header '9000 '7800
+                .Text2.Left = HeaderL '1000 '1680
+            If LogoLine = "N" Then
+                .Picture1.LeftLineStyle = crLSNoLine
+                .Picture1.RightLineStyle = crLSNoLine
+                .Picture1.TopLineStyle = crLSNoLine
+                .Picture1.BottomLineStyle = crLSNoLine
+            End If
+        End With
         If rstCompanyMaster.State = adStateClosed Then rstCompanyMaster.Open "SELECT PrintName,Address1,Address2,Address3,Address4,Phone,Fax,EMail,Website FROM CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
         rptQuotationFormat.Text2.SetText Trim(rstCompanyMaster.Fields("PrintName").Value)
         rptQuotationFormat.Text3.SetText Trim(rstCompanyMaster.Fields("Address1").Value) & Space(1) & Trim(rstCompanyMaster.Fields("Address2").Value) & Space(1) & Trim(rstCompanyMaster.Fields("Address3").Value) & Space(1) & Trim(rstCompanyMaster.Fields("Address4").Value)
@@ -7128,6 +7191,28 @@ Public Sub PrintBookPrintOrder02(ByVal OrderCode As String, Optional ByVal Note 
         End If
         
         Screen.MousePointer = vbNormal
+        With rptBookPrintOrder02
+            If Logo = "S" Then
+                .Picture1.Width = LogoW
+                .Picture1.Height = LogoH
+            End If
+            If Len(LTrim(rstCompanyMaster.Fields("PrintName").Value)) <= 40 Then
+                .Text2.Font.Size = 20
+            ElseIf Len(LTrim(rstCompanyMaster.Fields("PrintName").Value)) <= 45 Then
+                .Text2.Font.Size = 18
+            ElseIf Len(LTrim(rstCompanyMaster.Fields("PrintName").Value)) <= 50 Then
+                .Text2.Font.Size = 16
+            ElseIf Len(LTrim(rstCompanyMaster.Fields("PrintName").Value)) <= 60 Then
+                .Text2.Font.Size = 14
+            End If
+            If LogoLine = "N" Then
+                .Picture1.LeftLineStyle = crLSNoLine
+                .Picture1.RightLineStyle = crLSNoLine
+                .Picture1.TopLineStyle = crLSNoLine
+                .Picture1.BottomLineStyle = crLSNoLine
+            End If
+        End With
+
         If rstCompanyMaster.State = adStateClosed Then rstCompanyMaster.Open "SELECT PrintName,Address1,Address2,Address3,Address4,Phone,Fax,EMail,Website FROM CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
         rptBookPrintOrder02.Text2.SetText LTrim(rstCompanyMaster.Fields("PrintName").Value)
         rptBookPrintOrder02.Text3.SetText LTrim(rstCompanyMaster.Fields("Address1").Value) & Space(1) & LTrim(rstCompanyMaster.Fields("Address2").Value) & Space(1) & LTrim(rstCompanyMaster.Fields("Address3").Value) & Space(1) & LTrim(rstCompanyMaster.Fields("Address4").Value)
@@ -7298,6 +7383,27 @@ Public Sub PrintBookPrintOrder03(ByVal OrderCode As String, Optional ByVal Note 
             End If
         End If
         Screen.MousePointer = vbNormal
+        With rptBookPlateOrder
+            If Logo = "S" Then
+                .Picture1.Width = LogoW
+                .Picture1.Height = LogoH
+            End If
+            If Len(LTrim(rstCompanyMaster.Fields("PrintName").Value)) <= 40 Then
+                .Text2.Font.Size = 20
+            ElseIf Len(LTrim(rstCompanyMaster.Fields("PrintName").Value)) <= 45 Then
+                .Text2.Font.Size = 18
+            ElseIf Len(LTrim(rstCompanyMaster.Fields("PrintName").Value)) <= 50 Then
+                .Text2.Font.Size = 16
+            ElseIf Len(LTrim(rstCompanyMaster.Fields("PrintName").Value)) <= 60 Then
+                .Text2.Font.Size = 14
+            End If
+            If LogoLine = "N" Then
+                .Picture1.LeftLineStyle = crLSNoLine
+                .Picture1.RightLineStyle = crLSNoLine
+                .Picture1.TopLineStyle = crLSNoLine
+                .Picture1.BottomLineStyle = crLSNoLine
+            End If
+        End With
         If rstCompanyMaster.State = adStateClosed Then rstCompanyMaster.Open "SELECT PrintName,Address1,Address2,Address3,Address4,Phone,Fax,EMail,Website FROM CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
         rptBookPlateOrder.Text2.SetText Trim(rstCompanyMaster.Fields("PrintName").Value)
         rptBookPlateOrder.Text3.SetText Trim(rstCompanyMaster.Fields("Address1").Value) & Space(1) & Trim(rstCompanyMaster.Fields("Address2").Value) & Space(1) & Trim(rstCompanyMaster.Fields("Address3").Value) & Space(1) & Trim(rstCompanyMaster.Fields("Address4").Value)
@@ -7370,6 +7476,27 @@ Public Sub PrintTitlePrintingOrder(ByVal OrderCode As String, Optional ByVal Not
                           "FROM ((BookPOParent P INNER JOIN BookPOChild09 C1 ON P.Code=C1.Code) INNER JOIN BookPOChild0901 C2 ON C1.Code=C2.Code) INNER JOIN BookMaster M1 ON C2.Book=M1.Code WHERE P.Code='" & OrderCode & "'", cnDatabase, adOpenKeyset, adLockOptimistic
     End If
     Screen.MousePointer = vbNormal
+        With rptTitlePrintingOrder
+            If Logo = "S" Then
+                .Picture1.Width = LogoW
+                .Picture1.Height = LogoH
+            End If
+            If Len(LTrim(rstCompanyMaster.Fields("PrintName").Value)) <= 30 Then
+                .Text2.Font.Size = 20
+            ElseIf Len(LTrim(rstCompanyMaster.Fields("PrintName").Value)) <= 40 Then
+                .Text2.Font.Size = 18
+            ElseIf Len(LTrim(rstCompanyMaster.Fields("PrintName").Value)) <= 50 Then
+                .Text2.Font.Size = 16
+            ElseIf Len(LTrim(rstCompanyMaster.Fields("PrintName").Value)) <= 60 Then
+                .Text2.Font.Size = 14
+            End If
+            If LogoLine = "N" Then
+                .Picture1.LeftLineStyle = crLSNoLine
+                .Picture1.RightLineStyle = crLSNoLine
+                .Picture1.TopLineStyle = crLSNoLine
+                .Picture1.BottomLineStyle = crLSNoLine
+            End If
+        End With
     If rstBookPOChild06.RecordCount = 0 Then On Error GoTo 0: Exit Sub
         If DatabaseType = "MS SQL" Then
     CoverPrinter = rstBookPOChild06.Fields("TitlePrinter").Value
@@ -7460,6 +7587,29 @@ Public Sub PrintTitlePlateOrder(ByVal OrderCode As String, Optional ByVal Note A
                           "C1.Remarks,(SELECT PrintName FROM GeneralMaster WHERE Code=C1.[Size]) As [Size],LTrim(M1.PrintName)+iif(M1.Price=0,'',' (Price : Rs. '+Format(M1.Price,'0.00')+')') As Item,[Ups/Plate],LTRIM(C2.FrontPrintingColor)+'+'+LTRIM(C2.BackPrintingColor) + ' ('+IIF(C1.Imposition='F','F&B','W&T')+')' As PrintingType,(SELECT EMail FROM AccountMaster WHERE Code=C1.PlateMaker) As EMail " & _
                           "FROM ((BookPOParent P INNER JOIN BookPOChild09 C1 ON P.Code=C1.Code) INNER JOIN BookPOChild0901 C2 ON C1.Code=C2.Code) INNER JOIN BookMaster M1 ON C2.Book=M1.Code WHERE P.Code='" & OrderCode & "' And P.TitlePrinter <> ''", cnDatabase, adOpenKeyset, adLockOptimistic
     Screen.MousePointer = vbNormal
+    
+        With rptTitlePlateOrder
+            If Logo = "S" Then
+                .Picture1.Width = LogoW
+                .Picture1.Height = LogoH
+            End If
+            If Len(LTrim(rstCompanyMaster.Fields("PrintName").Value)) <= 30 Then
+                .Text2.Font.Size = 20
+            ElseIf Len(LTrim(rstCompanyMaster.Fields("PrintName").Value)) <= 40 Then
+                .Text2.Font.Size = 18
+            ElseIf Len(LTrim(rstCompanyMaster.Fields("PrintName").Value)) <= 50 Then
+                .Text2.Font.Size = 16
+            ElseIf Len(LTrim(rstCompanyMaster.Fields("PrintName").Value)) <= 60 Then
+                .Text2.Font.Size = 14
+            End If
+            If LogoLine = "N" Then
+                .Picture1.LeftLineStyle = crLSNoLine
+                .Picture1.RightLineStyle = crLSNoLine
+                .Picture1.TopLineStyle = crLSNoLine
+                .Picture1.BottomLineStyle = crLSNoLine
+            End If
+        End With
+    
     If rstBookPOChild06.RecordCount = 0 Then On Error GoTo 0: Exit Sub
     If rstCompanyMaster.State = adStateClosed Then rstCompanyMaster.Open "SELECT PrintName,Address1,Address2,Address3,Address4,Phone,Fax,EMail,Website FROM CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
     rptTitlePlateOrder.Text2.SetText Trim(rstCompanyMaster.Fields("PrintName").Value)
@@ -7674,7 +7824,9 @@ Public Sub PrintCostSheet(ByVal OrderCode As String)
     On Error GoTo 0
 End Sub
 Public Sub PrintPlanning(ByVal OrderCode As String)
+    Dim StartColumn As String, StartRow As String, EndColumn As String, EndRow As String
     Dim oExcel As Object, i As Integer
+    Dim oBook As Object
     On Error Resume Next
     Screen.MousePointer = vbHourglass
     If rstBookPOChild05.State = adStateOpen Then rstBookPOChild05.Close
@@ -7682,11 +7834,11 @@ Public Sub PrintPlanning(ByVal OrderCode As String)
                                                        "C1.ActualQuantity As Quantity,(C1.Pages1+C1.Pages2+C1.Pages4) As Pages,C1.Forms1,C1.PrintRate1,C1.PrintAmount1,C1.PlateType1,C1.[TotalPlates1-¼]+C1.[TotalPlates1-½]+C1.[TotalPlates1-1] As TotalPlates1,C1.PlateRate1,C1.PlateAmount1,(SELECT STR([Weight/Unit]) FROM PaperMaster WHERE Code=C1.Paper1) As TextPaper1,PaperConsumptionOther1 As TextPaperConsumption1,C1.PaperRate1,C1.PaperAmount1," & _
                                                        "C1.Forms2,C1.PrintRate2,C1.PrintAmount2,C1.PlateType2,C1.[TotalPlates2-¼]+C1.[TotalPlates2-½]+C1.[TotalPlates2-1] As TotalPlates2,C1.PlateRate2,C1.PlateAmount2,(SELECT STR([Weight/Unit]) FROM PaperMaster WHERE Code=C1.Paper2) As TextPaper2,PaperConsumptionOther2 As TextPaperConsumption2,C1.PaperRate2,C1.PaperAmount2," & _
                                                        "C1.Forms4,C1.PrintRate4,C1.PrintAmount4,C1.PlateType4,C1.[TotalPlates4-¼]+C1.[TotalPlates4-½]+C1.[TotalPlates4-1] As TotalPlates4,C1.PlateRate4 ,C1.PlateAmount4,C1.Paper4,(SELECT STR([Weight/Unit]) FROM PaperMaster WHERE Code=C1.Paper4) As TextPaper4,PaperConsumptionOther4 As TextPaperConsumption4,C1.PaperRate4,C1.PaperAmount4," & _
-                                                       "TRIM(C2.FrontPrintingType)+'+'+TRIM(C2.BackPrintingType) As TitlePrintingType,C2.PrintRate As TitlePrintRate,C2.PrintAmount As TitlePrintAmount,C2.PlateType As TitlePlateType,C2.TotalPlates As TitleTotalPlates,C2.PlateRate As TitlePlateRate,C2.PlateAmount As TitlePlateAmount,(SELECT STR([Weight/Unit]) FROM PaperMaster WHERE Code=C2.Paper) As TitlePaper,C2.PaperConsumptionOther As TitlePaperConsumption,C2.PaperRate As TitlePaperRate,C2.PaperAmount As TitlePaperAmount," & _
-                                                       "(SELECT TRIM(MAX(FrontPrintingColor))+'+'+TRIM(MAX(BackPrintingColor)) FROM BookPOChild0901 WHERE Code=C5.Code) As ComboPrintingType,TRIM(C5.PrintRateFront)+'+'+TRIM(C5.PrintRateBack) As ComboPrintRate,C5.PrintAmountBT As ComboPrintAmount,C5.PlateType As ComboPlateType,C5.TotalPlates As ComboTotalPlates,C5.PlateRate As ComboPlateRate,C5.PlateAmountBT As ComboPlateAmount,(SELECT STR([Weight/Unit]) FROM PaperMaster WHERE Code=C5.Paper) As ComboPaper,C5.PaperConsumptionOther As ComboPaperConsumption,C5.PaperRate As ComboPaperRate,C5.PaperAmount As ComboPaperAmount," & _
+                                                       "LTrim(C2.FrontPrintingType)+'+'+LTrim(C2.BackPrintingType) As TitlePrintingType,C2.PrintRate As TitlePrintRate,C2.PrintAmount As TitlePrintAmount,C2.PlateType As TitlePlateType,C2.TotalPlates As TitleTotalPlates,C2.PlateRate As TitlePlateRate,C2.PlateAmount As TitlePlateAmount,(SELECT STR([Weight/Unit]) FROM PaperMaster WHERE Code=C2.Paper) As TitlePaper,C2.PaperConsumptionOther As TitlePaperConsumption,C2.PaperRate As TitlePaperRate,C2.PaperAmount As TitlePaperAmount," & _
+                                                       "(SELECT LTrim(MAX(FrontPrintingColor))+'+'+LTrim(MAX(BackPrintingColor)) FROM BookPOChild0901 WHERE Code=C5.Code) As ComboPrintingType,LTrim(C5.PrintRateFront)+'+'+LTrim(C5.PrintRateBack) As ComboPrintRate,C5.PrintAmountBT As ComboPrintAmount,C5.PlateType As ComboPlateType,C5.TotalPlates As ComboTotalPlates,C5.PlateRate As ComboPlateRate,C5.PlateAmountBT As ComboPlateAmount,(SELECT STR([Weight/Unit]) FROM PaperMaster WHERE Code=C5.Paper) As ComboPaper,C5.PaperConsumptionOther As ComboPaperConsumption,C5.PaperRate As ComboPaperRate,C5.PaperAmount As ComboPaperAmount," & _
                                                        "(SELECT PrintName FROM GeneralMaster WHERE Code=C4.BindingType) As BindingType,(C4.BindingForms+C4.ExtraForms) As BindingForms,C4.FormFoldRate,C4.FormStitchRate,C4.FormPasteRate,C4.[Rate/Book],(TotalPkts*PktPackRate)+(TotalBoxes*BoxPackRate)+(TotalBoxes*CartageRate) As [Packing&Cartage]," & _
                                                        "EstQty01,EstQty02,EstQty03,EstQty04,EstQty05," & _
-                                                       "IIF(ISNULL(C1.VAT)=True,0,C1.VAT)+IIF(ISNULL(C1.PVAT)=True,0,C1.PVAT)+IIF(ISNULL(C1.RVAT)=True,0,C1.RVAT)+IIF(ISNULL(C2.VAT)=True,0,C2.VAT)+IIF(ISNULL(C2.PVAT)=True,0,C2.PVAT)+IIF(ISNULL(C2.RVAT)=True,0,C2.RVAT)+IIF(ISNULL(C4.VAT)=True,0,C4.VAT)+IIF(ISNULL(C5.GST)=True,0,C5.GST)+IIF(ISNULL(C5.PGST)=True,0,C5.PGST)+IIF(ISNULL(C5.RGST)=True,0,C5.RGST) As GST,IIF(ISNULL(C1.Adjustment)=True,0,C1.Adjustment)+IIF(ISNULL(C1.PAdjustment)=True,0,C1.PAdjustment)+IIF(ISNULL(C1.RAdjustment)=True,0,C1.RAdjustment)+IIF(ISNULL(C2.Adjustment)=True,0,C2.Adjustment)+IIF(ISNULL(C2.PAdjustment)=True,0,C2.PAdjustment)+IIF(ISNULL(C2.RAdjustment)=True,0,C2.RAdjustment)+IIF(ISNULL(C4.Adjustment)=True,0,C4.Adjustment)+IIF(ISNULL(C5.Adjustment)=True,0,C5.Adjustment)+IIF(ISNULL(C5.PAdjustment)=True,0,C5.PAdjustment)+IIF(ISNULL(C5.RAdjustment)=True,0,C5.RAdjustment) As Adjustment,P.Name,M3.Name As Client,M4.Name As PSize, " & _
+                                                       "(ISNULL(C1.VAT,0)+ISNULL(C1.PVAT,0)+ISNULL(C1.RVAT,0)+ISNULL(C2.VAT,0)+ISNULL(C2.PVAT,0)+ISNULL(C2.RVAT,0)+ISNULL(C4.VAT,0)+ISNULL(C5.GST,0)+ISNULL(C5.PGST,0)+ISNULL(C5.RGST,0)) As GST,(ISNULL(C1.Adjustment,0)+ISNULL(C1.PAdjustment,0)+ISNULL(C1.RAdjustment,0)+ISNULL(C2.Adjustment,0)+ISNULL(C2.PAdjustment,0)+ISNULL(C2.RAdjustment,0)+ISNULL(C4.Adjustment,0)+ISNULL(C5.Adjustment,0)+ISNULL(C5.PAdjustment,0)+ISNULL(C5.RAdjustment,0)) As Adjustment,P.Name,M3.Name As Client,M4.Name As PSize, " & _
                                                        "C1.Pages1 As Pages1,C1.Pages2 As Pages2,C1.Pages4 As Pages4 " & _
                                                        "FROM (((((((BookPOParent P INNER JOIN BookPOChild05 C1 ON P.Code=C1.Code) LEFT JOIN BookPOChild06 C2 ON P.Code=C2.Code) LEFT JOIN BookPOChild08 C4 ON P.Code=C4.Code) LEFT JOIN BookPOChild09 C5 ON P.Code=C5.Code) INNER JOIN BookMaster M1 ON P.Book=M1.Code) INNER JOIN GeneralMaster M2 ON M1.[FinishSize]=M2.Code) INNER JOIN GeneralMaster M3 ON M1.[Group]=M3.Code) INNER JOIN GeneralMaster M4 ON M1.[Size]=M4.Code WHERE P.Code='" & OrderCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
     If rstBookPOChild06.State = adStateOpen Then rstBookPOChild06.Close
@@ -7698,145 +7850,63 @@ Public Sub PrintPlanning(ByVal OrderCode As String)
     oExcel.Workbooks.Open (App.Path & "\Template\Imposition")
     If Dir(App.Path & "\Imposition\", vbDirectory) = "" Then FSO.CreateFolder App.Path & "\Imposition\"
     oExcel.DisplayAlerts = False
-    oExcel.Workbooks.Item(1).SaveAs (App.Path & "\Imposition\" & Replace(Trim(rstBookPOList.Fields("BookName").Value), "*", "") + " (Ref No-" + Trim(rstBookPOChild05.Fields("Name").Value) + " )" + " (" + Format(Date, "dd-MM-yyyy") + ")")
-'    oExcel.Workbooks.Item(1).SaveAs (App.Path & "\Imposition\" & Replace(Trim(rstBookPOList.Fields("BookName").Value), "*", "") + " (" + Format(Date, "dd-MM-yyyy") + ")")
+    oExcel.Workbooks.Item(1).SaveAs (App.Path & "\Imposition\" & Replace(Trim(rstBookPOList.Fields("BookName").Value), "*", "") + " (Ref No-" + Trim(rstBookPOChild05.Fields("Name").Value) + " )" + " (" + Format(Now(), "dd-MM-yyyy SS") + ")")
     oExcel.DisplayAlerts = True
     oExcel.Sheets("Sheet1").Select
     oExcel.Sheets("Sheet1").Unprotect ("eisi")
-    '
     oExcel.Application.Cells(1, "B").Value = Trim(rstBookPOChild05.Fields("BookName").Value)
     oExcel.Application.Cells(2, "D").Value = Trim(rstBookPOChild05.Fields("PSize").Value)
     oExcel.Application.Cells(4, "B").Value = Trim(IIf((rstBookPOChild05.Fields("Pages1").Value) > 0, "1Col", "") & IIf((rstBookPOChild05.Fields("Pages2").Value) > 0, "2Col", "") & IIf((rstBookPOChild05.Fields("Pages4").Value) > 0, "4Col", ""))
     oExcel.Application.Cells(3, "D").Value = Trim(rstBookPOChild05.Fields("Name").Value)
     oExcel.Application.Cells(1, "H").Value = Trim(rstBookPOChild05.Fields("Client").Value)
     oExcel.Application.Cells(3, "E").Value = Val(rstBookPOChild05.Fields("Pages").Value)
-'    oExcel.Application.Cells(53, "C").Value = Val(rstBookPOChild05.Fields("Royalty").Value) / 100
     oExcel.Application.Cells(3, "B").Value = Val(rstBookPOChild05.Fields("EstQty01").Value)
     oExcel.Application.Cells(2, "B").Value = Trim(rstBookPOChild05.Fields("BookSize").Value)
-'    oExcel.Application.Cells(2, "D").Value = Trim(rstBookPOChild05.Fields("BookSize").Value) & "/" & Choose(Val(rstBookPOChild05.Fields("FormType").Value), "08", "16", "04", "12", "24", "32", "64", "06", "02")
     oExcel.Application.Cells(5, "E").Value = Choose(Val(rstBookPOChild05.Fields("FormType").Value), "08", "16", "04", "12", "24", "32", "64", "06", "02")
-'    oExcel.Application.Cells(7, "B").Value = Val(rstBookPOChild05.Fields("Forms1").Value) + Val(rstBookPOChild05.Fields("Forms2").Value) + Val(rstBookPOChild05.Fields("Forms4").Value)
-'    oExcel.Application.Cells(8, "B").Value = Val(rstBookPOChild05.Fields("BindingForms").Value)
-'    oExcel.Application.Cells(9, "B").Value = Trim(rstBookPOChild05.Fields("LaminationType").Value)
     oExcel.Application.Cells(5, "G").Value = Trim(rstBookPOChild05.Fields("BindingType").Value)
-    '
-'    If Not IsNull(rstBookPOChild05.Fields("TextPaper1").Value) Then
-'        oExcel.Application.Cells(24, "C").Value = Val(rstBookPOChild05.Fields("TextPaper1").Value)    'Weight/Unit
-'        oExcel.Application.Cells(24, "D").Value = Val(rstBookPOChild05.Fields("TextPaperConsumption1").Value)
-'        oExcel.Application.Cells(24, "E").Value = Val(rstBookPOChild05.Fields("PaperRate1").Value)
-'        oExcel.Application.Cells(24, "G").Value = Val(rstBookPOChild05.Fields("PaperAmount1").Value)
-'        '
-'        oExcel.Application.Cells(29, "C").Value = Choose(Val(rstBookPOChild05.Fields("PlateType1").Value), "Deepatch", "PS", "Wipeon", "CTP")
-'        oExcel.Application.Cells(29, "D").Value = Val(rstBookPOChild05.Fields("TotalPlates1").Value)
-'        oExcel.Application.Cells(29, "E").Value = Val(rstBookPOChild05.Fields("PlateRate1").Value)
-'        oExcel.Application.Cells(29, "G").Value = Val(rstBookPOChild05.Fields("PlateAmount1").Value)
-'        '
-'        oExcel.Application.Cells(34, "D").Value = Val(rstBookPOChild05.Fields("Forms1").Value)
-'        oExcel.Application.Cells(34, "E").Value = Val(rstBookPOChild05.Fields("PrintRate1").Value)
-'        oExcel.Application.Cells(34, "G").Value = Val(rstBookPOChild05.Fields("PrintAmount1").Value)
-'    End If
-'    If Not IsNull(rstBookPOChild05.Fields("TextPaper2").Value) Then
-'        oExcel.Application.Cells(25, "C").Value = Val(rstBookPOChild05.Fields("TextPaper2").Value)
-'        oExcel.Application.Cells(25, "D").Value = Val(rstBookPOChild05.Fields("TextPaperConsumption2").Value)
-'        oExcel.Application.Cells(25, "E").Value = Val(rstBookPOChild05.Fields("PaperRate2").Value)
-'        oExcel.Application.Cells(25, "G").Value = Val(rstBookPOChild05.Fields("PaperAmount2").Value)
-'        '
-'        oExcel.Application.Cells(30, "C").Value = Choose(Val(rstBookPOChild05.Fields("PlateType2").Value), "Deepatch", "PS", "Wipeon", "CTP")
-'        oExcel.Application.Cells(30, "D").Value = Val(rstBookPOChild05.Fields("TotalPlates2").Value)
-'        oExcel.Application.Cells(30, "E").Value = Val(rstBookPOChild05.Fields("PlateRate2").Value)
-'        oExcel.Application.Cells(30, "G").Value = Val(rstBookPOChild05.Fields("PlateAmount2").Value)
-'        '
-'        oExcel.Application.Cells(35, "D").Value = Val(rstBookPOChild05.Fields("Forms2").Value)
-'        oExcel.Application.Cells(35, "E").Value = Val(rstBookPOChild05.Fields("PrintRate2").Value)
-'        oExcel.Application.Cells(35, "G").Value = Val(rstBookPOChild05.Fields("PrintAmount2").Value)
-'    End If
-'    If Not IsNull(rstBookPOChild05.Fields("TextPaper4").Value) Then
-'        oExcel.Application.Cells(26, "C").Value = Val(rstBookPOChild05.Fields("TextPaper4").Value)
-'        oExcel.Application.Cells(26, "D").Value = Val(rstBookPOChild05.Fields("TextPaperConsumption4").Value)
-'        oExcel.Application.Cells(26, "E").Value = Val(rstBookPOChild05.Fields("PaperRate4").Value)
-'        oExcel.Application.Cells(26, "G").Value = Val(rstBookPOChild05.Fields("PaperAmount4").Value)
-'        '
-'        oExcel.Application.Cells(31, "C").Value = Choose(Val(rstBookPOChild05.Fields("PlateType4").Value), "Deepatch", "PS", "Wipeon", "CTP")
-'        oExcel.Application.Cells(31, "D").Value = Val(rstBookPOChild05.Fields("TotalPlates4").Value)
-'        oExcel.Application.Cells(31, "E").Value = Val(rstBookPOChild05.Fields("PlateRate4").Value)
-'        oExcel.Application.Cells(31, "G").Value = Val(rstBookPOChild05.Fields("PlateAmount4").Value)
-'        '
-'        oExcel.Application.Cells(36, "D").Value = Val(rstBookPOChild05.Fields("Forms4").Value)
-'        oExcel.Application.Cells(36, "E").Value = Val(rstBookPOChild05.Fields("PrintRate4").Value)
-'        oExcel.Application.Cells(36, "G").Value = Val(rstBookPOChild05.Fields("PrintAmount4").Value)
-'    End If
-'    If Not IsNull(rstBookPOChild05.Fields("TitlePaper").Value) Then
-'        oExcel.Application.Cells(27, "C").Value = Val(rstBookPOChild05.Fields("TitlePaper").Value)
-'        oExcel.Application.Cells(27, "D").Value = Val(rstBookPOChild05.Fields("TitlePaperConsumption").Value)
-'        oExcel.Application.Cells(27, "E").Value = Val(rstBookPOChild05.Fields("TitlePaperRate").Value)
-'        oExcel.Application.Cells(27, "G").Value = Val(rstBookPOChild05.Fields("TitlePaperAmount").Value)
-'        '
-'        oExcel.Application.Cells(32, "B").Value = rstBookPOChild05.Fields("TitlePrintingType").Value & " Color"
-'        oExcel.Application.Cells(32, "C").Value = Choose(Val(rstBookPOChild05.Fields("TitlePlateType").Value), "Deepatch", "PS", "Wipeon", "CTP")
-'        oExcel.Application.Cells(32, "D").Value = Val(rstBookPOChild05.Fields("TitleTotalPlates").Value)
-'        oExcel.Application.Cells(32, "E").Value = Val(rstBookPOChild05.Fields("TitlePlateRate").Value)
-'        oExcel.Application.Cells(32, "G").Value = Val(rstBookPOChild05.Fields("TitlePlateAmount").Value)
-'        '
-'        oExcel.Application.Cells(37, "B").Value = rstBookPOChild05.Fields("TitlePrintingType").Value & " Color"
-'        oExcel.Application.Cells(37, "E").Value = Val(rstBookPOChild05.Fields("TitlePrintRate").Value)
-'        oExcel.Application.Cells(37, "G").Value = Val(rstBookPOChild05.Fields("TitlePrintAmount").Value)
-'    End If
-'    If Not IsNull(rstBookPOChild05.Fields("ComboPaper").Value) Then
-'        oExcel.Application.Cells(28, "C").Value = Val(rstBookPOChild05.Fields("ComboPaper").Value)
-'        oExcel.Application.Cells(28, "D").Value = Val(rstBookPOChild05.Fields("ComboPaperConsumption").Value)
-'        oExcel.Application.Cells(28, "E").Value = Val(rstBookPOChild05.Fields("ComboPaperRate").Value)
-'        oExcel.Application.Cells(28, "G").Value = Val(rstBookPOChild05.Fields("ComboPaperAmount").Value)
-'        '
-'        oExcel.Application.Cells(33, "B").Value = rstBookPOChild05.Fields("ComboPrintingType").Value & " Color"
-'        oExcel.Application.Cells(33, "C").Value = Choose(Val(rstBookPOChild05.Fields("ComboPlateType").Value), "Deepatch", "PS", "Wipeon", "CTP")
-'        oExcel.Application.Cells(33, "D").Value = Val(rstBookPOChild05.Fields("ComboTotalPlates").Value)
-'        oExcel.Application.Cells(33, "E").Value = Val(rstBookPOChild05.Fields("ComboPlateRate").Value)
-'        oExcel.Application.Cells(33, "G").Value = Val(rstBookPOChild05.Fields("ComboPlateAmount").Value)
-'        '
-'        oExcel.Application.Cells(38, "B").Value = rstBookPOChild05.Fields("ComboPrintingType").Value & " Color"
-'        oExcel.Application.Cells(38, "E").Value = rstBookPOChild05.Fields("ComboPrintRate").Value
-'        oExcel.Application.Cells(38, "G").Value = Val(rstBookPOChild05.Fields("ComboPrintAmount").Value)
-'    End If
-'    '
-'    oExcel.Application.Cells(40, "E").Value = Val(rstBookPOChild05.Fields("FormFoldRate").Value)
-'    oExcel.Application.Cells(41, "E").Value = Val(rstBookPOChild05.Fields("FormStitchRate").Value)
-'    oExcel.Application.Cells(42, "E").Value = Val(rstBookPOChild05.Fields("FormPasteRate").Value) / 1000
-'    oExcel.Application.Cells(43, "G").Value = Val(rstBookPOChild05.Fields("Packing&Cartage").Value)
-'    oExcel.Application.Cells(44, "E").Value = Val(rstBookPOChild05.Fields("Rate/Book").Value)
-'    If rstBookPOChild06.RecordCount = 0 Then
-'        oExcel.Application.Cells(45, "D").Value = Val(rstBookPOChild05.Fields("Adjustment").Value): oExcel.Application.Cells(45, "F").Value = Val(rstBookPOChild05.Fields("GST").Value)
-'    Else
-'        oExcel.Application.Cells(39, "G").Value = Val(rstBookPOChild06.Fields("BillAmount").Value)
-'        oExcel.Application.Cells(45, "D").Value = Val(rstBookPOChild05.Fields("Adjustment").Value) + Val(rstBookPOChild06.Fields("Adjustment").Value): oExcel.Application.Cells(45, "F").Value = Val(rstBookPOChild05.Fields("GST").Value) + Val(rstBookPOChild06.Fields("GST").Value)
-'    End If
     Screen.MousePointer = vbHourglass
+
+    StartColumn = "A"
+    StartRow = 1
+    EndColumn = "H"
+     EndRow = 6
+     EndRow = EndRow + Int(Int(Val(rstBookPOChild05.Fields("Forms1").Value)) / 2) + (IIf(((Int(Val(rstBookPOChild05.Fields("Forms1").Value)) / 2) - Int(Int(Val(rstBookPOChild05.Fields("Forms1").Value)) / 2)) > 0, 1, 0)) + (IIf((Val(rstBookPOChild05.Fields("Forms1").Value) - Int(Val(rstBookPOChild05.Fields("Forms1").Value))) = 0.25, 1, IIf((Val(rstBookPOChild05.Fields("Forms1").Value) - Int(Val(rstBookPOChild05.Fields("Forms1").Value))) = 0.5, 2, IIf((Val(rstBookPOChild05.Fields("Forms1").Value) - Int(Val(rstBookPOChild05.Fields("Forms1").Value))) = 0.75, 3, 0))))
+     EndRow = EndRow + Int(Int(Val(rstBookPOChild05.Fields("Forms2").Value)) / 2) + (IIf(((Int(Val(rstBookPOChild05.Fields("Forms2").Value)) / 2) - Int(Int(Val(rstBookPOChild05.Fields("Forms2").Value)) / 2)) > 0, 1, 0)) + (IIf((Val(rstBookPOChild05.Fields("Forms2").Value) - Int(Val(rstBookPOChild05.Fields("Forms2").Value))) = 0.25, 1, IIf((Val(rstBookPOChild05.Fields("Forms2").Value) - Int(Val(rstBookPOChild05.Fields("Forms2").Value))) = 0.5, 2, IIf((Val(rstBookPOChild05.Fields("Forms2").Value) - Int(Val(rstBookPOChild05.Fields("Forms2").Value))) = 0.75, 3, 0))))
+     EndRow = EndRow + Int(Int(Val(rstBookPOChild05.Fields("Forms4").Value)) / 2) + (IIf(((Int(Val(rstBookPOChild05.Fields("Forms4").Value)) / 2) - Int(Int(Val(rstBookPOChild05.Fields("Forms4").Value)) / 2)) > 0, 1, 0)) + (IIf((Val(rstBookPOChild05.Fields("Forms4").Value) - Int(Val(rstBookPOChild05.Fields("Forms4").Value))) = 0.25, 1, IIf((Val(rstBookPOChild05.Fields("Forms4").Value) - Int(Val(rstBookPOChild05.Fields("Forms4").Value))) = 0.5, 2, IIf((Val(rstBookPOChild05.Fields("Forms4").Value) - Int(Val(rstBookPOChild05.Fields("Forms4").Value))) = 0.75, 3, 0))))
     If rstBookPOChild05.State = adStateOpen Then rstBookPOChild05.Close
     rstBookPOChild05.Open "SELECT E.PrintName As EName,O.PrintName As OName,Number,Quantity,Rate,M.PrintName As MName,Amount FROM (((BookPOParent P INNER JOIN BookPOChild07 C ON P.Code=C.Code) INNER JOIN GeneralMaster E ON C.Element=E.Code) INNER JOIN GeneralMaster O ON C.Operation=O.Code) INNER JOIN GeneralMaster M ON C.CalcMode=M.Code WHERE P.Code='" & OrderCode & "' ORDER BY E.PrintName,O.PrintName", cnDatabase, adOpenKeyset, adLockReadOnly
     Screen.MousePointer = vbNormal
     With rstBookPOChild05
         If .RecordCount > 0 Then
             i = 14
-'            Do While Not .EOF
-'                oExcel.Application.Cells(i, "J").Value = .Fields("EName").Value
-'                oExcel.Application.Cells(i, "L").Value = .Fields("OName").Value
-'                oExcel.Application.Cells(i, "O").Value = Val(.Fields("Number").Value)
-'                oExcel.Application.Cells(i, "P").Value = Val(.Fields("Quantity").Value)
-'                oExcel.Application.Cells(i, "Q").Value = Val(.Fields("Rate").Value)
-'                oExcel.Application.Cells(i, "R").Value = .Fields("MName").Value
-'                oExcel.Application.Cells(i, "S").Value = .Fields("Amount").Value
-'                .MoveNext
-'                i = i + 1
-'            Loop
         End If
     End With
-'    oExcel.Sheets("Sheet1").Protect ("eisi")
-    oExcel.Workbooks.Item(1).Save
-    If OutputTo = "S" Then
-        oExcel.Range("A1").Activate
-        oExcel.Application.Visible = True
-    Else
-        oExcel.Workbooks.Item(1).PrintOut
-    End If
+    With oExcel
+            oBook.Activate
+            oExcel.Visible = True
+            .Columns("A:H").EntireColumn.AutoFit
+            .ActiveSheet.pagesetup.Orientation = xlLandscape
+            .ActiveSheet.pagesetup.LeftMargin = .InchesToPoints(0.36)
+            .ActiveSheet.pagesetup.RightMargin = .InchesToPoints(0.25)
+            .ActiveSheet.pagesetup.TopMargin = .InchesToPoints(0.5)
+            .ActiveSheet.pagesetup.BottomMargin = .InchesToPoints(0.5)
+            .ActiveSheet.pagesetup.HeaderMargin = .InchesToPoints(0.25)
+            .ActiveSheet.pagesetup.FooterMargin = .InchesToPoints(0.25)
+            .ActiveSheet.pagesetup.PrintArea = StartColumn & StartRow & ":" & EndColumn & EndRow
+            .ActiveSheet.pagesetup.Zoom = False
+            .ActiveSheet.pagesetup.FitToPagesTall = False
+            .ActiveSheet.pagesetup.FitToPagesWide = 1
+            .ActiveSheet.pagesetup.PrintGridlines = True
+            .ActiveSheet.pagesetup.PrintTitleRows = "$1:$6"
+            .ActiveSheet.ExportAsFixedFormat Type:=xlTypePDF
+            oExcel.Workbooks.Item(1).Save
+        If OutputTo = "S" Then
+            oExcel.Range("A1").Activate
+            'oExcel.Application.Visible = True
+        Else
+            oExcel.Workbooks.Item(1).PrintOut
+        End If
+    End With
     Set oExcel = Nothing
     On Error GoTo 0
 End Sub
@@ -8018,24 +8088,24 @@ Private Sub DuplicateRecord()
     VchNo = GenerateCode(cnBookPrintOrder, "SELECT MAX(" & IIf(DatabaseType = "MS SQL", "CONVERT(INT,Name))", "VAL(Name))") & "  FROM BookPOParent WHERE Type='" & ConvertOrderType & "' AND LEFT(Code,1)<>'*' AND FYCode='" & FYCode & "'", 10, Space(1))
     cnBookPrintOrder.BeginTrans
     cnBookPrintOrder.Execute "SELECT * INTO [" & TmpTbl & "] FROM BookPOParent Where Code = '" & rstBookPOList.Fields("Code").Value & "'"
-    cnBookPrintOrder.Execute "UPDATE [" & TmpTbl & "] SET Code='" & VchCode & "',Name='" & Pad(Trim(VchNo), Space(1), 10, "L") & "',[Date]=" & IIf(DatabaseType = "MS SQL", "GETDATE()", "NOW()") & ",DeliveredQuantityC=0,DeliveredQuantityB=0,Type='" & ConvertOrderType & "',BPODStatus=0,TPODStatus=0,TLODStatus=0,BBODStatus=0,UnitRate=0,[UnitRate-MF]=0,[UnitRate-SF]=0,[UnitRate-CF]=0,[UnitRate-MO]=0,[UnitRate-BP]=0,BilledAllC=0,BilledAllB=0,[UnitRate-BOM]=0"
+    cnBookPrintOrder.Execute "UPDATE [" & TmpTbl & "] SET Code='" & VchCode & "',Name='" & Pad(Trim(VchNo), Space(1), 10, "L") & "',[Date]=" & IIf(DatabaseType = "MS SQL", "GETDATE()", "TODAY()") & ",DeliveredQuantityC=0,DeliveredQuantityB=0,Type='" & ConvertOrderType & "',BPODStatus=0,TPODStatus=0,TLODStatus=0,BBODStatus=0,UnitRate=0,[UnitRate-MF]=0,[UnitRate-SF]=0,[UnitRate-CF]=0,[UnitRate-MO]=0,[UnitRate-BP]=0,BilledAllC=0,BilledAllB=0,[UnitRate-BOM]=0"
     cnBookPrintOrder.Execute "INSERT INTO BookPOParent SELECT * FROM " & TmpTbl
     cnBookPrintOrder.Execute "DROP TABLE " & TmpTbl
     If OrderSubType(1) Then 'Multi Form Format
         cnBookPrintOrder.Execute "SELECT * INTO [" & TmpTbl & "] FROM BookPOChild05 Where Code = '" & rstBookPOList.Fields("Code").Value & "'"
-        cnBookPrintOrder.Execute "UPDATE [" & TmpTbl & "] SET Code='" & VchCode & "',OrderDate=" & IIf(DatabaseType = "MS SQL", "GETDATE()", "NOW()") & ",TargetDate=" & IIf(DatabaseType = "MS SQL", "GETDATE()", "NOW()") & "+2,Ref='',BillNo='',BillDate=Null,PBillNo='',PBillDate=Null,PaidAmount=0,PPaidAmount=0,Status='',DeliveredQuantityC=0,DeliveredQuantityB=0,BilledMFC=0,BilledMFB=0"
+        cnBookPrintOrder.Execute "UPDATE [" & TmpTbl & "] SET Code='" & VchCode & "',OrderDate=" & IIf(DatabaseType = "MS SQL", "GETDATE()", "TODAY()") & ",TargetDate=" & IIf(DatabaseType = "MS SQL", "GETDATE()", "TODAY()") & "+2,Ref='',BillNo='',BillDate=Null,PBillNo='',PBillDate=Null,PaidAmount=0,PPaidAmount=0,Status='',DeliveredQuantityC=0,DeliveredQuantityB=0,BilledMFC=0,BilledMFB=0"
         cnBookPrintOrder.Execute "INSERT INTO BookPOChild05 SELECT * FROM " & TmpTbl
         cnBookPrintOrder.Execute "DROP TABLE " & TmpTbl
     End If
     If OrderSubType(2) Then 'Spread Format
         cnBookPrintOrder.Execute "SELECT * INTO [" & TmpTbl & "] FROM BookPOChild06 Where Code = '" & rstBookPOList.Fields("Code").Value & "'"
-        cnBookPrintOrder.Execute "UPDATE [" & TmpTbl & "] SET Code='" & VchCode & "',OrderDate=" & IIf(DatabaseType = "MS SQL", "GETDATE()", "NOW()") & ",TargetDate=" & IIf(DatabaseType = "MS SQL", "GETDATE()", "NOW()") & "+2,Ref='',BillNo='',BillDate=Null,PBillNo='',PBillDate=Null,PaidAmount=0,PPaidAmount=0,Status='',DeliveredQuantityC=0,DeliveredQuantityB=0,BilledMEC=0,BilledMEB=0"
+        cnBookPrintOrder.Execute "UPDATE [" & TmpTbl & "] SET Code='" & VchCode & "',OrderDate=" & IIf(DatabaseType = "MS SQL", "GETDATE()", "TODAY()") & ",TargetDate=" & IIf(DatabaseType = "MS SQL", "GETDATE()", "TODAY()") & "+2,Ref='',BillNo='',BillDate=Null,PBillNo='',PBillDate=Null,PaidAmount=0,PPaidAmount=0,Status='',DeliveredQuantityC=0,DeliveredQuantityB=0,BilledMEC=0,BilledMEB=0"
         cnBookPrintOrder.Execute "INSERT INTO BookPOChild06 SELECT * FROM " & TmpTbl
         cnBookPrintOrder.Execute "DROP TABLE " & TmpTbl
     End If
     If OrderSubType(3) Then 'Combo Format
         cnBookPrintOrder.Execute "SELECT * INTO [" & TmpTbl & "] FROM BookPOChild09 Where Code = '" & rstBookPOList.Fields("Code").Value & "'"
-        cnBookPrintOrder.Execute "UPDATE [" & TmpTbl & "] SET Code='" & VchCode & "',OrderDate=" & IIf(DatabaseType = "MS SQL", "GETDATE()", "NOW()") & ",TargetDate=" & IIf(DatabaseType = "MS SQL", "GETDATE()", "NOW()") & "+2,BillNo='',BillDate=Null,PBillNo='',PBillDate=Null,PaidAmount=0,PPaidAmount=0,Status='',BillFeedDate=Null"
+        cnBookPrintOrder.Execute "UPDATE [" & TmpTbl & "] SET Code='" & VchCode & "',OrderDate=" & IIf(DatabaseType = "MS SQL", "GETDATE()", "TODAY()") & ",TargetDate=" & IIf(DatabaseType = "MS SQL", "GETDATE()", "TODAY()") & "+2,BillNo='',BillDate=Null,PBillNo='',PBillDate=Null,PaidAmount=0,PPaidAmount=0,Status='',BillFeedDate=Null"
         cnBookPrintOrder.Execute "INSERT INTO BookPOChild09 SELECT * FROM " & TmpTbl
         cnBookPrintOrder.Execute "DROP TABLE " & TmpTbl
         cnBookPrintOrder.Execute "SELECT * INTO [" & TmpTbl & "] FROM BookPOChild0901 Where Code = '" & rstBookPOList.Fields("Code").Value & "'"
@@ -8045,13 +8115,13 @@ Private Sub DuplicateRecord()
     End If
     If OrderSubType(4) Then 'Misc Operations
         cnBookPrintOrder.Execute "SELECT * INTO [" & TmpTbl & "] FROM BookPOChild07 Where Code = '" & rstBookPOList.Fields("Code").Value & "'"
-        cnBookPrintOrder.Execute "UPDATE [" & TmpTbl & "] SET Code='" & VchCode & "',OrderDate=" & IIf(DatabaseType = "MS SQL", "GETDATE()", "NOW()") & ",TargetDate=" & IIf(DatabaseType = "MS SQL", "GETDATE()", "NOW()") & "+2,BillNo='',BillDate=Null,PaidAmount=0,Status='',DeliveredQuantityC=0,DeliveredQuantityB=0,BilledMOC=0,BilledMOB=0"
+        cnBookPrintOrder.Execute "UPDATE [" & TmpTbl & "] SET Code='" & VchCode & "',OrderDate=" & IIf(DatabaseType = "MS SQL", "GETDATE()", "TODAY()") & ",TargetDate=" & IIf(DatabaseType = "MS SQL", "GETDATE()", "TODAY()") & "+2,BillNo='',BillDate=Null,PaidAmount=0,Status='',DeliveredQuantityC=0,DeliveredQuantityB=0,BilledMOC=0,BilledMOB=0"
         cnBookPrintOrder.Execute "INSERT INTO BookPOChild07 SELECT * FROM " & TmpTbl
         cnBookPrintOrder.Execute "DROP TABLE " & TmpTbl
     End If
     If OrderSubType(5) Then 'Binding Process
         cnBookPrintOrder.Execute "SELECT * INTO [" & TmpTbl & "] FROM BookPOChild08 Where Code = '" & rstBookPOList.Fields("Code").Value & "'"
-        cnBookPrintOrder.Execute "UPDATE [" & TmpTbl & "] SET Code='" & VchCode & "',OrderDate=" & IIf(DatabaseType = "MS SQL", "GETDATE()", "NOW()") & ",TargetDate=" & IIf(DatabaseType = "MS SQL", "GETDATE()", "NOW()") & "+2,BillNo='',BillDate=Null,PaidAmount=0,Status='',DNDetails='',CNDetails='',BillFeedDate=Null,DeliveredQuantityC=0,DeliveredQuantityB=0,BilledBNC=0,BilledBNB=0"
+        cnBookPrintOrder.Execute "UPDATE [" & TmpTbl & "] SET Code='" & VchCode & "',OrderDate=" & IIf(DatabaseType = "MS SQL", "GETDATE()", "TODAY()") & ",TargetDate=" & IIf(DatabaseType = "MS SQL", "GETDATE()", "TODAY()") & "+2,BillNo='',BillDate=Null,PaidAmount=0,Status='',DNDetails='',CNDetails='',BillFeedDate=Null,DeliveredQuantityC=0,DeliveredQuantityB=0,BilledBNC=0,BilledBNB=0"
         cnBookPrintOrder.Execute "INSERT INTO BookPOChild08 SELECT * FROM " & TmpTbl
         cnBookPrintOrder.Execute "DROP TABLE " & TmpTbl
     End If

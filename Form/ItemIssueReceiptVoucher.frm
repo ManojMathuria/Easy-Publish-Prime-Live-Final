@@ -2346,12 +2346,11 @@ Option Explicit
 Public VchType As String 'R-Item Receipt I-Item Issue
 Dim cnDeliveryChallan As New ADODB.Connection
 Dim rstCompanyMaster As New ADODB.Recordset, rstDlvChVchList As New ADODB.Recordset, rstDeliveryCVParent As New ADODB.Recordset, rstDeliveryCVChild As New ADODB.Recordset, rstAccountList As New ADODB.Recordset, rstTaxList As New ADODB.Recordset, rstItemList As New ADODB.Recordset, rstNarrationList As New ADODB.Recordset, rstHSNCodeList As New ADODB.Recordset, rstOrderList As New ADODB.Recordset, rstVchSeriesList As New ADODB.Recordset, rstMaterialCentreList As New ADODB.Recordset
-Dim PartyCode As String, ConsigneeCode As String, TaxCode As String, ItemCode As String, RefCode As String, NarrationCode As String, HSNCode As String, MaterialCentreCode As String, VchPrefix As String, TranType As String, VchNumbering As String, VchSeriesCode As String, AutoVchNo As String, oVchSeriesCode As String, oVchNo As String
+Dim PartyCode As String, PartyStateCode As String, ConsigneeCode As String, TaxCode As String, ItemCode As String, RefCode As String, NarrationCode As String, HSNCode As String, MaterialCentreCode As String, VchPrefix As String, TranType As String, VchNumbering As String, VchSeriesCode As String, AutoVchNo As String, oVchSeriesCode As String, oVchNo As String
 Dim SortOrder, PrevStr, dblBookMark As Double, blnRecordExist As Boolean, EditMode As Boolean, Narration As String
 Dim frmDlvChDespatchDetails As New FrmDespatchDetails, frmDlvChConsigneeDetails As New FrmConsigneeDetails
 Private Sub Form_Load()
     On Error GoTo ErrorHandler
-    CustomSettings
     CenterForm Me
     WheelHook DataGrid1
     BusySystemIndicator True
@@ -2883,10 +2882,14 @@ Private Sub Text3_KeyDown(KeyCode As Integer, Shift As Integer)
         FrmAccountMaster.SL = True
         FrmAccountMaster.AccountType = "01": FrmAccountMaster.AccountGroup = ""
         FrmAccountMaster.MasterCode = PartyCode
+        FrmAccountMaster.StateCode = PartyStateCode
         Load FrmAccountMaster
         If Err.Number <> 364 Then FrmAccountMaster.Show vbModal
         On Error GoTo 0
-        PartyCode = slCode: Text3.Text = slName
+        PartyCode = slCode: Text3.Text = slName:
+        If Not IsNull(slStateCode) Then
+        PartyStateCode = slStateCode
+        End If
         If Not CheckEmpty(PartyCode, False) Then LoadMasterList: Sendkeys "{TAB}"
     End If
 End Sub
@@ -2931,6 +2934,7 @@ End Sub
 Private Sub Text5_KeyDown(KeyCode As Integer, Shift As Integer)
     If KeyCode = vbKeySpace Then
         On Error Resume Next
+        slStateCode = PartyStateCode
         FrmTaxMaster.SL = True
         FrmTaxMaster.MasterCode = TaxCode
         Load FrmTaxMaster
@@ -2968,11 +2972,12 @@ Private Sub ViewRecord()
     ClearFields
     If rstDlvChVchList.EOF Then Exit Sub
     FindRecord
+    LoadMasterList
     LoadFields
 End Sub
 Private Sub FindRecord()
     If rstDeliveryCVParent.State = adStateOpen Then rstDeliveryCVParent.Close
-    rstDeliveryCVParent.Open "SELECT * FROM JobworkBVParent WHERE Code='" & FixQuote(rstDlvChVchList.Fields("Code").Value) & "'", cnDeliveryChallan, adOpenKeyset, adLockOptimistic
+    rstDeliveryCVParent.Open "SELECT *, (Select State From AccountMaster Where Code=Party) AS State FROM JobworkBVParent WHERE Code='" & FixQuote(rstDlvChVchList.Fields("Code").Value) & "'", cnDeliveryChallan, adOpenKeyset, adLockOptimistic
     If rstDeliveryCVParent.RecordCount = 0 Then Call DisplayError("This Record has been deleted by Another User ! Click Ok To Refresh the Recordset"): Toolbar1_ButtonClick Toolbar1.Buttons.Item(6)
 End Sub
 Private Sub ClearFields()
@@ -3001,7 +3006,7 @@ Private Sub ClearFields()
     MhRealInput11.Value = 0
     Text10.Text = ""
     fpSpread1.ClearRange 1, 1, fpSpread1.MaxCols, fpSpread1.MaxRows, True: fpSpread1.SetActiveCell 1, 1
-    PartyCode = "": ConsigneeCode = "": MaterialCentreCode = "": TaxCode = "": VchSeriesCode = "": oVchSeriesCode = "": oVchNo = "": AutoVchNo = ""
+    PartyStateCode = "": PartyCode = "": ConsigneeCode = "": MaterialCentreCode = "": TaxCode = "": VchSeriesCode = "": oVchSeriesCode = "": oVchNo = "": AutoVchNo = ""
     frmDlvChDespatchDetails.Text1.Text = "": frmDlvChDespatchDetails.Text2.Text = "": frmDlvChDespatchDetails.Text3.Text = "": frmDlvChDespatchDetails.Text4.Text = "": frmDlvChDespatchDetails.MhDateInput1.Value = Null: frmDlvChDespatchDetails.Text5.Text = "": frmDlvChDespatchDetails.MhDateInput2.Value = Null
     frmDlvChConsigneeDetails.Text1.Text = "": frmDlvChConsigneeDetails.Text2.Text = "": frmDlvChConsigneeDetails.Text3.Text = "": frmDlvChConsigneeDetails.Text4.Text = "": frmDlvChConsigneeDetails.Text5.Text = "": frmDlvChConsigneeDetails.Text6.Text = ""
 End Sub
@@ -3014,6 +3019,8 @@ Private Sub LoadFields()
         If Not IsNull(.Fields("ChallanDate").Value) Then MhDateInput2.Text = Format(.Fields("ChallanDate").Value, "dd-MM-yyyy")
         MhRealInput13.Value = Val(.Fields("Box").Value)
        PartyCode = .Fields("Party").Value
+       On Error Resume Next
+       PartyStateCode = .Fields("State").Value
         If rstAccountList.RecordCount > 0 Then rstAccountList.MoveFirst
         rstAccountList.Find "[Code] = '" & PartyCode & "'"
         If Not rstAccountList.EOF Then Text3.Text = rstAccountList.Fields("Col0").Value
@@ -3607,13 +3614,17 @@ Private Sub cmbChallanType_Click()
 End Sub
 Private Sub LoadMasterList()
     If rstAccountList.State = adStateOpen Then rstAccountList.Close
-    rstAccountList.Open "SELECT Name As Col0,Code FROM AccountMaster ORDER BY Name", cnDeliveryChallan, adOpenKeyset, adLockReadOnly
+    rstAccountList.Open "SELECT Name As Col0,Code,State FROM AccountMaster ORDER BY Name", cnDeliveryChallan, adOpenKeyset, adLockReadOnly
     rstAccountList.ActiveConnection = Nothing
     If rstMaterialCentreList.State = adStateOpen Then rstMaterialCentreList.Close
     rstMaterialCentreList.Open "SELECT Name As Col0,Code FROM AccountMaster WHERE [Group]='*99999' ORDER BY Name", cnDeliveryChallan, adOpenKeyset, adLockReadOnly
     rstMaterialCentreList.ActiveConnection = Nothing
     If rstTaxList.State = adStateOpen Then rstTaxList.Close
+    If PartyStateCode = "" Or PartyStateCode = Null Then
     rstTaxList.Open "SELECT Name As Col0,[IGST%],[SGST%],[CGST%],Code FROM TaxMaster ORDER BY Name", cnDeliveryChallan, adOpenKeyset, adLockReadOnly
+    Else
+    rstTaxList.Open "SELECT Name As Col0,[IGST%],[SGST%],[CGST%],Code FROM TaxMaster Where Region='" & IIf(CompStateCode = PartyStateCode, "L", "I") & "' ORDER BY Name", cnDeliveryChallan, adOpenKeyset, adLockReadOnly
+    End If
     rstTaxList.ActiveConnection = Nothing
     If rstNarrationList.State = adStateOpen Then rstNarrationList.Close
     rstNarrationList.Open "SELECT Name As Col0,Code FROM GeneralMaster WHERE Type='17' ORDER BY Name", cnDeliveryChallan, adOpenKeyset, adLockReadOnly
@@ -3649,23 +3660,38 @@ Public Sub PrintDlvChVch(ByVal VchCode As String, ByVal VchType As String, ByVal
     If rstDeliveryCVChild.State = adStateOpen Then rstDeliveryCVChild.Close
     rstDeliveryCVChild.Open "SELECT LTRIM(P.Name) As BillNo,P.Date As BillDate,B.PrintName As Party,B.Address1 As PartyAddress1,B.Address2 As PartyAddress2,B.Address3 As PartyAddress3,B.Address4 As PartyAddress4,B.TIN As PartyGSTIN,IIf(LEFT(P.Type,2) IN ('06','08'),IIF(S.PrintName IS NULL,ConsigneeName,S.PrintName),M.PrintName) As Consignee,IIf(LEFT(P.Type,2) IN ('06','08'),IIF(S.PrintName IS NULL,ConsigneeAddress1,S.Address1),M.Address1) As ConsigneeAddress1,IIf(LEFT(P.Type,2) IN ('06','08'),IIF(S.PrintName IS NULL,ConsigneeAddress2,S.Address2),M.Address2) As ConsigneeAddress2,IIf(LEFT(P.Type,2) IN ('06','08'),IIF(S.PrintName IS NULL,ConsigneeAddress3,S.Address3),M.Address3) As ConsigneeAddress3,IIf(LEFT(P.Type,2) IN ('06','08'),IIF(S.PrintName IS NULL,ConsigneeAddress4,S.Address4),M.Address4) As ConsigneeAddress4,IIf(LEFT(P.Type,2) IN ('06','08'),IIF(S.PrintName IS NULL,ConsigneeGSTIN,S.TIN),M.TIN) As ConsigneeGSTIN,P.[Rebate%],P.Rebate,P.Freight,P.Adjustment,P.TaxableAmount," & _
                                                         "P.[IGST%],P.IGST,P.[SGST%],P.SGST,P.[CGST%],P.CGST,P.Amount As TotalAmount,P.Remarks,P.ChallanNo,P.ChallanDate,P.Transport,P.GRNo,P.GRDate,P.VehicleNo,P.Station,eWayBill,eWayBillDate,IIF(I.PrintName IS NULL,'',LongNarration01) As LongNarration01,LongNarration02,LongNarration03,LongNarration04,LongNarration05," & _
-                                                        "IIF(I.PrintName IS NULL,LongNarration01,I.PrintName) As Item,H.PrintName As HSNCode,C.Quantity,C.Rate,C.Amount " & _
+                                                        "IIF(I.PrintName IS NULL,LongNarration01,I.PrintName) As Item,H.PrintName As HSNCode,C.Quantity,C.Rate,C.Amount,Left((Select V.Prefix From VchSeriesMaster V Where Code=VchSeries),2)+'" & IIf(Right(VchType, 1) = "I", "-DC", "-RC") & "'+'/'+Ltrim(AutoVchNo) As VchNo " & _
                                                         "FROM (((((JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code) INNER JOIN AccountMaster B ON P.Party=B.Code) INNER JOIN AccountMaster M ON P.MaterialCentre=M.Code) LEFT JOIN AccountMaster S ON P.Consignee=S.Code) LEFT JOIN BookMaster I ON C.Item=I.Code) LEFT JOIN GeneralMaster H ON C.HSNCode=H.Code WHERE P.Code='" + Left(VchCode, 6) + "' ORDER BY Item", cnDeliveryChallan, adOpenKeyset, adLockOptimistic
     If rstDeliveryCVChild.RecordCount = 0 Then On Error GoTo 0: Exit Sub
     rstDeliveryCVChild.ActiveConnection = Nothing
     With rptItemIssueReceiptVoucher
-    If Logo = "S" Then
-    .Picture1.Width = LogoW
-    .Picture1.Height = LogoH
-    End If
-    .Text2.Width = Header '9000 '7800
-    .Text2.Left = HeaderL '1000 '1680
-    If LogoLine = "N" Then
-    .Picture1.LeftLineStyle = crLSNoLine
-    .Picture1.RightLineStyle = crLSNoLine
-    .Picture1.TopLineStyle = crLSNoLine
-    .Picture1.BottomLineStyle = crLSNoLine
-    End If
+            If FYFromToFlag = "True" Then
+                .Field58.Suppress = True
+                .Text45.Suppress = False
+                .Text45.SetText rstDeliveryCVChild.Fields("VchNo").Value + "/" + FYFromTo
+            Else
+                .Field58.Suppress = False
+                .Text45.Suppress = True
+            End If
+            If Logo = "S" Then
+                .Picture1.Width = LogoW
+                .Picture1.Height = LogoH
+            End If
+            If Len(LTrim(rstCompanyMaster.Fields("PrintName").Value)) <= 30 Then
+                .Text2.Font.Size = 20
+            ElseIf Len(LTrim(rstCompanyMaster.Fields("PrintName").Value)) <= 40 Then
+                .Text2.Font.Size = 18
+            ElseIf Len(LTrim(rstCompanyMaster.Fields("PrintName").Value)) <= 50 Then
+                .Text2.Font.Size = 16
+            ElseIf Len(LTrim(rstCompanyMaster.Fields("PrintName").Value)) <= 60 Then
+                .Text2.Font.Size = 14
+            End If
+            If LogoLine = "N" Then
+                .Picture1.LeftLineStyle = crLSNoLine
+                .Picture1.RightLineStyle = crLSNoLine
+                .Picture1.TopLineStyle = crLSNoLine
+                .Picture1.BottomLineStyle = crLSNoLine
+            End If
         .Text1.SetText IIf(InStr(1, "05_07", Left(VchType, 2)) > 0, "Receipt Note", "Delivery Challan") & " " & IIf(Left(VchType, 2) = "05", "", IIf(Left(VchType, 2) = "06", "(Purchase Return)", IIf(Left(VchType, 2) = "07", "(Sales Return)", "")))
         .Text13.SetText IIf(Left(VchType, 2) = "05", "Supplier", IIf(InStr(1, "06_07", Left(VchType, 2)) > 0, "Party", "Bill To")) & " :"
         .Text7.SetText IIf(InStr(1, "05_07", Left(VchType, 2)) > 0, "Material Centre", "Ship To")

@@ -497,6 +497,9 @@ Begin VB.MDIForm MdiMainMenu
       Begin VB.Menu mnu777 
          Caption         =   "-"
       End
+      Begin VB.Menu mnuStateMaster 
+         Caption         =   "State"
+      End
       Begin VB.Menu mnuTaxMaster 
          Caption         =   "Tax"
          Tag             =   "01150000"
@@ -1359,7 +1362,6 @@ Begin VB.MDIForm MdiMainMenu
    End
    Begin VB.Menu MnuReports 
       Caption         =   "&Reports"
-      Enabled         =   0   'False
       Tag             =   "04000000"
       Begin VB.Menu MnuPrintPlanningRegister 
          Caption         =   "Print Planning Register"
@@ -1558,9 +1560,13 @@ Begin VB.MDIForm MdiMainMenu
             End
          End
       End
-      Begin VB.Menu MenuQuotation 
-         Caption         =   "Quotation Processing"
+      Begin VB.Menu MenuPendingBilling 
+         Caption         =   "Order Processing"
          Tag             =   "04100000"
+         Begin VB.Menu MenuPendingBillingJobworkDirect 
+            Caption         =   "Pending Billing Jobwork (Direct)"
+            Index           =   46
+         End
       End
       Begin VB.Menu MnuLine1 
          Caption         =   "-"
@@ -1779,6 +1785,12 @@ Private Sub Command1_Click()
         iCount = iCount + 1
         Next
 End Sub
+Private Sub MenuPendingBillingJobworkDirect_Click(Index As Integer)
+    On Error Resume Next
+    FrmItemSelectionList.VchType = Trim(Index)
+    Load FrmItemSelectionList
+    If Err.Number <> 364 Then FrmItemSelectionList.Show
+End Sub
 Private Sub MnuLicenceAgreement_Click()
     On Error Resume Next
     Load frmLicenceAgreement
@@ -1949,8 +1961,10 @@ Private Sub mnuOpen_Click()
         If LoginSuccess Then
             StatusBar1.Panels(3).Text = "User Name : " & Trim(UserName)
             SetMenuOptions (True)
-            rstCompanyMaster.Open "SELECT Name,'-Financial Year From '+REPLACE(CONVERT(VARCHAR(11),FinancialYearFrom,106),' ','-')+' To '+REPLACE(CONVERT(VARCHAR(11),FinancialYearTo,106),' ','-') FROM CompanyMaster WHERE FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
+            rstCompanyMaster.Open "SELECT Name,'-Financial Year From '+REPLACE(CONVERT(VARCHAR(11),FinancialYearFrom,106),' ','-')+' To '+REPLACE(CONVERT(VARCHAR(11),FinancialYearTo,106),' ','-'),* FROM CompanyMaster WHERE FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
             MdiMainMenu.Caption = Version & " [" & Trim(rstCompanyMaster.Fields("Name").Value) & Trim(rstCompanyMaster.Fields(1).Value) & "]"                       '"Easy Publish  21|Rel 05 | 06.29 Version |Production & Inventory Management System [" & Trim(rstCompanyMaster.Fields("Name").Value) & Trim(rstCompanyMaster.Fields(1).Value) & "]"
+            CompStateCode = Trim(rstCompanyMaster.Fields("State").Value)
+            Call CustomSettings
             Call CloseRecordset(rstCompanyMaster)
             Exit Sub
         End If
@@ -2020,6 +2034,13 @@ Private Sub SetMenuOptions(bVal As Boolean)
     End If
 ErrorHandler:
     Call CloseRecordset(rstUserChild)
+End Sub
+Private Sub mnuStateMaster_Click()
+    On Error Resume Next
+    FrmGeneralMaster.MasterType = "56"
+    FrmGeneralMaster.SL = False
+    Load FrmGeneralMaster
+    If Err.Number <> 364 Then FrmGeneralMaster.Show
 End Sub
 Private Sub MnuYouTube_Click()
            Dim R As Long
@@ -3527,5 +3548,3 @@ Private Sub MnuHelp_Click()
             R = ShellExecute(0, "open", App.Path & "\HelpFiles\Easy Publish Prime v22.chm", 0, 0, 1)
     End If
 End Sub
-
-

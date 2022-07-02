@@ -1,0 +1,542 @@
+===== FarPoint Technologies, Inc =====
+===== Begin of Excel Export =====
+6/29/2022 - 13:38
+
+Col	Row	Information
+___	___	___________
+		Export Excel File: E:\Easy Publish Prime(Live) - Today\Export\Export Data(536_Sales Orders-Party-Wise-Summarized )29-Jun-2022.xls
+-	-	102:Excel reads the AllowDragDrop, AutoClipboard, and EditEnterAction properties from the registry. If you modify these properties in Spread, the changes are not saved at export.
+1		173:Custom headers are not exported to Excel. 
+2		173:Custom headers are not exported to Excel. 
+3		173:Custom headers are not exported to Excel. 
+5		173:Custom headers are not exported to Excel. 
+6		173:Custom headers are not exported to Excel. 
+8		173:Custom headers are not exported to Excel. 
+23		173:Custom headers are not exported to Excel. 
+24		173:Custom headers are not exported to Excel. 
+25		173:Custom headers are not exported to Excel. 
+26		173:Custom headers are not exported to Excel. 
+27		173:Custom headers are not exported to Excel. 
+	2	173:Custom headers are not exported to Excel. 
+5	2	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	3	173:Custom headers are not exported to Excel. 
+	3	173:Custom headers are not exported to Excel. 
+5	3	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	4	173:Custom headers are not exported to Excel. 
+	4	173:Custom headers are not exported to Excel. 
+5	4	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	5	173:Custom headers are not exported to Excel. 
+	5	173:Custom headers are not exported to Excel. 
+5	5	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	6	173:Custom headers are not exported to Excel. 
+	6	173:Custom headers are not exported to Excel. 
+5	6	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	7	173:Custom headers are not exported to Excel. 
+	7	173:Custom headers are not exported to Excel. 
+5	7	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	8	173:Custom headers are not exported to Excel. 
+	8	173:Custom headers are not exported to Excel. 
+5	8	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	9	173:Custom headers are not exported to Excel. 
+	9	173:Custom headers are not exported to Excel. 
+5	9	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	10	173:Custom headers are not exported to Excel. 
+	10	173:Custom headers are not exported to Excel. 
+5	10	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	11	173:Custom headers are not exported to Excel. 
+	11	173:Custom headers are not exported to Excel. 
+5	11	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	12	173:Custom headers are not exported to Excel. 
+	12	173:Custom headers are not exported to Excel. 
+5	12	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	13	173:Custom headers are not exported to Excel. 
+	13	173:Custom headers are not exported to Excel. 
+5	13	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	14	173:Custom headers are not exported to Excel. 
+	14	173:Custom headers are not exported to Excel. 
+5	14	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	15	173:Custom headers are not exported to Excel. 
+	15	173:Custom headers are not exported to Excel. 
+5	15	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	16	173:Custom headers are not exported to Excel. 
+	16	173:Custom headers are not exported to Excel. 
+5	16	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	17	173:Custom headers are not exported to Excel. 
+	17	173:Custom headers are not exported to Excel. 
+5	17	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	18	173:Custom headers are not exported to Excel. 
+	18	173:Custom headers are not exported to Excel. 
+5	18	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	19	173:Custom headers are not exported to Excel. 
+	19	173:Custom headers are not exported to Excel. 
+5	19	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	20	173:Custom headers are not exported to Excel. 
+	20	173:Custom headers are not exported to Excel. 
+5	20	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	21	173:Custom headers are not exported to Excel. 
+	21	173:Custom headers are not exported to Excel. 
+5	21	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	22	173:Custom headers are not exported to Excel. 
+	22	173:Custom headers are not exported to Excel. 
+5	22	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	23	173:Custom headers are not exported to Excel. 
+	23	173:Custom headers are not exported to Excel. 
+5	23	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	24	173:Custom headers are not exported to Excel. 
+	24	173:Custom headers are not exported to Excel. 
+5	24	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	25	173:Custom headers are not exported to Excel. 
+	25	173:Custom headers are not exported to Excel. 
+5	25	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	26	173:Custom headers are not exported to Excel. 
+	26	173:Custom headers are not exported to Excel. 
+5	26	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	27	173:Custom headers are not exported to Excel. 
+	27	173:Custom headers are not exported to Excel. 
+5	27	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	28	173:Custom headers are not exported to Excel. 
+	29	173:Custom headers are not exported to Excel. 
+5	29	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	30	173:Custom headers are not exported to Excel. 
+	30	173:Custom headers are not exported to Excel. 
+5	30	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	31	173:Custom headers are not exported to Excel. 
+	31	173:Custom headers are not exported to Excel. 
+5	31	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	32	173:Custom headers are not exported to Excel. 
+	32	173:Custom headers are not exported to Excel. 
+5	32	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	33	173:Custom headers are not exported to Excel. 
+	33	173:Custom headers are not exported to Excel. 
+5	33	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	34	173:Custom headers are not exported to Excel. 
+	35	173:Custom headers are not exported to Excel. 
+5	35	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	36	173:Custom headers are not exported to Excel. 
+	36	173:Custom headers are not exported to Excel. 
+5	36	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	37	173:Custom headers are not exported to Excel. 
+	37	173:Custom headers are not exported to Excel. 
+5	37	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	38	173:Custom headers are not exported to Excel. 
+	38	173:Custom headers are not exported to Excel. 
+5	38	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	39	173:Custom headers are not exported to Excel. 
+	39	173:Custom headers are not exported to Excel. 
+5	39	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	40	173:Custom headers are not exported to Excel. 
+	40	173:Custom headers are not exported to Excel. 
+5	40	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	41	173:Custom headers are not exported to Excel. 
+	41	173:Custom headers are not exported to Excel. 
+5	41	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	42	173:Custom headers are not exported to Excel. 
+	42	173:Custom headers are not exported to Excel. 
+5	42	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	43	173:Custom headers are not exported to Excel. 
+	43	173:Custom headers are not exported to Excel. 
+5	43	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	44	173:Custom headers are not exported to Excel. 
+	44	173:Custom headers are not exported to Excel. 
+5	44	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	45	173:Custom headers are not exported to Excel. 
+	45	173:Custom headers are not exported to Excel. 
+5	45	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	46	173:Custom headers are not exported to Excel. 
+	46	173:Custom headers are not exported to Excel. 
+5	46	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	47	173:Custom headers are not exported to Excel. 
+	47	173:Custom headers are not exported to Excel. 
+5	47	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	48	173:Custom headers are not exported to Excel. 
+	48	173:Custom headers are not exported to Excel. 
+5	48	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	49	173:Custom headers are not exported to Excel. 
+	49	173:Custom headers are not exported to Excel. 
+5	49	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	50	173:Custom headers are not exported to Excel. 
+	50	173:Custom headers are not exported to Excel. 
+5	50	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	51	173:Custom headers are not exported to Excel. 
+	51	173:Custom headers are not exported to Excel. 
+5	51	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	52	173:Custom headers are not exported to Excel. 
+	52	173:Custom headers are not exported to Excel. 
+5	52	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	53	173:Custom headers are not exported to Excel. 
+	53	173:Custom headers are not exported to Excel. 
+5	53	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	54	173:Custom headers are not exported to Excel. 
+	54	173:Custom headers are not exported to Excel. 
+5	54	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	55	173:Custom headers are not exported to Excel. 
+	55	173:Custom headers are not exported to Excel. 
+5	55	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	56	173:Custom headers are not exported to Excel. 
+	56	173:Custom headers are not exported to Excel. 
+5	56	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	57	173:Custom headers are not exported to Excel. 
+	57	173:Custom headers are not exported to Excel. 
+5	57	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	58	173:Custom headers are not exported to Excel. 
+	58	173:Custom headers are not exported to Excel. 
+5	58	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	59	173:Custom headers are not exported to Excel. 
+	59	173:Custom headers are not exported to Excel. 
+5	59	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	60	173:Custom headers are not exported to Excel. 
+	60	173:Custom headers are not exported to Excel. 
+5	60	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	61	173:Custom headers are not exported to Excel. 
+	61	173:Custom headers are not exported to Excel. 
+5	61	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	62	173:Custom headers are not exported to Excel. 
+	62	173:Custom headers are not exported to Excel. 
+5	62	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	63	173:Custom headers are not exported to Excel. 
+	63	173:Custom headers are not exported to Excel. 
+5	63	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	64	173:Custom headers are not exported to Excel. 
+	64	173:Custom headers are not exported to Excel. 
+5	64	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	65	173:Custom headers are not exported to Excel. 
+	65	173:Custom headers are not exported to Excel. 
+5	65	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	66	173:Custom headers are not exported to Excel. 
+	66	173:Custom headers are not exported to Excel. 
+5	66	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	67	173:Custom headers are not exported to Excel. 
+	67	173:Custom headers are not exported to Excel. 
+5	67	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	68	173:Custom headers are not exported to Excel. 
+	69	173:Custom headers are not exported to Excel. 
+5	69	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	70	173:Custom headers are not exported to Excel. 
+	70	173:Custom headers are not exported to Excel. 
+5	70	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	71	173:Custom headers are not exported to Excel. 
+	71	173:Custom headers are not exported to Excel. 
+5	71	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	72	173:Custom headers are not exported to Excel. 
+	72	173:Custom headers are not exported to Excel. 
+5	72	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	73	173:Custom headers are not exported to Excel. 
+	73	173:Custom headers are not exported to Excel. 
+5	73	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	74	173:Custom headers are not exported to Excel. 
+	74	173:Custom headers are not exported to Excel. 
+5	74	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	75	173:Custom headers are not exported to Excel. 
+	75	173:Custom headers are not exported to Excel. 
+5	75	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	76	173:Custom headers are not exported to Excel. 
+	76	173:Custom headers are not exported to Excel. 
+5	76	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	77	173:Custom headers are not exported to Excel. 
+	77	173:Custom headers are not exported to Excel. 
+5	77	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	78	173:Custom headers are not exported to Excel. 
+	78	173:Custom headers are not exported to Excel. 
+5	78	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	79	173:Custom headers are not exported to Excel. 
+	79	173:Custom headers are not exported to Excel. 
+5	79	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	80	173:Custom headers are not exported to Excel. 
+	80	173:Custom headers are not exported to Excel. 
+5	80	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	81	173:Custom headers are not exported to Excel. 
+	81	173:Custom headers are not exported to Excel. 
+5	81	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	82	173:Custom headers are not exported to Excel. 
+	82	173:Custom headers are not exported to Excel. 
+5	82	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	83	173:Custom headers are not exported to Excel. 
+	83	173:Custom headers are not exported to Excel. 
+5	83	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	84	173:Custom headers are not exported to Excel. 
+	84	173:Custom headers are not exported to Excel. 
+5	84	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	85	173:Custom headers are not exported to Excel. 
+	85	173:Custom headers are not exported to Excel. 
+5	85	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	86	173:Custom headers are not exported to Excel. 
+	87	173:Custom headers are not exported to Excel. 
+5	87	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	88	173:Custom headers are not exported to Excel. 
+	88	173:Custom headers are not exported to Excel. 
+5	88	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	89	173:Custom headers are not exported to Excel. 
+	90	173:Custom headers are not exported to Excel. 
+5	90	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	91	173:Custom headers are not exported to Excel. 
+	91	173:Custom headers are not exported to Excel. 
+5	91	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	92	173:Custom headers are not exported to Excel. 
+	92	173:Custom headers are not exported to Excel. 
+5	92	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	93	173:Custom headers are not exported to Excel. 
+	94	173:Custom headers are not exported to Excel. 
+5	94	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	95	173:Custom headers are not exported to Excel. 
+	95	173:Custom headers are not exported to Excel. 
+5	95	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	96	173:Custom headers are not exported to Excel. 
+	96	173:Custom headers are not exported to Excel. 
+5	96	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	97	173:Custom headers are not exported to Excel. 
+5	97	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	98	173:Custom headers are not exported to Excel. 
+	99	173:Custom headers are not exported to Excel. 
+5	99	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	100	173:Custom headers are not exported to Excel. 
+	100	173:Custom headers are not exported to Excel. 
+5	100	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	101	173:Custom headers are not exported to Excel. 
+	102	173:Custom headers are not exported to Excel. 
+5	102	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	103	173:Custom headers are not exported to Excel. 
+	103	173:Custom headers are not exported to Excel. 
+5	103	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	104	173:Custom headers are not exported to Excel. 
+	104	173:Custom headers are not exported to Excel. 
+5	104	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	105	173:Custom headers are not exported to Excel. 
+	105	173:Custom headers are not exported to Excel. 
+5	105	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	106	173:Custom headers are not exported to Excel. 
+	106	173:Custom headers are not exported to Excel. 
+5	106	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	107	173:Custom headers are not exported to Excel. 
+	107	173:Custom headers are not exported to Excel. 
+5	107	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	108	173:Custom headers are not exported to Excel. 
+	108	173:Custom headers are not exported to Excel. 
+5	108	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	109	173:Custom headers are not exported to Excel. 
+	109	173:Custom headers are not exported to Excel. 
+5	109	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	110	173:Custom headers are not exported to Excel. 
+	110	173:Custom headers are not exported to Excel. 
+5	110	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	111	173:Custom headers are not exported to Excel. 
+	111	173:Custom headers are not exported to Excel. 
+5	111	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	112	173:Custom headers are not exported to Excel. 
+	112	173:Custom headers are not exported to Excel. 
+5	112	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	113	173:Custom headers are not exported to Excel. 
+	113	173:Custom headers are not exported to Excel. 
+5	113	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	114	173:Custom headers are not exported to Excel. 
+	115	173:Custom headers are not exported to Excel. 
+5	115	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	116	173:Custom headers are not exported to Excel. 
+	116	173:Custom headers are not exported to Excel. 
+5	116	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	117	173:Custom headers are not exported to Excel. 
+	117	173:Custom headers are not exported to Excel. 
+5	117	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	118	173:Custom headers are not exported to Excel. 
+	119	173:Custom headers are not exported to Excel. 
+5	119	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	120	173:Custom headers are not exported to Excel. 
+	120	173:Custom headers are not exported to Excel. 
+5	120	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	121	173:Custom headers are not exported to Excel. 
+	122	173:Custom headers are not exported to Excel. 
+5	122	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	123	173:Custom headers are not exported to Excel. 
+	123	173:Custom headers are not exported to Excel. 
+5	123	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	124	173:Custom headers are not exported to Excel. 
+	124	173:Custom headers are not exported to Excel. 
+5	124	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	125	173:Custom headers are not exported to Excel. 
+	125	173:Custom headers are not exported to Excel. 
+5	125	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	126	173:Custom headers are not exported to Excel. 
+	126	173:Custom headers are not exported to Excel. 
+5	126	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	127	173:Custom headers are not exported to Excel. 
+	127	173:Custom headers are not exported to Excel. 
+5	127	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	128	173:Custom headers are not exported to Excel. 
+	128	173:Custom headers are not exported to Excel. 
+5	128	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	129	173:Custom headers are not exported to Excel. 
+	129	173:Custom headers are not exported to Excel. 
+5	129	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	130	173:Custom headers are not exported to Excel. 
+	130	173:Custom headers are not exported to Excel. 
+5	130	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	131	173:Custom headers are not exported to Excel. 
+	131	173:Custom headers are not exported to Excel. 
+5	131	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	132	173:Custom headers are not exported to Excel. 
+	132	173:Custom headers are not exported to Excel. 
+5	132	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	133	173:Custom headers are not exported to Excel. 
+	133	173:Custom headers are not exported to Excel. 
+5	133	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	134	173:Custom headers are not exported to Excel. 
+	134	173:Custom headers are not exported to Excel. 
+5	134	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	135	173:Custom headers are not exported to Excel. 
+	135	173:Custom headers are not exported to Excel. 
+5	135	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	136	173:Custom headers are not exported to Excel. 
+	136	173:Custom headers are not exported to Excel. 
+5	136	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	137	173:Custom headers are not exported to Excel. 
+	137	173:Custom headers are not exported to Excel. 
+5	137	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	138	173:Custom headers are not exported to Excel. 
+	138	173:Custom headers are not exported to Excel. 
+5	138	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	139	173:Custom headers are not exported to Excel. 
+	139	173:Custom headers are not exported to Excel. 
+5	139	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	140	173:Custom headers are not exported to Excel. 
+	140	173:Custom headers are not exported to Excel. 
+5	140	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	141	173:Custom headers are not exported to Excel. 
+	141	173:Custom headers are not exported to Excel. 
+5	141	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	142	173:Custom headers are not exported to Excel. 
+	142	173:Custom headers are not exported to Excel. 
+5	142	175:Excel does not support the Spread static text cell type. The value of the Spread cell has been placed in the corresponding Excel cell, but the cell formatting has been discarded.
+
+	143	173:Custom headers are not exported to Excel. 
+	144	173:Custom headers are not exported to Excel. 
+
+===== End of Excel Export =====
+===== FarPoint Technologies, Inc =====

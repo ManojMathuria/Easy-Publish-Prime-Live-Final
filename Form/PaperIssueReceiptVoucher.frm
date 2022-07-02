@@ -2148,7 +2148,7 @@ Public Sub PrintPaperIRVch(ByVal OrderCode As String, Optional ByVal OutputType 
     Screen.MousePointer = vbHourglass
     If rstCompanyMaster.State = adStateOpen Then rstCompanyMaster.Close
 '    rstCompanyMaster.Open "SELECT PrintName,Address1,Address2,Address3,Address4,Phone,Mobile,EMail,Website,GSTIN,Prefix,Suffix FROM CompanyMaster P INNER JOIN CompChild C ON P.Code=C.Code WHERE VchType=" & IIf(VchType = "R", 6, 5), cnPaperIRVch, adOpenKeyset, adLockReadOnly
-    rstCompanyMaster.Open "SELECT PrintName,Address1,Address2,Address3,Address4,Phone,Mobile,EMail,Website,GSTIN,Prefix,Suffix FROM CompanyMaster P INNER JOIN CompChild C ON P.Code=C.Code WHERE VchType=" & IIf(VchType = "R", 6, 5), cnPaperIRVch, adOpenKeyset, adLockReadOnly
+    rstCompanyMaster.Open "SELECT PrintName,Address1,Address2,Address3,Address4,Phone,Mobile,EMail,Website,GSTIN,Prefix,Suffix,Alias FROM CompanyMaster P INNER JOIN CompChild C ON P.Code=C.Code WHERE VchType=" & IIf(VchType = "R", 6, 5), cnPaperIRVch, adOpenKeyset, adLockReadOnly
     rptPaperIssueReceiptOrder.Text1.SetText "Paper " & IIf(VchType = "T", "Transfer", IIf(VchType = "I", "Issue", "Receipt")) & " Voucher"
     rptPaperIssueReceiptOrder.Text2.SetText Trim(rstCompanyMaster.Fields("PrintName").Value)
     rptPaperIssueReceiptOrder.Text3.SetText Trim(rstCompanyMaster.Fields("Address1").Value) & Space(1) & Trim(rstCompanyMaster.Fields("Address2").Value) & Space(1) & Trim(rstCompanyMaster.Fields("Address3").Value) & Space(1) & Trim(rstCompanyMaster.Fields("Address4").Value)
@@ -2159,23 +2159,65 @@ Public Sub PrintPaperIRVch(ByVal OrderCode As String, Optional ByVal OutputType 
     ElseIf Not CheckEmpty(rstCompanyMaster.Fields("eMail").Value, False) Then
         rptPaperIssueReceiptOrder.Text24.SetText "E-Mail : " & Trim(rstCompanyMaster.Fields("eMail").Value)
     End If
-    If VchType = "R" Then
-        rptPaperIssueReceiptOrder.Section14.Suppress = True
-        rptPaperIssueReceiptOrder.Section15.Suppress = True
-    Else
-        rptPaperIssueReceiptOrder.Section17.Suppress = True
-        rptPaperIssueReceiptOrder.Section12.Suppress = True
-    End If
+    
     If rstPaperIRVChild.State = adStateOpen Then rstPaperIRVChild.Close
-    SQL = "SELECT '" & LTrim(rstCompanyMaster.Fields("Prefix").Value) & "'+LTRIM(P.Name)+'" & LTrim(rstCompanyMaster.Fields("Suffix").Value) & "' As VchNo,[Date] As VchDate,LTRIM(M1.PrintName) As Account1Name,LTRIM(M2.PrintName) As Account2Name,Remarks,LTRIM(M3.PrintName)+' (UOM : '+LTRIM(G.PrintName)+'='+LTRIM(CONVERT(INT,G.Value1))+')' As PaperName,Quantity,C.[Weight/Unit],QuantityKg,C.[Units/Bundle],TotalBundles "
+    SQL = "SELECT '" & LTrim(rstCompanyMaster.Fields("Alias").Value) & "'+'/'+'" & VchType & "'+'/' +LTRIM(P.Name)+'/' +'" & Right(Year(FinancialYearFrom), 2) + "-" + Right(Year(FinancialYearTo), 2) & "' As VchNo,[Date] As VchDate,LTRIM(M1.PrintName) As Account1Name,LTRIM(M2.PrintName) As Account2Name,Remarks,LTRIM(M3.PrintName)+' (UOM : '+LTRIM(G.PrintName)+'='+LTRIM(CONVERT(INT,G.Value1))+')' As PaperName,Quantity,C.[Weight/Unit],QuantityKg,C.[Units/Bundle],TotalBundles,LTRIM(G.PrintName) As Unit,QuantitySheets "
     If VchType = "R" Then
-        SQL = SQL + "FROM ((((PaperPOParent P INNER JOIN PaperIOChild C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON M1.Code=C.Account) INNER JOIN AccountMaster M2 ON M2.Code=P.Supplier) INNER JOIN PaperMaster M3 ON M3.Code=C.Paper) INNER JOIN GeneralMaster G ON G.Code=M3.UOM WHERE P.Code='" & OrderCode & "' ORDER BY M3.PrintName"
+        SQL = SQL + ",M2.Address1 As FromAddress1,M2.Address2 As FromAddress2,M2.Address3 As FromAddress3,M2.Address4 As FromAddress4,M1.Address1 As ToAddress1,M1.Address2 As ToAddress2,M1.Address3 As ToAddress3,M1.Address4 As ToAddress4 FROM ((((PaperPOParent P INNER JOIN PaperIOChild C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON M1.Code=C.Account) INNER JOIN AccountMaster M2 ON M2.Code=P.Supplier) INNER JOIN PaperMaster M3 ON M3.Code=C.Paper) INNER JOIN GeneralMaster G ON G.Code=M3.UOM WHERE P.Code='" & OrderCode & "' ORDER BY M3.PrintName"
     Else
-        SQL = SQL + "FROM ((((PaperMVParent P INNER JOIN PaperMVChild C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON M1.Code=P.AccountFrom) INNER JOIN AccountMaster M2 ON M2.Code=P.AccountTo) INNER JOIN PaperMaster M3 ON M3.Code=C.Paper) INNER JOIN GeneralMaster G ON G.Code=M3.UOM WHERE P.Code='" & OrderCode & "' ORDER BY M3.PrintName"
+        SQL = SQL + ",M1.Address1 As FromAddress1,M1.Address2 As FromAddress2,M1.Address3 As FromAddress3,M1.Address4 As FromAddress4,M2.Address1 As ToAddress1,M2.Address2 As ToAddress2,M2.Address3 As ToAddress3,M2.Address4 As ToAddress4 FROM ((((PaperMVParent P INNER JOIN PaperMVChild C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON M1.Code=P.AccountFrom) INNER JOIN AccountMaster M2 ON M2.Code=P.AccountTo) INNER JOIN PaperMaster M3 ON M3.Code=C.Paper) INNER JOIN GeneralMaster G ON G.Code=M3.UOM WHERE P.Code='" & OrderCode & "' ORDER BY M3.PrintName"
     End If
     rstPaperIRVChild.Open SQL, cnPaperIRVch, adOpenKeyset, adLockOptimistic
     rptPaperIssueReceiptOrder.Database.SetDataSource rstPaperIRVChild, 3, 1
     Screen.MousePointer = vbNormal
+    
+    If VchType = "R" Then
+        rptPaperIssueReceiptOrder.Text27.SetText Trim(rstPaperIRVChild.Fields("Account1Name").Value)
+        rptPaperIssueReceiptOrder.Text9.SetText Trim(rstCompanyMaster.Fields("PrintName").Value)
+        
+        rptPaperIssueReceiptOrder.Section14.Suppress = True
+        rptPaperIssueReceiptOrder.Section20.Suppress = True
+        rptPaperIssueReceiptOrder.Section21.Suppress = True
+        rptPaperIssueReceiptOrder.Section22.Suppress = True
+        rptPaperIssueReceiptOrder.Section23.Suppress = True
+        
+        rptPaperIssueReceiptOrder.Section15.Suppress = True
+        rptPaperIssueReceiptOrder.Section24.Suppress = True
+        rptPaperIssueReceiptOrder.Section25.Suppress = True
+        rptPaperIssueReceiptOrder.Section26.Suppress = True
+        rptPaperIssueReceiptOrder.Section27.Suppress = True
+    Else
+        rptPaperIssueReceiptOrder.Text27.SetText Trim(rstPaperIRVChild.Fields("Account2Name").Value)
+        rptPaperIssueReceiptOrder.Text9.SetText Trim(rstCompanyMaster.Fields("PrintName").Value)
+        
+        rptPaperIssueReceiptOrder.Section17.Suppress = True
+        rptPaperIssueReceiptOrder.Section28.Suppress = True
+        rptPaperIssueReceiptOrder.Section29.Suppress = True
+        rptPaperIssueReceiptOrder.Section30.Suppress = True
+        rptPaperIssueReceiptOrder.Section31.Suppress = True
+        
+        rptPaperIssueReceiptOrder.Section12.Suppress = True
+        rptPaperIssueReceiptOrder.Section32.Suppress = True
+        rptPaperIssueReceiptOrder.Section33.Suppress = True
+        rptPaperIssueReceiptOrder.Section34.Suppress = True
+        rptPaperIssueReceiptOrder.Section35.Suppress = True
+    
+    End If
+    With rptPaperIssueReceiptOrder
+    If Logo = "S" Then
+    .Picture1.Width = LogoW
+    .Picture1.Height = LogoH
+    End If
+    .Text2.Width = Header '9000 '7800
+    .Text2.Left = HeaderL '1000 '1680
+    If LogoLine = "N" Then
+    .Picture1.LeftLineStyle = crLSNoLine
+    .Picture1.RightLineStyle = crLSNoLine
+    .Picture1.TopLineStyle = crLSNoLine
+    .Picture1.BottomLineStyle = crLSNoLine
+    End If
+    End With
+    
     If OutputType = "S" Then
         Set FrmReportViewer.Report = rptPaperIssueReceiptOrder
         FrmReportViewer.Show vbModal

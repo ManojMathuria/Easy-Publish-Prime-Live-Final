@@ -3169,11 +3169,30 @@ Public Sub PrintSalesOrderVoucher(ByVal VchCode As String, ByVal VchType As Stri
         .ActiveConnection = Nothing
     End With
     With rptSalesOrderVoucher
+                If Logo = "S" Then
+                .Picture1.Width = LogoW
+                .Picture1.Height = LogoH
+            End If
+            If Len(LTrim(rstCompanyMaster.Fields("PrintName").Value)) <= 30 Then
+                .Text2.Font.Size = 20
+            ElseIf Len(LTrim(rstCompanyMaster.Fields("PrintName").Value)) <= 40 Then
+                .Text2.Font.Size = 18
+            ElseIf Len(LTrim(rstCompanyMaster.Fields("PrintName").Value)) <= 50 Then
+                .Text2.Font.Size = 16
+            ElseIf Len(LTrim(rstCompanyMaster.Fields("PrintName").Value)) <= 60 Then
+                .Text2.Font.Size = 14
+            End If
+            If LogoLine = "N" Then
+                .Picture1.LeftLineStyle = crLSNoLine
+                .Picture1.RightLineStyle = crLSNoLine
+                .Picture1.TopLineStyle = crLSNoLine
+                .Picture1.BottomLineStyle = crLSNoLine
+            End If
         .Text1.SetText IIf(Right(VchType, 2) = "SQ", "Sales Quotation", IIf(Right(VchType, 2) = "PQ", "Purchase Quotation", IIf(Right(VchType, 2) = "SO", "Sales", IIf(Right(VchType, 2) = "PO", "Purchase", "Stock Transfer")))) & IIf(Right(VchType, 2) = "PO", " Order", IIf(Right(VchType, 2) = "SO", " Order", ""))
         .Text13.SetText IIf(Right(VchType, 2) = "SO", "Buyer :", IIf(Right(VchType, 2) = "PO", "Supplier :", IIf(Right(VchType, 2) = "PQ", "Supplier :", IIf(Right(VchType, 2) = "SQ", "Buyer :", "From: Material Centre"))))
         .Text7.SetText IIf(Right(VchType, 2) = "SO" Or Right(VchType, 2) = "PO", "Consignee :", IIf(Right(VchType, 2) = "SQ" Or Right(VchType, 2) = "PQ", "Consignee :", "TO: Material Centre"))
         .Text35.SetText "Printed on " & Format(Now, "dd-MMM-yyyy") & " at " & Format(Now, "hh:mm")
-        If Len(LTrim(rstCompanyMaster.Fields("PrintName").Value)) <> 25 Then .Text2.Font = 48
+        'If Len(LTrim(rstCompanyMaster.Fields("PrintName").Value)) <> 25 Then .Text2.Font.Size = 48
         .Text2.SetText Trim(rstCompanyMaster.Fields("PrintName").Value)
         .Text3.SetText Trim(rstCompanyMaster.Fields("Address1").Value) & Space(1) & Trim(rstCompanyMaster.Fields("Address2").Value) & Space(1) & Trim(rstCompanyMaster.Fields("Address3").Value) & Space(1) & Trim(rstCompanyMaster.Fields("Address4").Value)
         If (Not CheckEmpty(rstCompanyMaster.Fields("Phone").Value, False)) And (Not CheckEmpty(rstCompanyMaster.Fields("eMail").Value, False)) Then

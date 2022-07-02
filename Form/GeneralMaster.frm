@@ -105,8 +105,8 @@ Begin VB.Form FrmGeneralMaster
          TabCaption(1)   =   "&Details"
          TabPicture(1)   =   "GeneralMaster.frx":0044
          Tab(1).ControlEnabled=   0   'False
-         Tab(1).Control(0)=   "Mh3dLabel1(1)"
-         Tab(1).Control(1)=   "Mh3dFrame2"
+         Tab(1).Control(0)=   "Mh3dFrame2"
+         Tab(1).Control(1)=   "Mh3dLabel1(1)"
          Tab(1).ControlCount=   2
          Begin VB.TextBox Text1 
             Appearance      =   0  'Flat
@@ -474,7 +474,7 @@ Begin VB.Form FrmGeneralMaster
                NoPrefix        =   0   'False
                FormatString    =   ""
                Caption         =   ""
-               Picture         =   "GeneralMaster.frx":075D
+               Picture         =   "GeneralMaster.frx":07A5
                Begin VB.CheckBox cbValue 
                   Caption         =   "Check1"
                   Height          =   210
@@ -510,8 +510,8 @@ Begin VB.Form FrmGeneralMaster
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "GeneralMaster.frx":0779
-            Picture         =   "GeneralMaster.frx":0795
+            Picture         =   "GeneralMaster.frx":07C1
+            Picture         =   "GeneralMaster.frx":07DD
          End
          Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
             Height          =   300
@@ -538,8 +538,8 @@ Begin VB.Form FrmGeneralMaster
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "GeneralMaster.frx":07B1
-            Picture         =   "GeneralMaster.frx":07CD
+            Picture         =   "GeneralMaster.frx":07F9
+            Picture         =   "GeneralMaster.frx":0815
          End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat
@@ -673,10 +673,12 @@ Private Sub Form_Load()
     On Error GoTo ErrorHandler
     If Dir(App.Path & "\Icon\ICON.ICO", vbDirectory) <> "" Then Me.Icon = LoadPicture(App.Path & "\Icon\ICON.ICO")
     Mh3dFrame2.Height = 1170
-    If MasterType = "11" Then Me.Caption = "Finish Size Master"
     If MasterType = "1" Then Me.Caption = "Size Master"
     If MasterType = "5" Then Me.Caption = "Item Group Master"
+    If MasterType = "11" Then Me.Caption = "Finish Size Master"
     If MasterType = "18" Then Me.Caption = "HSN Code Master"
+    If MasterType = "56" Then Me.Caption = "State Code Master"
+    
     If MasterType = "1" Then 'Size Master
         Mh3dLabel2.Caption = " Group (s)": Text4.Visible = True: Text4.Locked = True
     ElseIf MasterType = "5" Or MasterType = "12" Or MasterType = "26" Or MasterType = "12','26" Then 'Item/Account Group Master

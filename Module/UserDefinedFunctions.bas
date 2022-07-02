@@ -1,5 +1,6 @@
 Attribute VB_Name = "ModUserDefinedFunctions"
 Option Explicit
+Dim Decrypt As Variant
 Dim CompAlias As String, compName As String, ClientID As Variant
 Dim rstCompanyMaster As New ADODB.Recordset
 Dim rstEasyPublishVersion As New ADODB.Recordset
@@ -9,11 +10,11 @@ Public RenewFlag As Boolean, LaterFlag As Boolean
 Public dueDate As String, DaysLeft As Variant, dDay As String, dMonth As String, dYear As String
 Public ServerID As String, UniqueDate As String
 Public Major As Variant, Minor As Variant, Revision As Variant
-Public slCode As String, slName As String, slValue1 As Double, slUGroupName As String, slUGroupCode As String, slUGroupValue1 As Double 'Selection List Code & Name & Value1
+Public slCode As String, slName As String, slValue1 As Double, slUGroupName As String, slUGroupCode As String, slUGroupValue1 As Double, slStateCode 'Selection List Code & Name & Value1
 Public cnDatabase As New ADODB.Connection
 Public cnCompany As New ADODB.Connection
 Public cnBusy As New ADODB.Connection
-Public FinancialYearFrom As Date, FinancialYearTo As Date, FinancialYear As String, FYCode As String
+Public FinancialYearFrom As Date, FinancialYearTo As Date, FinancialYear As String, FYCode As String, CompStateCode As String, FYFromTo As String, FYFromToFlag As Boolean, GSTMethod As String
 Global FSO As New FileSystemObject
 Global CompCode As String, MCGroup As String
 Global DatabasePath As String
@@ -1086,7 +1087,7 @@ Public Sub Sendkeys(Text As Variant, Optional Wait As Boolean = False)
    Dim WshShell As Object
    Set WshShell = CreateObject("wscript.shell")
    WshShell.Sendkeys CStr(Text), Wait
-   Set WshShell = Nothing
+    Set WshShell = Nothing
 End Sub
 Public Sub RetrievePic(ByVal PicData As Variant, ByVal imgFile As String, ByVal srmPicMgr As ADODB.Stream)
     With srmPicMgr
@@ -1447,7 +1448,7 @@ UpdateVersion = True
 If UpdateVersion = True Then
 Call UpdateMinor11
 'EasyPublishVersion
-    cnDatabase.Execute "IF EXISTS (SELECT *FROM EasyPublishVersion WHERE Version='21.10.25') Print 'Version_Exist' ELSE Insert Into EasyPublishVersion VALUES (GetDate(),21,10,25,'21.10.25')"
+    'cnDatabase.Execute "IF EXISTS (SELECT *FROM EasyPublishVersion WHERE Version='21.10.25') Print 'Version_Exist' ELSE Insert Into EasyPublishVersion VALUES (GetDate(),21,10,25,'21.10.25')"
 End If
 
 '***************************************************************************************************************************************************************
@@ -1585,13 +1586,173 @@ End If
     cnDatabase.Execute "IF EXISTS (SELECT ItemIntegrationName FROM BookMaster) Update BookMaster Set ItemIntegrationName=Name Where ItemIntegrationName IS NULL  ELSE Print 'Exist'"
     cnDatabase.Execute "IF COL_LENGTH('JobworkBVParent', 'IntegrationStatus') IS NOT NULL PRINT 'Exists' ELSE ALTER TABLE JobworkBVParent ADD IntegrationStatus bit DEFAULT (0) ALTER TABLE JobworkBVParent SET (LOCK_ESCALATION = TABLE)"
     cnDatabase.Execute "IF EXISTS (SELECT IntegrationStatus FROM JobworkBVParent) Update JobworkBVParent Set IntegrationStatus=0 Where IntegrationStatus IS NULL  ELSE Print 'Exist'"
-       'BookMaster Update [JobworkParent]
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*25019' OR Name='Numbers') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*25019','Numbers','No','25','1','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+    cnDatabase.Execute "IF COL_LENGTH('BookMaster', 'IntegrationUnit') IS NOT NULL PRINT 'Exists' ELSE ALTER TABLE BookMaster ADD IntegrationUnit nvarchar(60) NOT NULL Default('*25019') ALTER TABLE BookMaster SET (LOCK_ESCALATION = TABLE)"
+       '[JobworkParent]
     cnDatabase.Execute "IF (SELECT Data_Type FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'JobworkBVParent' AND COLUMN_NAME='VehicleNo') ='nvarchar' Print 'DataType_Ok' ELSE ALTER TABLE JobworkBVParent Alter Column VehicleNo nvarchar(40) NULL "
         'UserChild Update
     cnDatabase.Execute "IF(SELECT CHARACTER_MAXIMUM_LENGTH FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'UserChild' AND COLUMN_NAME='Module') ='8' Print 'DataField_Ok' ELSE ALTER TABLE UserChild Alter Column Module nvarchar(8) NOT NULL"
+        'CompChild
+    cnDatabase.Execute "DELETE FROM CompChild"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='01') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','01','1. Please send two copies of invoice.','2. Please notify us immediately if ','you are unable to ship as specified.','3. Enter this order in accordance, with the price,terms, ','delivery method and specification Listed above.','4. All disputes are subject to Our Jurisdiction Only','','" & CompAlias & "'+'/Pur/','/20-21','Purchase')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='02') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','02','1. Please send two copies of invoice.','2. Please notify us immediately if ','you are unable to ship as specified.','3. Enter this order in accordance, with the price,terms, ','delivery method and specification Listed above.','4. All disputes are subject to Our Jurisdiction Only','','" & CompAlias & "'+'/PR/','/20-21','Purchase Return')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='03') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','03','1. All disputes are subject to Our Jurisdiction Only','2. Rejection, if any shall be informed within one week from','the date of receipt in writing giving reason of rejection.','3. Please, Receive Following Goods in Good Condition.','after 7 days of the date of this Bill','','','" & CompAlias & "'+'/SR/','/20-21','Sale Return')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='04') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','04','1. Interest @24% p.a. will be charged if','the payment is not made in time.','2. All disputes are subject to Our Jurisdiction Only','3. Rejection, if any shall be informed within one week from','the date of receipt in writing giving reason of rejection','4. . Please, Receive Following Goods in Good Condition.','after 7 days of the date of this Bill','" & CompAlias & "'+'/Sale/','/20-21','Sale')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='05') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','05','1. Please send two copies of invoice.','2. Please notify us immediately if ','you are unable to ship as specified.','3. Enter this order in accordance, with the price,terms, ','delivery method and specification Listed above.','4. All disputes are subject to Our Jurisdiction Only','','" & CompAlias & "'+'/PC/','/20-21','Purchase Challan IN')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='06') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','06','','','','','','','','" & CompAlias & "'+'/PRC/','/20-21','Purchase Challan Out')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='07') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','07','1. Interest @24% p.a. will be charged if','the payment is not made in time.','2. All disputes are subject to Our Jurisdiction Only','3. Rejection, if any shall be informed within one week from','the date of receipt in writing giving reason of rejection','4. . Please, Receive Following Goods in Good Condition.','after 7 days of the date of this Bill','" & CompAlias & "'+'/SRC/','/20-21','Sale Challan IN')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='08') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','08','1. Interest @24% p.a. will be charged if','the payment is not made in time.','2. All disputes are subject to Our Jurisdiction Only','3. Rejection, if any shall be informed within one week from','the date of receipt in writing giving reason of rejection','4. . Please, Receive Following Goods in Good Condition.','after 7 days of the date of this Bill','" & CompAlias & "'+'/SC/','/20-21','Sale Challan Out')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='09') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','09','1. Interest @24% p.a. will be charged if','the payment is not made in time.','2. All disputes are subject to Our Jurisdiction Only','3. Rejection, if any shall be informed within one week from','the date of receipt in writing giving reason of rejection','4. . Please, Receive Following Goods in Good Condition.','after 7 days of the date of this Bill','" & CompAlias & "'+'/SJ/','/20-21','Sale Jobwork')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='10') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','10','1. Interest @24% p.a. will be charged if','the payment is not made in time.','2. All disputes are subject to Our Jurisdiction Only','3. Rejection, if any shall be informed within one week from','the date of receipt in writing giving reason of rejection','4. . Please, Receive Following Goods in Good Condition.','after 7 days of the date of this Bill','" & CompAlias & "'+'/SC/','/20-21','Sale Jobwork Unit Cost')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='11') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','11','1. Interest @24% p.a. will be charged if','the payment is not made in time.','2. All disputes are subject to Our Jurisdiction Only','3. Rejection, if any shall be informed within one week from','the date of receipt in writing giving reason of rejection','4. . Please, Receive Following Goods in Good Condition.','after 7 days of the date of this Bill','" & CompAlias & "'+'/DN/','/20-21','Challan Revesal IN')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='12') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','12','1. Interest @24% p.a. will be charged if','the payment is not made in time.','2. All disputes are subject to Delhi Jurisdiction Only','3. Rejection, if any shall be informed within one week from','the date of receipt in writing giving reason of rejection','4. . Please, Receive Following Goods in Good Condition.','after 7 days of the date of this Bill','" & CompAlias & "'+'/PU/','/20-21','Challan Revesal Out')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='13') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','13','1. Interest @24% p.a. will be charged if','the payment is not made in time.','2. All disputes are subject to Our Jurisdiction Only','3. Rejection, if any shall be informed within one week from','the date of receipt in writing giving reason of rejection','4. . Please, Receive Following Goods in Good Condition.','after 7 days of the date of this Bill','" & CompAlias & "'+'/SC/','/20-21','Challan TO Be Billed IN')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='14') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','14','1. Interest @24% p.a. will be charged if','the payment is not made in time.','2. All disputes are subject to Our Jurisdiction Only','3. Rejection, if any shall be informed within one week from','the date of receipt in writing giving reason of rejection','4. . Please, Receive Following Goods in Good Condition.','after 7 days of the date of this Bill','" & CompAlias & "'+'/SC/','/20-21','Challan TO Be Billed OUT')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='15') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','15','1. Interest @24% p.a. will be charged if','the payment is not made in time.','2. All disputes are subject to Our Jurisdiction Only','3. Rejection, if any shall be informed within one week from','the date of receipt in writing giving reason of rejection','4. . Please, Receive Following Goods in Good Condition.','after 7 days of the date of this Bill','" & CompAlias & "'+'/SC/','/20-21','Challan Not TO Be Billed IN')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='16') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','16','1. Interest @24% p.a. will be charged if','the payment is not made in time.','2. All disputes are subject to Our Jurisdiction Only','3. Rejection, if any shall be informed within one week from','the date of receipt in writing giving reason of rejection','4. . Please, Receive Following Goods in Good Condition.','after 7 days of the date of this Bill','" & CompAlias & "'+'/SC/','/20-21','Challan Not TO Be Billed IOUT')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='17') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','17','1. The Deliverables shall be delivered or performed on the ','date and at the place specified in the Purchase Order.','2. Prices shall be as specified in the  Purchase  Order.','3. No increase in price shall be made or accepted unless ',' agreed in writing by Accenture.','4. The  Deliverables must conform in all respects with the','   Specifications and must be of sound.','" & CompAlias & "'+'/PO/','/20-21','Purchase Order')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='18') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','18','1. Interest @24% p.a. will be charged if','the payment is not made in time.','2. All disputes are subject to Our Jurisdiction Only','3. Rejection, if any shall be informed within one week from','the date of receipt in writing giving reason of rejection','4. . Please, Receive Following Goods in Good Condition.','after 7 days of the date of this Bill','" & CompAlias & "'+'/SO/','/20-21','Sale Order')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='19') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','19','1. Interest @24% p.a. will be charged if','the payment is not made in time.','2. All disputes are subject to Our Jurisdiction Only','3. Rejection, if any shall be informed within one week from','the date of receipt in writing giving reason of rejection','4. . Please, Receive Following Goods in Good Condition.','after 7 days of the date of this Bill','" & CompAlias & "'+'/ST/','/20-21','Stock Tranfer')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='20') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','20','','','','','','','','" & CompAlias & "'+'/RN/','/20-21','Stock Genral')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='21') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','21','1. Interest @24% p.a. will be charged if','the payment is not made in time.','2. All disputes are subject to Delhi Jurisdiction Only','3. Rejection, if any shall be informed within one week from','the date of receipt in writing giving reason of rejection','4. . Please, Receive Following Goods in Good Condition.','after 7 days of the date of this Bill','" & CompAlias & "'+'/SU/','/20-21','Promotional Sale Challan Out')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='22') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','22','1. Interest @24% p.a. will be charged if','the payment is not made in time.','2. All disputes are subject to Our Jurisdiction Only','3. Rejection, if any shall be informed within one week from','the date of receipt in writing giving reason of rejection','4. . Please, Receive Following Goods in Good Condition.','after 7 days of the date of this Bill','" & CompAlias & "'+'/SQ/','/20-21','--')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='23') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','23','1. The price set for in Supplier’s Quotation (“Price”) are',' in  INDIA INR.','2. All Taxes shall be paid by Customer in addition to the ',' Price.','3.  Quotation (“Prices”) are valid for 30 days only.','','','" & CompAlias & "'+'/QP/','/20-21','Purchase Quotation')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='24') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','24','1. The price set for in Supplier’s Quotation (“Price”) are',' in  INDIA INR.','2. All Taxes shall be paid by Customer in addition to the ',' Price.','3.  Quotation (“Prices”) are valid for 30 days only.','','','" & CompAlias & "'+'/QS/','/20-21','Sales Quotation')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='25') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','25','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='26') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','26','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='27') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','27','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='28') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','28','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='29') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','29','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='30') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','30','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='31') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','31','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='32') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','32','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='33') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','33','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='34') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','34','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='35') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','35','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='36') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','36','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='37') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','37','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='38') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','38','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='39') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','39','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='40') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','40','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='41') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','41','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='42') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','42','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='43') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','43','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='44') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','44','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='45') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','45','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='46') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','46','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='47') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','47','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='48') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','48','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='49') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','49','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='50') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','50','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='51') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','51','','','','','','','','" & CompAlias & "'+'/PI/','/20-21','Payment')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='52') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','52','','','','','','','','" & CompAlias & "'+'/PR/','/20-21','Receipt')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='53') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','53','','','','','','','','" & CompAlias & "'+'/JE/','/20-21','Journal')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='54') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','54','','','','','','','','" & CompAlias & "'+'/CE/','/20-21','Contra')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='55') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','55','','','','','','','','" & CompAlias & "'+'/DN/','/20-21','Debit Note')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='56') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','56','','','','','','','','" & CompAlias & "'+'/CN/','/20-21','Credit Note')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='57') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','57','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='58') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','58','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='59') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','59','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='60') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','60','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='61') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','61','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='62') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','62','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='63') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','63','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='64') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','64','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='65') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','65','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='66') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','66','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='67') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','67','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='68') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','68','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='69') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','69','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='70') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','70','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='71') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','71','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='72') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','72','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='73') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','73','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='74') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','74','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='75') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','75','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='76') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','76','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='77') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','77','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='78') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','78','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='79') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','79','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='80') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','80','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='81') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','81','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='82') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','82','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='83') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','83','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='84') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','84','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='85') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','85','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='86') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','86','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='87') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','87','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='88') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','88','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='89') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','89','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='90') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','90','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='91') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','91','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='92') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','92','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='93') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','93','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='94') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','94','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='95') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','95','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='96') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','96','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='97') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','97','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='98') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','98','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='99') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','99','','','','','','','','','','')"
+'Update Tax Master
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM TaxMaster WHERE Code='*00001' OR Name='Local GST 12%') UPDATE TaxMaster SET Name='Job Work (Local GST 12%)',PrintName='Job Work (Local GST 12%)' Where Name='Local GST 12%' OR Code ='*00001'  ELSE  Print 'Not Exist' "
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM TaxMaster WHERE Code='*00002' OR Name='IGST 12%') UPDATE TaxMaster SET Name='Job Work (Interstate IGST 12%)',PrintName='Job Work (Interstate IGST 12%)' Where Name='IGST 12%' OR Code ='*00002'  ELSE  Print 'Not Exist' "
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM TaxMaster WHERE Code='*00003' OR Name='IGST 5%') UPDATE TaxMaster SET Name='Job Work Books (Interstate IGST 5%)',PrintName='Job Work Books (Interstate IGST 5%)' Where Name='IGST 5%' OR Code ='*00003'  ELSE  Print 'Not Exist' "
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM TaxMaster WHERE Code='*00004' OR Name='Local GST 5%') UPDATE TaxMaster SET Name='Job Work Books (Local GST 5%)',PrintName='Job Work Books (Local GST 5%)' Where Name='Local GST 5%' OR Code ='*00004'  ELSE  Print 'Not Exist' "
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM TaxMaster WHERE Code='*00005' OR Name='Local GST 18%') UPDATE TaxMaster SET Name='Sales (Local GST 18%)',PrintName='Sales (Local GST 18%)' Where Name='Local GST 18%' OR Code ='*00005'  ELSE  Print 'Not Exist' "
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM TaxMaster WHERE Code='*00006' OR Name='IGST 18%') UPDATE TaxMaster SET Name='Sales (Interstate IGST 18%)',PrintName='Sales (Interstate IGST 18%)' Where Name='IGST 18%' OR Code ='*00006'  ELSE  Print 'Not Exist' "
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM TaxMaster WHERE Code='*00007' OR Name='Local GST NIL') UPDATE TaxMaster SET Name='Local GST NIL',PrintName='Local GST NIL' Where Name='Local GST NIL' OR Code ='*00007'  ELSE  Print 'Not Exist' "
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM TaxMaster WHERE Code='*00008' OR Name='IGST NIL') UPDATE TaxMaster SET Name='Interstate IGST NIL',PrintName='Interstate IGST NIL' Where Name='IGST NIL' OR Code ='*00008'  ELSE  Print 'Not Exist' "
+'Update State
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56000' OR Name='State') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56000','State','0','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56001' OR Name='Andaman and Nicobar Islands') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56001','Andaman and Nicobar Islands','35','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56002' OR Name='Andhra Pradesh') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56002','Andhra Pradesh','37','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56003' OR Name='Arunachal Pradesh') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56003','Arunachal Pradesh','12','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56004' OR Name='Assam') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56004','Assam','18','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56005' OR Name='Bihar') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56005','Bihar','10','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56006' OR Name='Chandigarh') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56006','Chandigarh','4','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56007' OR Name='Chhattisgarh') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56007','Chhattisgarh','22','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56008' OR Name='Dadra and Nagar Haveli') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56008','Dadra and Nagar Haveli','26','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56009' OR Name='Daman and Diu') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56009','Daman and Diu','25','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56010' OR Name='Delhi') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56010','Delhi','7','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56011' OR Name='Goa') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56011','Goa','30','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56012' OR Name='Gujarat') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56012','Gujarat','24','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56013' OR Name='Haryana') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56013','Haryana','6','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56014' OR Name='Himachal Pradesh') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56014','Himachal Pradesh','2','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56015' OR Name='Jammu and Kashmir') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56015','Jammu and Kashmir','1','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56016' OR Name='Jharkhand') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56016','Jharkhand','20','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56017' OR Name='Karnataka') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56017','Karnataka','29','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56018' OR Name='Kerala') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56018','Kerala','32','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56019' OR Name='Ladakh') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56019','Ladakh','38','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56020' OR Name='Lakshadweep') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56020','Lakshadweep','31','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56021' OR Name='Madhya Pradesh') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56021','Madhya Pradesh','23','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56022' OR Name='Maharashtra') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56022','Maharashtra','27','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56023' OR Name='Manipur') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56023','Manipur','14','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56024' OR Name='Meghalaya') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56024','Meghalaya','17','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56025' OR Name='Mizoram') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56025','Mizoram','15','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56026' OR Name='Nagaland') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56026','Nagaland','13','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56027' OR Name='Odisha') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56027','Odisha','21','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56028' OR Name='Other Territory') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56028','Other Territory','97','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56029' OR Name='Puducherry') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56029','Puducherry','34','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56030' OR Name='Punjab') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56030','Punjab','3','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56031' OR Name='Rajasthan') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56031','Rajasthan','8','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56032' OR Name='Sikkim') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56032','Sikkim','11','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56033' OR Name='Tamil Nadu') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56033','Tamil Nadu','33','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56034' OR Name='Telangana') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56034','Telangana','36','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56035' OR Name='Tripura') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56035','Tripura','16','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56036' OR Name='Uttar Pradesh') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56036','Uttar Pradesh','9','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56037' OR Name='Uttarakhand') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56037','Uttarakhand','5','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56038' OR Name='West Bengal') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56038','West Bengal','19','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56039' OR Name='Foreign Country') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56039','Foreign Country','96','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+'Update Account Master State Col
+   cnDatabase.Execute "IF EXISTS (SELECT COLUMN_Name FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = 'AccountMaster' AND COLUMN_Name = 'State') Print 'Col_Exist' ELSE Alter Table AccountMaster Add State nvarchar(6) NOT Null Default('*56000')"
+   cnDatabase.Execute "IF EXISTS (SELECT COLUMN_Name FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = 'CompanyMaster' AND COLUMN_Name = 'State') Print 'Col_Exist' ELSE Alter Table CompanyMaster Add State nvarchar(6) NOT Null Default('*56000')"
+   cnDatabase.Execute "Update AccountMaster Set State='*56000'  Where State IS NULL"
+   cnDatabase.Execute "IF EXISTS (SELECT * FROM CompanyMaster WHERE  State<>'') Print 'Col_Exist' ELSE Update CompanyMaster Set State='*56036'"
         'Create Table CustomSettings
-    cnDatabase.Execute "IF EXISTS (SELECT ORDINAL_POSITION FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'CustomSettings' AND COLUMN_NAME='Logo') Print 'Done'Else CREATE TABLE [dbo].[CustomSettings]([Logo] [nchar](10) NOT NULL,[LogoLine] [nchar](10) NOT NULL,[LogoW] [int] NOT NULL,[LogoH] [int] NOT NULL,[Header] [int] NOT NULL,[HeaderL] [int] NOT NULL) ON [PRIMARY]"
-    cnDatabase.Execute "IF EXISTS (SELECT logo From CustomSettings) Print'Done' Else INSERT INTO CustomSettings VALUES ('S','N',1440,960,7800,1680)"
+    cnDatabase.Execute "IF EXISTS (SELECT ORDINAL_POSITION FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'CustomSettings' AND COLUMN_NAME='Logo') Print 'Done'Else CREATE TABLE [dbo].[CustomSettings]([Logo] [nchar](10) NOT NULL,[LogoLine] [nchar](10) NOT NULL,[LogoW] [int] NOT NULL,[LogoH] [int] NOT NULL,[Header] [int] NOT NULL,[HeaderL] [int] NOT NULL,FYFromTo nvarchar(1) NOT NULL Default('N'),GSTMethod nvarchar(1) NOT NULL Default('1')) ON [PRIMARY]"
+    cnDatabase.Execute "IF EXISTS (SELECT COLUMN_Name FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = 'CustomSettings' AND COLUMN_Name = 'FYFromTo') Print 'Col_Exist' ELSE Alter Table CustomSettings Add FYFromTo nvarchar(1) NOT NULL Default('N')"
+    cnDatabase.Execute "IF EXISTS (SELECT COLUMN_Name FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = 'CustomSettings' AND COLUMN_Name = 'GSTMethod') Print 'Col_Exist' ELSE Alter Table CustomSettings Add GSTMethod nvarchar(1) NOT NULL Default('1')"
+    cnDatabase.Execute "IF(SELECT COLUMN_Name FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = 'CustomSettings' AND COLUMN_Name = 'LOGO')<>'' Print'Done' Else INSERT INTO CustomSettings VALUES ('S','N',1440,960,7800,1680,'N','1')"
     '***************************************************************************************************************************************************************
 NXT:
     cnDatabase.CommitTrans
@@ -3732,7 +3893,52 @@ Public Function UpdateMinor11()
 ''BookPOChild06 Actual Wastage Update
 'cnDatabase.Execute "IF Not EXISTS (SELECT *FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = 'BookPOChild06' AND COLUMN_NAME = 'aPaperWastage%') Print 'Col_Not_Exist' Else Update BookPOChild06 Set [PaperWastage%] = [aPaperWastage%],[PaperWastage%Back] = [aPaperWastage%Back],PaperWastageMin = aPaperWastageMin,PaperWastageMinBack = aPaperWastageMinBack,PARSENAME(PaperWastageFinal,2)*U.Value1+(PARSENAME(PaperWastageFinal,1)/Sets) = [aWastage/Set],PaperWastageFinal = aPaperWastageFinal,PaperConsumptionOther = aPaperConsumptionOther,PaperConsumptionsheets = aPaperConsumptionsheets,PaperConsumptionKg = aPaperConsumptionKg Where aPaperConsumptionsheets=0"
 End Function
+Public Function ServerSetting()
+    DatabasePath = Trim(ReadFromFile("Database Path"))
+    ServerID = Trim(ReadFromFile("Server ID"))
+    If Decrypted(Trim(ReadFromFile("Server Name")), Decrypt) Then
+        ServerName = Decrypt
+    End If
+    If Decrypted(Trim(ReadFromFile("Server User")), Decrypt) Then
+        ServerUser = Decrypt
+    End If
+    If Decrypted(Trim(ReadFromFile("Server Password")), Decrypt) Then
+        ServerPassword = Decrypt
+    End If
+End Function
+Private Function Decrypted(Encrypt As Variant, Decrypt)
+    Dim e As Long, i As Long, s As Long, n As Long, j As Long, te As Long, ti As Long, ts As Long, tn As Long, K As Long
+    Dim eFlag As Boolean, iFlag As Boolean, sFlag As Boolean, nFlag As Boolean
+    j = 0: e = 0: i = 0: s = 0: n = 0: Decrypt = "": K = 0: eFlag = True: iFlag = False: sFlag = False: nFlag = False
+    
+    K = Len(Trim(Encrypt)) - 1
+    For j = 1 To K
+     If Mid(Trim(Encrypt), j, 1) <> "§" Then
+     Decrypt = Decrypt + Mid(Trim(Encrypt), j, 1)
+     Else
+     If nFlag = True Then n = j: nFlag = False
+     If sFlag = True Then s = j: sFlag = False: nFlag = True
+     If iFlag = True Then i = j: iFlag = False: sFlag = True
+     If eFlag = True Then e = j: eFlag = False: iFlag = True
+     End If
+    Next j
+    Decrypt = ""
+    te = 1: ti = e + 1: ts = i + 1: tn = s + 1:
+    For j = 1 To K
+    te = te + 1
+    If j < ((e - 2) * (4)) Then Decrypt = Decrypt + Mid(Trim(Encrypt), te, 1)
+    ti = ti + 1
+    If j < ((i - e - 2) * (4)) Then Decrypt = Decrypt + Mid(Trim(Encrypt), ti, 1)
+    ts = ts + 1
+    If j < ((s - i - 2) * (4)) Then Decrypt = Decrypt + Mid(Trim(Encrypt), ts, 1)
+    tn = tn + 1
+    If j < ((n - s - 2) * (4)) Then Decrypt = Decrypt + Mid(Trim(Encrypt), tn, 1)
+    j = j + 3
+    Next j
+    Decrypted = True
+End Function
 Public Function CustomSettings()
+On Error Resume Next
 Dim rstCustomList As New ADODB.Recordset
     If rstCustomList.State = adStateOpen Then rstCustomList.Close
     rstCustomList.Open "Select * From CustomSettings", cnDatabase, adOpenKeyset, adLockReadOnly
@@ -3742,6 +3948,9 @@ Dim rstCustomList As New ADODB.Recordset
     LogoLine = Trim(rstCustomList.Fields("LogoLine").Value)
     Header = Trim(rstCustomList.Fields("Header").Value)
     HeaderL = Trim(rstCustomList.Fields("HeaderL").Value)
+    FYFromToFlag = IIf(Trim(rstCustomList.Fields("FYFromTo").Value) = "Y", "True", "False")
+    GSTMethod = Trim(rstCustomList.Fields("GSTMethod").Value)
     rstCustomList.Close
+    FYFromTo = Format(FinancialYearFrom, "YY") + "-" + Format(FinancialYearTo, "YY")
+    Call ServerSetting
 End Function
-

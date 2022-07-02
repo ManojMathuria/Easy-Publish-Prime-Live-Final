@@ -98,9 +98,9 @@ Begin VB.Form frmSalesChallanVoucher
          TabCaption(1)   =   "&Details"
          TabPicture(1)   =   "SalesChallanVoucher.frx":0038
          Tab(1).ControlEnabled=   0   'False
-         Tab(1).Control(0)=   "txtNotes"
+         Tab(1).Control(0)=   "Mh3dFrame2"
          Tab(1).Control(1)=   "btnNotes"
-         Tab(1).Control(2)=   "Mh3dFrame2"
+         Tab(1).Control(2)=   "txtNotes"
          Tab(1).ControlCount=   3
          Begin VB.TextBox txtNotes 
             Appearance      =   0  'Flat
@@ -3438,6 +3438,27 @@ Dim ChallanType As String
     If rstSalesChallanVoucherChild.RecordCount = 0 Then On Error GoTo 0: Exit Sub
     rstSalesChallanVoucherChild.ActiveConnection = Nothing
 With rptSalesOrderVoucher
+    
+            If Logo = "S" Then
+                .Picture1.Width = LogoW
+                .Picture1.Height = LogoH
+            End If
+            If Len(LTrim(rstCompanyMaster.Fields("PrintName").Value)) <= 30 Then
+                .Text2.Font.Size = 20
+            ElseIf Len(LTrim(rstCompanyMaster.Fields("PrintName").Value)) <= 40 Then
+                .Text2.Font.Size = 18
+            ElseIf Len(LTrim(rstCompanyMaster.Fields("PrintName").Value)) <= 50 Then
+                .Text2.Font.Size = 16
+            ElseIf Len(LTrim(rstCompanyMaster.Fields("PrintName").Value)) <= 60 Then
+                .Text2.Font.Size = 14
+            End If
+            If LogoLine = "N" Then
+                .Picture1.LeftLineStyle = crLSNoLine
+                .Picture1.RightLineStyle = crLSNoLine
+                .Picture1.TopLineStyle = crLSNoLine
+                .Picture1.BottomLineStyle = crLSNoLine
+            End If
+    
     rptSalesOrderVoucher.Text1.SetText IIf(ChallanType = "0710RF", "Sales Return", IIf(ChallanType = "0510RF", "Purchase", IIf(ChallanType = "0810IF", "Sales ", IIf(ChallanType = "0610IF", "Purchase Return", IIf(ChallanType = "2110RF", "Promotional Sales", "Stock Transfer"))))) & " Challan"
     rptSalesOrderVoucher.Text13.SetText IIf(ChallanType = "0710RF", "Buyer :", IIf(ChallanType = "0510RF", "Supplier :", IIf(ChallanType = "0810IF", "Buyer :", IIf(ChallanType = "0610IF", "Supplier :", IIf(ChallanType = "2110RF", "Buyer :", "From: Material Centre")))))
     

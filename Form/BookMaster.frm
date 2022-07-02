@@ -32,7 +32,7 @@ Begin VB.Form FrmBookMaster
    Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame1 
       Height          =   9255
       Left            =   0
-      TabIndex        =   33
+      TabIndex        =   35
       TabStop         =   0   'False
       Top             =   0
       Width           =   11160
@@ -70,7 +70,7 @@ Begin VB.Form FrmBookMaster
       Begin TabDlg.SSTab SSTab1 
          Height          =   9045
          Left            =   120
-         TabIndex        =   35
+         TabIndex        =   37
          TabStop         =   0   'False
          Top             =   120
          Width           =   10935
@@ -144,7 +144,7 @@ Begin VB.Form FrmBookMaster
             Left            =   -73440
             MaxLength       =   40
             MultiLine       =   -1  'True
-            TabIndex        =   76
+            TabIndex        =   78
             ToolTipText     =   "Open Notes"
             Top             =   8580
             Visible         =   0   'False
@@ -163,7 +163,7 @@ Begin VB.Form FrmBookMaster
             EndProperty
             Height          =   345
             Left            =   -74880
-            TabIndex        =   75
+            TabIndex        =   77
             Top             =   8580
             Width           =   1455
          End
@@ -181,14 +181,14 @@ Begin VB.Form FrmBookMaster
             EndProperty
             Height          =   330
             Left            =   720
-            TabIndex        =   37
+            TabIndex        =   39
             Top             =   8565
             Width           =   5535
          End
          Begin MSDataGridLib.DataGrid DataGrid1 
             Height          =   7995
             Left            =   120
-            TabIndex        =   36
+            TabIndex        =   38
             TabStop         =   0   'False
             Top             =   450
             Width           =   10695
@@ -304,7 +304,7 @@ Begin VB.Form FrmBookMaster
          Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame2 
             Height          =   6945
             Left            =   -74880
-            TabIndex        =   39
+            TabIndex        =   41
             TabStop         =   0   'False
             Top             =   480
             Width           =   10695
@@ -331,6 +331,26 @@ Begin VB.Form FrmBookMaster
             FormatString    =   ""
             Caption         =   ""
             Picture         =   "BookMaster.frx":008C
+            Begin VB.TextBox Text16 
+               Appearance      =   0  'Flat
+               BackColor       =   &H00FFFFFF&
+               DataSource      =   "Adodc1"
+               BeginProperty Font 
+                  Name            =   "Calibri"
+                  Size            =   9.75
+                  Charset         =   0
+                  Weight          =   400
+                  Underline       =   0   'False
+                  Italic          =   0   'False
+                  Strikethrough   =   0   'False
+               EndProperty
+               Height          =   330
+               Left            =   7275
+               MaxLength       =   255
+               TabIndex        =   34
+               Top             =   6470
+               Width           =   3300
+            End
             Begin VB.TextBox Text15 
                Appearance      =   0  'Flat
                BackColor       =   &H00FFFFFF&
@@ -347,9 +367,9 @@ Begin VB.Form FrmBookMaster
                Height          =   330
                Left            =   2520
                MaxLength       =   60
-               TabIndex        =   78
+               TabIndex        =   33
                Top             =   6470
-               Width           =   8055
+               Width           =   2820
             End
             Begin VB.TextBox Text7 
                Appearance      =   0  'Flat
@@ -603,7 +623,7 @@ Begin VB.Form FrmBookMaster
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel3 
                Height          =   330
                Left            =   120
-               TabIndex        =   40
+               TabIndex        =   42
                Top             =   420
                Width           =   1935
                _Version        =   65536
@@ -631,7 +651,7 @@ Begin VB.Form FrmBookMaster
                Height          =   330
                Index           =   0
                Left            =   120
-               TabIndex        =   41
+               TabIndex        =   43
                Top             =   100
                Width           =   1935
                _Version        =   65536
@@ -658,7 +678,7 @@ Begin VB.Form FrmBookMaster
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel5 
                Height          =   330
                Left            =   5325
-               TabIndex        =   42
+               TabIndex        =   44
                Top             =   3630
                Width           =   1965
                _Version        =   65536
@@ -685,7 +705,7 @@ Begin VB.Form FrmBookMaster
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel2 
                Height          =   330
                Left            =   5325
-               TabIndex        =   43
+               TabIndex        =   45
                Top             =   4895
                Width           =   1965
                _Version        =   65536
@@ -712,7 +732,7 @@ Begin VB.Form FrmBookMaster
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel10 
                Height          =   330
                Left            =   120
-               TabIndex        =   44
+               TabIndex        =   46
                Top             =   740
                Width           =   1935
                _Version        =   65536
@@ -739,7 +759,7 @@ Begin VB.Form FrmBookMaster
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel6 
                Height          =   330
                Left            =   120
-               TabIndex        =   45
+               TabIndex        =   47
                Top             =   4260
                Width           =   2415
                _Version        =   65536
@@ -766,7 +786,7 @@ Begin VB.Form FrmBookMaster
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel8 
                Height          =   330
                Left            =   120
-               TabIndex        =   46
+               TabIndex        =   48
                Top             =   1680
                Width           =   10455
                _Version        =   65536
@@ -792,7 +812,7 @@ Begin VB.Form FrmBookMaster
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel14 
                Height          =   330
                Left            =   120
-               TabIndex        =   47
+               TabIndex        =   49
                Top             =   4890
                Width           =   2415
                _Version        =   65536
@@ -819,7 +839,7 @@ Begin VB.Form FrmBookMaster
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel16 
                Height          =   330
                Left            =   5325
-               TabIndex        =   48
+               TabIndex        =   50
                Top             =   5210
                Width           =   1965
                _Version        =   65536
@@ -846,7 +866,7 @@ Begin VB.Form FrmBookMaster
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel17 
                Height          =   330
                Left            =   5325
-               TabIndex        =   49
+               TabIndex        =   51
                Top             =   3315
                Width           =   1965
                _Version        =   65536
@@ -873,7 +893,7 @@ Begin VB.Form FrmBookMaster
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel18 
                Height          =   330
                Left            =   5325
-               TabIndex        =   50
+               TabIndex        =   52
                Top             =   1050
                Width           =   1965
                _Version        =   65536
@@ -900,7 +920,7 @@ Begin VB.Form FrmBookMaster
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel19 
                Height          =   330
                Left            =   120
-               TabIndex        =   51
+               TabIndex        =   53
                Top             =   3945
                Width           =   2415
                _Version        =   65536
@@ -959,7 +979,7 @@ Begin VB.Form FrmBookMaster
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel13 
                Height          =   330
                Left            =   120
-               TabIndex        =   52
+               TabIndex        =   54
                Top             =   5205
                Width           =   2415
                _Version        =   65536
@@ -1096,7 +1116,7 @@ Begin VB.Form FrmBookMaster
                ReadOnly        =   0
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   233177093
+               ValueVT         =   210239493
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -1156,7 +1176,7 @@ Begin VB.Form FrmBookMaster
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   1909915653
+               ValueVT         =   1869611013
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -1164,7 +1184,7 @@ Begin VB.Form FrmBookMaster
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel7 
                Height          =   330
                Left            =   5325
-               TabIndex        =   53
+               TabIndex        =   55
                Top             =   4260
                Width           =   1965
                _Version        =   65536
@@ -1243,7 +1263,7 @@ Begin VB.Form FrmBookMaster
                ReadOnly        =   0
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   233177093
+               ValueVT         =   210239493
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -1303,7 +1323,7 @@ Begin VB.Form FrmBookMaster
                ReadOnly        =   0
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   233177093
+               ValueVT         =   210239493
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -1311,7 +1331,7 @@ Begin VB.Form FrmBookMaster
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel26 
                Height          =   330
                Left            =   120
-               TabIndex        =   54
+               TabIndex        =   56
                Top             =   3315
                Width           =   2415
                _Version        =   65536
@@ -1338,7 +1358,7 @@ Begin VB.Form FrmBookMaster
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel27 
                Height          =   330
                Left            =   120
-               TabIndex        =   55
+               TabIndex        =   57
                Top             =   3630
                Width           =   2415
                _Version        =   65536
@@ -1510,7 +1530,7 @@ Begin VB.Form FrmBookMaster
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel11 
                Height          =   330
                Left            =   120
-               TabIndex        =   58
+               TabIndex        =   60
                Top             =   5520
                Width           =   2415
                _Version        =   65536
@@ -1537,7 +1557,7 @@ Begin VB.Form FrmBookMaster
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel12 
                Height          =   330
                Left            =   120
-               TabIndex        =   59
+               TabIndex        =   61
                Top             =   4575
                Width           =   2415
                _Version        =   65536
@@ -1564,7 +1584,7 @@ Begin VB.Form FrmBookMaster
             Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame4 
                Height          =   330
                Left            =   2520
-               TabIndex        =   60
+               TabIndex        =   62
                TabStop         =   0   'False
                Top             =   5520
                Width           =   2820
@@ -1682,7 +1702,7 @@ Begin VB.Form FrmBookMaster
                ReadOnly        =   0
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   1909915653
+               ValueVT         =   1869611013
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -1690,7 +1710,7 @@ Begin VB.Form FrmBookMaster
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel20 
                Height          =   330
                Left            =   5325
-               TabIndex        =   61
+               TabIndex        =   63
                Top             =   4575
                Width           =   1965
                _Version        =   65536
@@ -1768,7 +1788,7 @@ Begin VB.Form FrmBookMaster
                ReadOnly        =   0
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   233177093
+               ValueVT         =   210370565
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -1836,7 +1856,7 @@ Begin VB.Form FrmBookMaster
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel21 
                Height          =   330
                Left            =   5325
-               TabIndex        =   62
+               TabIndex        =   64
                Top             =   6150
                Width           =   1965
                _Version        =   65536
@@ -1863,7 +1883,7 @@ Begin VB.Form FrmBookMaster
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel22 
                Height          =   330
                Left            =   5325
-               TabIndex        =   63
+               TabIndex        =   65
                Top             =   5525
                Width           =   1965
                _Version        =   65536
@@ -1942,7 +1962,7 @@ Begin VB.Form FrmBookMaster
                ReadOnly        =   0
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   1909915653
+               ValueVT         =   1869611013
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -2002,7 +2022,7 @@ Begin VB.Form FrmBookMaster
                ReadOnly        =   0
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   1909915653
+               ValueVT         =   1869611013
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -2010,7 +2030,7 @@ Begin VB.Form FrmBookMaster
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel9 
                Height          =   330
                Left            =   120
-               TabIndex        =   64
+               TabIndex        =   66
                Top             =   5835
                Width           =   2415
                _Version        =   65536
@@ -2037,7 +2057,7 @@ Begin VB.Form FrmBookMaster
             Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame6 
                Height          =   330
                Left            =   2520
-               TabIndex        =   65
+               TabIndex        =   67
                TabStop         =   0   'False
                Top             =   5835
                Width           =   2820
@@ -2116,7 +2136,7 @@ Begin VB.Form FrmBookMaster
                EndProperty
                Height          =   330
                Left            =   4005
-               TabIndex        =   66
+               TabIndex        =   68
                ToolTipText     =   "Finish Size"
                Top             =   2520
                Width           =   1485
@@ -2124,7 +2144,7 @@ Begin VB.Form FrmBookMaster
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel4 
                Height          =   330
                Left            =   5325
-               TabIndex        =   69
+               TabIndex        =   71
                Top             =   5835
                Width           =   1965
                _Version        =   65536
@@ -2151,7 +2171,7 @@ Begin VB.Form FrmBookMaster
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel15 
                Height          =   330
                Left            =   120
-               TabIndex        =   70
+               TabIndex        =   72
                Top             =   1050
                Width           =   1935
                _Version        =   65536
@@ -2178,7 +2198,7 @@ Begin VB.Form FrmBookMaster
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel23 
                Height          =   330
                Left            =   120
-               TabIndex        =   71
+               TabIndex        =   73
                Top             =   1365
                Width           =   1935
                _Version        =   65536
@@ -2205,7 +2225,7 @@ Begin VB.Form FrmBookMaster
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel24 
                Height          =   330
                Left            =   120
-               TabIndex        =   72
+               TabIndex        =   74
                Top             =   6150
                Width           =   2415
                _Version        =   65536
@@ -2283,7 +2303,7 @@ Begin VB.Form FrmBookMaster
                ReadOnly        =   0
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   233373701
+               ValueVT         =   210370565
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -2291,7 +2311,7 @@ Begin VB.Form FrmBookMaster
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel25 
                Height          =   330
                Left            =   5325
-               TabIndex        =   77
+               TabIndex        =   79
                Top             =   3945
                Width           =   1965
                _Version        =   65536
@@ -2318,7 +2338,7 @@ Begin VB.Form FrmBookMaster
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel28 
                Height          =   330
                Left            =   120
-               TabIndex        =   79
+               TabIndex        =   80
                Top             =   6465
                Width           =   2415
                _Version        =   65536
@@ -2341,6 +2361,33 @@ Begin VB.Form FrmBookMaster
                TextColor       =   0
                Picture         =   "BookMaster.frx":1D44
                Picture         =   "BookMaster.frx":1D60
+            End
+            Begin Mh3dlblLib.Mh3dLabel Mh3dLabel29 
+               Height          =   330
+               Left            =   5325
+               TabIndex        =   81
+               Top             =   6465
+               Width           =   1965
+               _Version        =   65536
+               _ExtentX        =   3466
+               _ExtentY        =   582
+               _StockProps     =   77
+               BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+                  Name            =   "Calibri"
+                  Size            =   9.75
+                  Charset         =   0
+                  Weight          =   400
+                  Underline       =   0   'False
+                  Italic          =   0   'False
+                  Strikethrough   =   0   'False
+               EndProperty
+               TintColor       =   16711935
+               Caption         =   " Integration Unit"
+               Alignment       =   0
+               FillColor       =   9164542
+               TextColor       =   0
+               Picture         =   "BookMaster.frx":1D7C
+               Picture         =   "BookMaster.frx":1D98
             End
             Begin MSForms.ComboBox Combo7 
                Height          =   330
@@ -2384,7 +2431,7 @@ Begin VB.Form FrmBookMaster
          Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame3 
             Height          =   7605
             Left            =   -74880
-            TabIndex        =   56
+            TabIndex        =   58
             TabStop         =   0   'False
             Top             =   480
             Width           =   10695
@@ -2410,11 +2457,11 @@ Begin VB.Form FrmBookMaster
             NoPrefix        =   0   'False
             FormatString    =   ""
             Caption         =   ""
-            Picture         =   "BookMaster.frx":1D7C
+            Picture         =   "BookMaster.frx":1DB4
             Begin FPSpreadADO.fpSpread fpSpread1 
                Height          =   7380
                Left            =   120
-               TabIndex        =   57
+               TabIndex        =   59
                Top             =   105
                Width           =   10455
                _Version        =   524288
@@ -2436,13 +2483,13 @@ Begin VB.Form FrmBookMaster
                MaxCols         =   4
                MaxRows         =   100
                OperationMode   =   2
-               SpreadDesigner  =   "BookMaster.frx":1D98
+               SpreadDesigner  =   "BookMaster.frx":1DD0
             End
          End
          Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame5 
             Height          =   7605
             Left            =   -74880
-            TabIndex        =   67
+            TabIndex        =   69
             TabStop         =   0   'False
             Top             =   480
             Width           =   10695
@@ -2468,11 +2515,11 @@ Begin VB.Form FrmBookMaster
             NoPrefix        =   0   'False
             FormatString    =   ""
             Caption         =   ""
-            Picture         =   "BookMaster.frx":23A2
+            Picture         =   "BookMaster.frx":23DA
             Begin FPSpreadADO.fpSpread fpSpread3 
                Height          =   7380
                Left            =   120
-               TabIndex        =   68
+               TabIndex        =   70
                Top             =   105
                Width           =   10455
                _Version        =   524288
@@ -2494,14 +2541,14 @@ Begin VB.Form FrmBookMaster
                MaxCols         =   1
                MaxRows         =   100
                OperationMode   =   2
-               SpreadDesigner  =   "BookMaster.frx":23BE
+               SpreadDesigner  =   "BookMaster.frx":23F6
             End
          End
          Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
             Height          =   330
             Index           =   2
             Left            =   6240
-            TabIndex        =   73
+            TabIndex        =   75
             Top             =   8565
             Width           =   4575
             _Version        =   65536
@@ -2522,14 +2569,14 @@ Begin VB.Form FrmBookMaster
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "BookMaster.frx":28A4
-            Picture         =   "BookMaster.frx":28C0
+            Picture         =   "BookMaster.frx":28DC
+            Picture         =   "BookMaster.frx":28F8
          End
          Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
             Height          =   330
             Index           =   1
             Left            =   6600
-            TabIndex        =   74
+            TabIndex        =   76
             Top             =   0
             Width           =   4335
             _Version        =   65536
@@ -2550,8 +2597,8 @@ Begin VB.Form FrmBookMaster
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "BookMaster.frx":28DC
-            Picture         =   "BookMaster.frx":28F8
+            Picture         =   "BookMaster.frx":2914
+            Picture         =   "BookMaster.frx":2930
          End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat
@@ -2570,7 +2617,7 @@ Begin VB.Form FrmBookMaster
             ForeColor       =   &H80000009&
             Height          =   330
             Left            =   120
-            TabIndex        =   38
+            TabIndex        =   40
             Top             =   8565
             Width           =   615
          End
@@ -2580,7 +2627,7 @@ Begin VB.Form FrmBookMaster
       Align           =   1  'Align Top
       Height          =   330
       Left            =   0
-      TabIndex        =   34
+      TabIndex        =   36
       Top             =   0
       Width           =   11190
       _ExtentX        =   19738
@@ -2676,8 +2723,8 @@ Public SL As Boolean 'Selection List
 Public MasterCode As String  'Master to Modify
 Public BookType As String
 Dim cnBookMaster As New ADODB.Connection
-Dim rstBookList As New ADODB.Recordset, rstBookMaster As New ADODB.Recordset, rstGroupList As New ADODB.Recordset, rstSizeList As New ADODB.Recordset, rstFinishSizeList As New ADODB.Recordset, rstBindingTypeList As New ADODB.Recordset, rstOperationList As New ADODB.Recordset, rstOutsourceItemList As New ADODB.Recordset, rstFreshBookList As New ADODB.Recordset, rstBookChild As New ADODB.Recordset, rstHSNCodeList As New ADODB.Recordset
-Dim GroupCode As String, SizeCode As String, TitleSizeCode As String, FinishSizeCode As String, BindingTypeCode As String, LaminationTypeCode As String, TextSizeCode As String, HSNCode As String
+Dim rstBookList As New ADODB.Recordset, rstBookMaster As New ADODB.Recordset, rstGroupList As New ADODB.Recordset, rstSizeList As New ADODB.Recordset, rstFinishSizeList As New ADODB.Recordset, rstBindingTypeList As New ADODB.Recordset, rstIntegrationUnitList As New ADODB.Recordset, rstOperationList As New ADODB.Recordset, rstOutsourceItemList As New ADODB.Recordset, rstFreshBookList As New ADODB.Recordset, rstBookChild As New ADODB.Recordset, rstHSNCodeList As New ADODB.Recordset
+Dim GroupCode As String, SizeCode As String, TitleSizeCode As String, FinishSizeCode As String, BindingTypeCode As String, LaminationTypeCode As String, TextSizeCode As String, HSNCode As String, IntegrationUnit As String
 Dim SortOrder As String
 Dim PrevStr As String
 Dim dblBookMark As Double
@@ -2826,6 +2873,7 @@ Private Sub Form_Unload(Cancel As Integer)
     Call CloseRecordset(rstSizeList)
     Call CloseRecordset(rstFinishSizeList)
     Call CloseRecordset(rstBindingTypeList)
+    Call CloseRecordset(rstIntegrationUnitList)
     Call CloseRecordset(rstOperationList)
     Call CloseRecordset(rstHSNCodeList)
     Call CloseRecordset(rstBookChild)
@@ -3076,6 +3124,10 @@ Public Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
         Do While Not RefreshRecord(rstBindingTypeList)
         Loop
         rstBindingTypeList.ActiveConnection = Nothing
+        rstIntegrationUnitList.ActiveConnection = cnBookMaster
+        Do While Not RefreshRecord(rstIntegrationUnitList)
+        Loop
+        rstIntegrationUnitList.ActiveConnection = Nothing
         rstOperationList.ActiveConnection = cnBookMaster
         Do While Not RefreshRecord(rstOperationList)
         Loop
@@ -3316,6 +3368,21 @@ Private Sub Text12_KeyDown(KeyCode As Integer, Shift As Integer)    'Operation
         LaminationTypeCode = "": Text12.Text = ""
     End If
 End Sub
+Private Sub Text16_KeyDown(KeyCode As Integer, Shift As Integer)    'IntegrationUnit
+    If KeyCode = vbKeySpace Then
+        On Error Resume Next
+        FrmGeneralMaster.SL = True
+        FrmGeneralMaster.MasterType = "25"
+        FrmGeneralMaster.MasterCode = IntegrationUnit
+        Load FrmGeneralMaster
+        If Err.Number <> 364 Then FrmGeneralMaster.Show vbModal
+        On Error GoTo 0
+        IntegrationUnit = slCode: Text16.Text = slName
+        If Not CheckEmpty(IntegrationUnit, False) Then LoadMasterList: Sendkeys "{TAB}"
+    ElseIf KeyCode = vbKeyDelete Then
+        IntegrationUnit = "": Text16.Text = ""
+    End If
+End Sub
 Private Sub Text8_KeyDown(KeyCode As Integer, Shift As Integer)
     If KeyCode = vbKeySpace Then
         On Error Resume Next
@@ -3413,6 +3480,7 @@ Private Sub ClearFields()
     Text7.Text = "" 'HSN Code
     Text13.Text = ""
     Text15.Text = ""
+    Text16.Text = ""
     MhRealInput1.Text = "0.00"
     MhRealInput3.Text = "0.00"
     MhRealInput16.Text = "0.00"
@@ -3433,7 +3501,7 @@ Private Sub ClearFields()
     Option4.Value = False
     Combo1.ListIndex = 3
     Combo7.ListIndex = 3
-    GroupCode = "": BindingTypeCode = "": LaminationTypeCode = "": HSNCode = "": FinishSizeCode = "": SizeCode = "": TitleSizeCode = ""
+    GroupCode = "": BindingTypeCode = "": IntegrationUnit = "": LaminationTypeCode = "": HSNCode = "": FinishSizeCode = "": SizeCode = "": TitleSizeCode = ""
 End Sub
 Private Sub LoadFields()
     If rstBookMaster.EOF Or rstBookMaster.BOF Then Exit Sub
@@ -3462,6 +3530,12 @@ Private Sub LoadFields()
     If rstBindingTypeList.RecordCount > 0 Then rstBindingTypeList.MoveFirst
     rstBindingTypeList.Find "[Code] = '" & BindingTypeCode & "'"
     If Not rstBindingTypeList.EOF Then Text10.Text = rstBindingTypeList.Fields("Col0").Value
+    'IntegrationUnit
+    IntegrationUnit = rstBookMaster.Fields("IntegrationUnit").Value
+    If rstIntegrationUnitList.RecordCount > 0 Then rstIntegrationUnitList.MoveFirst
+    rstIntegrationUnitList.Find "[Code] = '" & IntegrationUnit & "'"
+    If Not rstIntegrationUnitList.EOF Then Text16.Text = rstIntegrationUnitList.Fields("Col0").Value
+    
     LaminationTypeCode = rstBookMaster.Fields("LaminationType").Value
     If rstOperationList.RecordCount > 0 Then rstOperationList.MoveFirst
     rstOperationList.Find "[Code] = '" & LaminationTypeCode & "'"
@@ -3561,6 +3635,7 @@ Private Sub SaveFields()
     rstBookMaster.Fields("TitleSize").Value = TitleSizeCode
     rstBookMaster.Fields("FinishSize").Value = FinishSizeCode
     rstBookMaster.Fields("BindingType").Value = BindingTypeCode
+    rstBookMaster.Fields("IntegrationUnit").Value = IntegrationUnit
     rstBookMaster.Fields("LaminationType").Value = LaminationTypeCode
     rstBookMaster.Fields("HSNCode").Value = HSNCode
     rstBookMaster.Fields("AddOnRate01").Value = Val(MhRealInput3.Text)
@@ -3691,6 +3766,13 @@ Private Function CheckMandatoryFields() As Boolean
             If Not CheckExists(Text10, "Col0", rstBindingTypeList, BindingTypeCode) Then
                 SSTab1.Tab = 1
                 Text10.SetFocus
+                CheckMandatoryFields = True
+            End If
+        End If
+        If Not CheckEmpty(Text16.Text, False) Then
+            If Not CheckExists(Text16, "Col0", rstIntegrationUnitList, IntegrationUnit) Then
+                SSTab1.Tab = 1
+                Text16.SetFocus
                 CheckMandatoryFields = True
             End If
         End If
@@ -3949,6 +4031,9 @@ Private Sub LoadMasterList()
     If rstBindingTypeList.State = adStateOpen Then rstBindingTypeList.Close
     rstBindingTypeList.Open "SELECT Name As Col0, Code FROM GeneralMaster WHERE Type = '6' ORDER BY Name", cnBookMaster, adOpenKeyset, adLockReadOnly
     rstBindingTypeList.ActiveConnection = Nothing
+    If rstIntegrationUnitList.State = adStateOpen Then rstIntegrationUnitList.Close
+    rstIntegrationUnitList.Open "SELECT Name As Col0, Code FROM GeneralMaster WHERE Type = '25' ORDER BY Name", cnBookMaster, adOpenKeyset, adLockReadOnly
+    rstIntegrationUnitList.ActiveConnection = Nothing
     If rstOperationList.State = adStateOpen Then rstOperationList.Close
     rstOperationList.Open "SELECT Name As Col0, Code FROM GeneralMaster WHERE Type = '7' ORDER BY Name", cnBookMaster, adOpenKeyset, adLockReadOnly
     rstOperationList.ActiveConnection = Nothing

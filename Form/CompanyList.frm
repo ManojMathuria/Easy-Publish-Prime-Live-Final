@@ -170,9 +170,11 @@ Private Sub Form_Load()
     rstDBList.MoveFirst
     Do While Not rstDBList.EOF
         If rstCompanyMaster.State = adStateOpen Then rstCompanyMaster.Close
-        rstCompanyMaster.Open "SELECT Name+' [" & Mid(rstDBList.Fields("Name").Value, 3, 3) & "]' As Col01,REPLACE(CONVERT(CHAR(11),FinancialYearFrom,113),' ','-')+' To '+REPLACE(CONVERT(CHAR(11),FinancialYearTo,113),' ','-') As Col02, '" & Mid(rstDBList.Fields("Name").Value, 3, 3) & "' As Col03,LTRIM(YEAR(FinancialYearFrom)) As Col04,MCGroup,FinancialYearFrom,FinancialYearTo,TallyIntegration,BusyIntegration,FYCode FROM " & rstDBList.Fields("Name").Value & "..CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
+        rstCompanyMaster.Open "SELECT Name+' [" & Mid(rstDBList.Fields("Name").Value, 3, 3) & "]' As Col01,REPLACE(CONVERT(CHAR(11),FinancialYearFrom,113),' ','-')+' To '+REPLACE(CONVERT(CHAR(11),FinancialYearTo,113),' ','-') As Col02, '" & Mid(rstDBList.Fields("Name").Value, 3, 3) & "' As Col03,LTRIM(YEAR(FinancialYearFrom)) As Col04,* FROM " & rstDBList.Fields("Name").Value & "..CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
+        'MCGroup,FinancialYearFrom,FinancialYearTo,TallyIntegration,BusyIntegration,FYCode
         If rstCompanyList.State = adStateClosed Then
-            rstCompanyList.Open "SELECT Name As Col01,Name As Col02,Name As Col03,Name As Col04,MCGroup,FinancialYearFrom,FinancialYearTo,TallyIntegration,BusyIntegration,FYCode FROM " & rstDBList.Fields("Name").Value & "..CompanyMaster WHERE Code=''", cnDatabase, adOpenKeyset, adLockOptimistic
+            rstCompanyList.Open "SELECT Name As Col01,Name As Col02,Name As Col03,Name As Col04,* FROM " & rstDBList.Fields("Name").Value & "..CompanyMaster WHERE Code=''", cnDatabase, adOpenKeyset, adLockOptimistic
+            'MCGroup,FinancialYearFrom,FinancialYearTo,TallyIntegration,BusyIntegration,FYCode
             Set rstCompanyList.ActiveConnection = Nothing
         End If
         CompanyExists = True
@@ -340,6 +342,7 @@ Private Sub DataGrid1_HeadClick(ByVal ColIndex As Integer)
     Text1.SetFocus
 End Sub
 Private Sub DataGrid1_DblClick()
+On Error Resume Next
     With rstCompanyList
         If (Not .EOF) And (Not .BOF) Then
             CompCode = .Fields("Col03").Value
@@ -350,6 +353,7 @@ Private Sub DataGrid1_DblClick()
             TallyIntegration = .Fields("TallyIntegration").Value
             BusyIntegration = .Fields("BusyIntegration").Value
             FYCode = .Fields("FYCode").Value
+            'CompStateCode = rstCompanyList.Fields("State").Value
         End If
     End With
     Call CloseForm(Me)
