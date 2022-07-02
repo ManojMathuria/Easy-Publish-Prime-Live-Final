@@ -929,7 +929,6 @@ Begin VB.MDIForm MdiMainMenu
    End
    Begin VB.Menu MnuDisplay 
       Caption         =   "&Display"
-      Enabled         =   0   'False
       Tag             =   "03000000"
       Begin VB.Menu MnuFinalResult 
          Caption         =   "Final Result"
