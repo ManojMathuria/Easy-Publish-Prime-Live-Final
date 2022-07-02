@@ -30,7 +30,7 @@ Begin VB.Form FrmItemSelectionList
       Align           =   1  'Align Top
       Height          =   330
       Left            =   0
-      TabIndex        =   5
+      TabIndex        =   8
       Top             =   0
       Width           =   9705
       _ExtentX        =   17119
@@ -93,7 +93,8 @@ Begin VB.Form FrmItemSelectionList
    Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame1 
       Height          =   8830
       Left            =   0
-      TabIndex        =   6
+      TabIndex        =   9
+      TabStop         =   0   'False
       Top             =   360
       Width           =   9675
       _Version        =   65536
@@ -121,7 +122,7 @@ Begin VB.Form FrmItemSelectionList
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
          Height          =   330
          Left            =   0
-         TabIndex        =   7
+         TabIndex        =   10
          Top             =   0
          Width           =   855
          _Version        =   65536
@@ -148,7 +149,7 @@ Begin VB.Form FrmItemSelectionList
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel2 
          Height          =   330
          Left            =   2400
-         TabIndex        =   8
+         TabIndex        =   11
          Top             =   0
          Width           =   885
          _Version        =   65536
@@ -300,7 +301,7 @@ Begin VB.Form FrmItemSelectionList
       Begin MSComctlLib.ListView ListView1 
          Height          =   4500
          Left            =   0
-         TabIndex        =   9
+         TabIndex        =   5
          Top             =   315
          Width           =   4845
          _ExtentX        =   8546
@@ -332,7 +333,7 @@ Begin VB.Form FrmItemSelectionList
       Begin MSComctlLib.ListView ListView2 
          Height          =   4500
          Left            =   4830
-         TabIndex        =   10
+         TabIndex        =   6
          Top             =   315
          Width           =   4845
          _ExtentX        =   8546
@@ -421,7 +422,7 @@ Begin VB.Form FrmItemSelectionList
       Begin MSComctlLib.ListView ListView3 
          Height          =   4020
          Left            =   0
-         TabIndex        =   11
+         TabIndex        =   7
          Top             =   4800
          Width           =   9675
          _ExtentX        =   17066
@@ -486,8 +487,8 @@ Private Sub Form_Load()
     ElseIf VchType <= 20 And VchType >= 11 Then
         Me.Height = 9630
         Me.Caption = "Selection List...." + Choose((VchType - 10), "Paper Receipt Party-Wise", "Paper Receipt Order-Wise", "Paer Receipt  Without-Order", "Paper Issue Party-Wise", "Paper Issue Order-Wise", "Paper Issue Without-Order", "Paper Transfer Party-Wise", "Paper Pending Order Party-Wise")
-    ElseIf VchType >= 21 And VchType <= 47 Then
-        Me.Caption = "Selection List...." + Choose(VchType - 20, "Sales Analysis Party-Wise", "Sales Return Analysis Party-Wise", "Sales And Sales Return Analysis Party-Wise", "Net Sales Analysis Party-Wise", "Sales Analysis One-Item Party-Wise", "Sales Return Analysis One-Item Party-Wise", "Sales And Sales Return Analysis One-Item Party-Wise", "Net Sales One-Item Party-Wise", "Sales Voucher-Wise", "30", "31", "32", "Short-Item Analysis Item-Wise", "34", "Purchase Orders-Party-Wise-Detailed", "Purchase Orders-Party-wise-Summarised", "Sales Orders-Party-Wise-Detailed", "Sales Orders-Party-wise-Summarised", "Purchase Orders Order-Wise", "Purchase Orders Party-wise", "Purchase Orders Item-wise", "Sale Orders Order-wise", "Sale Orders Party-wise", "Sale Orders Item-wise", "45", "46", "47")
+    ElseIf VchType >= 21 And VchType <= 48 Then
+        Me.Caption = "Selection List...." + Choose(VchType - 20, "Sales Analysis Party-Wise", "Sales Return Analysis Party-Wise", "Sales And Sales Return Analysis Party-Wise", "Net Sales Analysis Party-Wise", "Sales Analysis One-Item Party-Wise", "Sales Return Analysis One-Item Party-Wise", "Sales And Sales Return Analysis One-Item Party-Wise", "Net Sales One-Item Party-Wise", "Sales Voucher-Wise", "30", "31", "32", "Short-Item Analysis Item-Wise", "34", "Purchase Orders-Party-Wise-Detailed", "Purchase Orders-Party-wise-Summarised", "Sales Orders-Party-Wise-Detailed", "Sales Orders-Party-wise-Summarised", "Purchase Orders Order-Wise", "Purchase Orders Party-wise", "Purchase Orders Item-wise", "Sale Orders Order-wise", "Sale Orders Party-wise", "Sale Orders Item-wise", "45", " Pending Sales Order", "47")
         Me.Height = 9630
     ElseIf VchType >= 53 And VchType <= 69 Then
         Me.Caption = "Selection List...." + Choose(VchType - 52, "Purchase Analysis Item-Wise", "Purchase Return Analysis Item-Wise", "Purchase And Purchase Return Analysis Item-Wise", "Net Purchase Analysis Item-Wise", "Purchase Analysis One Party Item-Wise", "Purchase Return Analysis One Party Item-Wise", "Purchase And Purchase Return Analysis One Party Item-Wise", "Net Purchase Analysis One Party Item-Wise", "Purchase Analysis Party-Wise", "Purchase Return Analysis Party-Wise", "Purchase And Purchase Return Analysis Party-Wise", "Net Purchase Analysis Party-Wise", "Purchase Analysis One-Item Party-Wise", "Purchase Return Analysis One-Item Party-Wise", "Purchase And Purchase Return Analysis One-Item Party-Wise", "Net Purchase One-Item Party-Wise", "Purchase Voucher-Wise")

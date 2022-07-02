@@ -318,8 +318,8 @@ Begin VB.Form FrmStockLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "StockLedger.frx":1CEF
-         Picture         =   "StockLedger.frx":1D0B
+         Picture         =   "StockLedger.frx":1D13
+         Picture         =   "StockLedger.frx":1D2F
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel3 
          Height          =   330
@@ -345,8 +345,8 @@ Begin VB.Form FrmStockLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "StockLedger.frx":1D27
-         Picture         =   "StockLedger.frx":1D43
+         Picture         =   "StockLedger.frx":1D4B
+         Picture         =   "StockLedger.frx":1D67
       End
       Begin TDBDate6Ctl.TDBDate MhDateInput2 
          Height          =   330
@@ -357,8 +357,8 @@ Begin VB.Form FrmStockLedger
          _Version        =   65536
          _ExtentX        =   1931
          _ExtentY        =   582
-         Calendar        =   "StockLedger.frx":1D5F
-         Caption         =   "StockLedger.frx":1E77
+         Calendar        =   "StockLedger.frx":1D83
+         Caption         =   "StockLedger.frx":1E9B
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -368,9 +368,9 @@ Begin VB.Form FrmStockLedger
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "StockLedger.frx":1EE3
-         Keys            =   "StockLedger.frx":1F01
-         Spin            =   "StockLedger.frx":1F5F
+         DropDown        =   "StockLedger.frx":1F07
+         Keys            =   "StockLedger.frx":1F25
+         Spin            =   "StockLedger.frx":1F83
          AlignHorizontal =   0
          AlignVertical   =   0
          Appearance      =   0
@@ -419,8 +419,8 @@ Begin VB.Form FrmStockLedger
          _Version        =   65536
          _ExtentX        =   1931
          _ExtentY        =   582
-         Calendar        =   "StockLedger.frx":1F87
-         Caption         =   "StockLedger.frx":209F
+         Calendar        =   "StockLedger.frx":1FAB
+         Caption         =   "StockLedger.frx":20C3
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -430,9 +430,9 @@ Begin VB.Form FrmStockLedger
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "StockLedger.frx":210B
-         Keys            =   "StockLedger.frx":2129
-         Spin            =   "StockLedger.frx":2187
+         DropDown        =   "StockLedger.frx":212F
+         Keys            =   "StockLedger.frx":214D
+         Spin            =   "StockLedger.frx":21AB
          AlignHorizontal =   0
          AlignVertical   =   0
          Appearance      =   0
@@ -497,8 +497,8 @@ Begin VB.Form FrmStockLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "StockLedger.frx":21AF
-         Picture         =   "StockLedger.frx":21CB
+         Picture         =   "StockLedger.frx":21D3
+         Picture         =   "StockLedger.frx":21EF
       End
       Begin TDBNumber6Ctl.TDBNumber TDBNumber2 
          Height          =   330
@@ -509,8 +509,8 @@ Begin VB.Form FrmStockLedger
          _Version        =   65536
          _ExtentX        =   2143
          _ExtentY        =   582
-         Calculator      =   "StockLedger.frx":21E7
-         Caption         =   "StockLedger.frx":2207
+         Calculator      =   "StockLedger.frx":220B
+         Caption         =   "StockLedger.frx":222B
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -520,9 +520,9 @@ Begin VB.Form FrmStockLedger
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "StockLedger.frx":226B
-         Keys            =   "StockLedger.frx":2289
-         Spin            =   "StockLedger.frx":22D3
+         DropDown        =   "StockLedger.frx":228F
+         Keys            =   "StockLedger.frx":22AD
+         Spin            =   "StockLedger.frx":22F7
          AlignHorizontal =   2
          AlignVertical   =   0
          Appearance      =   1
@@ -582,8 +582,8 @@ Begin VB.Form FrmStockLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "StockLedger.frx":22FB
-         Picture         =   "StockLedger.frx":2317
+         Picture         =   "StockLedger.frx":231F
+         Picture         =   "StockLedger.frx":233B
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel5 
          Height          =   330
@@ -608,8 +608,8 @@ Begin VB.Form FrmStockLedger
          Caption         =   " Print Data"
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "StockLedger.frx":2333
-         Picture         =   "StockLedger.frx":234F
+         Picture         =   "StockLedger.frx":2357
+         Picture         =   "StockLedger.frx":2373
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel6 
          Height          =   330
@@ -634,8 +634,8 @@ Begin VB.Form FrmStockLedger
          Caption         =   " Export Data"
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "StockLedger.frx":236B
-         Picture         =   "StockLedger.frx":2387
+         Picture         =   "StockLedger.frx":238F
+         Picture         =   "StockLedger.frx":23AB
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel7 
          Height          =   330
@@ -661,8 +661,8 @@ Begin VB.Form FrmStockLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "StockLedger.frx":23A3
-         Picture         =   "StockLedger.frx":23BF
+         Picture         =   "StockLedger.frx":23C7
+         Picture         =   "StockLedger.frx":23E3
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel8 
          Height          =   330
@@ -688,8 +688,8 @@ Begin VB.Form FrmStockLedger
          Caption         =   "Import Data"
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "StockLedger.frx":23DB
-         Picture         =   "StockLedger.frx":23F7
+         Picture         =   "StockLedger.frx":23FF
+         Picture         =   "StockLedger.frx":241B
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel9 
          Height          =   330
@@ -715,8 +715,8 @@ Begin VB.Form FrmStockLedger
          Caption         =   "Create Stock Journal Voucher"
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "StockLedger.frx":2413
-         Picture         =   "StockLedger.frx":242F
+         Picture         =   "StockLedger.frx":2437
+         Picture         =   "StockLedger.frx":2453
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel 
          Height          =   330
@@ -742,8 +742,8 @@ Begin VB.Form FrmStockLedger
          Caption         =   "Ctrl+F->Search  F8->Delete  F9->Hide  Escap->Un-Hide  F12->Duplicate  F5->Refresh"
          FillColor       =   8421504
          TextColor       =   16777215
-         Picture         =   "StockLedger.frx":244B
-         Picture         =   "StockLedger.frx":2467
+         Picture         =   "StockLedger.frx":246F
+         Picture         =   "StockLedger.frx":248B
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel10 
          Height          =   330
@@ -770,8 +770,8 @@ Begin VB.Form FrmStockLedger
          Alignment       =   1
          BorderStyle     =   0
          TextColor       =   0
-         Picture         =   "StockLedger.frx":2483
-         Picture         =   "StockLedger.frx":249F
+         Picture         =   "StockLedger.frx":24A7
+         Picture         =   "StockLedger.frx":24C3
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel11 
          Height          =   330
@@ -798,8 +798,8 @@ Begin VB.Form FrmStockLedger
          Alignment       =   0
          BorderStyle     =   0
          TextColor       =   0
-         Picture         =   "StockLedger.frx":24BB
-         Picture         =   "StockLedger.frx":24D7
+         Picture         =   "StockLedger.frx":24DF
+         Picture         =   "StockLedger.frx":24FB
       End
       Begin MSForms.ComboBox Combo2 
          Height          =   330
@@ -861,7 +861,7 @@ Dim Opening As Double, Debit As Double, Credit As Double, Bal As Variant
 Public sMcCode As Variant, SCode As Variant, oSCode As Variant, vTypeCode As Variant, vtCode As Variant, vtType As Variant, vtNo As Variant, vDate As Variant
 Dim oVchType As String, Header1 As String, VchCode As String, PartyH As String, ItemH As String, OrderH As String, OrderF As Double, INWardF As Double, OUTWardF As Double, AmountF As Double, SNo As Long, aSNO As Long, pSNO As Long
 Dim OrderGTF As Double, INWardGTF As Double, OUTWardGTF As Double, AmountGTF As Double
-Dim OrderPGTF As Double, INWardPGTF As Double, OUTWardPGTF As Double, AmountPGTF As Double
+Dim OrderPGTF As Double, INWardPGTF As Double, OUTWardPGTF As Double, AmountPGTF As Double, ClearFlag As Boolean, unClearFlag As Boolean
 Private Sub Combo1_Change()
 If Reset = 1 Then Call cmdRefresh_Click
 End Sub
@@ -927,8 +927,8 @@ If SCode <> "" Then SCode = SCode Else SCode = ""
             End If
     ElseIf VchType >= 46 And VchType <= 48 Then
         Combo1.Clear
-        Combo1.AddItem " Direct", 0
-        Combo1.AddItem " Against Challan", 1
+        Combo1.AddItem " Sales Direct", 0
+        Combo1.AddItem " Sales Against Challan", 1
         Combo1.ListIndex = 0
     End If
     If VchType >= 34 And VchType <= 45 Then
@@ -995,6 +995,7 @@ If SCode <> "" Then SCode = SCode Else SCode = ""
     If VchType = 43 Then MhDateInput1.ReadOnly = False: MhDateInput2.ReadOnly = False: PendingCheck.Visible = False:  ZeroStock.Visible = False: NegativeStock.Visible = False: Me.Caption = "Sales Orders Party-Wise ": TDBNumber1.Visible = False: Mh3dLabel1(0).Visible = True: Combo1.Visible = True: Mh3dLabel10.Visible = False: Mh3dLabel11.Visible = False
     If VchType = 44 Then MhDateInput1.ReadOnly = False: MhDateInput2.ReadOnly = False: PendingCheck.Visible = False:  ZeroStock.Visible = False: NegativeStock.Visible = False: Me.Caption = "Sales Orders Item-Wise ": TDBNumber1.Visible = False: Mh3dLabel1(0).Visible = True: Combo1.Visible = True: Mh3dLabel10.Visible = False: Mh3dLabel11.Visible = False
     If VchType = 45 Then MhDateInput1.ReadOnly = False: MhDateInput2.ReadOnly = False: PendingCheck.Visible = False:  ZeroStock.Visible = False: NegativeStock.Visible = False: Me.Caption = "Orders Status Voucher-Wise ": TDBNumber1.Visible = False: Mh3dLabel1(0).Visible = True: Combo1.Visible = True: Mh3dLabel10.Visible = False: Mh3dLabel11.Visible = False
+    If VchType = 46 Then Me.Caption = "Pending Sales Order-Wise ": Mh3dLabel1(0).Caption = "   Pending "
     '
     If VchType = 53 Then Check1.Visible = True: ZeroStock.Visible = True:   ZeroStock.Caption = "Show Purchase Greater Than Equal >>>>": ZeroStock.Width = 3700: ZeroStock.Left = 9800: Check1.Left = 3500: Me.Caption = "Purchase Analysis Item-Wise": TDBNumber1.Visible = True: Mh3dLabel1(0).Visible = True: Combo1.Visible = True:
     If VchType = 54 Then Check1.Visible = True: ZeroStock.Visible = True:   ZeroStock.Caption = "Show Purchase Return Greater Than Equal >>>>": ZeroStock.Width = 4215: ZeroStock.Left = 9300: Check1.Left = 3500: Me.Caption = "Purchase Return Analysis Item-Wise": TDBNumber1.Visible = True: Mh3dLabel1(0).Visible = True: Combo1.Visible = True:
@@ -1432,20 +1433,21 @@ Private Sub cmdRefresh_Click()
             .SetText 6, i, Val(rstStockLedger.Fields("OrderedQty").Value)
             .SetText 7, i, "Units"
             If Combo1.ListIndex = 0 Then
-            .SetText 8, i, Val(rstStockLedger.Fields("OrderedQty").Value) - Val(rstStockLedger.Fields("ChallanQty").Value) - Val(rstStockLedger.Fields("BilledQtyD").Value)
-            .SetText 9, i, (Val(rstStockLedger.Fields("OrderedQty").Value) - Val(rstStockLedger.Fields("ChallanQty").Value) - Val(rstStockLedger.Fields("BilledQtyD").Value)) * Val(rstStockLedger.Fields("UnitRate").Value)
+            .SetText 8, i, Val(rstStockLedger.Fields("OrderedQty").Value) - Val(rstStockLedger.Fields("ClearQty").Value) - Val(rstStockLedger.Fields("ChallanQty").Value) - Val(rstStockLedger.Fields("BilledQtyD").Value)
+            .SetText 9, i, (Val(rstStockLedger.Fields("OrderedQty").Value) - Val(rstStockLedger.Fields("ClearQty").Value) - Val(rstStockLedger.Fields("ChallanQty").Value) - Val(rstStockLedger.Fields("BilledQtyD").Value)) * Val(rstStockLedger.Fields("UnitRate").Value)
             ElseIf Combo1.ListIndex = 1 Then
-            .SetText 8, i, Val(rstStockLedger.Fields("ChallanQty").Value) - Val(rstStockLedger.Fields("BilledQtyD").Value) - Val(rstStockLedger.Fields("BilledQtyC").Value)
-            .SetText 9, i, (Val(rstStockLedger.Fields("ChallanQty").Value) - Val(rstStockLedger.Fields("BilledQtyD").Value) - Val(rstStockLedger.Fields("BilledQtyC").Value)) * Val(rstStockLedger.Fields("UnitRate").Value)
+            .SetText 8, i, Val(rstStockLedger.Fields("ChallanQty").Value) - Val(rstStockLedger.Fields("BilledQtyC").Value)
+            .SetText 9, i, (Val(rstStockLedger.Fields("ChallanQty").Value) - Val(rstStockLedger.Fields("BilledQtyC").Value)) * Val(rstStockLedger.Fields("UnitRate").Value)
             End If
             .SetText 10, i, Val(rstStockLedger.Fields("BilledQtyC").Value)
             .SetText 11, i, Val(rstStockLedger.Fields("BilledQtyD").Value)
             .SetText 12, i, Val(rstStockLedger.Fields("ChallanQty").Value)
             .SetText 13, i, Val(rstStockLedger.Fields("DirectQty").Value)
-            .SetText 25, i, Val(rstStockLedger.Fields("VchType").Value)
+            .SetText 14, i, Val(rstStockLedger.Fields("ClearQty").Value)
+            .SetText 25, i, rstStockLedger.Fields("VchType").Value
             .SetText 26, i, Val(rstStockLedger.Fields("UnitRate").Value)
-            .SetText 32, i, (rstStockLedger.Fields("BuyerCode").Value)
-            .SetText 34, i, (rstStockLedger.Fields("ItemCode").Value)
+            .SetText 32, i, rstStockLedger.Fields("BuyerCode").Value
+            .SetText 34, i, rstStockLedger.Fields("ItemCode").Value
             .SetText 35, i, rstStockLedger.Fields("VchCode").Value
             dPrint = dPrint + 1
         MdiMainMenu.StatusBar1.Panels(2).Text = "Updated record # " & dPrint & " of " & rstStockLedger.RecordCount & " !!!"
@@ -2785,7 +2787,7 @@ With fpSpread1
             If VchType >= 39 And VchType <= 41 Then .Col = 23: .ColHidden = True
             If VchType >= 42 And VchType <= 44 Then .Col = 8: .ColHidden = True
         ElseIf VchType >= 46 And VchType <= 48 Then  'Pending Sale AND Purchase
-            For C = 1 To 13
+            For C = 1 To 14
             .Col = C: .ColHidden = False
             Next
             .ColWidth(1) = 10 'Date
@@ -2801,7 +2803,8 @@ With fpSpread1
             .ColWidth(11) = 19.5 'BilledQtyD
             .ColWidth(12) = 20.25 'ChallanQty
             .ColWidth(13) = 27.25 'DirectQty
-            For C = 14 To 35
+            .ColWidth(14) = 13 'Clear Qty
+            For C = 15 To 35
             .Col = C: .ColHidden = True
             Next
         End If
@@ -2959,6 +2962,7 @@ With fpSpread1
             fpSpread1.Col = 11: fpSpread1.Row = SpreadHeader: fpSpread1.Text = "Billed Direct"
             fpSpread1.Col = 12: fpSpread1.Row = SpreadHeader: fpSpread1.Text = "Supply Against Challan"
             fpSpread1.Col = 13: fpSpread1.Row = SpreadHeader: fpSpread1.Text = "Supply Against Billing"
+            fpSpread1.Col = 14: fpSpread1.Row = SpreadHeader: fpSpread1.Text = "Clear Quantity"
         End If
         
         If VchType = 31 Then
@@ -2990,7 +2994,15 @@ With fpSpread1
         If (Shift = vbCtrlMask And KeyCode <> vbKeyEscape) And ((VchType >= 3 And VchType <= 10) Or (VchType >= 53 And VchType <= 60)) Then .GetText 32, .ActiveRow, SCode: SCode = "'" & SCode & "'": If SCode = "''" Then Exit Sub
         If (Shift = 0 And KeyCode <> vbKeyEscape) And ((VchType >= 3 And VchType <= 10) Or (VchType >= 53 And VchType <= 60)) Then .GetText 32, .ActiveRow, SCode: SCode = "'" & SCode & "'": If SCode = "''" Then Exit Sub
         If (Shift = 0 And KeyCode <> vbKeyEscape) And ((VchType >= 21 And VchType <= 28) Or (VchType >= 61 And VchType <= 68)) Then .GetText 32, .ActiveRow, sMcCode: sMcCode = "'" & sMcCode & "'": If sMcCode = "''" Then Exit Sub
-    
+    If (Shift = 0 And KeyCode = vbKeyF9) And VchType = 46 Then
+        .GetText 8, .ActiveRow, SCode
+        If SCode = 0 Then ClearFlag = False: MsgBox "You Can't Clear This Order,...", vbCritical, "   Clear Pending Order !!!": SCode = "": Exit Sub
+        If SCode <> 0 Then ClearFlag = True: ClearQty (True): MsgBox " ( " & SCode & " Qty. ) Closed For This Order,...", vbCritical, "   Clear Pending Order !!!": SCode = "": ClearFlag = False: Exit Sub
+    ElseIf (Shift = 0 And KeyCode = vbKeyF10) And VchType = 46 Then
+        .GetText 14, .ActiveRow, SCode
+        If SCode = 0 Then unClearFlag = False: MsgBox "This Order Don't Have Clear Qty,...", vbCritical, "   Clear Pending Order !!!": SCode = "": Exit Sub
+        If SCode <> 0 Then unClearFlag = True: ClearQty (True): MsgBox " ( " & SCode & " Qty. ) Open For This Order,...", vbCritical, "   UnClear Pending Order !!!": SCode = "": unClearFlag = False: Exit Sub
+    End If
     If (Shift = 0 And KeyCode = vbKeyReturn) And ((VchType >= 3 And VchType <= 6) Or (VchType >= 53 And VchType <= 56)) Then
         If VchType = 3 Then oVchType = VchType: VchType = 25 'One Item-Party-wise 'Sales Ok
         If VchType = 4 Then oVchType = VchType: VchType = 26 'One Item-Party-wise 'Sales Returns
@@ -3400,3 +3412,38 @@ fpSpread1.PrintOrientation = PrintOrientationLandscape
     spreadpreview.Show
  End With
 End Sub
+Function ClearQty(ByVal ActionType As String) As Boolean
+    Dim CellVal(1 To 12) As Variant
+    On Error GoTo ErrorHandler
+        With fpSpread1
+            .GetText 35, .ActiveRow, CellVal(1) 'RefCode
+            .GetText 25, .ActiveRow, CellVal(2) 'VchType
+            .GetText 2, .ActiveRow, CellVal(3) 'VchNo
+            .GetText 1, .ActiveRow, CellVal(4) 'VchDate
+            .GetText 32, .ActiveRow, CellVal(5) 'Buyer
+            .GetText 34, .ActiveRow, CellVal(6): CellVal(6) = Pad(Trim(CellVal(6)), 0, 6, "L") 'Item
+            .GetText 8, .ActiveRow, CellVal(7) 'Qty
+            .GetText 4, .ActiveRow, CellVal(8) 'Rate
+            .GetText 14, .ActiveRow, CellVal(9) 'ClearQty
+        cnDatabase.Execute "IF EXISTS (SELECT ORDINAL_POSITION FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = 'JobworkBVClear' AND COLUMN_Name ='RefCode') Print 'Col_Exist' ELSE CREATE TABLE JobworkBVClear([RefCode] [nvarchar](6) NOT NULL,[VchType] [nvarchar](6) NOT NULL,[VchNo] [nvarchar](25) NOT NULL,[VchDate] [datetime] NOT NULL,[Party] [nvarchar](6) NOT NULL,[Item] [nvarchar](6) NOT NULL,[Quantity] [decimal](12, 0) NOT NULL,[Rate] [decimal](12, 2) NOT NULL) ON [PRIMARY]"
+    If ClearFlag = True Then
+        cnDatabase.Execute "INSERT INTO JobworkBVClear VALUES ('" & CellVal(1) & "','" & CellVal(2) & "','" & CellVal(3) & "','" & Format(CellVal(4), "dd-MMM-yyyy") & "','" & CellVal(5) & "','" & CellVal(6) & "'," & Val(CellVal(7)) & "," & Val(CellVal(8)) & ")"
+        .SetText 8, .ActiveRow, CellVal(9) ' Qty
+        .SetText 14, .ActiveRow, CellVal(7) 'Clear Qty
+        ClearFlag = False
+        .SetActiveCell 8, .ActiveRow: .SetFocus
+    End If
+    If unClearFlag = True Then
+            cnDatabase.Execute "DELETE FROM JobworkBVClear WHERE RefCode='" & CellVal(1) & "' AND VchType='" & CellVal(2) & "' AND Quantity='" & CellVal(9) & "'"
+            .SetText 8, .ActiveRow, CellVal(9) ' Qty
+            .SetText 14, .ActiveRow, CellVal(7) 'Clear Qty
+            unClearFlag = False
+            .SetActiveCell 8, .ActiveRow: .SetFocus
+    End If
+        End With
+    Exit Function
+ErrorHandler:
+    ClearFlag = False
+    unClearFlag = False
+    ClearQty = False
+End Function

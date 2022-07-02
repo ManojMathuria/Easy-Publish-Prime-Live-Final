@@ -1753,6 +1753,7 @@ End If
     cnDatabase.Execute "IF EXISTS (SELECT COLUMN_Name FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = 'CustomSettings' AND COLUMN_Name = 'FYFromTo') Print 'Col_Exist' ELSE Alter Table CustomSettings Add FYFromTo nvarchar(1) NOT NULL Default('N')"
     cnDatabase.Execute "IF EXISTS (SELECT COLUMN_Name FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = 'CustomSettings' AND COLUMN_Name = 'GSTMethod') Print 'Col_Exist' ELSE Alter Table CustomSettings Add GSTMethod nvarchar(1) NOT NULL Default('1')"
     cnDatabase.Execute "IF(SELECT COLUMN_Name FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = 'CustomSettings' AND COLUMN_Name = 'LOGO')<>'' Print'Done' Else INSERT INTO CustomSettings VALUES ('S','N',1440,960,7800,1680,'N','1')"
+    cnDatabase.Execute "IF EXISTS (SELECT ORDINAL_POSITION FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = 'JobworkBVClear' AND COLUMN_Name ='RefCode') Print 'Col_Exist' ELSE CREATE TABLE JobworkBVClear([RefCode] [nvarchar](6) NOT NULL,[VchType] [nvarchar](6) NOT NULL,[VchNo] [nvarchar](25) NOT NULL,[VchDate] [datetime] NOT NULL,[Party] [nvarchar](6) NOT NULL,[Item] [nvarchar](6) NOT NULL,[Quantity] [decimal](12, 0) NOT NULL,[Rate] [decimal](12, 2) NOT NULL) ON [PRIMARY]"
     '***************************************************************************************************************************************************************
 NXT:
     cnDatabase.CommitTrans
