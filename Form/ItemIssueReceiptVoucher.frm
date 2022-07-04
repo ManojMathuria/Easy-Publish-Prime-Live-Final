@@ -100,11 +100,11 @@ Begin VB.Form frmItemIssueReceiptVoucher
          TabCaption(1)   =   "&Details"
          TabPicture(1)   =   "ItemIssueReceiptVoucher.frx":0038
          Tab(1).ControlEnabled=   0   'False
-         Tab(1).Control(0)=   "txtNotes"
-         Tab(1).Control(1)=   "btnNotes"
+         Tab(1).Control(0)=   "Mh3dLabel1(4)"
+         Tab(1).Control(1)=   "Mh3dLabel1(1)"
          Tab(1).Control(2)=   "Mh3dFrame2"
-         Tab(1).Control(3)=   "Mh3dLabel1(1)"
-         Tab(1).Control(4)=   "Mh3dLabel1(4)"
+         Tab(1).Control(3)=   "btnNotes"
+         Tab(1).Control(4)=   "txtNotes"
          Tab(1).ControlCount=   5
          Begin VB.TextBox txtNotes 
             Appearance      =   0  'Flat
@@ -3660,7 +3660,7 @@ Public Sub PrintDlvChVch(ByVal VchCode As String, ByVal VchType As String, ByVal
     If rstDeliveryCVChild.State = adStateOpen Then rstDeliveryCVChild.Close
     rstDeliveryCVChild.Open "SELECT LTRIM(P.Name) As BillNo,P.Date As BillDate,B.PrintName As Party,B.Address1 As PartyAddress1,B.Address2 As PartyAddress2,B.Address3 As PartyAddress3,B.Address4 As PartyAddress4,B.TIN As PartyGSTIN,IIf(LEFT(P.Type,2) IN ('06','08'),IIF(S.PrintName IS NULL,ConsigneeName,S.PrintName),M.PrintName) As Consignee,IIf(LEFT(P.Type,2) IN ('06','08'),IIF(S.PrintName IS NULL,ConsigneeAddress1,S.Address1),M.Address1) As ConsigneeAddress1,IIf(LEFT(P.Type,2) IN ('06','08'),IIF(S.PrintName IS NULL,ConsigneeAddress2,S.Address2),M.Address2) As ConsigneeAddress2,IIf(LEFT(P.Type,2) IN ('06','08'),IIF(S.PrintName IS NULL,ConsigneeAddress3,S.Address3),M.Address3) As ConsigneeAddress3,IIf(LEFT(P.Type,2) IN ('06','08'),IIF(S.PrintName IS NULL,ConsigneeAddress4,S.Address4),M.Address4) As ConsigneeAddress4,IIf(LEFT(P.Type,2) IN ('06','08'),IIF(S.PrintName IS NULL,ConsigneeGSTIN,S.TIN),M.TIN) As ConsigneeGSTIN,P.[Rebate%],P.Rebate,P.Freight,P.Adjustment,P.TaxableAmount," & _
                                                         "P.[IGST%],P.IGST,P.[SGST%],P.SGST,P.[CGST%],P.CGST,P.Amount As TotalAmount,P.Remarks,P.ChallanNo,P.ChallanDate,P.Transport,P.GRNo,P.GRDate,P.VehicleNo,P.Station,eWayBill,eWayBillDate,(Select PrintName From GeneralMaster Where Code=C.Narration) As Narration,IIF(I.PrintName IS NULL,'',LongNarration01) As LongNarration01,LongNarration02,LongNarration03,LongNarration04," & _
-                                                        "IIF(I.PrintName IS NULL,LongNarration01,I.PrintName) As Item,H.PrintName As HSNCode,C.Quantity,C.Rate,C.Amount,Left((Select V.Prefix From VchSeriesMaster V Where Code=VchSeries),2)+'" & IIf(Right(VchType, 1) = "I", "-DC", "-RC") & "'+'/'+Ltrim(AutoVchNo) As VchNo,LongNarration05 " & _
+                                                        "IIF(I.PrintName IS NULL,LongNarration01,I.PrintName) As Item,H.PrintName As HSNCode,C.Quantity,C.Rate,C.Amount,Left((Select V.Prefix From VchSeriesMaster V Where Code=VchSeries),2)+'" & IIf(Right(VchType, 1) = "I", "_DC", "_RC") & "'+'/'+Ltrim(AutoVchNo) As VchNo,LongNarration05 " & _
                                                         "FROM (((((JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code) INNER JOIN AccountMaster B ON P.Party=B.Code) INNER JOIN AccountMaster M ON P.MaterialCentre=M.Code) LEFT JOIN AccountMaster S ON P.Consignee=S.Code) LEFT JOIN BookMaster I ON C.Item=I.Code) LEFT JOIN GeneralMaster H ON C.HSNCode=H.Code WHERE P.Code='" + Left(VchCode, 6) + "' ORDER BY Item", cnDeliveryChallan, adOpenKeyset, adLockOptimistic
     If rstDeliveryCVChild.RecordCount = 0 Then On Error GoTo 0: Exit Sub
     rstDeliveryCVChild.ActiveConnection = Nothing

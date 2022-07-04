@@ -1030,6 +1030,18 @@ Begin VB.MDIForm MdiMainMenu
          Caption         =   "-"
          Index           =   1
       End
+      Begin VB.Menu MenuPendingBilling 
+         Caption         =   "Order Processing"
+         Begin VB.Menu MenuPendingBillingJobworkDirect 
+            Caption         =   "Pending Sales Order-Wise"
+            Index           =   46
+            Tag             =   "03100110"
+         End
+         Begin VB.Menu MenuPendingBillingJobworkDirect 
+            Caption         =   "Pending Sales Party-Wise"
+            Index           =   47
+         End
+      End
       Begin VB.Menu MnuOrderProcessingStatus 
          Caption         =   "Order Status"
          Tag             =   "03100000"
@@ -1557,14 +1569,6 @@ Begin VB.MDIForm MdiMainMenu
                Index           =   25
                Tag             =   "04090303"
             End
-         End
-      End
-      Begin VB.Menu MenuPendingBilling 
-         Caption         =   "Order Processing"
-         Tag             =   "04100000"
-         Begin VB.Menu MenuPendingBillingJobworkDirect 
-            Caption         =   "Pending Billing Jobwork (Direct)"
-            Index           =   46
          End
       End
       Begin VB.Menu MnuLine1 
