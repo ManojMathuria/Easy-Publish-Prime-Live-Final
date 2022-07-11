@@ -828,9 +828,9 @@ Private Sub Form_Load()
     If Not SL Then MasterCode = ""
     CenterForm Me
     BusySystemIndicator True
-    If slStateCode = CompStateCode And CompStateCode <> "" Then
+    If slStateCode = CompStateCode And CompStateCode <> "" And SL = True Then
         rstTaxList.Open "SELECT Name,Code FROM TaxMaster Where Region='L' ORDER BY Name", cnDatabase, adOpenKeyset, adLockOptimistic
-    ElseIf slStateCode <> CompStateCode And CompStateCode <> "" Then
+    ElseIf slStateCode <> CompStateCode And CompStateCode <> "" And SL = True Then
         rstTaxList.Open "SELECT Name,Code FROM TaxMaster Where Region='I' ORDER BY Name", cnDatabase, adOpenKeyset, adLockOptimistic
     Else
         rstTaxList.Open "SELECT Name,Code FROM TaxMaster ORDER BY Name", cnDatabase, adOpenKeyset, adLockOptimistic

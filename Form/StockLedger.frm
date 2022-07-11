@@ -318,8 +318,8 @@ Begin VB.Form FrmStockLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "StockLedger.frx":1DF3
-         Picture         =   "StockLedger.frx":1E0F
+         Picture         =   "StockLedger.frx":1D13
+         Picture         =   "StockLedger.frx":1D2F
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel3 
          Height          =   330
@@ -345,8 +345,8 @@ Begin VB.Form FrmStockLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "StockLedger.frx":1E2B
-         Picture         =   "StockLedger.frx":1E47
+         Picture         =   "StockLedger.frx":1D4B
+         Picture         =   "StockLedger.frx":1D67
       End
       Begin TDBDate6Ctl.TDBDate MhDateInput2 
          Height          =   330
@@ -357,8 +357,8 @@ Begin VB.Form FrmStockLedger
          _Version        =   65536
          _ExtentX        =   1931
          _ExtentY        =   582
-         Calendar        =   "StockLedger.frx":1E63
-         Caption         =   "StockLedger.frx":1F7B
+         Calendar        =   "StockLedger.frx":1D83
+         Caption         =   "StockLedger.frx":1E9B
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -368,9 +368,9 @@ Begin VB.Form FrmStockLedger
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "StockLedger.frx":1FE7
-         Keys            =   "StockLedger.frx":2005
-         Spin            =   "StockLedger.frx":2063
+         DropDown        =   "StockLedger.frx":1F07
+         Keys            =   "StockLedger.frx":1F25
+         Spin            =   "StockLedger.frx":1F83
          AlignHorizontal =   0
          AlignVertical   =   0
          Appearance      =   0
@@ -419,8 +419,8 @@ Begin VB.Form FrmStockLedger
          _Version        =   65536
          _ExtentX        =   1931
          _ExtentY        =   582
-         Calendar        =   "StockLedger.frx":208B
-         Caption         =   "StockLedger.frx":21A3
+         Calendar        =   "StockLedger.frx":1FAB
+         Caption         =   "StockLedger.frx":20C3
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -430,9 +430,9 @@ Begin VB.Form FrmStockLedger
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "StockLedger.frx":220F
-         Keys            =   "StockLedger.frx":222D
-         Spin            =   "StockLedger.frx":228B
+         DropDown        =   "StockLedger.frx":212F
+         Keys            =   "StockLedger.frx":214D
+         Spin            =   "StockLedger.frx":21AB
          AlignHorizontal =   0
          AlignVertical   =   0
          Appearance      =   0
@@ -497,8 +497,8 @@ Begin VB.Form FrmStockLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "StockLedger.frx":22B3
-         Picture         =   "StockLedger.frx":22CF
+         Picture         =   "StockLedger.frx":21D3
+         Picture         =   "StockLedger.frx":21EF
       End
       Begin TDBNumber6Ctl.TDBNumber TDBNumber2 
          Height          =   330
@@ -509,8 +509,8 @@ Begin VB.Form FrmStockLedger
          _Version        =   65536
          _ExtentX        =   2143
          _ExtentY        =   582
-         Calculator      =   "StockLedger.frx":22EB
-         Caption         =   "StockLedger.frx":230B
+         Calculator      =   "StockLedger.frx":220B
+         Caption         =   "StockLedger.frx":222B
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -520,9 +520,9 @@ Begin VB.Form FrmStockLedger
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "StockLedger.frx":236F
-         Keys            =   "StockLedger.frx":238D
-         Spin            =   "StockLedger.frx":23D7
+         DropDown        =   "StockLedger.frx":228F
+         Keys            =   "StockLedger.frx":22AD
+         Spin            =   "StockLedger.frx":22F7
          AlignHorizontal =   2
          AlignVertical   =   0
          Appearance      =   1
@@ -582,8 +582,8 @@ Begin VB.Form FrmStockLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "StockLedger.frx":23FF
-         Picture         =   "StockLedger.frx":241B
+         Picture         =   "StockLedger.frx":231F
+         Picture         =   "StockLedger.frx":233B
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel5 
          Height          =   330
@@ -608,8 +608,8 @@ Begin VB.Form FrmStockLedger
          Caption         =   " Print Data"
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "StockLedger.frx":2437
-         Picture         =   "StockLedger.frx":2453
+         Picture         =   "StockLedger.frx":2357
+         Picture         =   "StockLedger.frx":2373
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel6 
          Height          =   330
@@ -634,8 +634,8 @@ Begin VB.Form FrmStockLedger
          Caption         =   " Export Data"
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "StockLedger.frx":246F
-         Picture         =   "StockLedger.frx":248B
+         Picture         =   "StockLedger.frx":238F
+         Picture         =   "StockLedger.frx":23AB
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel7 
          Height          =   330
@@ -661,8 +661,8 @@ Begin VB.Form FrmStockLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "StockLedger.frx":24A7
-         Picture         =   "StockLedger.frx":24C3
+         Picture         =   "StockLedger.frx":23C7
+         Picture         =   "StockLedger.frx":23E3
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel8 
          Height          =   330
@@ -688,8 +688,8 @@ Begin VB.Form FrmStockLedger
          Caption         =   "Import Data"
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "StockLedger.frx":24DF
-         Picture         =   "StockLedger.frx":24FB
+         Picture         =   "StockLedger.frx":23FF
+         Picture         =   "StockLedger.frx":241B
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel 
          Height          =   330
@@ -715,8 +715,8 @@ Begin VB.Form FrmStockLedger
          Caption         =   "Ctrl+F->Search  F8->Delete  F9->Hide  Escap->Un-Hide  F12->Duplicate  F5->Refresh"
          FillColor       =   8421504
          TextColor       =   16777215
-         Picture         =   "StockLedger.frx":2517
-         Picture         =   "StockLedger.frx":2533
+         Picture         =   "StockLedger.frx":2437
+         Picture         =   "StockLedger.frx":2453
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel10 
          Height          =   330
@@ -743,8 +743,8 @@ Begin VB.Form FrmStockLedger
          Alignment       =   1
          BorderStyle     =   0
          TextColor       =   0
-         Picture         =   "StockLedger.frx":254F
-         Picture         =   "StockLedger.frx":256B
+         Picture         =   "StockLedger.frx":246F
+         Picture         =   "StockLedger.frx":248B
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel11 
          Height          =   330
@@ -771,8 +771,8 @@ Begin VB.Form FrmStockLedger
          Alignment       =   0
          BorderStyle     =   0
          TextColor       =   0
-         Picture         =   "StockLedger.frx":2587
-         Picture         =   "StockLedger.frx":25A3
+         Picture         =   "StockLedger.frx":24A7
+         Picture         =   "StockLedger.frx":24C3
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel9 
          Height          =   330
@@ -798,8 +798,8 @@ Begin VB.Form FrmStockLedger
          Caption         =   "Create Stock Journal Voucher"
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "StockLedger.frx":25BF
-         Picture         =   "StockLedger.frx":25DB
+         Picture         =   "StockLedger.frx":24DF
+         Picture         =   "StockLedger.frx":24FB
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel12 
          Height          =   330
@@ -825,8 +825,8 @@ Begin VB.Form FrmStockLedger
          Caption         =   "Ctrl+F->Search  F8->Delete  F9->Hide  Escap->Un-Hide  F12->Duplicate  F5->Refresh"
          FillColor       =   8421504
          TextColor       =   16777215
-         Picture         =   "StockLedger.frx":25F7
-         Picture         =   "StockLedger.frx":2613
+         Picture         =   "StockLedger.frx":2517
+         Picture         =   "StockLedger.frx":2533
       End
       Begin MSForms.ComboBox Combo2 
          Height          =   330
@@ -1319,19 +1319,19 @@ Private Sub cmdRefresh_Click()
                             SQL = SQL + "SELECT DISTINCT IIF(P.BookPrinter<>'',P.BookPrinter,IIF(P.TitlePrinter<>'',P.TitlePrinter,IIF(P.Laminator<>'',P.Laminator,IIF(P.Binder<>'',P.Binder,IIF(C.Vendor<>'',C.Vendor,'000000'))))) As BuyerCode,(Select PrintName From AccountMaster Where Code= IIF(P.BookPrinter<>'',P.BookPrinter,IIF(P.TitlePrinter<>'',P.TitlePrinter,IIF(P.Laminator<>'',P.Laminator,IIF(P.Binder<>'',P.Binder,IIF(C.Vendor<>'',C.Vendor,'000000')))))) As BuyerName,"
                         
                         If Combo1.ListIndex = 0 Then 'Direct 'Ordered-Delivered(Challan)-Billed(Direct)=Pending Quantity
-                            SQL = SQL + "(P.EstQty01-P.DeliveredQuantityC-P.BilledAllB-ISNULL((Select Quantity From JobworkBVClear Where RefCode=P.Code),0)) As Pending,(P.EstQty01-P.DeliveredQuantityC-P.BilledAllB-ISNULL((Select Quantity From JobworkBVClear Where RefCode=P.Code),0))*P.UnitRate As PendingAmount,"
+                            SQL = SQL + "(P.EstQty01-P.DeliveredQuantityC-P.BilledAllB-ISNULL(J.Quantity,0)) As Pending,(P.EstQty01-P.DeliveredQuantityC-P.BilledAllB-ISNULL(J.Quantity,0))*P.UnitRate As PendingAmount,"
                         ElseIf Combo1.ListIndex = 1 Then 'Against Challan 'Delivered(Challan)-Billed(Challan)=Pending Quantity
-                            SQL = SQL + "(P.DeliveredQuantityC-P.BilledAllC-ISNULL((Select Quantity From JobworkBVClear Where RefCode=P.Code),0)) As Pending,(P.DeliveredQuantityC-P.BilledAllC-ISNULL((Select Quantity From JobworkBVClear Where RefCode=P.Code),0))*P.UnitRate As PendingAmount,"
+                            SQL = SQL + "(P.DeliveredQuantityC-P.BilledAllC-ISNULL(J.Quantity,0)) As Pending,(P.DeliveredQuantityC-P.BilledAllC-ISNULL(J.Quantity,0))*P.UnitRate As PendingAmount,"
                         End If
                             
-                            SQL = SQL + "'0000'+P.Type As VchType,P.Book As ItemCode,P.UnitRate,P.Code As VchCode,LTRIM(P.Name)+'/'+RIGHT(P.Type,1)+'O/JW' As VchNo,P.Date As VchDate,I.Name As Item,P.EstQty01 As OrderedQty,P.BilledAllC As BilledQtyC,P.BilledAllB As BilledQtyD,P.DeliveredQuantityC As ChallanQty,P.DeliveredQuantityB As DirectQty,ISNULL((Select Quantity From JobworkBVClear Where RefCode=P.Code),0) As ClearQty "
-                            SQL = SQL + "FROM (BookPOParent P INNER JOIN BookMaster I ON P.Book=I.Code) LEFT JOIN BookPOChild0801 C ON P.Code=C.Code "
+                            SQL = SQL + "'0000'+P.Type As VchType,P.Book As ItemCode,P.UnitRate,P.Code As VchCode,LTRIM(P.Name)+'/'+RIGHT(P.Type,1)+'O/JW' As VchNo,P.Date As VchDate,I.Name As Item,P.EstQty01 As OrderedQty,P.BilledAllC As BilledQtyC,P.BilledAllB As BilledQtyD,P.DeliveredQuantityC As ChallanQty,P.DeliveredQuantityB As DirectQty,ISNULL(J.Quantity,0) As ClearQty "
+                            SQL = SQL + "FROM ((BookPOParent P INNER JOIN BookMaster I ON P.Book=I.Code) LEFT JOIN BookPOChild0801 C ON P.Code=C.Code) Left Join JobworkBVClear J On P.code=J.RefCode "
                             SQL = SQL + "WHERE RIGHT(P.Type,1)=" & IIf(VchType = 46 Or VchType = 47, "'S'", "'P'") & "  AND "
                         
                         If Combo1.ListIndex = 0 Then 'Direct 'Ordered-Delivered(Challan)-Billed(Direct)=Pending Quantity
-                            SQL = SQL + IIf(FrmItemSelectionList.Option3.Value, "(P.EstQty01-P.DeliveredQuantityC-P.BilledAllB-ISNULL((Select Quantity From JobworkBVClear Where RefCode=P.Code),0))>0", IIf(FrmItemSelectionList.Option1.Value, "(P.EstQty01-P.DeliveredQuantityC-P.BilledAllB-ISNULL((Select Quantity From JobworkBVClear Where RefCode=P.Code),0))<=0", "1=1")) & ""
+                            SQL = SQL + IIf(FrmItemSelectionList.Option3.Value, "(P.EstQty01-P.DeliveredQuantityC-P.BilledAllB-ISNULL(J.Quantity,0))>0", IIf(FrmItemSelectionList.Option1.Value, "(P.EstQty01-P.DeliveredQuantityC-P.BilledAllB-ISNULL(J.Quantity,0))<=0", "1=1")) & ""
                         ElseIf Combo1.ListIndex = 1 Then 'Against Challan 'Delivered(Challan)-Billed(Challan)=Pending Quantity
-                            SQL = SQL + IIf(FrmItemSelectionList.Option3.Value, "(P.DeliveredQuantityC-P.BilledAllC-ISNULL((Select Quantity From JobworkBVClear Where RefCode=P.Code),0))>0", IIf(FrmItemSelectionList.Option1.Value, "(P.DeliveredQuantityC-P.BilledAllC-ISNULL((Select Quantity From JobworkBVClear Where RefCode=P.Code),0))<=0 AND (P.DeliveredQuantityC+P.BilledAllB+ISNULL((Select Quantity From JobworkBVClear Where RefCode=P.Code),0))>=P.EstQty01", "1=1")) & ""
+                            SQL = SQL + IIf(FrmItemSelectionList.Option3.Value, "(P.DeliveredQuantityC-P.BilledAllC-ISNULL(J.Quantity,0))>0", IIf(FrmItemSelectionList.Option1.Value, "(P.DeliveredQuantityC-P.BilledAllC-ISNULL(J.Quantity,0))<=0 AND (P.DeliveredQuantityC+P.BilledAllB+ISNULL(J.Quantity,0))>=P.EstQty01", "1=1")) & ""
                         End If
                             
                             SQL = SQL + " AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND IIF(P.BookPrinter<>'',P.BookPrinter,IIF(P.TitlePrinter<>'',P.TitlePrinter,IIF(P.Laminator<>'',P.Laminator,IIF(P.Binder<>'',P.Binder,IIF(C.Vendor<>'',C.Vendor,'000000'))))) IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  P.Book IN (" & IIf(SCode <> "", SCode, ItemList) & ") "

@@ -11,10 +11,10 @@ Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
 Begin VB.Form frmJobworkBill 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Jobwork Bill"
-   ClientHeight    =   8595
+   ClientHeight    =   9195
    ClientLeft      =   45
    ClientTop       =   330
-   ClientWidth     =   13740
+   ClientWidth     =   16500
    BeginProperty Font 
       Name            =   "Arial"
       Size            =   8.25
@@ -26,21 +26,20 @@ Begin VB.Form frmJobworkBill
    EndProperty
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form2"
-   LockControls    =   -1  'True
    MaxButton       =   0   'False
    MDIChild        =   -1  'True
-   ScaleHeight     =   8595
-   ScaleWidth      =   13740
+   ScaleHeight     =   9195
+   ScaleWidth      =   16500
    Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame1 
-      Height          =   8580
+      Height          =   9180
       Left            =   15
       TabIndex        =   15
       TabStop         =   0   'False
       Top             =   0
-      Width           =   13715
+      Width           =   16470
       _Version        =   65536
-      _ExtentX        =   24192
-      _ExtentY        =   15134
+      _ExtentX        =   29051
+      _ExtentY        =   16192
       _StockProps     =   77
       TintColor       =   16711935
       Alignment       =   0
@@ -61,14 +60,14 @@ Begin VB.Form frmJobworkBill
       Caption         =   ""
       Picture         =   "JobworkBill.frx":0000
       Begin TabDlg.SSTab SSTab1 
-         Height          =   8360
+         Height          =   8955
          Left            =   120
          TabIndex        =   17
          TabStop         =   0   'False
          Top             =   120
-         Width           =   13485
-         _ExtentX        =   23786
-         _ExtentY        =   14737
+         Width           =   16245
+         _ExtentX        =   28654
+         _ExtentY        =   15796
          _Version        =   393216
          Style           =   1
          Tabs            =   2
@@ -113,21 +112,21 @@ Begin VB.Form frmJobworkBill
                Strikethrough   =   0   'False
             EndProperty
             Height          =   330
-            Left            =   600
+            Left            =   840
             MaxLength       =   40
             TabIndex        =   19
-            Top             =   7830
-            Width           =   8220
+            Top             =   8430
+            Width           =   10740
          End
          Begin MSDataGridLib.DataGrid DataGrid1 
-            Height          =   7305
+            Height          =   7905
             Left            =   120
             TabIndex        =   18
             TabStop         =   0   'False
             Top             =   450
-            Width           =   13260
-            _ExtentX        =   23389
-            _ExtentY        =   12885
+            Width           =   16020
+            _ExtentX        =   28258
+            _ExtentY        =   13944
             _Version        =   393216
             AllowUpdate     =   0   'False
             Appearance      =   0
@@ -224,7 +223,7 @@ Begin VB.Form frmJobworkBill
                Caption         =   "Amount"
                BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
                   Type            =   1
-                  Format          =   "0"
+                  Format          =   "#,##0.00"
                   HaveTrueFalseNull=   0
                   FirstDayOfWeek  =   0
                   FirstWeekOfYear =   0
@@ -257,41 +256,44 @@ Begin VB.Form frmJobworkBill
                Locked          =   -1  'True
                BeginProperty Column00 
                   Locked          =   -1  'True
-                  ColumnWidth     =   1080
+                  ColumnWidth     =   2324.977
                EndProperty
                BeginProperty Column01 
                   Locked          =   -1  'True
-                  ColumnWidth     =   1019.906
+                  ColumnWidth     =   1379.906
                EndProperty
                BeginProperty Column02 
+                  ColumnWidth     =   1934.929
                EndProperty
                BeginProperty Column03 
                   Locked          =   -1  'True
-                  ColumnWidth     =   3225.26
+                  ColumnWidth     =   3374.929
                EndProperty
                BeginProperty Column04 
-                  ColumnWidth     =   2984.882
+                  ColumnWidth     =   3314.835
                EndProperty
                BeginProperty Column05 
-                  Locked          =   -1  'True
-                  ColumnWidth     =   1335.118
-               EndProperty
-               BeginProperty Column06 
                   Alignment       =   1
                   Locked          =   -1  'True
+                  ColumnWidth     =   1349.858
+               EndProperty
+               BeginProperty Column06 
+                  Alignment       =   2
+                  Locked          =   -1  'True
+                  ColumnWidth     =   1769.953
                EndProperty
             EndProperty
          End
          Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame2 
-            Height          =   7575
+            Height          =   8295
             Left            =   -74880
             TabIndex        =   21
             TabStop         =   0   'False
             Top             =   480
-            Width           =   13260
+            Width           =   16020
             _Version        =   65536
-            _ExtentX        =   23389
-            _ExtentY        =   13361
+            _ExtentX        =   28257
+            _ExtentY        =   14631
             _StockProps     =   77
             Enabled         =   0   'False
             TintColor       =   16711935
@@ -326,11 +328,11 @@ Begin VB.Form frmJobworkBill
                   Strikethrough   =   0   'False
                EndProperty
                Height          =   330
-               Left            =   11280
+               Left            =   11760
                MaxLength       =   40
                TabIndex        =   3
                Top             =   120
-               Width           =   1860
+               Width           =   4140
             End
             Begin VB.TextBox Text9 
                Appearance      =   0  'Flat
@@ -346,7 +348,7 @@ Begin VB.Form frmJobworkBill
                   Strikethrough   =   0   'False
                EndProperty
                Height          =   330
-               Left            =   1200
+               Left            =   1800
                Locked          =   -1  'True
                MaxLength       =   40
                TabIndex        =   0
@@ -355,12 +357,12 @@ Begin VB.Form frmJobworkBill
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel11 
                Height          =   330
-               Left            =   8640
+               Left            =   9960
                TabIndex        =   24
                Top             =   945
-               Width           =   1335
+               Width           =   1815
                _Version        =   65536
-               _ExtentX        =   2355
+               _ExtentX        =   3201
                _ExtentY        =   582
                _StockProps     =   77
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -382,12 +384,12 @@ Begin VB.Form frmJobworkBill
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel13 
                Height          =   330
-               Left            =   8640
+               Left            =   9960
                TabIndex        =   47
                Top             =   630
-               Width           =   1335
+               Width           =   1815
                _Version        =   65536
-               _ExtentX        =   2355
+               _ExtentX        =   3201
                _ExtentY        =   582
                _StockProps     =   77
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -421,11 +423,11 @@ Begin VB.Form frmJobworkBill
                   Strikethrough   =   0   'False
                EndProperty
                Height          =   330
-               Left            =   9960
+               Left            =   11760
                MaxLength       =   40
                TabIndex        =   6
                Top             =   630
-               Width           =   3180
+               Width           =   4140
             End
             Begin VB.TextBox Text7 
                Appearance      =   0  'Flat
@@ -441,12 +443,12 @@ Begin VB.Form frmJobworkBill
                   Strikethrough   =   0   'False
                EndProperty
                Height          =   330
-               Left            =   5820
+               Left            =   7020
                Locked          =   -1  'True
                MaxLength       =   40
                TabIndex        =   5
                Top             =   630
-               Width           =   2850
+               Width           =   2970
             End
             Begin VB.TextBox Text5 
                Appearance      =   0  'Flat
@@ -462,7 +464,7 @@ Begin VB.Form frmJobworkBill
                   Strikethrough   =   0   'False
                EndProperty
                Height          =   330
-               Left            =   1200
+               Left            =   1800
                Locked          =   -1  'True
                MaxLength       =   40
                TabIndex        =   7
@@ -473,11 +475,11 @@ Begin VB.Form frmJobworkBill
                Height          =   285
                Left            =   120
                TabIndex        =   25
-               Top             =   6330
-               Width           =   13035
+               Top             =   7050
+               Width           =   15795
                _Version        =   65536
-               _ExtentX        =   22992
-               _ExtentY        =   494
+               _ExtentX        =   27861
+               _ExtentY        =   503
                _StockProps     =   77
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
@@ -628,11 +630,11 @@ Begin VB.Form frmJobworkBill
                   Strikethrough   =   0   'False
                EndProperty
                Height          =   330
-               Left            =   4380
+               Left            =   4980
                MaxLength       =   25
                TabIndex        =   1
                Top             =   120
-               Width           =   2730
+               Width           =   2610
             End
             Begin VB.TextBox Text4 
                Appearance      =   0  'Flat
@@ -648,11 +650,11 @@ Begin VB.Form frmJobworkBill
                   Strikethrough   =   0   'False
                EndProperty
                Height          =   330
-               Left            =   9960
+               Left            =   11760
                MaxLength       =   40
                TabIndex        =   9
                Top             =   950
-               Width           =   3180
+               Width           =   4140
             End
             Begin VB.TextBox Text3 
                Appearance      =   0  'Flat
@@ -668,7 +670,7 @@ Begin VB.Form frmJobworkBill
                   Strikethrough   =   0   'False
                EndProperty
                Height          =   330
-               Left            =   1200
+               Left            =   1800
                Locked          =   -1  'True
                MaxLength       =   40
                TabIndex        =   4
@@ -677,12 +679,12 @@ Begin VB.Form frmJobworkBill
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel5 
                Height          =   330
-               Left            =   3660
+               Left            =   3900
                TabIndex        =   22
                Top             =   120
-               Width           =   735
+               Width           =   1095
                _Version        =   65536
-               _ExtentX        =   1296
+               _ExtentX        =   1931
                _ExtentY        =   582
                _StockProps     =   77
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -707,9 +709,9 @@ Begin VB.Form frmJobworkBill
                Left            =   120
                TabIndex        =   23
                Top             =   630
-               Width           =   1095
+               Width           =   1695
                _Version        =   65536
-               _ExtentX        =   1931
+               _ExtentX        =   2990
                _ExtentY        =   582
                _StockProps     =   77
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -731,12 +733,12 @@ Begin VB.Form frmJobworkBill
             End
             Begin TDBDate6Ctl.TDBDate MhDateInput1 
                Height          =   330
-               Left            =   8280
+               Left            =   8520
                TabIndex        =   2
                Top             =   120
-               Width           =   1335
+               Width           =   1455
                _Version        =   65536
-               _ExtentX        =   2355
+               _ExtentX        =   2566
                _ExtentY        =   582
                Calendar        =   "JobworkBill.frx":03C0
                Caption         =   "JobworkBill.frx":04D8
@@ -792,14 +794,14 @@ Begin VB.Form frmJobworkBill
                CenturyMode     =   0
             End
             Begin FPSpreadADO.fpSpread fpSpread1 
-               Height          =   4875
+               Height          =   5415
                Left            =   120
                TabIndex        =   10
-               Top             =   1470
-               Width           =   13035
+               Top             =   1500
+               Width           =   15795
                _Version        =   524288
-               _ExtentX        =   22992
-               _ExtentY        =   8599
+               _ExtentX        =   27861
+               _ExtentY        =   9551
                _StockProps     =   64
                EditEnterAction =   5
                EditModeReplace =   -1  'True
@@ -842,12 +844,12 @@ Begin VB.Form frmJobworkBill
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
                Height          =   330
                Index           =   0
-               Left            =   7440
+               Left            =   7560
                TabIndex        =   28
                Top             =   120
-               Width           =   855
+               Width           =   975
                _Version        =   65536
-               _ExtentX        =   1508
+               _ExtentX        =   1720
                _ExtentY        =   582
                _StockProps     =   77
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -872,9 +874,9 @@ Begin VB.Form frmJobworkBill
                Left            =   120
                TabIndex        =   30
                Top             =   945
-               Width           =   1095
+               Width           =   1695
                _Version        =   65536
-               _ExtentX        =   1931
+               _ExtentX        =   2990
                _ExtentY        =   582
                _StockProps     =   77
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -896,13 +898,13 @@ Begin VB.Form frmJobworkBill
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput8 
                Height          =   330
-               Left            =   9940
+               Left            =   11865
                TabIndex        =   31
                TabStop         =   0   'False
-               Top             =   6810
-               Width           =   855
+               Top             =   7530
+               Width           =   1095
                _Version        =   65536
-               _ExtentX        =   1508
+               _ExtentX        =   1931
                _ExtentY        =   582
                Calculator      =   "JobworkBill.frx":1517
                Caption         =   "JobworkBill.frx":1537
@@ -948,20 +950,20 @@ Begin VB.Form frmJobworkBill
                ReadOnly        =   -1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   208535557
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput7 
                Height          =   330
-               Left            =   9390
+               Left            =   10710
                TabIndex        =   32
                TabStop         =   0   'False
-               Top             =   6810
-               Width           =   570
+               Top             =   7530
+               Width           =   1170
                _Version        =   65536
-               _ExtentX        =   1005
+               _ExtentX        =   2064
                _ExtentY        =   582
                Calculator      =   "JobworkBill.frx":1633
                Caption         =   "JobworkBill.frx":1653
@@ -1007,19 +1009,19 @@ Begin VB.Form frmJobworkBill
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   208535557
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel35 
                Height          =   645
-               Left            =   10785
+               Left            =   12945
                TabIndex        =   33
-               Top             =   6810
-               Width           =   1225
+               Top             =   7530
+               Width           =   1590
                _Version        =   65536
-               _ExtentX        =   2161
+               _ExtentX        =   2805
                _ExtentY        =   1138
                _StockProps     =   77
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -1032,7 +1034,7 @@ Begin VB.Form frmJobworkBill
                   Strikethrough   =   0   'False
                EndProperty
                TintColor       =   16711935
-               Caption         =   " Post-Tax Amt"
+               Caption         =   " Post-Tax Amount"
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
@@ -1040,15 +1042,15 @@ Begin VB.Form frmJobworkBill
                Picture         =   "JobworkBill.frx":176B
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput11 
-               Height          =   650
-               Left            =   12000
+               Height          =   645
+               Left            =   14520
                TabIndex        =   34
                TabStop         =   0   'False
-               Top             =   6810
-               Width           =   1155
+               Top             =   7530
+               Width           =   1395
                _Version        =   65536
-               _ExtentX        =   2037
-               _ExtentY        =   1147
+               _ExtentX        =   2461
+               _ExtentY        =   1138
                Calculator      =   "JobworkBill.frx":1787
                Caption         =   "JobworkBill.frx":17A7
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -1093,21 +1095,21 @@ Begin VB.Form frmJobworkBill
                ReadOnly        =   -1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   208535557
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput3 
-               Height          =   650
-               Left            =   1200
+               Height          =   645
+               Left            =   1560
                TabIndex        =   35
                TabStop         =   0   'False
-               Top             =   6810
-               Width           =   1095
+               Top             =   7530
+               Width           =   975
                _Version        =   65536
-               _ExtentX        =   1931
-               _ExtentY        =   1147
+               _ExtentX        =   1720
+               _ExtentY        =   1138
                Calculator      =   "JobworkBill.frx":18A3
                Caption         =   "JobworkBill.frx":18C3
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -1161,10 +1163,10 @@ Begin VB.Form frmJobworkBill
                Height          =   645
                Left            =   120
                TabIndex        =   36
-               Top             =   6815
-               Width           =   1095
+               Top             =   7530
+               Width           =   1455
                _Version        =   65536
-               _ExtentX        =   1931
+               _ExtentX        =   2566
                _ExtentY        =   1138
                _StockProps     =   77
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -1177,7 +1179,7 @@ Begin VB.Form frmJobworkBill
                   Strikethrough   =   0   'False
                EndProperty
                TintColor       =   16711935
-               Caption         =   " Pre-Tax Amt"
+               Caption         =   " Pre-Tax Amount"
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
@@ -1186,12 +1188,12 @@ Begin VB.Form frmJobworkBill
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel38 
                Height          =   330
-               Left            =   8425
+               Left            =   9630
                TabIndex        =   37
-               Top             =   7130
-               Width           =   975
+               Top             =   7845
+               Width           =   1095
                _Version        =   65536
-               _ExtentX        =   1720
+               _ExtentX        =   1931
                _ExtentY        =   582
                _StockProps     =   77
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -1213,13 +1215,13 @@ Begin VB.Form frmJobworkBill
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput10 
                Height          =   330
-               Left            =   9940
+               Left            =   11865
                TabIndex        =   38
                TabStop         =   0   'False
-               Top             =   7130
-               Width           =   855
+               Top             =   7845
+               Width           =   1095
                _Version        =   65536
-               _ExtentX        =   1508
+               _ExtentX        =   1931
                _ExtentY        =   582
                Calculator      =   "JobworkBill.frx":1A2F
                Caption         =   "JobworkBill.frx":1A4F
@@ -1265,20 +1267,20 @@ Begin VB.Form frmJobworkBill
                ReadOnly        =   -1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   208535557
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput9 
                Height          =   330
-               Left            =   9390
+               Left            =   10710
                TabIndex        =   39
                TabStop         =   0   'False
-               Top             =   7130
-               Width           =   570
+               Top             =   7845
+               Width           =   1170
                _Version        =   65536
-               _ExtentX        =   1005
+               _ExtentX        =   2064
                _ExtentY        =   582
                Calculator      =   "JobworkBill.frx":1B4B
                Caption         =   "JobworkBill.frx":1B6B
@@ -1324,20 +1326,20 @@ Begin VB.Form frmJobworkBill
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   208535557
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput6 
                Height          =   645
-               Left            =   5235
+               Left            =   6195
                TabIndex        =   12
-               Top             =   6810
-               Width           =   1095
+               Top             =   7530
+               Width           =   1215
                _Version        =   65536
-               _ExtentX        =   1931
-               _ExtentY        =   1147
+               _ExtentX        =   2143
+               _ExtentY        =   1138
                Calculator      =   "JobworkBill.frx":1C67
                Caption         =   "JobworkBill.frx":1C87
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -1382,19 +1384,19 @@ Begin VB.Form frmJobworkBill
                ReadOnly        =   0
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   208535557
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel7 
                Height          =   645
-               Left            =   4515
+               Left            =   5235
                TabIndex        =   40
-               Top             =   6810
-               Width           =   735
+               Top             =   7530
+               Width           =   975
                _Version        =   65536
-               _ExtentX        =   1296
+               _ExtentX        =   1720
                _ExtentY        =   1138
                _StockProps     =   77
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -1415,10 +1417,10 @@ Begin VB.Form frmJobworkBill
                Picture         =   "JobworkBill.frx":1D9F
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel8 
-               Height          =   650
-               Left            =   2280
+               Height          =   645
+               Left            =   2520
                TabIndex        =   41
-               Top             =   6810
+               Top             =   7530
                Width           =   855
                _Version        =   65536
                _ExtentX        =   1508
@@ -1442,14 +1444,14 @@ Begin VB.Form frmJobworkBill
                Picture         =   "JobworkBill.frx":1DD7
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput4 
-               Height          =   650
-               Left            =   3120
+               Height          =   645
+               Left            =   3360
                TabIndex        =   11
-               Top             =   6810
-               Width           =   570
+               Top             =   7530
+               Width           =   930
                _Version        =   65536
-               _ExtentX        =   1005
-               _ExtentY        =   1147
+               _ExtentX        =   1640
+               _ExtentY        =   1138
                Calculator      =   "JobworkBill.frx":1DF3
                Caption         =   "JobworkBill.frx":1E13
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -1494,19 +1496,19 @@ Begin VB.Form frmJobworkBill
                ReadOnly        =   0
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   208535557
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel9 
                Height          =   330
-               Left            =   8425
+               Left            =   9630
                TabIndex        =   42
-               Top             =   6810
-               Width           =   975
+               Top             =   7530
+               Width           =   1095
                _Version        =   65536
-               _ExtentX        =   1720
+               _ExtentX        =   1931
                _ExtentY        =   582
                _StockProps     =   77
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -1527,15 +1529,15 @@ Begin VB.Form frmJobworkBill
                Picture         =   "JobworkBill.frx":1F2B
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput5 
-               Height          =   650
-               Left            =   3675
+               Height          =   645
+               Left            =   4275
                TabIndex        =   14
                TabStop         =   0   'False
-               Top             =   6810
-               Width           =   855
+               Top             =   7530
+               Width           =   975
                _Version        =   65536
-               _ExtentX        =   1508
-               _ExtentY        =   1147
+               _ExtentX        =   1720
+               _ExtentY        =   1138
                Calculator      =   "JobworkBill.frx":1F47
                Caption         =   "JobworkBill.frx":1F67
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -1580,16 +1582,16 @@ Begin VB.Form frmJobworkBill
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   208601093
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel10 
                Height          =   645
-               Left            =   6315
+               Left            =   7395
                TabIndex        =   43
-               Top             =   6810
+               Top             =   7530
                Width           =   1095
                _Version        =   65536
                _ExtentX        =   1931
@@ -1614,12 +1616,12 @@ Begin VB.Form frmJobworkBill
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput12 
                Height          =   645
-               Left            =   7395
+               Left            =   8475
                TabIndex        =   13
-               Top             =   6810
-               Width           =   1050
+               Top             =   7530
+               Width           =   1170
                _Version        =   65536
-               _ExtentX        =   1852
+               _ExtentX        =   2064
                _ExtentY        =   1138
                Calculator      =   "JobworkBill.frx":209B
                Caption         =   "JobworkBill.frx":20BB
@@ -1665,19 +1667,19 @@ Begin VB.Form frmJobworkBill
                ReadOnly        =   0
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   208601093
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel12 
                Height          =   330
-               Left            =   4620
+               Left            =   5220
                TabIndex        =   44
                Top             =   630
-               Width           =   1215
+               Width           =   1815
                _Version        =   65536
-               _ExtentX        =   2143
+               _ExtentX        =   3201
                _ExtentY        =   582
                _StockProps     =   77
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -1699,12 +1701,12 @@ Begin VB.Form frmJobworkBill
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel6 
                Height          =   330
-               Left            =   4620
+               Left            =   5220
                TabIndex        =   45
                Top             =   945
-               Width           =   1215
+               Width           =   1815
                _Version        =   65536
-               _ExtentX        =   2143
+               _ExtentX        =   3201
                _ExtentY        =   582
                _StockProps     =   77
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -1729,9 +1731,9 @@ Begin VB.Form frmJobworkBill
                Left            =   120
                TabIndex        =   48
                Top             =   120
-               Width           =   1095
+               Width           =   1695
                _Version        =   65536
-               _ExtentX        =   1931
+               _ExtentX        =   2990
                _ExtentY        =   582
                _StockProps     =   77
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -1756,9 +1758,9 @@ Begin VB.Form frmJobworkBill
                Left            =   9960
                TabIndex        =   49
                Top             =   120
-               Width           =   1335
+               Width           =   1815
                _Version        =   65536
-               _ExtentX        =   2355
+               _ExtentX        =   3201
                _ExtentY        =   582
                _StockProps     =   77
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -1780,15 +1782,15 @@ Begin VB.Form frmJobworkBill
             End
             Begin MSForms.ComboBox cmbBillingType 
                Height          =   330
-               Left            =   5820
+               Left            =   7020
                TabIndex        =   8
                Top             =   945
-               Width           =   2850
+               Width           =   2970
                VariousPropertyBits=   545282075
                BackColor       =   16777215
                BorderStyle     =   1
                DisplayStyle    =   7
-               Size            =   "5027;582"
+               Size            =   "5239;582"
                MatchEntry      =   0
                ShowDropButtonWhen=   1
                SpecialEffect   =   0
@@ -1799,29 +1801,29 @@ Begin VB.Form frmJobworkBill
             End
             Begin VB.Line Line3 
                X1              =   0
-               X2              =   13240
-               Y1              =   6710
-               Y2              =   6710
+               X2              =   16080
+               Y1              =   7425
+               Y2              =   7425
             End
             Begin VB.Line Line1 
                X1              =   0
-               X2              =   13240
+               X2              =   16080
                Y1              =   525
                Y2              =   525
             End
             Begin VB.Line Line2 
                X1              =   0
-               X2              =   13240
-               Y1              =   1370
-               Y2              =   1370
+               X2              =   16080
+               Y1              =   1365
+               Y2              =   1365
             End
          End
          Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
             Height          =   330
             Index           =   2
-            Left            =   8805
+            Left            =   11565
             TabIndex        =   46
-            Top             =   7830
+            Top             =   8430
             Width           =   4575
             _Version        =   65536
             _ExtentX        =   8070
@@ -1862,8 +1864,8 @@ Begin VB.Form frmJobworkBill
             Height          =   330
             Left            =   120
             TabIndex        =   20
-            Top             =   7830
-            Width           =   495
+            Top             =   8430
+            Width           =   735
          End
       End
    End
@@ -1873,8 +1875,8 @@ Begin VB.Form frmJobworkBill
       Left            =   0
       TabIndex        =   16
       Top             =   0
-      Width           =   13740
-      _ExtentX        =   24236
+      Width           =   16500
+      _ExtentX        =   29104
       _ExtentY        =   582
       ButtonWidth     =   609
       ButtonHeight    =   582
@@ -1961,12 +1963,13 @@ Attribute VB_Exposed = False
 Option Explicit
 'Vch Type=NNNNSU/NNNNSC/NNNNSJ/NNNNPU/NNNNPC/NNNNPJ (U-Unit Cost C-Jobwork Unit Cost J-Jobwork P-Purchase S-Sale Q-Sales Quotation Z-Purchase Quotation) & BOM=NNNNXXXXXXXXXXXXFI/NNNNXXXXXXXXXXXXMF (MF/ME/CF/MO/BN/BM) & 01-Purchase 04-Sale 23-Purchase Quotation 24-Sales Quotation
 Public VchType As String, oVchType As String
-Public dSortBy As Boolean, uRate As Variant
+Public dSortBy As Boolean, uRate As Variant, uRateMF As Variant, uRateME As Variant, uRateCF As Variant, uRateMO As Variant, uRateBN As Variant, uRateBM As Variant
 Public vDate As Variant, vtCode, vtType As Variant
 Dim cnJobworkBill As New ADODB.Connection, cnTally As New ADODB.Connection
 Dim rstCompanyMaster As New ADODB.Recordset, rstJobworkBVList As New ADODB.Recordset, rstJobworkBVParent As New ADODB.Recordset, rstJobworkBVChild As New ADODB.Recordset, rstAccountList As New ADODB.Recordset, rstTaxList As New ADODB.Recordset, rstItemList As New ADODB.Recordset, rstNarrationList As New ADODB.Recordset, rstHSNCodeList As New ADODB.Recordset, rstOrderList As New ADODB.Recordset, rstVchSeriesList As New ADODB.Recordset, rstMaterialCentreList As New ADODB.Recordset, rstSalesTypeList As New ADODB.Recordset
 Dim BuyerCode As String, PartyStateCode As String, TaxCode As String, ItemCode As String, RefCode As String, NarrationCode As String, HSNCode As String, ConsigneeCode As String, VchPrefix As String, TranType As String, oVchNo As String, oVchDate As Date, oVchSeriesCode As String, AutoVchNo As String, SalesTypeCode As String
 Dim SortOrder, PrevStr, dblBookMark As Double, blnRecordExist As Boolean, EditMode As Boolean, VchSeries As String, VchSeriesCode As String, MaterialCentreCode As String, VchNumbering As String
+Dim frmDlvChDespatchDetails As New FrmDespatchDetails, frmDlvChConsigneeDetails As New FrmConsigneeDetails
 Private Sub Form_Load()
     On Error GoTo ErrorHandler
     CenterForm Me
@@ -1979,7 +1982,7 @@ Private Sub Form_Load()
     cnJobworkBill.CursorLocation = adUseClient: cnTally.CursorLocation = adUseClient
     cnJobworkBill.Open cnDatabase.ConnectionString
     LoadMasterList
-    rstJobworkBVList.Open "SELECT T.Code,T.Name,Date,T.Type,P.Name As PartyName,C.Name As ConsigneeName,Amount,(Select Name From VchSeriesMaster Where Code=VchSeries) As VchSeriesName,(Select Name From AccountMaster Where Code=MaterialCentre) As MaterialCentre,(Select Name From AccountMaster Where Code=SalesType) As SalesType,IntegrationStatus FROM (JobworkBVParent T INNER JOIN AccountMaster P ON T.Party=P.Code) INNER JOIN AccountMaster C ON T.Consignee=C.Code INNER JOIN AccountMaster C1 ON T.MaterialCentre=C1.Code LEFT JOIN AccountMaster C2 ON T.SalesType=C2.Code WHERE RIGHT(Type,2)='" & VchType & "' AND FYCode='" & FYCode & "' ORDER BY T.Name", cnJobworkBill, adOpenKeyset, adLockPessimistic
+    rstJobworkBVList.Open "SELECT T.Code,T.Name,Date,T.Type,P.Name As PartyName,C.Name As ConsigneeName,Amount,(Select Name From VchSeriesMaster Where Code=VchSeries) As VchSeriesName,(Select Name From AccountMaster Where Code=MaterialCentre) As MaterialCentre,(Select Name From AccountMaster Where Code=SalesType) As SalesType,IntegrationStatus FROM (JobworkBVParent T INNER JOIN AccountMaster P ON T.Party=P.Code) INNER JOIN AccountMaster C ON T.Consignee=C.Code INNER JOIN AccountMaster C1 ON T.MaterialCentre=C1.Code LEFT JOIN AccountMaster C2 ON T.SalesType=C2.Code WHERE RIGHT(Type,2)='" & VchType & "' AND FYCode='" & FYCode & "' ORDER BY T.Code", cnJobworkBill, adOpenKeyset, adLockPessimistic
     rstJobworkBVParent.CursorLocation = adUseClient
     rstJobworkBVList.Filter = adFilterNone
     If rstJobworkBVList.RecordCount > 0 Then rstJobworkBVList.MoveLast
@@ -1988,6 +1991,8 @@ Private Sub Form_Load()
     SSTab1.Tab = 0
 '    SortOrder = "Name"
      If FrmStockLedger.dSortBy = True Then
+    SortOrder = "Code"
+    ElseIf FrmAccountLedger.dSortBy = True Then
     SortOrder = "Code"
     Else
     SortOrder = "AutoVchNo"
@@ -2010,6 +2015,8 @@ Private Sub Form_Load()
         Mh3dLabel6.Visible = False: cmbBillingType.Visible = False: Text5.Width = 7455
         cmbBillingType.ListIndex = 0
     End If
+    Load frmDlvChDespatchDetails
+    Load frmDlvChConsigneeDetails
     Exit Sub
 ErrorHandler:
     BusySystemIndicator False
@@ -2069,11 +2076,20 @@ Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
                     If MsgBox("Are you sure to make a duplicate copy of the Record?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Proceed !") = vbYes Then Exit Sub
                 End If
             End If
+    'Get Revised Unit Rates
     ElseIf (Shift = 0 And KeyCode = vbKeyF7) Then
-        fpSpread1.SetText 5, fpSpread1.ActiveRow, uRate
-        fpSpread1.SetActiveCell 5, fpSpread1.ActiveRow
         Dim Item As Variant, Qty As Variant, Rate As Variant
         With fpSpread1
+        .GetText 3, .ActiveRow, Item
+        If uRate <> 0 And Right(Item, 2) = "FI" Then fpSpread1.SetText 5, fpSpread1.ActiveRow, uRate
+        If uRateMF <> 0 And Right(Item, 2) = "MF" Then fpSpread1.SetText 5, fpSpread1.ActiveRow, uRateMF
+        If uRateME <> 0 And Right(Item, 2) = "ME" Then fpSpread1.SetText 5, fpSpread1.ActiveRow, uRateME
+        If uRateCF <> 0 And Right(Item, 2) = "CF" Then fpSpread1.SetText 5, fpSpread1.ActiveRow, uRateCF
+        If uRateMO <> 0 And Right(Item, 2) = "MO" Then fpSpread1.SetText 5, fpSpread1.ActiveRow, uRateMO
+        If uRateBN <> 0 And Right(Item, 2) = "BN" Then fpSpread1.SetText 5, fpSpread1.ActiveRow, uRateBN
+        If uRateBM <> 0 And Right(Item, 2) = "BM" Then fpSpread1.SetText 5, fpSpread1.ActiveRow, uRateBM
+        fpSpread1.SetActiveCell 5, fpSpread1.ActiveRow
+        
             If .ActiveCol = 4 Or .ActiveCol = 5 Then 'Quantity & Rate
                 .GetText 1, .ActiveRow, Item
                 .GetText 4, .ActiveRow, Qty
@@ -2081,7 +2097,7 @@ Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
                 If Not CheckEmpty(Item, False) Then .SetText 6, .ActiveRow, Qty * Rate: CalculateTotal Else .SetText 4, .ActiveRow, "": .SetText 5, .ActiveRow, "": .SetText 6, .ActiveRow, ""
             End If
         End With
-        dSortBy = False: uRate = 0
+        dSortBy = False: uRate = 0: uRateMF = 0: uRateME = 0: uRateCF = 0: uRateMO = 0: uRateBN = 0: uRateBM = 0
     ElseIf Shift = vbCtrlMask And KeyCode = vbKeyA And Toolbar1.Buttons.Item(1).Enabled Then
         Toolbar1_ButtonClick Toolbar1.Buttons.Item(1)
         KeyCode = 0
@@ -2190,6 +2206,7 @@ Public Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
         HiLiteRecord = True
     ElseIf Button.Index = 4 Then
         If CheckMandatoryFields Then Exit Sub
+        frmDlvChDespatchDetails.Show vbModal
         SaveFields
         UpdateFlag = 0
         If UpdateRecord(rstJobworkBVParent) Then
@@ -2317,6 +2334,8 @@ Private Sub Form_Unload(Cancel As Integer)
     Call CloseRecordset(rstOrderList)
     Call CloseConnection(cnJobworkBill)
     Call CloseConnection(cnTally)
+    Call CloseForm(frmDlvChDespatchDetails)
+    Call CloseForm(frmDlvChConsigneeDetails)
     ShowProgressInStatusBar False
     DisableChildMenu
     With MdiMainMenu
@@ -2455,6 +2474,8 @@ Private Sub ClearFields()
     fpSpread1.ClearRange 1, 1, fpSpread1.MaxCols, fpSpread1.MaxRows, True: fpSpread1.SetActiveCell 1, 1
     PartyStateCode = ""
     VchSeriesCode = "": oVchSeriesCode = "": oVchNo = "": AutoVchNo = ""
+    frmDlvChDespatchDetails.Text1.Text = "": frmDlvChDespatchDetails.Text2.Text = "": frmDlvChDespatchDetails.Text3.Text = "": frmDlvChDespatchDetails.Text4.Text = "": frmDlvChDespatchDetails.MhDateInput1.Value = Null: frmDlvChDespatchDetails.Text5.Text = "": frmDlvChDespatchDetails.MhDateInput2.Value = Null
+    frmDlvChConsigneeDetails.Text1.Text = "": frmDlvChConsigneeDetails.Text2.Text = "": frmDlvChConsigneeDetails.Text3.Text = "": frmDlvChConsigneeDetails.Text4.Text = "": frmDlvChConsigneeDetails.Text5.Text = "": frmDlvChConsigneeDetails.Text6.Text = ""
 End Sub
 Private Sub LoadFields()
     With rstJobworkBVParent
@@ -2481,14 +2502,17 @@ Private Sub LoadFields()
         If rstAccountList.RecordCount > 0 Then rstAccountList.MoveFirst
         rstAccountList.Find "[Code] = '" & ConsigneeCode & "'"
         If Not rstAccountList.EOF Then Text8.Text = rstAccountList.Fields("Col0").Value
+        
         SalesTypeCode = .Fields("SalesType").Value
         If rstSalesTypeList.RecordCount > 0 Then rstSalesTypeList.MoveFirst
         rstSalesTypeList.Find "[Code] = '" & SalesTypeCode & "'"
         If Not rstSalesTypeList.EOF Then Text10.Text = rstSalesTypeList.Fields("Col0").Value
+        
         TaxCode = .Fields("Tax").Value
         If rstTaxList.RecordCount > 0 Then rstTaxList.MoveFirst
         rstTaxList.Find "[Code] = '" & TaxCode & "'"
         If Not rstTaxList.EOF Then Text5.Text = rstTaxList.Fields("Col0").Value
+        
         Text4.Text = .Fields("Remarks").Value
         MhRealInput4.Value = Val(.Fields("Rebate%").Value)
         MhRealInput5.Value = Val(.Fields("Rebate").Value)
@@ -2504,6 +2528,7 @@ Private Sub LoadFields()
             MhRealInput8.Value = Val(.Fields("IGST").Value)
         End If
         MhRealInput11.Value = Val(.Fields("Amount").Value)
+        frmDlvChDespatchDetails.Text1.Text = CheckNull(.Fields("Transport").Value): frmDlvChDespatchDetails.Text2.Text = CheckNull(.Fields("GRNo").Value): frmDlvChDespatchDetails.Text3.Text = CheckNull(.Fields("VehicleNo").Value): frmDlvChDespatchDetails.Text4.Text = CheckNull(.Fields("Station").Value): If Not IsNull(.Fields("GRDate").Value) Then frmDlvChDespatchDetails.MhDateInput1.Value = .Fields("GRDate").Value: frmDlvChDespatchDetails.Text5.Text = CheckNull(.Fields("eWayBill").Value): If Not IsNull(.Fields("eWayBillDate").Value) Then frmDlvChDespatchDetails.MhDateInput2.Value = .Fields("eWayBillDate").Value
         cmbBillingType.ListIndex = IIf(Mid(.Fields("Type").Value, 3, 2) = "10", 0, 1)
         Call LoadItemList(.Fields("Code").Value)
     End With
@@ -2578,6 +2603,13 @@ Private Sub SaveFields()
         .Fields("FYCode").Value = FYCode
         .Fields("RecordStatus").Value = "N"
         .Fields("SalesType").Value = SalesTypeCode
+        .Fields("Transport").Value = frmDlvChDespatchDetails.Text1.Text
+        .Fields("GRNo").Value = frmDlvChDespatchDetails.Text2.Text
+        If frmDlvChDespatchDetails.MhDateInput1.ValueIsNull Then .Fields("GRDate").Value = Null Else .Fields("GRDate").Value = GetDate(frmDlvChDespatchDetails.MhDateInput1.Text)
+        .Fields("VehicleNo").Value = frmDlvChDespatchDetails.Text3.Text
+        .Fields("Station").Value = frmDlvChDespatchDetails.Text4.Text
+        .Fields("eWayBill").Value = frmDlvChDespatchDetails.Text5.Text
+        If frmDlvChDespatchDetails.MhDateInput2.ValueIsNull Then .Fields("eWayBillDate").Value = Null Else .Fields("eWayBillDate").Value = GetDate(frmDlvChDespatchDetails.MhDateInput2.Text)
     End With
 End Sub
 Private Sub AddToList()
@@ -2978,6 +3010,7 @@ Private Sub ViewRecord()
     ClearFields
     If rstJobworkBVList.EOF Then Exit Sub
     FindRecord
+    LoadMasterList
     LoadFields
 End Sub
 Private Sub FindRecord()
@@ -3149,49 +3182,49 @@ Private Sub LoadOrderList()
         SQL = SQL + " ORDER BY I.Name,P.Date,VchNo"
     ElseIf Right(VchType, 1) = "J" Then 'Jobwork
 '       SQL = "SELECT P.Code+E.Code+'XXXXXXMF' As VchCode,LTRIM(P.Name)+'/'+" & iif(instr(1,"Q_Z",LEFT(VchType,1))>0,"LEFT(P.Type,1)","RIGHT(P.Type,1)") & "+'O/MF' As VchNo,P.Date As VchDate,I.Name+'_'+E.Name+'_Printing' As Item,C.ActualQuantity As OrderedQty,C.BilledMFC As BilledQtyC,C.BilledMFB As BilledQtyD,C.DeliveredQuantityC As ChallanQty,C.DeliveredQuantityB As DirectQty FROM ((BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code) INNER JOIN BookMaster I ON P.Book=I.Code) INNER JOIN ElementMaster E ON C.Element=E.Code WHERE P.BookPrinter='" & BuyerCode & "' AND " & iif(instr(1,"Q_Z",LEFT(VchType,1))>0,"LEFT(P.Type,1)","RIGHT(P.Type,1)") & "='" & iif(instr(1,"Q_Z",LEFT(VchType,1))>0,"O",Left(VchType, 1)) & "' AND P.Code NOT IN (SELECT Ref FROM JobworkBVChild WHERE Ref=P.Code AND RIGHT(BOM,2)='FI' AND LEFT(BOM,2)='" & TranType & "') AND "
-        SQL = "SELECT P.Code+'XXXXXXXXXXXXMF' As VchCode,LTRIM(P.Name)+'/'+" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "+'O/MF' As VchNo,P.Date As VchDate,I.Name+'_Printing' As Item,C.ActualQuantity As OrderedQty,C.BilledMFC As BilledQtyC,C.BilledMFB As BilledQtyD,C.DeliveredQuantityC As ChallanQty,C.DeliveredQuantityB As DirectQty FROM (BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code) INNER JOIN BookMaster I ON P.Book=I.Code WHERE P.BookPrinter='" & BuyerCode & "' AND " & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "='" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "O", Left(VchType, 1)) & "' AND P.Code NOT IN (SELECT Ref FROM JobworkBVChild WHERE Ref=P.Code AND RIGHT(BOM,2)='FI' AND LEFT(BOM,2)='" & TranType & "') AND "
+        SQL = "SELECT P.Code AS oCode,P.Code+'XXXXXXXXXXXXMF' As VchCode,LTRIM(P.Name)+'/'+" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "+'O/MF' As VchNo,P.Date As VchDate,I.Name+'_Printing' As Item,C.ActualQuantity As OrderedQty,C.BilledMFC As BilledQtyC,C.BilledMFB As BilledQtyD,C.DeliveredQuantityC As ChallanQty,C.DeliveredQuantityB As DirectQty FROM (BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code) INNER JOIN BookMaster I ON P.Book=I.Code WHERE P.BookPrinter='" & BuyerCode & "' AND " & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "='" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "O", Left(VchType, 1)) & "' AND P.Code NOT IN (SELECT Ref FROM JobworkBVChild WHERE Ref=P.Code AND RIGHT(BOM,2)='FI' AND LEFT(BOM,2)='" & TranType & "') AND "
         If cmbBillingType.ListIndex = 0 Then 'Direct
             SQL = SQL + "(C.ActualQuantity-C.DeliveredQuantityC-C.BilledMFB)>0" 'Ordered-Delivered(Challan)-Billed(Direct)
         ElseIf cmbBillingType.ListIndex = 1 Then 'Against Challan
             SQL = SQL + "(C.DeliveredQuantityC-C.BilledMFC)>0" 'Delivered(Challan)-Billed(Challan)
         End If
         SQL = SQL + " UNION ALL "
-        SQL = SQL + "SELECT P.Code+E.Code+'XXXXXXME' As VchCode,LTRIM(P.Name)+'/'+" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "+'O/ME' As VchNo,P.Date As VchDate,I.Name+'_'+E.Name+'_Printing' As Item,C.ActualQuantity As OrderedQty,C.BilledMEC As BilledQtyC,C.BilledMEB As BilledQtyD,C.DeliveredQuantityC As ChallanQty,C.DeliveredQuantityB As DirectQty FROM ((BookPOParent P INNER JOIN BookPOChild06 C ON P.Code=C.Code) INNER JOIN BookMaster I ON P.Book=I.Code) INNER JOIN ElementMaster E ON C.Element=E.Code WHERE P.TitlePrinter='" & BuyerCode & "' AND " & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "='" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "O", Left(VchType, 1)) & "' AND P.Code NOT IN (SELECT Ref FROM JobworkBVChild WHERE Ref=P.Code AND RIGHT(BOM,2)='FI' AND LEFT(BOM,2)='" & TranType & "') AND "
+        SQL = SQL + "SELECT P.Code AS oCode,P.Code+E.Code+'XXXXXXME' As VchCode,LTRIM(P.Name)+'/'+" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "+'O/ME' As VchNo,P.Date As VchDate,I.Name+'_'+E.Name+'_Printing' As Item,C.ActualQuantity As OrderedQty,C.BilledMEC As BilledQtyC,C.BilledMEB As BilledQtyD,C.DeliveredQuantityC As ChallanQty,C.DeliveredQuantityB As DirectQty FROM ((BookPOParent P INNER JOIN BookPOChild06 C ON P.Code=C.Code) INNER JOIN BookMaster I ON P.Book=I.Code) INNER JOIN ElementMaster E ON C.Element=E.Code WHERE P.TitlePrinter='" & BuyerCode & "' AND " & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "='" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "O", Left(VchType, 1)) & "' AND P.Code NOT IN (SELECT Ref FROM JobworkBVChild WHERE Ref=P.Code AND RIGHT(BOM,2)='FI' AND LEFT(BOM,2)='" & TranType & "') AND "
         If cmbBillingType.ListIndex = 0 Then 'Direct
             SQL = SQL + "(C.ActualQuantity-C.DeliveredQuantityC-C.BilledMEB)>0" 'Ordered-Delivered(Challan)-Billed(Direct)
         ElseIf cmbBillingType.ListIndex = 1 Then 'Against Challan
             SQL = SQL + "(C.DeliveredQuantityC-C.BilledMEC)>0" 'Delivered(Challan)-Billed(Challan)
         End If
         SQL = SQL + " UNION ALL "
-        SQL = SQL + "SELECT P.Code+E.Code+'XXXXXXCF' As VchCode,LTRIM(P.Name)+'/'+" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "+'O/CF' As VchNo,P.Date As VchDate,I.Name+'_'+E.Name+'_Printing' As Item,C.ActualQuantity As OrderedQty,C.BilledCFC As BilledQtyC,C.BilledCFB As BilledQtyD,C.DeliveredQuantityC As ChallanQty,C.DeliveredQuantityB As DirectQty FROM ((BookPOParent P INNER JOIN BookPOChild0901 C ON P.Code=C.Code) INNER JOIN BookMaster I ON P.Book=I.Code) INNER JOIN BookMaster E ON C.Book=E.Code WHERE P.TitlePrinter='" & BuyerCode & "' AND " & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "='" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "O", Left(VchType, 1)) & "' AND P.Code NOT IN (SELECT Ref FROM JobworkBVChild WHERE Ref=P.Code AND RIGHT(BOM,2)='FI' AND LEFT(BOM,2)='" & TranType & "') AND "
+        SQL = SQL + "SELECT P.Code AS oCode,P.Code+E.Code+'XXXXXXCF' As VchCode,LTRIM(P.Name)+'/'+" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "+'O/CF' As VchNo,P.Date As VchDate,I.Name+'_'+E.Name+'_Printing' As Item,C.ActualQuantity As OrderedQty,C.BilledCFC As BilledQtyC,C.BilledCFB As BilledQtyD,C.DeliveredQuantityC As ChallanQty,C.DeliveredQuantityB As DirectQty FROM ((BookPOParent P INNER JOIN BookPOChild0901 C ON P.Code=C.Code) INNER JOIN BookMaster I ON P.Book=I.Code) INNER JOIN BookMaster E ON C.Book=E.Code WHERE P.TitlePrinter='" & BuyerCode & "' AND " & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "='" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "O", Left(VchType, 1)) & "' AND P.Code NOT IN (SELECT Ref FROM JobworkBVChild WHERE Ref=P.Code AND RIGHT(BOM,2)='FI' AND LEFT(BOM,2)='" & TranType & "') AND "
         If cmbBillingType.ListIndex = 0 Then 'Direct
             SQL = SQL + "(C.ActualQuantity-C.DeliveredQuantityC-C.BilledCFB)>0" 'Ordered-Delivered(Challan)-Billed(Direct)
         ElseIf cmbBillingType.ListIndex = 1 Then 'Against Challan
             SQL = SQL + "(C.DeliveredQuantityC-C.BilledCFC)>0" 'Delivered(Challan)-Billed(Challan)
         End If
         SQL = SQL + " UNION ALL "
-        SQL = SQL + "SELECT P.Code+E.Code+O.Code+'MO' As VchCode,LTRIM(P.Name)+'/'+" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "+'O/MO' As VchNo,P.Date As VchDate,I.Name+'_'+E.Name+'_'+O.Name As Item,C.Quantity As OrderedQty,C.BilledMOC As BilledQtyC,C.BilledMOB As BilledQtyD,C.DeliveredQuantityC As ChallanQty,C.DeliveredQuantityB As DirectQty FROM (((BookPOParent P INNER JOIN BookPOChild07 C ON P.Code=C.Code) INNER JOIN BookMaster I ON P.Book=I.Code) INNER JOIN ElementMaster E ON C.Element=E.Code) INNER JOIN GeneralMaster O ON C.Operation=O.Code WHERE P.Laminator='" & BuyerCode & "' AND " & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "='" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "O", Left(VchType, 1)) & "' AND P.Code NOT IN (SELECT Ref FROM JobworkBVChild WHERE Ref=P.Code AND RIGHT(BOM,2)='FI' AND LEFT(BOM,2)='" & TranType & "') AND "
+        SQL = SQL + "SELECT P.Code AS oCode,P.Code+E.Code+O.Code+'MO' As VchCode,LTRIM(P.Name)+'/'+" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "+'O/MO' As VchNo,P.Date As VchDate,I.Name+'_'+E.Name+'_'+O.Name As Item,C.Quantity As OrderedQty,C.BilledMOC As BilledQtyC,C.BilledMOB As BilledQtyD,C.DeliveredQuantityC As ChallanQty,C.DeliveredQuantityB As DirectQty FROM (((BookPOParent P INNER JOIN BookPOChild07 C ON P.Code=C.Code) INNER JOIN BookMaster I ON P.Book=I.Code) INNER JOIN ElementMaster E ON C.Element=E.Code) INNER JOIN GeneralMaster O ON C.Operation=O.Code WHERE P.Laminator='" & BuyerCode & "' AND " & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "='" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "O", Left(VchType, 1)) & "' AND P.Code NOT IN (SELECT Ref FROM JobworkBVChild WHERE Ref=P.Code AND RIGHT(BOM,2)='FI' AND LEFT(BOM,2)='" & TranType & "') AND "
         If cmbBillingType.ListIndex = 0 Then 'Direct
             SQL = SQL + "(C.Quantity-C.DeliveredQuantityC-C.BilledMOB)>0" 'Ordered-Delivered(Challan)-Billed(Direct)
         ElseIf cmbBillingType.ListIndex = 1 Then 'Against Challan
             SQL = SQL + "(C.DeliveredQuantityC-C.BilledMOC)>0" 'Delivered(Challan)-Billed(Challan)
         End If
         SQL = SQL + " UNION ALL "
-        SQL = SQL + "SELECT P.Code+'XXXXXXXXXXXXBN' As VchCode,LTRIM(P.Name)+'/'+" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "+'O/BN' As VchNo,P.Date As VchDate,I.Name+'_Binding' As Item,C.ActualQuantity As OrderedQty,C.BilledBNC As BilledQtyC,C.BilledBNB As BilledQtyD,C.DeliveredQuantityC As ChallanQty,C.DeliveredQuantityB As DirectQty FROM (BookPOParent P INNER JOIN BookPOChild08 C ON P.Code=C.Code) INNER JOIN BookMaster I ON P.Book=I.Code WHERE P.Binder='" & BuyerCode & "' AND " & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "='" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "O", Left(VchType, 1)) & "' AND P.Code NOT IN (SELECT Ref FROM JobworkBVChild WHERE Ref=P.Code AND RIGHT(BOM,2)='FI' AND LEFT(BOM,2)='" & TranType & "') AND "
+        SQL = SQL + "SELECT P.Code AS oCode,P.Code+'XXXXXXXXXXXXBN' As VchCode,LTRIM(P.Name)+'/'+" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "+'O/BN' As VchNo,P.Date As VchDate,I.Name+'_Binding' As Item,C.ActualQuantity As OrderedQty,C.BilledBNC As BilledQtyC,C.BilledBNB As BilledQtyD,C.DeliveredQuantityC As ChallanQty,C.DeliveredQuantityB As DirectQty FROM (BookPOParent P INNER JOIN BookPOChild08 C ON P.Code=C.Code) INNER JOIN BookMaster I ON P.Book=I.Code WHERE P.Binder='" & BuyerCode & "' AND " & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "='" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "O", Left(VchType, 1)) & "' AND P.Code NOT IN (SELECT Ref FROM JobworkBVChild WHERE Ref=P.Code AND RIGHT(BOM,2)='FI' AND LEFT(BOM,2)='" & TranType & "') AND "
         If cmbBillingType.ListIndex = 0 Then 'Direct
             SQL = SQL + "(C.ActualQuantity-C.DeliveredQuantityC-C.BilledBNB)>0" 'Ordered-Delivered(Challan)-Billed(Direct)
         ElseIf cmbBillingType.ListIndex = 1 Then 'Against Challan
             SQL = SQL + "(C.DeliveredQuantityC-C.BilledBNC)>0" 'Delivered(Challan)-Billed(Challan)
         End If
         SQL = SQL + " UNION ALL "
-        SQL = SQL + "SELECT P.Code+C.Item+'XXXXX'+C.Category+'BM' As VchCode,LTRIM(P.Name)+'/'+" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "+'O/BM' As VchNo,P.Date As VchDate,I.Name+'_'+CASE WHEN C.Category='1' THEN O.Name WHEN C.Category='2' THEN R.Name ELSE U.Name END As Item,C.OrderQuantity As OrderedQty,C.BilledBMC As BilledQtyC,C.BilledBMB As BilledQtyD,C.DeliveredQuantityC As ChallanQty,C.DeliveredQuantityB As DirectQty FROM ((((BookPOParent P INNER JOIN BookPOChild0801 C ON P.Code=C.Code) INNER JOIN BookMaster I ON P.Book=I.Code) LEFT JOIN OutsourceItemMaster O ON C.Category+C.Item='1'+O.Code) LEFT JOIN PaperMaster R ON C.Category+C.Item='2'+R.Code) LEFT JOIN BookMaster U ON C.Category+C.Item='3'+U.Code WHERE C.Vendor='" & BuyerCode & "' AND " & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "='" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "O", Left(VchType, 1)) & "' AND C.Amount<>0 " & _
+        SQL = SQL + "SELECT P.Code AS oCode,P.Code+C.Item+'XXXXX'+C.Category+'BM' As VchCode,LTRIM(P.Name)+'/'+" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "+'O/BM' As VchNo,P.Date As VchDate,I.Name+'_'+CASE WHEN C.Category='1' THEN O.Name WHEN C.Category='2' THEN R.Name ELSE U.Name END As Item,C.OrderQuantity As OrderedQty,C.BilledBMC As BilledQtyC,C.BilledBMB As BilledQtyD,C.DeliveredQuantityC As ChallanQty,C.DeliveredQuantityB As DirectQty FROM ((((BookPOParent P INNER JOIN BookPOChild0801 C ON P.Code=C.Code) INNER JOIN BookMaster I ON P.Book=I.Code) LEFT JOIN OutsourceItemMaster O ON C.Category+C.Item='1'+O.Code) LEFT JOIN PaperMaster R ON C.Category+C.Item='2'+R.Code) LEFT JOIN BookMaster U ON C.Category+C.Item='3'+U.Code WHERE C.Vendor='" & BuyerCode & "' AND " & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "='" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "O", Left(VchType, 1)) & "' AND C.Amount<>0 " & _
                                 "AND P.Code NOT IN (SELECT Ref FROM JobworkBVChild WHERE Ref=P.Code AND RIGHT(BOM,2)='FI' AND LEFT(BOM,2)='" & TranType & "') AND "
         If cmbBillingType.ListIndex = 0 Then 'Direct
             SQL = SQL + "(C.OrderQuantity-C.DeliveredQuantityC-C.BilledBMB)>0" 'Ordered-Delivered(Challan)-Billed(Direct)
         ElseIf cmbBillingType.ListIndex = 1 Then 'Against Challan
             SQL = SQL + "(C.DeliveredQuantityC-C.BilledBMC)>0" 'Delivered(Challan)-Billed(Challan)
         End If
-        SQL = SQL + " ORDER BY Item,VchNo,VchDate"
+        SQL = SQL + " ORDER BY oCode" ',Item,VchNo,VchDate"
     End If
     rstOrderList.Open SQL, cnJobworkBill, adOpenKeyset, adLockReadOnly
     rstOrderList.ActiveConnection = Nothing
@@ -3244,7 +3277,7 @@ Private Sub LoadOrderList()
             SQL = SQL + " FROM (BookPOParent P INNER JOIN BookMaster I ON P.Book=I.Code) INNER JOIN GeneralMaster H ON I.HSNCode=H.Code WHERE P.Code+'XXXXXXXXXXXXFI' IN (" & FrmOrderList.VchCodeList & ") ORDER BY I.Name,VchNo"
         ElseIf Right(VchType, 1) = "J" Then
 '           SQL = "SELECT I.Name+'_'+E.Name+'_Printing' As ItemName,I.Code As ItemCode,H.Code As HSNCode,H.Name As HSNName,ROUND((C.PrintAmount+Adjustment+C.PlateAmount+PAdjustment+PaperAmount+RAdjustment)/C.ActualQuantity,3) As UnitRate,P.ProfitMargin,(SELECT Code+'-'+Name FROM GeneralMaster WHERE Type='17' AND Value1=1) As Narration,LTRIM(P.Name)+'/'+" & iif(instr(1,"Q_Z",LEFT(VchType,1))>0,"LEFT(P.Type,1)","RIGHT(P.Type,1)") & "+'O/MF' As VchNo,P.Code+E.Code+'XXXXXXMF' As VchCode,"
-            SQL = "SELECT I.Name+'_Printing' As ItemName,I.Code As ItemCode,H.Code As HSNCode,H.Name As HSNName,ROUND((C.PrintAmount1+C.PrintAmount2+C.PrintAmount4+Adjustment+C.PlateAmount1+C.PlateAmount2+C.PlateAmount4+PAdjustment+PaperAmount1+PaperAmount2+PaperAmount4+RAdjustment)/C.ActualQuantity,3) As UnitRate,P.ProfitMargin,(SELECT Code+'-'+Name FROM GeneralMaster WHERE Type='17' AND Value1=1) As Narration,LTRIM(P.Name)+'/'+" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "+'O/MF' As VchNo,P.Code+'XXXXXXXXXXXXMF' As VchCode,"
+            SQL = "SELECT P.Code AS oCode,I.Name+'_Printing' As ItemName,I.Code As ItemCode,H.Code As HSNCode,H.Name As HSNName,ROUND((C.PrintAmount1+C.PrintAmount2+C.PrintAmount4+Adjustment+C.PlateAmount1+C.PlateAmount2+C.PlateAmount4+PAdjustment+PaperAmount1+PaperAmount2+PaperAmount4+RAdjustment)/C.ActualQuantity,3) As UnitRate,P.ProfitMargin,(SELECT Code+'-'+Name FROM GeneralMaster WHERE Type='17' AND Value1=1) As Narration,LTRIM(P.Name)+'/'+" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "+'O/MF' As VchNo,P.Code+'XXXXXXXXXXXXMF' As VchCode,"
             If cmbBillingType.ListIndex = 0 Then 'Direct
                 SQL = SQL + "(C.ActualQuantity-C.DeliveredQuantityC-C.BilledMFB) As PendingQty" 'Ordered-Delivered(Challan)-Billed(Direct)
             ElseIf cmbBillingType.ListIndex = 1 Then 'Against Challan
@@ -3253,7 +3286,7 @@ Private Sub LoadOrderList()
 '           SQL = SQL + " FROM (((BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code) INNER JOIN BookMaster I ON P.Book=I.Code) INNER JOIN ElementMaster E ON C.Element=E.Code) INNER JOIN GeneralMaster H ON I.HSNCode=H.Code WHERE P.Code+E.Code+'XXXXXXMF' IN (" & FrmOrderList.VchCodeList & ")"
             SQL = SQL + " FROM ((BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code) INNER JOIN BookMaster I ON P.Book=I.Code) INNER JOIN GeneralMaster H ON I.HSNCode=H.Code WHERE P.Code+'XXXXXXXXXXXXMF' IN (" & FrmOrderList.VchCodeList & ")"
             SQL = SQL + " UNION ALL "
-            SQL = SQL + "SELECT I.Name+'_'+E.Name+'_Printing' As ItemName,I.Code As ItemCode,H.Code As HSNCode,H.Name As HSNName,ROUND((C.PrintAmount+C.Adjustment+C.PlateAmount+C.PAdjustment+C.PaperAmount+C.RAdjustment)/C.ActualQuantity,3) As UnitRate,P.ProfitMargin,(SELECT Code+'-'+Name FROM GeneralMaster WHERE Type='17' AND Value1=1) As Narration,LTRIM(P.Name)+'/'+" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "+'O/ME' As VchNo,P.Code+E.Code+'XXXXXXME' As VchCode,"
+            SQL = SQL + "SELECT P.Code AS oCode,I.Name+'_'+E.Name+'_Printing' As ItemName,I.Code As ItemCode,H.Code As HSNCode,H.Name As HSNName,ROUND((C.PrintAmount+C.Adjustment+C.PlateAmount+C.PAdjustment+C.PaperAmount+C.RAdjustment)/C.ActualQuantity,3) As UnitRate,P.ProfitMargin,(SELECT Code+'-'+Name FROM GeneralMaster WHERE Type='17' AND Value1=1) As Narration,LTRIM(P.Name)+'/'+" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "+'O/ME' As VchNo,P.Code+E.Code+'XXXXXXME' As VchCode,"
             If cmbBillingType.ListIndex = 0 Then 'Direct
                 SQL = SQL + "(C.ActualQuantity-C.DeliveredQuantityC-C.BilledMEB) As PendingQty" 'Ordered-Delivered(Challan)-Billed(Direct)
             ElseIf cmbBillingType.ListIndex = 1 Then 'Against Challan
@@ -3261,7 +3294,8 @@ Private Sub LoadOrderList()
             End If
             SQL = SQL + " FROM (((BookPOParent P INNER JOIN BookPOChild06 C ON P.Code=C.Code) INNER JOIN BookMaster I ON P.Book=I.Code) INNER JOIN ElementMaster E ON C.Element=E.Code) INNER JOIN GeneralMaster H ON I.HSNCode=H.Code WHERE P.Code+E.Code+'XXXXXXME' IN (" & FrmOrderList.VchCodeList & ")"
             SQL = SQL + " UNION ALL "
-            SQL = SQL + "SELECT I.Name+'_'+E.Name+'_Printing' As ItemName,I.Code As ItemCode,H.Code As HSNCode,H.Name As HSNName,ROUND(((C1.PrintAmount+C1.Adjustment+C1.PlateAmount+C1.PAdjustment+C1.PaperAmount+C1.RAdjustment)/(SELECT SUM(ActualQuantity) FROM BookPOChild0901 WHERE Code=P.Code))*C.ActualQuantity,3) As UnitRate,P.ProfitMargin,(SELECT Code+'-'+Name FROM GeneralMaster WHERE Type='17' AND Value1=1) As Narration,LTRIM(P.Name)+'/'+" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "+'O/CF' As VchNo,P.Code+E.Code+'XXXXXXCF' As VchCode,"
+            SQL = SQL + "SELECT P.Code AS oCode,I.Name+'_'+E.Name+'_Printing' As ItemName,I.Code As ItemCode,H.Code As HSNCode,H.Name As HSNName,ROUND(((C1.PrintAmount+C1.Adjustment+C1.PlateAmount+C1.PAdjustment+C1.PaperAmount+C1.RAdjustment)/(SELECT SUM(ActualQuantity) FROM BookPOChild0901 WHERE Code=P.Code)),3) As UnitRate,P.ProfitMargin,(SELECT Code+'-'+Name FROM GeneralMaster WHERE Type='17' AND Value1=1) As Narration,LTRIM(P.Name)+'/'+" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "+'O/CF' As VchNo,P.Code+E.Code+'XXXXXXCF' As VchCode,"
+            'SQL = SQL + "SELECT I.Name+'_'+E.Name+'_Printing' As ItemName,I.Code As ItemCode,H.Code As HSNCode,H.Name As HSNName,ROUND(((C1.PrintAmount+C1.Adjustment+C1.PlateAmount+C1.PAdjustment+C1.PaperAmount+C1.RAdjustment)/(SELECT SUM(ActualQuantity) FROM BookPOChild0901 WHERE Code=P.Code))*C.ActualQuantity,3) As UnitRate,P.ProfitMargin,(SELECT Code+'-'+Name FROM GeneralMaster WHERE Type='17' AND Value1=1) As Narration,LTRIM(P.Name)+'/'+" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "+'O/CF' As VchNo,P.Code+E.Code+'XXXXXXCF' As VchCode,"
             If cmbBillingType.ListIndex = 0 Then 'Direct
                 SQL = SQL + "(C.ActualQuantity-C.DeliveredQuantityC-C.BilledCFB) As Pending" 'Ordered-Delivered(Challan)-Billed(Direct)
             ElseIf cmbBillingType.ListIndex = 1 Then 'Against Challan
@@ -3269,7 +3303,7 @@ Private Sub LoadOrderList()
             End If
             SQL = SQL + "  FROM ((((BookPOParent P INNER JOIN BookPOChild09 C1 ON P.Code=C1.Code) INNER JOIN BookPOChild0901 C ON C.Code=C1.Code) INNER JOIN BookMaster I ON  P.Book=I.Code) INNER JOIN BookMaster E ON C.Book=E.Code) INNER JOIN GeneralMaster H ON I.HSNCode=H.Code WHERE P.Code+E.Code+'XXXXXXCF' IN (" & FrmOrderList.VchCodeList & ")"
             SQL = SQL + " UNION ALL "
-            SQL = SQL + "SELECT I.Name+'_'+E.Name+'_'+O.Name As ItemName,I.Code As ItemCode,H.Code As HSNCode,H.Name As HSNName,ROUND((C.Amount+C.Adjustment)/C.Quantity,3) As UnitRate,P.ProfitMargin,(SELECT Code+'-'+Name FROM GeneralMaster WHERE Type='17' AND Value1=1) As Narration,LTRIM(P.Name)+'/'+" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "+'O/MO' As VchNo,P.Code+E.Code+O.Code+'MO' As VchCode,"
+            SQL = SQL + "SELECT P.Code AS oCode,I.Name+'_'+E.Name+'_'+O.Name As ItemName,I.Code As ItemCode,H.Code As HSNCode,H.Name As HSNName,ROUND((C.Amount+C.Adjustment)/C.Quantity,3) As UnitRate,P.ProfitMargin,(SELECT Code+'-'+Name FROM GeneralMaster WHERE Type='17' AND Value1=1) As Narration,LTRIM(P.Name)+'/'+" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "+'O/MO' As VchNo,P.Code+E.Code+O.Code+'MO' As VchCode,"
             If cmbBillingType.ListIndex = 0 Then 'Direct
                 SQL = SQL + "(C.Quantity-C.DeliveredQuantityC-C.BilledMOB) As PendingQty" 'Ordered-Delivered(Challan)-Billed(Direct)
             ElseIf cmbBillingType.ListIndex = 1 Then 'Against Challan
@@ -3277,7 +3311,7 @@ Private Sub LoadOrderList()
             End If
             SQL = SQL + " FROM ((((BookPOParent P INNER JOIN BookPOChild07 C ON P.Code=C.Code) INNER JOIN BookMaster I ON P.Book=I.Code) INNER JOIN ElementMaster E ON C.Element=E.Code) INNER JOIN GeneralMaster O ON C.Operation=O.Code) INNER JOIN GeneralMaster H ON I.HSNCode=H.Code WHERE P.Code+E.Code+O.Code+'MO' IN (" & FrmOrderList.VchCodeList & ")"
             SQL = SQL + " UNION ALL "
-            SQL = SQL + "SELECT I.Name+'_Binding' As ItemName,I.Code As ItemCode,H.Code As HSNCode,H.Name As HSNName,ROUND((C.BillAmount-C.VAT)/C.ActualQuantity,3) As UnitRate,P.ProfitMargin,(SELECT Code+'-'+Name FROM GeneralMaster WHERE Type='17' AND Value1=1) As Narration,LTRIM(P.Name)+'/'+" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "+'O/BN' As VchNo,P.Code+'XXXXXXXXXXXXBN' As VchCode,"
+            SQL = SQL + "SELECT P.Code AS oCode,I.Name+'_Binding' As ItemName,I.Code As ItemCode,H.Code As HSNCode,H.Name As HSNName,ROUND((C.BillAmount-C.VAT)/C.ActualQuantity,3) As UnitRate,P.ProfitMargin,(SELECT Code+'-'+Name FROM GeneralMaster WHERE Type='17' AND Value1=1) As Narration,LTRIM(P.Name)+'/'+" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "+'O/BN' As VchNo,P.Code+'XXXXXXXXXXXXBN' As VchCode,"
             If cmbBillingType.ListIndex = 0 Then 'Direct
                 SQL = SQL + "(C.ActualQuantity-C.DeliveredQuantityC-C.BilledBNB) As PendingQty" 'Ordered-Delivered(Challan)-Billed(Direct)
             ElseIf cmbBillingType.ListIndex = 1 Then 'Against Challan
@@ -3285,14 +3319,14 @@ Private Sub LoadOrderList()
             End If
             SQL = SQL + " FROM ((BookPOParent P INNER JOIN BookPOChild08 C ON P.Code=C.Code) INNER JOIN BookMaster I ON P.Book=I.Code) INNER JOIN GeneralMaster H ON I.HSNCode=H.Code WHERE P.Code+'XXXXXXXXXXXXBN' IN (" & FrmOrderList.VchCodeList & ")"
             SQL = SQL + " UNION ALL "
-            SQL = SQL + "SELECT I.Name+'_'+CASE WHEN C.Category='1' THEN O.Name WHEN C.Category='2' THEN R.Name ELSE U.Name END As ItemName,I.Code As ItemCode,H.Code As HSNCode,H.Name As HSNName,ROUND(C.Amount/C.OrderQuantity,3) As UnitRate,P.ProfitMargin,(SELECT Code+'-'+Name FROM GeneralMaster WHERE Type='17' AND Value1=1) As Narration,LTRIM(P.Name)+'/'+" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "+'O/BM' As VchNo,P.Code+C.Item+'XXXXX'+C.Category+'BM' As VchCode,"
+            SQL = SQL + "SELECT P.Code AS oCode,I.Name+'_'+CASE WHEN C.Category='1' THEN O.Name WHEN C.Category='2' THEN R.Name ELSE U.Name END As ItemName,I.Code As ItemCode,H.Code As HSNCode,H.Name As HSNName,ROUND(C.Amount/C.OrderQuantity,3) As UnitRate,P.ProfitMargin,(SELECT Code+'-'+Name FROM GeneralMaster WHERE Type='17' AND Value1=1) As Narration,LTRIM(P.Name)+'/'+" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "+'O/BM' As VchNo,P.Code+C.Item+'XXXXX'+C.Category+'BM' As VchCode,"
             If cmbBillingType.ListIndex = 0 Then 'Direct
                 SQL = SQL + "(C.OrderQuantity-C.DeliveredQuantityC-C.BilledBMB) As PendingQty" 'Ordered-Delivered(Challan)-Billed(Direct)
             ElseIf cmbBillingType.ListIndex = 1 Then 'Against Challan
                 SQL = SQL + "(C.DeliveredQuantityC-C.BilledBMC) As PendingQty" 'Delivered(Challan)-Billed(Challan)
             End If
             SQL = SQL + " FROM (((((BookPOParent P INNER JOIN BookPOChild0801 C ON P.Code=C.Code) INNER JOIN BookMaster I ON P.Book=I.Code) LEFT JOIN OutsourceItemMaster O ON C.Category+C.Item='1'+O.Code) LEFT JOIN PaperMaster R ON C.Category+C.Item='2'+R.Code) LEFT JOIN BookMaster U ON C.Category+C.Item='3'+U.Code) INNER JOIN GeneralMaster H ON I.HSNCode=H.Code WHERE P.Code+C.Item+'XXXXX'+C.Category+'BM' IN (" & FrmOrderList.VchCodeList & ")"
-            SQL = SQL + " ORDER BY ItemName,VchNo"
+            SQL = SQL + " ORDER BY oCode" 'ItemName,VchNo"
         End If
         rstOrderList.Open SQL, cnJobworkBill, adOpenKeyset, adLockReadOnly
         If rstOrderList.RecordCount > 0 Then
@@ -3374,7 +3408,6 @@ Private Sub PushVch()
     With rstCompanyMaster
         If .State = adStateOpen Then .Close
         '.Open "SELECT VchSeries,Account,UOM FROM AppConfig WHERE VchType='SF'", cnJobworkBill, adOpenKeyset, adLockReadOnly
-        '+'-'+Right(VchType,2)
         .Open "SELECT Name+'-'+VchNAme As VchSeries,VchNAme As Account,'No.' As UOM FROM VchSeriesMaster WHERE Right(VchType,2)='" & VchType & "'", cnJobworkBill, adOpenKeyset, adLockReadOnly
         VchSeries = .Fields("VchSeries").Value: SaleAccount = .Fields("Account").Value: UOM = .Fields("UOM").Value
     End With
@@ -3384,8 +3417,8 @@ Private Sub PushVch()
     End With
     With rstJobworkBVChild
         If .State = adStateOpen Then .Close
-        XMLStr = "SELECT LTRIM(H.Name) As BillNo,H.Date As BillDate,M.PrintName As MatCentre," + _
-                        "B.PrintName As Buyer,Party As AccountCode,B.Address1 As bAddress1,B.Address2 As bAddress2,B.Address3 As bAddress3,B.Address4 As bAddress4,B.TIN As bGSTIN,C.PrintName As Consignee,C.Address1 As cAddress1,C.Address2 As cAddress2,C.Address3 As cAddress3,C.Address4 As cAddress4,C.TIN As cGSTIN," + _
+        XMLStr = "SELECT Left((Select V.Prefix From VchSeriesMaster V Where Code=VchSeries),2)+'/'+'" & Right(VchType, 2) & "'+'/'+Ltrim(AutoVchNo)+'/'+ '" & FYFromTo & "'  As BillNo,H.Date As BillDate,M.PrintName As MatCentre," + _
+                        "B.PrintName As Buyer,Party As AccountCode,B.Address1 As bAddress1,B.Address2 As bAddress2,B.Address3 As bAddress3,B.Address4 As bAddress4,B.TIN As bGSTIN,(Select Name From GeneralMaster Where Code= B.State) AS State,C.PrintName As Consignee,C.Address1 As cAddress1,C.Address2 As cAddress2,C.Address3 As cAddress3,C.Address4 As cAddress4,C.TIN As cGSTIN," + _
                         "H.TaxableAmount,H.[Rebate%],H.Rebate,H.Freight,H.Adjustment,H.Tax,H.[IGST%],H.IGST,H.[SGST%],H.SGST,H.[CGST%],H.CGST,H.Amount As FinalAmount,H.Remarks," + _
                         "I.Name As ItemName,(Select PrintName From GeneralMaster Where Code=I.IntegrationUnit) As IntegrationUnit,I.ItemIntegrationName As Item,I.BusyCode As ItemAlias,D.Rate,D.[Disc%],ABS(D.Quantity) As Quantity,D.Amount,H.Name As DeliveryNoteNo,ISNULL(H.GRNo,'') As DispatchDocNo,ISNULL(H.Transport,'') As DishpatchThrough,ISNULL(H.Station,'') As Destination,ISNULL(H.Transport,'') As [CarrierName/Agent],ISNULL(H.GRNo,'') As [BillofLoading/LR-RRNO],ISNULL(H.GRDate,'') As GRDate,ISNULL(H.VehicleNo,'') As MotorVehicleNo,ISNULL(H.eWayBill,'') As eWayBill,ISNULL(H.eWayBillDate,'') As eWayBillDate,IIF((Select Name From AccountMaster Where Code=H.SalesType)='Sales','Bill of Supply','Bill of Supply') As DocType,'Supply' As SubType,'Generated by me' As BILLSTATUS,D.Item As ItemCode,D.LongNarration01,D.LongNarration02,D.LongNarration03,D.LongNarration04,D.LongNarration05,CASE WHEN Ref IS NULL THEN '' ELSE 'Ref. No.: '+LTRIM(R.Name)+'/'+RIGHT(R.Type,1)+'O/'+RIGHT(D.BOM,2) END As RefOrderNo," & _
                         "(Convert(nvarchar,(ISNULL((Select PaperConsumptionsheets1 From BookPOChild05 Where Code=R.Code),0)+ISNULL((Select PaperConsumptionsheets2 From BookPOChild05 Where Code=R.Code),0)+ISNULL((Select PaperConsumptionsheets4 From BookPOChild05 Where Code=R.Code),0)+ISNULL((Select PaperConsumptionsheets From BookPOChild06 Where Code=R.Code),0)+ISNULL((Select PaperConsumptionsheets From BookPOChild09 Where Code=R.Code),0)))+' Sheets') As PaperConsumptionsheets " & _
@@ -3484,7 +3517,7 @@ Private Sub PushVch()
             XMLStr = XMLStr + "<CONSIGNEENAME>" + Replace(Trim(.Fields("Buyer").Value), "&", "&amp;") + "</CONSIGNEENAME>" 'CONSIGNEE Info
             XMLStr = XMLStr + "<CONSIGNEEPINCODE>" + Replace(Trim(.Fields("bAddress4").Value), "&", "&amp;") + "</CONSIGNEEPINCODE>"
             XMLStr = XMLStr + "<CONSIGNEEGSTIN>" + Replace(Trim(.Fields("bGSTIN").Value), "&", "&amp;") + "</CONSIGNEEGSTIN>"
-            'xmlstr = xmlstr + "<CONSIGNEESTATENAME>" + Replace(Trim(.Fields("bAddress3").Value), "&", "&amp;") + "</CONSIGNEESTATENAME>"
+            XMLStr = XMLStr + "<CONSIGNEESTATENAME>" + Replace(Trim(.Fields("State").Value), "&", "&amp;") + "</CONSIGNEESTATENAME>"
 
             If Not CheckEmpty(Trim(.Fields("bAddress1").Value) + Trim(.Fields("bAddress2").Value) + Trim(.Fields("bAddress3").Value) + Trim(.Fields("bAddress4").Value), False) Then
                 XMLStr = XMLStr + "<CONSIGNEEADDRESS.LIST TYPE=""String"">"
@@ -3806,15 +3839,16 @@ Private Sub DelOldVch(ByVal dspMsg As Boolean)
     End If
 End Sub
 Public Sub PrintJobworkBillVch(ByVal VchCode As String, ByVal VchType As String, ByVal BillType As String, Optional ByVal OutputType As String)
-    Dim SQL As String, FS01 As String, FS02 As String, FS03 As String, FS04 As String, FS05 As String, FS06 As String, FS07 As String, FS08 As String, FS09 As String, FS10 As String, FS11 As String, FS12 As String, FS13 As String, FS14 As String, FS15 As String, FS16 As String, FS17 As String
-    FS01 = "'Size: '+LTRIM(S.PrintName)+IIf(I.Pages = 0, '', ', '+LTRIM(I.Pages)+' pages/'+LTRIM(I.Forms)+'f ('+LTRIM(IIF(OneColorForms<>0,LTRIM(OneColorForms)+'f-1Col','')+' '+IIF(TwoColorForms<>0,LTRIM(TwoColorForms)+'f-2Col','')+' '+IIF(FourColorForms<>0,LTRIM(FourColorForms)+'f-4Col',''))+')')" 'Direct Billing
+    Dim SQL As String, oSQL As String, FS01 As String, FS02 As String, FS03 As String, FS04 As String, FS05 As String, FS06 As String, FS07 As String, FS08 As String, FS09 As String, FS10 As String, FS11 As String, FS12 As String, FS13 As String, FS14 As String, FS15 As String, FS16 As String, FS17 As String
+    FS01 = "'Size: '+LTRIM(S.PrintName) "
+    '+IIf(I.Pages = 0, '', ', '+LTRIM(I.Pages)+' pages/'+LTRIM(I.Forms)+'f ('+LTRIM(IIF(OneColorForms<>0,LTRIM(OneColorForms)+'f-1Col','')+' '+IIF(TwoColorForms<>0,LTRIM(TwoColorForms)+'f-2Col','')+' '+IIF(FourColorForms<>0,LTRIM(FourColorForms)+'f-4Col',''))+')')" 'Direct Billing
     FS02 = "'Size: '+LTRIM(S.PrintName)+IIf(I.Pages = 0 AND (ISNull(C2.Pages1) = True OR C2.Pages1+C2.Pages2+C2.Pages4 = 0), '', ', '+LTRIM(IIF(ISNULL(C2.Pages1)=True,I.Pages,C2.Pages1+C2.Pages2+C2.Pages4))+' pages/'+LTRIM(IIF(ISNULL(C2.Pages1)=True,I.Forms,C2.Forms1+C2.Forms2+C2.Forms4))+'f ('+IIF(ISNULL(C2.Pages1)=True,LTRIM(IIF(I.OneColorForms<>0,LTRIM(I.OneColorForms)+'f-1Col','')+' '+IIF(I.TwoColorForms<>0,LTRIM(I.TwoColorForms)+'f-2Col','')+' '+IIF(I.FourColorForms<>0,LTRIM(I.FourColorForms)+'f-4Col','')),LTRIM(IIF(C2.Forms1<>0,LTRIM(C2.Forms1)+'f-1Col','')+' '+IIF(C2.Forms2<>0,LTRIM(C2.Forms2)+'f-2Col','')+' '+IIF(C2.Forms4<>0,LTRIM(C2.Forms4)+'f-4Col','')))+')')" 'Billing Against Sale Order
     FS03 = "'MF-Text Plates: '+LTRIM((C2.[TotalPlates1-¼]+C2.[TotalPlates1-½]+C2.[TotalPlates1-1]+C2.[RevisedPlates1])*1)+ '-plates- 1Col, '+LTRIM((C2.[TotalPlates2-¼]+C2.[TotalPlates2-½]+C2.[TotalPlates2-1]+C2.[RevisedPlates2])*2)+ '-plates- 2Col, '+LTRIM((C2.[TotalPlates4-¼]+C2.[TotalPlates4-½]+C2.[TotalPlates4-1]+C2.[RevisedPlates4])*4)+ '-plates- 4Col  = ' +LTRIM(((C2.[TotalPlates1-¼]+C2.[TotalPlates1-½]+C2.[TotalPlates1-1]+C2.[RevisedPlates1])*1)+((C2.[TotalPlates2-¼]+C2.[TotalPlates2-½]+C2.[TotalPlates2-1]+C2.[RevisedPlates2])*2)+((C2.[TotalPlates4-¼]+C2.[TotalPlates4-½]+C2.[TotalPlates4-1]+C2.[RevisedPlates4])*4))+'  Nos.'"
     FS04 = "'MF-Text Ptg.  : '+LTRIM(Forms1)+ 'forms- 1Col, '+LTRIM(Forms2)+ 'forms- 2Col, '+LTRIM(Forms4)+ 'forms- 4Col  = ' +LTRIM(Forms1+Forms2+forms4)+'  Nos.'"
-    FS05 = "'ME-Title Plates: '+LTRIM(C3.TotalPlates)+ '-Plates ( '+LTRIM(FrontPrintingType)+' + '+LTRIM(BackPrintingType)+' ) - Color'"
-    FS06 = "'ME-Title Ptg.   : '+'( '+LTRIM(FrontPrintingType)+' + '+LTRIM(BackPrintingType)+' ) - Color Printing'"
-    FS07 = "'CF-Title Plates: '+LTRIM(C5.TotalPlates)+ '-Plates ( '+LTRIM(FrontPrintingColor)+' + '+LTRIM(BackPrintingColor)+' ) - Color'"
-    FS08 = "'CF-Title Ptg. : '+'( '+LTRIM(FrontPrintingColor)+' + '+LTRIM(BackPrintingColor)+' ) - Color Printing'"
+    FS05 = "'ME-Title Plates: '+LTRIM(C3.TotalPlates)+ '-Plates ( '+LTRIM(C3.FrontPrintingType)+' + '+LTRIM(C3.BackPrintingType)+' ) - Color'"
+    FS06 = "'ME-Title Ptg.   : '+'( '+LTRIM(C3.FrontPrintingType)+' + '+LTRIM(C3.BackPrintingType)+' ) - Color Printing'"
+    FS07 = "'CF-Title Plates: '+LTRIM(C5.TotalPlates)+ '-Plates ( '+LTRIM(C5.FrontPrintingColor)+' + '+LTRIM(C5.BackPrintingColor)+' ) - Color'"
+    FS08 = "'CF-Title Ptg. : '+'( '+LTRIM(C5.FrontPrintingColor)+' + '+LTRIM(C5.BackPrintingColor)+' ) - Color Printing'"
     FS09 = "'Misc. Operations : '+'Text & Title Finishing'"
     FS10 = "'Binding : '+'( '+LTRIM(C4.BindingType)+')'"
     FS11 = "'BOM : '+' BOM Items' "
@@ -3826,52 +3860,111 @@ Public Sub PrintJobworkBillVch(ByVal VchCode As String, ByVal VchType As String,
     FS17 = "'Paper : '+' Total Paper Value '"
     On Error Resume Next
     Screen.MousePointer = vbHourglass
-    
     If rstJobworkBVChild.State = adStateOpen Then rstJobworkBVChild.Close
     If rstCompanyMaster.State = adStateOpen Then rstCompanyMaster.Close
-    rstCompanyMaster.Open "SELECT PrintName,Address1,Address2,Address3,Address4,Phone,Mobile,EMail,Website,GSTIN,Declaration01,Declaration02,Declaration03,Declaration04,Declaration05,Declaration06,Declaration07,BankName,AccountNo,IFSC,Prefix,Suffix FROM CompanyMaster P INNER JOIN CompChild C ON P.Code=C.Code WHERE VchType=" & IIf(Right(VchType, 2) = "SU", 8, IIf(Right(VchType, 2) = "SJ", 9, 23)), cnJobworkBill, adOpenKeyset, adLockReadOnly
+    rstCompanyMaster.Open "SELECT PrintName,Address1,Address2,Address3,Address4,Phone,Mobile,EMail,Website,GSTIN,Declaration01,Declaration02,Declaration03,Declaration04,Declaration05,Declaration06,Declaration07,BankName,AccountNo,IFSC,Prefix,Suffix FROM CompanyMaster P INNER JOIN CompChild C ON P.Code=C.Code WHERE VchType=" & IIf(Right(VchType, 2) = "SU", 4, IIf(Right(VchType, 2) = "SC", 4, IIf(Right(VchType, 2) = "SJ", 4, 23))), cnJobworkBill, adOpenKeyset, adLockReadOnly
     rstCompanyMaster.ActiveConnection = Nothing
-    SQL = "SELECT LTRIM(P.Name) +'/' +'" & Right(Year(FinancialYearFrom), 2) + "-" + Right(Year(FinancialYearTo), 2) & "' As BillNo,P.Date As BillDate," & _
+      SQL = "SELECT Distinct LTRIM(P.Name) +'/' +'" & Right(Year(FinancialYearFrom), 2) + "-" + Right(Year(FinancialYearTo), 2) & "' As BillNo,P.Date As BillDate," & _
                 "A.PrintName As Party,A.Address1 As PartyAddress1,A.Address2 As PartyAddress2,A.Address3 As PartyAddress3,A.Address4 As PartyAddress4,A.TIN As PartyGSTIN,C.PrintName As Consignee,C.Address1 As ConsigneeAddress1,C.Address2 As ConsigneeAddress2,C.Address3 As ConsigneeAddress3,C.Address4 As ConsigneeAddress4,C.TIN As ConsigneeGSTIN," & _
                 "P.[Rebate%],P.Rebate,P.Freight,P.Adjustment,P.TaxableAmount,P.[IGST%],P.IGST,P.[SGST%],P.SGST,P.[CGST%],P.CGST,P.Amount As TotalAmount,P.Remarks," & _
-                "N.PrintName As Narration,'StockItem: '+I.PrintName As Item,H.PrintName As HSNCode,C1.Quantity,C1.Rate,C1.Amount,N.Name As SrNo,LTRIM(C1.Code)+LTRIM(C1.SrNo) As Ref," & _
-                " "
-        cnJobworkBill.CommandTimeout = 300
-    If Right(VchType, 2) = "SC" Or Right(VchType, 2) = "SJ" Or Right(VchType, 2) = "PC" Or Right(VchType, 2) = "PJ" Or Right(VchType, 2) = "QC" Or Right(VchType, 2) = "QJ" Or Right(VchType, 2) = "ZC" Or Right(VchType, 2) = "ZJ" Then
-        rstJobworkBVChild.Open SQL & "'' As cmbTitle," & FS01 & ",LongNarration01,LongNarration02,LongNarration03,LongNarration04,LongNarration05," & _
-        "ISNULL('Paper Consumption : '+(Convert(nvarchar,Round(Format((ISNULL((Select PaperConsumptionsheets1 From BookPOChild05 Where Code=P2.Code),0)+ISNULL((Select PaperConsumptionsheets2 From BookPOChild05 Where Code=P2.Code),0)+ISNULL((Select PaperConsumptionsheets4 From BookPOChild05 Where Code=P2.Code),0)+ISNULL((Select PaperConsumptionsheets From BookPOChild06 Where Code=P2.Code),0)+ISNULL((Select PaperConsumptionsheets From BookPOChild09 Where Code=P2.Code),0))/P2.EstQty01*C1.Quantity,'00.00'),.5))+' Sheets'),'') As PaperConsumptionsheets, " & _
-        "IIF(C1.Ref IS NULL,'','Ref. No. :')+(CASE WHEN C1.Ref IS NULL THEN '' ELSE LTRIM(P2.Name)+'/'+RIGHT(P2.Type,1)+'O/'+RIGHT(C1.BOM,2) END) As RefOrderNo, " & _
-                "IIF(Right(C1.BOM,2)='MF'," & FS03 & ",IIF(Right(C1.BOM,2)='ME'," & FS05 & ",IIF(Right(C1.BOM,2)='CF'," & FS07 & ",IIF(Right(C1.BOM,2)='MO'," & FS09 & ",IIF(Right(C1.BOM,2)='BP'," & FS10 & ",IIF(Right(C1.BOM,2)='BM'," & FS11 & ",''))))))," & _
-                "IIF(Right(C1.BOM,2)='MF'," & FS04 & ",IIF(Right(C1.BOM,2)='ME'," & FS06 & ",IIF(Right(C1.BOM,2)='CF'," & FS08 & ",'')))," & _
-                "IIF(Right(C1.BOM,2)='MF'," & FS12 & ",IIF(Right(C1.BOM,2)='ME'," & FS15 & ",IIF(Right(C1.BOM,2)='CF'," & FS16 & ",'')))," & _
-                "IIF(Right(C1.BOM,2)='MF'," & FS13 & ",'')," & _
-                "IIF(Right(C1.BOM,2)='MF'," & FS14 & ",'')," & _
-                "IIF(Right(C1.BOM,2)='MF',((C2.PBillAmount-C2.Pvat)/P2.EstQty01)*C1.Quantity,IIF(Right(C1.BOM,2)='ME',((C3.PBillAmount-C3.Pvat)/P2.EstQty01)*C1.Quantity,IIF(Right(C1.BOM,2)='CF',((C5.PlateAmount-C5.PGST)/P2.EstQty01)*C1.Quantity,IIF(Right(C1.BOM,2)='MO',0,IIF(Right(C1.BOM,2)='BP',0,IIF(Right(C1.BOM,2)='BM',0,0))))))," & _
-                "IIF(Right(C1.BOM,2)='MF',((C2.BillAmount-C2.vat)/P2.EstQty01)*C1.Quantity,IIF(Right(C1.BOM,2)='ME',((C3.BillAmount-C3.vat)/P2.EstQty01)*C1.Quantity,IIF(Right(C1.BOM,2)='CF',((C5.PrintAmount-C5.GST)/P2.EstQty01)*C1.Quantity,IIF(Right(C1.BOM,2)='MO',0,IIF(Right(C1.BOM,2)='BP',0,IIF(Right(C1.BOM,2)='BM',0,0))))))," & _
-                "IIF(Right(C1.BOM,2)='MF',((C2.RBillAmount-C2.vat)/P2.EstQty01)*C1.Quantity,IIF(Right(C1.BOM,2)='ME',((C3.RBillAmount-C3.vat)/P2.EstQty01)*C1.Quantity,IIF(Right(C1.BOM,2)='CF',((C5.PaperAmount-C5.GST)/P2.EstQty01)*C1.Quantity,IIF(Right(C1.BOM,2)='MO',0,IIF(Right(C1.BOM,2)='BP',0,IIF(Right(C1.BOM,2)='BM',0,0))))))," & _
-                "C2.BillAmount,C2.PBillAmount,IIF(Right(C1.BOM,2)='MF',((C2.RBillAmount-C2.vat)/P2.EstQty01)*C1.Quantity,IIF(Right(C1.BOM,2)='ME',((C3.RBillAmount-C3.vat)/P2.EstQty01)*C1.Quantity,IIF(Right(C1.BOM,2)='CF',((C5.PaperAmount-C5.GST)/P2.EstQty01)*C1.Quantity,IIF(Right(C1.BOM,2)='MO',0,IIF(Right(C1.BOM,2)='BP',0,IIF(Right(C1.BOM,2)='BM',0,0)))))),C2.RBillAmount,P2.EstQty01,C2.Vat,C2.Pvat,C2.Rvat,P2.Name As OrderNo," & _
-                "(C2.[TotalPlates1-¼]+C2.[TotalPlates1-½]+C2.[TotalPlates1-1]+C2.[RevisedPlates1])*1 As TotalPlates1,((C2.[TotalPlates1-¼]+C2.[TotalPlates1-½]+C2.[TotalPlates1-1]+C2.[RevisedPlates1])*1)*PlateRate1 As PlateAmount1,(C2.[TotalPlates2-¼]+C2.[TotalPlates2-½]+C2.[TotalPlates2-1]+C2.[RevisedPlates2])*2 As TotalPlates2,((C2.[TotalPlates2-¼]+C2.[TotalPlates2-½]+C2.[TotalPlates2-1]+C2.[RevisedPlates2])*2)*PlateRate2 As PlateAmount2,(C2.[TotalPlates4-¼]+C2.[TotalPlates4-½]+C2.[TotalPlates4-1]+C2.[RevisedPlates4])*4 As TotalPlates4,((C2.[TotalPlates4-¼]+C2.[TotalPlates4-½]+C2.[TotalPlates4-1]+C2.[RevisedPlates4])*4)*PlateRate4 As PlateAmount4,Left((Select V.Prefix From VchSeriesMaster V Where Code=VchSeries),2)+'_'+'" & Right(VchType, 2) & "'+'/'+Ltrim(AutoVchNo) As VchNo " & _
-                "FROM((((((((((((((((JobworkBVParent P INNER JOIN JobworkBVChild C1 ON P.Code=C1.Code) LEFT JOIN BookMaster I ON C1.Item=I.Code) LEFT JOIN GeneralMaster N ON C1.Narration=N.Code) LEFT JOIN GeneralMaster H ON C1.HSNCode=H.Code) LEFT JOIN (BookPOParent P2 LEFT JOIN BookPOChild05 C2 ON P2.Code=C2.Code) ON C1.Ref=P2.Code) LEFT JOIN BookPOChild06 C3 ON P2.Code=C3.Code) LEFT JOIN BookPOChild08 C4 ON P2.Code=C4.Code) LEFT JOIN BookPOChild09 C5 ON P2.Code=C5.Code) LEFT JOIN GeneralMaster B ON C4.BindingType=B.Code) LEFT JOIN PaperMaster PM1 ON C2.Paper1=PM1.Code) LEFT JOIN PaperMaster PM2 ON C2.Paper1=PM2.Code) LEFT JOIN PaperMaster PM4 ON C2.Paper1=PM4.Code) LEFT JOIN PaperMaster PM5 ON C3.Paper=PM5.Code) LEFT JOIN PaperMaster PM6 ON C5.Paper=PM6.Code) LEFT JOIN GeneralMaster S ON I.FinishSize=S.Code) LEFT JOIN AccountMaster A ON P.Party=A.Code) LEFT JOIN AccountMaster C ON P.Consignee=C.Code " & _
-                "WHERE P.Code='" + VchCode + "' ORDER BY I.PrintName,N.Name", cnJobworkBill, adOpenKeyset, adLockReadOnly
-    ElseIf Right(VchType, 2) = "SX" Or Right(VchType, 2) = "PX" Or Right(VchType, 2) = "QX" Or Right(VchType, 2) = "ZX" Then
+                "N.PrintName As Narration,'StockItem: '+I.PrintName As Item,H.PrintName As HSNCode,C1.Quantity,C1.Rate,C1.Amount,N.Name As Narration,LTRIM(C1.Code)+LTRIM(C1.SrNo) As Ref,"
+      oSQL = SQL
+    cnJobworkBill.CommandTimeout = 300
+    If InStr(1, "SC_PC_QC_ZC", Right(VchType, 2)) > 0 Then
+                                                                SQL = SQL + "'' As cmbTitle," & FS01 & " As FinishSize,LongNarration01,LongNarration02,LongNarration03,LongNarration04,LongNarration05,"
+                                                                SQL = SQL + "ISNULL('Paper Consumption : '+(Convert(nvarchar,Round(Format((ISNULL((Select PaperConsumptionsheets1 From BookPOChild05 Where Code=P2.Code),0)+ISNULL((Select PaperConsumptionsheets2 From BookPOChild05 Where Code=P2.Code),0)+ISNULL((Select PaperConsumptionsheets4 From BookPOChild05 Where Code=P2.Code),0)+ISNULL((Select PaperConsumptionsheets From BookPOChild06 Where Code=P2.Code),0)+ISNULL((Select PaperConsumptionsheets From BookPOChild09 Where Code=P2.Code),0))/P2.EstQty01*C1.Quantity,'00.00'),.5))+' Sheets'),'') As PaperConsumptionsheets,"
+                                                                SQL = SQL + "IIF(C1.Ref IS NULL,'','Ref. No. :')+(CASE WHEN C1.Ref IS NULL THEN '' ELSE LTRIM(P2.Name)+'/'+RIGHT(P2.Type,1)+'O/'+RIGHT(C1.BOM,2) END) As RefOrderNo,"
+                                                                SQL = SQL + "IIF(Len(I.ISBN)=0,'','ISBN - '+I.ISBN) As ISBN,'' AS FS04,'' AS FS05,'' AS FS06,'' AS FS07,Left((Select V.Prefix From VchSeriesMaster V Where Code=VchSeries),2)+'/'+'" & Right(VchType, 2) & "'+'/'+Ltrim(AutoVchNo) As VchNo,P.ChallanNo,P.ChallanDate,P.Transport,P.GRNo,P.GRDate,P.VehicleNo,P.Station,eWayBill,eWayBillDate "
+                                                                SQL = SQL + "FROM((((((((((((((((JobworkBVParent P INNER JOIN JobworkBVChild C1 ON P.Code=C1.Code) LEFT JOIN BookMaster I ON C1.Item=I.Code) LEFT JOIN GeneralMaster N ON C1.Narration=N.Code) LEFT JOIN GeneralMaster H ON C1.HSNCode=H.Code) LEFT JOIN (BookPOParent P2 LEFT JOIN BookPOChild05 C2 ON P2.Code=C2.Code) ON C1.Ref=P2.Code) LEFT JOIN BookPOChild06 C3 ON P2.Code=C3.Code) LEFT JOIN BookPOChild08 C4 ON P2.Code=C4.Code) LEFT JOIN BookPOChild09 C5 ON P2.Code=C5.Code) LEFT JOIN GeneralMaster B ON C4.BindingType=B.Code) LEFT JOIN PaperMaster PM1 ON C2.Paper1=PM1.Code) LEFT JOIN PaperMaster PM2 ON C2.Paper1=PM2.Code) LEFT JOIN PaperMaster PM4 ON C2.Paper1=PM4.Code) LEFT JOIN PaperMaster PM5 ON C3.Paper=PM5.Code) LEFT JOIN PaperMaster PM6 ON C5.Paper=PM6.Code) LEFT JOIN GeneralMaster S ON I.FinishSize=S.Code) LEFT JOIN AccountMaster A ON P.Party=A.Code) LEFT JOIN AccountMaster C ON P.Consignee=C.Code "
+                                                                SQL = SQL + "WHERE P.Code='" + VchCode + "' ORDER BY Item,Ref " ', cnJobworkBill, adOpenKeyset, adLockReadOnly
+    ElseIf InStr(1, "SX_PX_QX_ZX", Right(VchType, 2)) > 0 Then
         rstJobworkBVChild.Open SQL & "'' As cmbTitle," & FS02 & " As FinishSize,LongNarration01,LongNarration02,LongNarration03,LongNarration04,LongNarration05 FROM (((((((JobworkBVParent P INNER JOIN JobworkBVChild C1 ON P.Code=C1.Code) INNER JOIN BookMaster I ON C1.Item=I.Code) INNER JOIN GeneralMaster N ON C1.Narration=N.Code) INNER JOIN GeneralMaster H ON C1.HSNCode=H.Code) INNER JOIN (BookPOParent P2 INNER JOIN BookPOChild05 C2 ON P2.Code=C2.Code) ON C1.Ref=P2.Code) INNER JOIN GeneralMaster S ON I.FinishSize=S.Code) INNER JOIN AccountMaster A ON P.Party=A.Code) INNER JOIN AccountMaster C ON P.Consignee=C.Code WHERE P.Code='" + VchCode + "' AND BOM='TP' UNION " & _
-                                                             SQL & "'' As cmbTitle,'Finish Size: '+LTRIM(S.PrintName)+', '+LTRIM(C2.FrontPrintingType)+'+'+LTRIM(C2.BackPrintingType)+'Col' As FinishSize,LongNarration01,LongNarration02,LongNarration03,LongNarration04,LongNarration05 FROM (((((((JobworkBVParent P INNER JOIN JobworkBVChild C1 ON P.Code=C1.Code) INNER JOIN BookMaster I ON C1.Item=I.Code) INNER JOIN GeneralMaster N ON C1.Narration=N.Code) INNER JOIN GeneralMaster H ON C1.HSNCode=H.Code) INNER JOIN (BookPOParent P2 INNER JOIN BookPOChild06 C2 ON P2.Code=C2.Code) ON C1.Ref=P2.Code) INNER JOIN GeneralMaster S ON I.FinishSize=S.Code) INNER JOIN AccountMaster A ON P.Party=A.Code) INNER JOIN AccountMaster C ON P.Consignee=C.Code WHERE P.Code='" + VchCode + "' AND BOM='CP' UNION " & _
-                                                             SQL & "I2.PrintName+', Finish Size: '+LTRIM(S.PrintName)+', '+LTRIM(C3.FrontPrintingColor)+'+'+LTRIM(C3.BackPrintingColor)+'Col, '+LTRIM(C3.[Ups/Plate])+'Ups, Qty: '+LTRIM(C3.ActualQuantity) As cmbItem,'' As FinishSize,LongNarration01,LongNarration02,LongNarration03,LongNarration04,LongNarration05 FROM ((((((((JobworkBVParent P INNER JOIN JobworkBVChild C1 ON P.Code=C1.Code) INNER JOIN BookMaster I ON C1.Item=I.Code) INNER JOIN GeneralMaster N ON C1.Narration=N.Code) INNER JOIN GeneralMaster H ON C1.HSNCode=H.Code) INNER JOIN (BookPOParent P2 INNER JOIN (BookPOChild09 C2 INNER JOIN BookPOChild0901 C3 ON C2.Code=C3.Code) ON P2.Code=C2.Code) ON C1.Ref=P2.Code) INNER JOIN AccountMaster A ON P.Party=A.Code) INNER JOIN AccountMaster C ON P.Consignee=C.Code) INNER JOIN BookMaster I2 ON C3.Book=I2.Code) INNER JOIN GeneralMaster S ON I2.FinishSize=S.Code WHERE P.Code='" + VchCode + "' AND BOM='JP' UNION " & _
-                                                             SQL & "'' As cmbTitle,'Finish Size: '+LTRIM(S.PrintName) As FinishSize,LongNarration01,LongNarration02,LongNarration03,LongNarration04,LongNarration05 FROM ((((((JobworkBVParent P INNER JOIN JobworkBVChild C1 ON P.Code=C1.Code) INNER JOIN BookMaster I ON C1.Item=I.Code) INNER JOIN GeneralMaster N ON C1.Narration=N.Code) INNER JOIN GeneralMaster H ON C1.HSNCode=H.Code) INNER JOIN GeneralMaster S ON I.FinishSize=S.Code) INNER JOIN AccountMaster A ON P.Party=A.Code) INNER JOIN AccountMaster C ON P.Consignee=C.Code WHERE P.Code='" + VchCode + "' AND BOM='MO' UNION " & _
-                                                             SQL & "'' As cmbTitle,'Finish Size: '+LTRIM(S.PrintName)+', '+LTRIM(IIF(ISNULL(C3.Pages1)=True,I.Pages,C3.Pages1+C3.Pages2+C3.Pages4))+' pages/'+LTRIM(C2.BindingForms+C2.ExtraForms)+'f, '+LTRIM(B.PrintName) As FinishSize,LongNarration01,LongNarration02,LongNarration03,LongNarration04,LongNarration05 FROM (((((((((JobworkBVParent P INNER JOIN JobworkBVChild C1 ON P.Code=C1.Code) INNER JOIN BookMaster I ON C1.Item=I.Code) INNER JOIN GeneralMaster N ON C1.Narration=N.Code) INNER JOIN GeneralMaster H ON C1.HSNCode=H.Code) INNER JOIN (BookPOParent P2 INNER JOIN BookPOChild08 C2 ON P2.Code=C2.Code) ON C1.Ref=P2.Code) INNER JOIN GeneralMaster S ON I.FinishSize=S.Code) INNER JOIN AccountMaster A ON P.Party=A.Code) INNER JOIN AccountMaster C ON P.Consignee=C.Code) INNER JOIN GeneralMaster B ON C2.BindingType=B.Code) LEFT JOIN BookPOChild05  C3 ON P2.Code=C3.Code " & _
-                                                                          "WHERE P.Code='" + VchCode + "' AND BOM='BD' ORDER BY Item,SrNo,cmbTitle", cnJobworkBill, adOpenKeyset, adLockOptimistic
-    ElseIf Right(VchType, 2) = "SU" Or Right(VchType, 2) = "PU" Or Right(VchType, 2) = "QU" Or Right(VchType, 2) = "ZU" Then  '"SG"
-        rstJobworkBVChild.Open SQL & "'' As cmbTitle," & FS01 & " As FinishSize,LongNarration01,LongNarration02,LongNarration03,LongNarration04,LongNarration05, " & _
-                                                                                    "ISNULL('Paper Consumption : '+(Convert(nvarchar,Round(Format((ISNULL((Select PaperConsumptionsheets1 From BookPOChild05 Where Code=R.Code),0)+ISNULL((Select PaperConsumptionsheets2 From BookPOChild05 Where Code=R.Code),0)+ISNULL((Select PaperConsumptionsheets4 From BookPOChild05 Where Code=R.Code),0)+ISNULL((Select PaperConsumptionsheets From BookPOChild06 Where Code=R.Code),0)+ISNULL((Select PaperConsumptionsheets From BookPOChild09 Where Code=R.Code),0))/R.EstQty01*C1.Quantity,'00.00'),.5))+' Sheets'),'') As PaperConsumptionsheets, " & _
-                                                                                    "IIF(C1.Ref IS NULL,'','Ref. No. :')+(CASE WHEN Ref IS NULL THEN '' ELSE LTRIM(R.Name)+'/'+RIGHT(R.Type,1)+'O/'+RIGHT(C1.BOM,2) END) As RefOrderNo,Left((Select V.Prefix From VchSeriesMaster V Where Code=VchSeries),2)+'_'+'" & Right(VchType, 2) & "'+'/'+Ltrim(AutoVchNo) As VchNo " & _
-                                                                                    "FROM (((((((JobworkBVParent P INNER JOIN JobworkBVChild C1 ON P.Code=C1.Code) INNER JOIN BookMaster I ON C1.Item=I.Code) INNER JOIN GeneralMaster N ON C1.Narration=N.Code) INNER JOIN GeneralMaster H ON C1.HSNCode=H.Code) INNER JOIN GeneralMaster S ON I.FinishSize=S.Code) INNER JOIN AccountMaster A ON P.Party=A.Code) INNER JOIN AccountMaster C ON P.Consignee=C.Code) LEFT JOIN BookPOParent R ON C1.Ref=R.Code WHERE P.Code='" + VchCode + "'  ORDER BY Item,SrNo", cnJobworkBill, adOpenKeyset, adLockOptimistic 'AND BOM='WS'
+                                                                SQL & "'' As cmbTitle,'Finish Size: '+LTRIM(S.PrintName)+', '+LTRIM(C2.FrontPrintingType)+'+'+LTRIM(C2.BackPrintingType)+'Col' As FinishSize,LongNarration01,LongNarration02,LongNarration03,LongNarration04,LongNarration05 FROM (((((((JobworkBVParent P INNER JOIN JobworkBVChild C1 ON P.Code=C1.Code) INNER JOIN BookMaster I ON C1.Item=I.Code) INNER JOIN GeneralMaster N ON C1.Narration=N.Code) INNER JOIN GeneralMaster H ON C1.HSNCode=H.Code) INNER JOIN (BookPOParent P2 INNER JOIN BookPOChild06 C2 ON P2.Code=C2.Code) ON C1.Ref=P2.Code) INNER JOIN GeneralMaster S ON I.FinishSize=S.Code) INNER JOIN AccountMaster A ON P.Party=A.Code) INNER JOIN AccountMaster C ON P.Consignee=C.Code WHERE P.Code='" + VchCode + "' AND BOM='CP' UNION " & _
+                                                                SQL & "I2.PrintName+', Finish Size: '+LTRIM(S.PrintName)+', '+LTRIM(C3.FrontPrintingColor)+'+'+LTRIM(C3.BackPrintingColor)+'Col, '+LTRIM(C3.[Ups/Plate])+'Ups, Qty: '+LTRIM(C3.ActualQuantity) As cmbItem,'' As FinishSize,LongNarration01,LongNarration02,LongNarration03,LongNarration04,LongNarration05 FROM ((((((((JobworkBVParent P INNER JOIN JobworkBVChild C1 ON P.Code=C1.Code) INNER JOIN BookMaster I ON C1.Item=I.Code) INNER JOIN GeneralMaster N ON C1.Narration=N.Code) INNER JOIN GeneralMaster H ON C1.HSNCode=H.Code) INNER JOIN (BookPOParent P2 INNER JOIN (BookPOChild09 C2 INNER JOIN BookPOChild0901 C3 ON C2.Code=C3.Code) ON P2.Code=C2.Code) ON C1.Ref=P2.Code) INNER JOIN AccountMaster A ON P.Party=A.Code) INNER JOIN AccountMaster C ON P.Consignee=C.Code) INNER JOIN BookMaster I2 ON C3.Book=I2.Code) INNER JOIN GeneralMaster S ON I2.FinishSize=S.Code WHERE P.Code='" + VchCode + "' AND BOM='JP' UNION " & _
+                                                                SQL & "'' As cmbTitle,'Finish Size: '+LTRIM(S.PrintName) As FinishSize,LongNarration01,LongNarration02,LongNarration03,LongNarration04,LongNarration05 FROM ((((((JobworkBVParent P INNER JOIN JobworkBVChild C1 ON P.Code=C1.Code) INNER JOIN BookMaster I ON C1.Item=I.Code) INNER JOIN GeneralMaster N ON C1.Narration=N.Code) INNER JOIN GeneralMaster H ON C1.HSNCode=H.Code) INNER JOIN GeneralMaster S ON I.FinishSize=S.Code) INNER JOIN AccountMaster A ON P.Party=A.Code) INNER JOIN AccountMaster C ON P.Consignee=C.Code WHERE P.Code='" + VchCode + "' AND BOM='MO' UNION " & _
+                                                                SQL & "'' As cmbTitle,'Finish Size: '+LTRIM(S.PrintName)+', '+LTRIM(IIF(ISNULL(C3.Pages1)=True,I.Pages,C3.Pages1+C3.Pages2+C3.Pages4))+' pages/'+LTRIM(C2.BindingForms+C2.ExtraForms)+'f, '+LTRIM(B.PrintName) As FinishSize,LongNarration01,LongNarration02,LongNarration03,LongNarration04,LongNarration05 FROM (((((((((JobworkBVParent P INNER JOIN JobworkBVChild C1 ON P.Code=C1.Code) INNER JOIN BookMaster I ON C1.Item=I.Code) INNER JOIN GeneralMaster N ON C1.Narration=N.Code) INNER JOIN GeneralMaster H ON C1.HSNCode=H.Code) INNER JOIN (BookPOParent P2 INNER JOIN BookPOChild08 C2 ON P2.Code=C2.Code) ON C1.Ref=P2.Code) INNER JOIN GeneralMaster S ON I.FinishSize=S.Code) INNER JOIN AccountMaster A ON P.Party=A.Code) INNER JOIN AccountMaster C ON P.Consignee=C.Code) INNER JOIN GeneralMaster B ON C2.BindingType=B.Code) LEFT JOIN BookPOChild05  C3 ON P2.Code=C3.Code " & _
+                                                                "WHERE P.Code='" + VchCode + "' AND BOM='BD' ORDER BY Item,SrNo,cmbTitle", cnJobworkBill, adOpenKeyset, adLockOptimistic
+    ElseIf InStr(1, "SU_PU_QU_ZU", Right(VchType, 2)) > 0 Then
+                                                            SQL = SQL + "'' As cmbTitle," & FS01 & " As FinishSize,LongNarration01,LongNarration02,LongNarration03,LongNarration04,LongNarration05,"
+                                                            SQL = SQL + "IIF((ISNULL((Select PaperConsumptionsheets1 From BookPOChild05 Where Code=P2.Code),0)+ISNULL((Select PaperConsumptionsheets2 From BookPOChild05 Where Code=P2.Code),0)+ISNULL((Select PaperConsumptionsheets4 From BookPOChild05 Where Code=P2.Code),0)+ISNULL((Select PaperConsumptionsheets From BookPOChild06 Where Code=P2.Code),0)+ISNULL((Select PaperConsumptionsheets From BookPOChild09 Where Code=P2.Code),0))=0,'',"
+                                                            SQL = SQL + "ISNULL('Paper Consumption : '+(Convert(nvarchar,Round(Format((ISNULL((Select PaperConsumptionsheets1 From BookPOChild05 Where Code=P2.Code),0)+ISNULL((Select PaperConsumptionsheets2 From BookPOChild05 Where Code=P2.Code),0)+ISNULL((Select PaperConsumptionsheets4 From BookPOChild05 Where Code=P2.Code),0)+ISNULL((Select PaperConsumptionsheets From BookPOChild06 Where Code=P2.Code),0)+ISNULL((Select PaperConsumptionsheets From BookPOChild09 Where Code=P2.Code),0))/P2.EstQty01*C1.Quantity,'00.00'),.5))+' Sheets'),'')) As PaperConsumptionsheets,"
+                                                            SQL = SQL + "IIF(C1.Ref IS NULL,'','Ref. No. :')+(CASE WHEN Ref IS NULL THEN '' ELSE LTRIM(P2.Name)+'/'+RIGHT(P2.Type,1)+'O/'+RIGHT(C1.BOM,2) END) As RefOrderNo,"
+                                                            SQL = SQL + "IIF(Len(I.ISBN)=0,'','ISBN - '+I.ISBN) As ISBN,'' AS FS04,'' AS FS05,'' AS FS06,'' AS FS07,Left((Select V.Prefix From VchSeriesMaster V Where Code=VchSeries),2)+'/'+'" & Right(VchType, 2) & "'+'/'+Ltrim(AutoVchNo) As VchNo,P.ChallanNo,P.ChallanDate,P.Transport,P.GRNo,P.GRDate,P.VehicleNo,P.Station,eWayBill,eWayBillDate "
+                                                            SQL = SQL + "FROM (((((((JobworkBVParent P INNER JOIN JobworkBVChild C1 ON P.Code=C1.Code) INNER JOIN BookMaster I ON C1.Item=I.Code) INNER JOIN GeneralMaster N ON C1.Narration=N.Code) INNER JOIN GeneralMaster H ON C1.HSNCode=H.Code) INNER JOIN GeneralMaster S ON I.FinishSize=S.Code) INNER JOIN AccountMaster A ON P.Party=A.Code) INNER JOIN AccountMaster C ON P.Consignee=C.Code) LEFT JOIN BookPOParent P2 ON C1.Ref=P2.Code WHERE P.Code='" + VchCode + "'  ORDER BY Item,Ref "    ', cnJobworkBill, adOpenKeyset, adLockOptimistic 'AND BOM='WS'
+    ElseIf InStr(1, "SJ_PJ_QJ_ZJ", Right(VchType, 2)) > 0 Then
+                                                            'MF
+                                                            SQL = SQL + "'' As cmbTitle," & FS01 & " As FinishSize,LongNarration01,LongNarration02,LongNarration03,LongNarration04,LongNarration05,"
+                                                            SQL = SQL + "'Text Plates: '+ "
+                                                            SQL = SQL + "IIF(((C2.[TotalPlates1-¼]+C2.[TotalPlates1-½]+C2.[TotalPlates1-1]+C2.[RevisedPlates1])*1)=0,'',LTRIM((C2.[TotalPlates1-¼]+C2.[TotalPlates1-½]+C2.[TotalPlates1-1]+C2.[RevisedPlates1])*1)+ '-plates- 1 Col, ')+"
+                                                            SQL = SQL + "IIF(((C2.[TotalPlates2-¼]+C2.[TotalPlates2-½]+C2.[TotalPlates2-1]+C2.[RevisedPlates2])*2)=0,'',LTRIM((C2.[TotalPlates2-¼]+C2.[TotalPlates2-½]+C2.[TotalPlates2-1]+C2.[RevisedPlates2])*2)+ '-plates- 2 Col, ')+"
+                                                            SQL = SQL + "IIF(((C2.[TotalPlates4-¼]+C2.[TotalPlates4-½]+C2.[TotalPlates4-1]+C2.[RevisedPlates4])*4)=0,'',LTRIM((C2.[TotalPlates4-¼]+C2.[TotalPlates4-½]+C2.[TotalPlates4-1]+C2.[RevisedPlates4])*4)+ ' - plates- 4 Col')+'  = ' +LTRIM(((C2.[TotalPlates1-¼]+C2.[TotalPlates1-½]+C2.[TotalPlates1-1]+C2.[RevisedPlates1])*1)+((C2.[TotalPlates2-¼]+C2.[TotalPlates2-½]+C2.[TotalPlates2-1]+C2.[RevisedPlates2])*2)+((C2.[TotalPlates4-¼]+C2.[TotalPlates4-½]+C2.[TotalPlates4-1]+C2.[RevisedPlates4])*4))+'  Nos.' AS Plates,"
+                                                            SQL = SQL + "'Forms: '+IIF(Forms1=0,'',LTRIM(Forms1))+ ' forms, 1Col, '+IIF(Forms2=0,'',LTRIM(Forms2))+ ' forms, 2Col, '+IIF(Forms4=0,'',LTRIM(Forms4))+ ' forms, 4Col  = ' +LTRIM(Forms1+Forms2+forms4)+' forms.'  As ptgSets, "
+                                                            SQL = SQL + "IIF((ISNULL((Select PaperConsumptionsheets1 From BookPOChild05 Where Code=P2.Code),0)+ISNULL((Select PaperConsumptionsheets2 From BookPOChild05 Where Code=P2.Code),0)+ISNULL((Select PaperConsumptionsheets4 From BookPOChild05 Where Code=P2.Code),0))=0,'',"
+                                                            SQL = SQL + "ISNULL('Paper Consumption : '+(Convert(nvarchar,Round(Format((ISNULL((Select PaperConsumptionsheets1 From BookPOChild05 Where Code=P2.Code),0)+ISNULL((Select PaperConsumptionsheets2 From BookPOChild05 Where Code=P2.Code),0)+ISNULL((Select PaperConsumptionsheets4 From BookPOChild05 Where Code=P2.Code),0))/P2.EstQty01*C1.Quantity,'00.00'),.5))+' Sheets'),'')) As PaperConsumptionsheets,"
+                                                            SQL = SQL + "IIF(C1.Ref IS NULL,'','Ref. No. :')+(CASE WHEN C1.Ref IS NULL THEN '' ELSE LTRIM(P2.Name)+'/'+RIGHT(P2.Type,1)+'O/'+RIGHT(C1.BOM,2) END) As RefOrderNo,"
+                                                            SQL = SQL + "IIF(Len(I.ISBN)=0,'','ISBN - '+I.ISBN) As ISBN,'' AS FS04,'' AS FS05,'' AS FS06,'' AS FS07,Left((Select V.Prefix From VchSeriesMaster V Where Code=VchSeries),2)+'/'+'" & Right(VchType, 2) & "'+'/'+Ltrim(AutoVchNo) As VchNo,P.ChallanNo,P.ChallanDate,P.Transport,P.GRNo,P.GRDate,P.VehicleNo,P.Station,eWayBill,eWayBillDate "
+                                                            SQL = SQL + "FROM((((((((JobworkBVParent P INNER JOIN JobworkBVChild C1 ON P.Code=C1.Code) LEFT JOIN BookMaster I ON C1.Item=I.Code) LEFT JOIN GeneralMaster N ON C1.Narration=N.Code) LEFT JOIN GeneralMaster H ON C1.HSNCode=H.Code) Left JOIN GeneralMaster S ON I.FinishSize=S.Code)LEFT JOIN BookPOParent P2 ON C1.Ref=P2.Code)LEFT JOIN BookPOChild05 C2 ON C2.Code=P2.Code)LEFT JOIN AccountMaster A ON P.Party=A.Code) LEFT JOIN AccountMaster C ON P.Consignee=C.Code "
+                                                            SQL = SQL + "WHERE Right(C1.BOM,2)='MF' AND P.Code='" + VchCode + "'"
+                                                            SQL = SQL + " UNION All "
+                                                            'ME
+                                                            SQL = SQL + oSQL + "'' As cmbTitle," & FS01 & " As FinishSize,LongNarration01,LongNarration02,LongNarration03,LongNarration04,LongNarration05,"
+                                                            SQL = SQL + "(Select Name From ElementMaster Where Code=SubString(BOM,5,6) And Right(C1.BOM,2)='ME')+': '+LTRIM(C3.TotalPlates)+ '- plates  , Color: ( '+LTRIM(C3.FrontPrintingType)+' + '+LTRIM(C3.BackPrintingType)+' )' AS Plates,"
+                                                            SQL = SQL + "'Sets: '+Convert(nvarchar,Sets)+' - Nos ( '+LTRIM(C3.FrontPrintingType)+' + '+LTRIM(C3.BackPrintingType)+' ) - Color Printing' As ptgSets,"
+                                                            SQL = SQL + "IIF((ISNULL((Select PaperConsumptionsheets From BookPOChild06 Where Code=P2.Code AND Code=SubString(BOM,5,6) And Right(C1.BOM,2)='ME'),0))=0,'',"
+                                                            SQL = SQL + "ISNULL('Paper Consumption : '+(Convert(nvarchar,Round(Format((ISNULL((Select PaperConsumptionsheets From BookPOChild06 Where Code=P2.Code AND Code=SubString(BOM,5,6) And Right(C1.BOM,2)='ME'),0))/P2.EstQty01*C1.Quantity,'00.00'),.5))+' Sheets'),'')) As PaperConsumptionsheets,"
+                                                            SQL = SQL + "IIF(C1.Ref IS NULL,'','Ref. No. :')+(CASE WHEN C1.Ref IS NULL THEN '' ELSE LTRIM(P2.Name)+'/'+RIGHT(P2.Type,1)+'O/'+RIGHT(C1.BOM,2) END) As RefOrderNo,"
+                                                            SQL = SQL + "IIF(Len(I.ISBN)=0,'','ISBN - '+I.ISBN) As ISBN,'' AS FS04,'' AS FS05,'' AS FS06,'' AS FS07,Left((Select V.Prefix From VchSeriesMaster V Where Code=VchSeries),2)+'/'+'" & Right(VchType, 2) & "'+'/'+Ltrim(AutoVchNo) As VchNo,P.ChallanNo,P.ChallanDate,P.Transport,P.GRNo,P.GRDate,P.VehicleNo,P.Station,eWayBill,eWayBillDate "
+                                                            SQL = SQL + "FROM(((((((((JobworkBVParent P LEFT JOIN JobworkBVChild C1 ON P.Code=C1.Code) LEFT JOIN BookMaster I ON C1.Item=I.Code) LEFT JOIN GeneralMaster N ON C1.Narration=N.Code) LEFT JOIN GeneralMaster H ON C1.HSNCode=H.Code) Left JOIN GeneralMaster S ON I.FinishSize=S.Code)LEFT JOIN BookPOParent P2 ON C1.Ref=P2.Code)LEFT JOIN BookPOChild06 C3 ON C3.Code=P2.Code) Left JOIN ElementMaster E ON E.Code=C3.Element And Right(C1.BOM,2)='ME')LEFT JOIN AccountMaster A ON P.Party=A.Code) LEFT JOIN AccountMaster C ON P.Consignee=C.Code "
+                                                            SQL = SQL + "WHERE Right(C1.BOM,2)='ME' AND P.Code='" + VchCode + "'"
+                                                            SQL = SQL + " UNION All "
+                                                            'CF
+                                                            SQL = SQL + oSQL + "'' As cmbTitle," & FS01 & " As FinishSize,LongNarration01,LongNarration02,LongNarration03,LongNarration04,LongNarration05,"
+                                                            SQL = SQL + "'CF- Plates: '+LTRIM(C5.TotalPlates)+ '-Plates ( '+LTRIM(C5.FrontPrintingColor)+' + '+LTRIM(C5.BackPrintingColor)+' ) Color'+'  Nos.' AS Plates,"
+                                                            SQL = SQL + "'Sets: '+IIF(Calculation='S','1',Convert(nvarchar,(Select Count(Code) From BookPOChild0901 Where Code=C5.code)))+' - Nos ( '+LTRIM(C5.FrontPrintingColor)+' + '+LTRIM(C5.BackPrintingColor)+' ) - Color Printing' As ptgSets,"
+                                                            SQL = SQL + "IIF((ISNULL((Select PaperConsumptionsheets From BookPOChild09 Where Code=P2.Code),0))=0,'',"
+                                                            SQL = SQL + "ISNULL('Paper Consumption : '+(Convert(nvarchar,Round(Format((ISNULL((Select PaperConsumptionsheets From BookPOChild09 Where Code=P2.Code),0))/P2.EstQty01*C1.Quantity,'00.00'),.5))+' Sheets'),'')) As PaperConsumptionsheets,"
+                                                            SQL = SQL + "IIF(C1.Ref IS NULL,'','Ref. No. :')+(CASE WHEN C1.Ref IS NULL THEN '' ELSE LTRIM(P2.Name)+'/'+RIGHT(P2.Type,1)+'O/'+RIGHT(C1.BOM,2) END) As RefOrderNo,"
+                                                            SQL = SQL + "IIF(Len(I.ISBN)=0,'','ISBN - '+I.ISBN) As ISBN,'' AS FS04,'' AS FS05,'' AS FS06,'' AS FS07,Left((Select V.Prefix From VchSeriesMaster V Where Code=VchSeries),2)+'/'+'" & Right(VchType, 2) & "'+'/'+Ltrim(AutoVchNo) As VchNo,P.ChallanNo,P.ChallanDate,P.Transport,P.GRNo,P.GRDate,P.VehicleNo,P.Station,eWayBill,eWayBillDate "
+                                                            SQL = SQL + "FROM((((((((JobworkBVParent P LEFT JOIN JobworkBVChild C1 ON P.Code=C1.Code) LEFT JOIN BookMaster I ON C1.Item=I.Code) LEFT JOIN GeneralMaster N ON C1.Narration=N.Code) LEFT JOIN GeneralMaster H ON C1.HSNCode=H.Code) Left JOIN GeneralMaster S ON I.FinishSize=S.Code)LEFT JOIN BookPOParent P2 ON C1.Ref=P2.Code)LEFT JOIN BookPOChild09 C5 ON C5.Code=P2.Code)LEFT JOIN AccountMaster A ON P.Party=A.Code) LEFT JOIN AccountMaster C ON P.Consignee=C.Code "
+                                                            SQL = SQL + "WHERE Right(C1.BOM,2)='CF' AND P.Code='" + VchCode + "'"
+                                                            SQL = SQL + " UNION All "
+                                                            'MO
+                                                            SQL = SQL + oSQL + "'' As cmbTitle," & FS01 & " As FinishSize,LongNarration01,LongNarration02,LongNarration03,LongNarration04,LongNarration05,"
+                                                            SQL = SQL + "(Select Name From ElementMaster Where Code=SubString(BOM,5,6) And Right(C1.BOM,2)='MO')+' : '+(Select Name From GeneralMaster Where Code=SubString(BOM,11,6) And Right(C1.BOM,2)='MO') AS Plates,Convert(nvarchar,Format(Number,'0'))+' : '+OperationCountName As ptgSets,'' As PaperConsumptionsheets,"
+                                                            SQL = SQL + "IIF(C1.Ref IS NULL,'','Ref. No. :')+(CASE WHEN C1.Ref IS NULL THEN '' ELSE LTRIM(P2.Name)+'/'+RIGHT(P2.Type,1)+'O/'+RIGHT(C1.BOM,2) END) As RefOrderNo,"
+                                                            SQL = SQL + "IIF(Len(I.ISBN)=0,'','ISBN - '+I.ISBN) As ISBN,'' AS FS04,'' AS FS05,'' AS FS06,'' AS FS07,Left((Select V.Prefix From VchSeriesMaster V Where Code=VchSeries),2)+'/'+'" & Right(VchType, 2) & "'+'/'+Ltrim(AutoVchNo) As VchNo,P.ChallanNo,P.ChallanDate,P.Transport,P.GRNo,P.GRDate,P.VehicleNo,P.Station,eWayBill,eWayBillDate "
+                                                            SQL = SQL + "FROM((((((((JobworkBVParent P LEFT JOIN JobworkBVChild C1 ON P.Code=C1.Code) LEFT JOIN BookMaster I ON C1.Item=I.Code) LEFT JOIN GeneralMaster N ON C1.Narration=N.Code) LEFT JOIN GeneralMaster H ON C1.HSNCode=H.Code) Left JOIN GeneralMaster S ON I.FinishSize=S.Code)LEFT JOIN BookPOParent P2 ON C1.Ref=P2.Code)LEFT JOIN BookPOChild07 C6 ON C6.Code=P2.Code)LEFT JOIN AccountMaster A ON P.Party=A.Code) LEFT JOIN AccountMaster C ON P.Consignee=C.Code "
+                                                            SQL = SQL + "WHERE Right(C1.BOM,2)='MO' AND P.Code='" + VchCode + "'"
+                                                            SQL = SQL + " UNION All "
+                                                            'BN
+                                                            SQL = SQL + oSQL + "'' As cmbTitle," & FS01 & " As FinishSize,LongNarration01,LongNarration02,LongNarration03,LongNarration04,LongNarration05,"
+                                                            SQL = SQL + "(Select Name From GeneralMaster Where Code=C4.BindingType)+' : '+IIF((C4.bindingForms+C4.ExtraForms)=0,'',Convert(nvarchar,(C4.bindingForms+C4.ExtraForms))+ ' Forms ') AS Plates,"
+                                                            SQL = SQL + "'Amount:=' + IIF(C4.FormFoldRate=0,'',' ( Folding: '+Convert(nvarchar,(C4.BillingQuantity*(C4.bindingForms+C4.ExtraForms)))+' X '+Convert(nvarchar,C4.FormFoldRate)+'@ = Rs.'+Convert(nvarchar,Format(C4.BillingQuantity*(C4.bindingForms+C4.ExtraForms)*C4.FormFoldRate/1000,'#####00'))+' ) + ')"
+                                                            SQL = SQL + "+ IIF(C4.FormStitchRate=0,'','( Stitching: '+Convert(nvarchar,(C4.BillingQuantity*(C4.bindingForms+C4.ExtraForms)))+' X '+Convert(nvarchar,C4.FormStitchRate)+'@ = Rs.'+Convert(nvarchar,Format(C4.BillingQuantity*(C4.bindingForms+C4.ExtraForms)*C4.FormStitchRate/1000,'#####00'))+' ) + ')"
+                                                            SQL = SQL + "+ IIF(C4.FormPasteRate=0,'','( Binding: '+Convert(nvarchar,(C4.BillingQuantity))+' X '+Convert(nvarchar,C4.FormPasteRate)+'@ = Rs.'+Convert(nvarchar,Format(C4.BillingQuantity*C4.FormPasteRate/1000,'#####00'))+' ) + ')"
+                                                            SQL = SQL + "+ IIF(C4.[Rate/Book]=0,'','( Unit: '+Convert(nvarchar,(C4.BillingQuantity))+' X '+Convert(nvarchar,C4.[Rate/Book])+'@ = Rs.'+Convert(nvarchar,Format(C4.BillingQuantity*C4.[Rate/Book],'#####00'))+' ) + ')"
+                                                            SQL = SQL + "+ IIF(C4.PktPackRate=0,'','( Shrink Packing: '+Convert(nvarchar,(C4.TotalPkts))+' X '+Convert(nvarchar,C4.PktPackRate)+'@ = Rs.'+Convert(nvarchar,Format(C4.TotalPkts*C4.PktPackRate,'#####00'))+' ) + ')"
+                                                            SQL = SQL + "+ IIF(C4.BoxPackRate=0,'','( Box Packing: '+Convert(nvarchar,(C4.TotalBoxes))+' X '+Convert(nvarchar,C4.BoxPackRate)+'@ = Rs.'+Convert(nvarchar,Format(C4.TotalBoxes*C4.BoxPackRate,'#####00'))+' ) + ')"
+                                                            SQL = SQL + "+ IIF(C4.CartageRate=0,'','( Cartage: '+Convert(nvarchar,(C4.TotalBoxes))+' X '+Convert(nvarchar,C4.CartageRate)+'@ = Rs.'+Convert(nvarchar,Format(C4.TotalBoxes*C4.CartageRate,'#####00'))+' )') "
+                                                            SQL = SQL + " As ptgSets,'' As PaperConsumptionsheets,"
+                                                            SQL = SQL + "IIF(C1.Ref IS NULL,'','Ref. No. :')+(CASE WHEN C1.Ref IS NULL THEN '' ELSE LTRIM(P2.Name)+'/'+RIGHT(P2.Type,1)+'O/'+RIGHT(C1.BOM,2) END) As RefOrderNo,"
+                                                            SQL = SQL + "IIF(Len(I.ISBN)=0,'','ISBN - '+I.ISBN) As ISBN,'' AS FS04,'' AS FS05,'' AS FS06,'' AS FS07,Left((Select V.Prefix From VchSeriesMaster V Where Code=VchSeries),2)+'/'+'" & Right(VchType, 2) & "'+'/'+Ltrim(AutoVchNo) As VchNo,P.ChallanNo,P.ChallanDate,P.Transport,P.GRNo,P.GRDate,P.VehicleNo,P.Station,eWayBill,eWayBillDate "
+                                                            SQL = SQL + "FROM((((((((JobworkBVParent P LEFT JOIN JobworkBVChild C1 ON P.Code=C1.Code) LEFT JOIN BookMaster I ON C1.Item=I.Code) LEFT JOIN GeneralMaster N ON C1.Narration=N.Code) LEFT JOIN GeneralMaster H ON C1.HSNCode=H.Code) Left JOIN GeneralMaster S ON I.FinishSize=S.Code)LEFT JOIN BookPOParent P2 ON C1.Ref=P2.Code)LEFT JOIN BookPOChild08 C4 ON C4.Code=P2.Code)LEFT JOIN AccountMaster A ON P.Party=A.Code) LEFT JOIN AccountMaster C ON P.Consignee=C.Code "
+                                                            SQL = SQL + "WHERE Right(C1.BOM,2)='BN' AND P.Code='" + VchCode + "'"
+                                                            SQL = SQL + " UNION All "
+                                                            'BM
+                                                            SQL = SQL + oSQL + "'' As cmbTitle," & FS01 & " As FinishSize,LongNarration01,LongNarration02,LongNarration03,LongNarration04,LongNarration05,"
+                                                            SQL = SQL + "IIF(C7.Category='1','OutSource: '+(SELECT Name FROM OutsourceItemMaster WHERE Code=C7.Item),IIF(C7.Category='2','Paper: '+(SELECT P.Name+' (UOM : '+LTRIM(U.Name)+')' As Name FROM PaperMaster P INNER JOIN GeneralMaster U ON P.UOM=U.Code WHERE P.Code=C7.Item),'BOM: '+(SELECT Name FROM BookMaster WHERE Code=C7.Item)))+' ( '+Convert(nvarchar,C7.OrderQuantity)+' Qty. X '+Convert(nvarchar,C7.[Consumption/Item])+' Nos. = '+Convert(nvarchar,C7.TotalConsumption)+' Nos.) ' AS Plates,"
+                                                            SQL = SQL + "'Amount:= ( '+Convert(nvarchar,C7.TotalConsumption)+' Qty. X '+Convert(nvarchar,C7.[Rate])+' @. = Rs. '+Convert(nvarchar,C7.Amount)+' ) ' As ptgSets,'' As PaperConsumptionsheets,"
+                                                            SQL = SQL + "IIF(C1.Ref IS NULL,'','Ref. No. :')+(CASE WHEN C1.Ref IS NULL THEN '' ELSE LTRIM(P2.Name)+'/'+RIGHT(P2.Type,1)+'O/'+RIGHT(C1.BOM,2) END) As RefOrderNo,"
+                                                            SQL = SQL + "IIF(Len(I.ISBN)=0,'','ISBN - '+I.ISBN) As ISBN,'' AS FS04,'' AS FS05,'' AS FS06,'' AS FS07,Left((Select V.Prefix From VchSeriesMaster V Where Code=VchSeries),2)+'/'+'" & Right(VchType, 2) & "'+'/'+Ltrim(AutoVchNo) As VchNo,P.ChallanNo,P.ChallanDate,P.Transport,P.GRNo,P.GRDate,P.VehicleNo,P.Station,eWayBill,eWayBillDate "
+                                                            SQL = SQL + "FROM((((((((JobworkBVParent P LEFT JOIN JobworkBVChild C1 ON P.Code=C1.Code) LEFT JOIN BookMaster I ON C1.Item=I.Code) LEFT JOIN GeneralMaster N ON C1.Narration=N.Code) LEFT JOIN GeneralMaster H ON C1.HSNCode=H.Code) Left JOIN GeneralMaster S ON I.FinishSize=S.Code)LEFT JOIN BookPOParent P2 ON C1.Ref=P2.Code)LEFT JOIN BookPOChild0801 C7 ON C7.Code=P2.Code)LEFT JOIN AccountMaster A ON P.Party=A.Code) LEFT JOIN AccountMaster C ON P.Consignee=C.Code "
+                                                            SQL = SQL + "WHERE Right(C1.BOM,2)='BM' AND P.Code='" + VchCode + "'"
     End If
-    'Ref. No. :'+CASE WHEN Ref IS NULL THEN '' ELSE LTRIM(R.Name)+'/'+RIGHT(R.Type,1)+'O/'+RIGHT(D.BOM,2) END As RefOrderNo
-    ') INNER JOIN BookPOParent R ON C1.Ref=R.Code
+                                                            rstJobworkBVChild.Open SQL, cnJobworkBill, adOpenKeyset, adLockOptimistic
     If rstJobworkBVChild.RecordCount = 0 Then On Error GoTo 0: Screen.MousePointer = vbNormal: Exit Sub
     If MsgBox("Print Item Detail?", vbYesNo + vbQuestion + vbDefaultButton1, "Confirm Quit !") = vbNo Then rptJobworkBill.Section25.Suppress = True
     rstJobworkBVChild.ActiveConnection = Nothing
-    
         With rptJobworkBill
             If FYFromToFlag = "True" Then
                 .Field58.Suppress = True
@@ -3900,7 +3993,7 @@ Public Sub PrintJobworkBillVch(ByVal VchCode As String, ByVal VchType As String,
             .Picture1.TopLineStyle = crLSNoLine
             .Picture1.BottomLineStyle = crLSNoLine
         End If
-        End With
+
     rptJobworkBill.Text1.SetText IIf(Mid(VchType, 5, 1) = "Q", "Sales Quotation", IIf(Mid(VchType, 5, 1) = "Z", "Purchase Quotation", "Tax Invoice"))
     rptJobworkBill.Text35.SetText "Printed on " & Format(Now, "dd-MMM-yyyy") & " at " & Format(Now, "hh:mm")
     rptJobworkBill.Text40.SetText IIf(BillType = "O", "(ORIGINAL FOR RECIPIENT)", IIf(BillType = "D", "(DUPLICATE FOR SUPPLIER)", "(TRIPLICATE FOR SUPPLIER)"))
@@ -3914,6 +4007,16 @@ Public Sub PrintJobworkBillVch(ByVal VchCode As String, ByVal VchType As String,
         rptJobworkBill.Text4.SetText "E-Mail : " & Trim(rstCompanyMaster.Fields("eMail").Value)
     End If
     rptJobworkBill.Text8.SetText "GSTIN/UIN : " & Trim(rstCompanyMaster.Fields("GSTIN").Value)
+    
+    If Trim(rstJobworkBVChild.Fields("ChallanNo").Value) <> "" Then .Text37.SetText Trim(rstJobworkBVChild.Fields("ChallanNo").Value) + " Dt : " & Format(rstJobworkBVChild.Fields("ChallanDate").Value, "dd-MM-yy") Else .Text33.SetText ""
+    If Trim(rstJobworkBVChild.Fields("GRNo").Value) = "" And rstJobworkBVChild.Fields("VehicleNo").Value <> "" Then .Text38.SetText Trim(rstJobworkBVChild.Fields("VehicleNo").Value): .Text34.SetText "Vehicle NO.  :"
+    If Trim(rstJobworkBVChild.Fields("GRNo").Value) = "" And rstJobworkBVChild.Fields("VehicleNo").Value = "" Then .Text34.SetText ""
+    If Trim(rstJobworkBVChild.Fields("GRNo").Value) = "Null" Or rstJobworkBVChild.Fields("VehicleNo").Value = "Null" Then .Text34.SetText ""
+    If Trim(rstJobworkBVChild.Fields("GRNo").Value) <> "" Then .Text38.SetText Trim(rstJobworkBVChild.Fields("GRNo").Value) + " Dt : " & Format(rstJobworkBVChild.Fields("GRDate").Value, "dd-MM-yy")
+    If rstJobworkBVChild.Fields("Transport").Value Then .Text39.SetText Trim(rstJobworkBVChild.Fields("Transport").Value) Else .Text36.SetText ""
+    If Trim(rstJobworkBVChild.Fields("Station").Value) <> "" Then .Text41.SetText Trim(rstJobworkBVChild.Fields("Station").Value) Else .Text42.SetText ""
+    If Trim(rstJobworkBVChild.Fields("eWayBill").Value) <> "" Then .Text32.SetText Trim(rstJobworkBVChild.Fields("eWayBill").Value) + " Dt : " & Format(rstJobworkBVChild.Fields("eWayBillDate").Value, "dd-MM-yy") Else .Text43.SetText ""
+    
     rptJobworkBill.Text10.SetText "(" & UCase(Trim(NumberToWords(rstJobworkBVChild.Fields("TotalAmount").Value, False))) & ")"
     rptJobworkBill.Text11.SetText "for " & Trim(rstCompanyMaster.Fields("PrintName").Value)
     rptJobworkBill.Text26.SetText CheckNull(rstCompanyMaster.Fields("Declaration01").Value)
@@ -3923,9 +4026,10 @@ Public Sub PrintJobworkBillVch(ByVal VchCode As String, ByVal VchType As String,
     rptJobworkBill.Text9.SetText CheckNull(rstCompanyMaster.Fields("Declaration05").Value)
     rptJobworkBill.Text30.SetText CheckNull(rstCompanyMaster.Fields("Declaration06").Value)
     rptJobworkBill.Text31.SetText CheckNull(rstCompanyMaster.Fields("Declaration07").Value)
-    rptJobworkBill.Text33.SetText "Bank Name             : " & CheckNull(rstCompanyMaster.Fields("BankName").Value)
-    rptJobworkBill.Text34.SetText "A/c No.                    : " & CheckNull(rstCompanyMaster.Fields("AccountNo").Value)
-    rptJobworkBill.Text36.SetText "Branch & IFS Code : " & CheckNull(rstCompanyMaster.Fields("IFSC").Value)
+    rptJobworkBill.Text330.SetText "Bank Name             : " & CheckNull(rstCompanyMaster.Fields("BankName").Value)
+    rptJobworkBill.Text340.SetText "A/c No.                    : " & CheckNull(rstCompanyMaster.Fields("AccountNo").Value)
+    rptJobworkBill.Text360.SetText "Branch & IFS Code : " & CheckNull(rstCompanyMaster.Fields("IFSC").Value)
+End With
     rptJobworkBill.Database.SetDataSource rstJobworkBVChild, 3, 1
     'rptJobworkBill.DiscardSavedData
     Screen.MousePointer = vbNormal
@@ -3949,5 +4053,3 @@ End Sub
 Private Sub UpdateIntegration()
 cnJobworkBill.Execute "Update JobworkBVParent Set IntegrationStatus='True' WHERE Code='" & rstJobworkBVList.Fields("Code").Value & "' AND RIGHT(Type,2)='" & VchType & "' AND FYCode='" & FYCode & "'"
 End Sub
-
-

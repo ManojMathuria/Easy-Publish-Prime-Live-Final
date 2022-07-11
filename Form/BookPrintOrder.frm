@@ -4846,7 +4846,7 @@ Private Sub EditRecord()
     If rstBookPOChild05.State = adStateClosed Or rstBookPOChild06.State = adStateClosed Or rstBookPOChild09.State = adStateClosed Or rstBookPOChild0901.State = adStateClosed Or rstBookPOChild07.State = adStateClosed Or rstBookPOChild08.State = adStateClosed Or rstBookPOChild0801.State = adStateClosed Then SSTab1.Tab = 0: Exit Sub
     If rstBookPOParent.State = adStateOpen Then rstBookPOParent.Close
     rstBookPOParent.CursorLocation = adUseServer
-    rstBookPOParent.Open "Select * From BookPOParent Where Code = '" & FixQuote(rstBookPOList.Fields("Code").Value) & "'", cnBookPrintOrder, adOpenKeyset, adLockPessimistic
+    rstBookPOParent.Open "Select * From BookPOParent Where Code = '" & FixQuote(rstBookPOList.Fields("Code").Value) & "'", cnBookPrintOrder, adOpenKeyset, adLockBatchOptimistic ' adLockOptimistic ' adLockPessimistic
     MdiMainMenu.MousePointer = vbHourglass
     rstBookPOParent.Fields("Printstatus") = "N"
     MdiMainMenu.MousePointer = vbNormal
@@ -4918,7 +4918,15 @@ Private Sub SaveFields()
         .Fields("Type").Value = BookPOType
         .Fields("FYCode").Value = FYCode
         .Fields("PrintStatus").Value = "N"
-        If frmJobworkBill.dSortBy = True Then frmJobworkBill.uRate = MhRealInput9.Value
+        If frmJobworkBill.dSortBy = True Then
+            frmJobworkBill.uRate = MhRealInput9.Value
+            frmJobworkBill.uRateMF = MhRealInput19.Value
+            frmJobworkBill.uRateME = MhRealInput21.Value
+            frmJobworkBill.uRateCF = MhRealInput23.Value
+            frmJobworkBill.uRateMO = MhRealInput25.Value
+            frmJobworkBill.uRateBN = MhRealInput27.Value
+            frmJobworkBill.uRateBM = MhRealInput31.Value
+        End If
     End With
 End Sub
 Private Function CheckMandatoryFields() As Boolean

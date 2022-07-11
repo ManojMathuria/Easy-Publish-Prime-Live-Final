@@ -2126,9 +2126,11 @@ Private Sub Form_Load()
         BusySystemIndicator False
         SSTab1.Tab = 0
     If FrmStockLedger.dSortBy = True Then
-    SortOrder = "Code"
+        SortOrder = "Code"
+    ElseIf FrmAccountLedger.dSortBy = True Then
+        SortOrder = "Code"
     Else
-    SortOrder = "AutoVchNo"
+        SortOrder = "AutoVchNo"
     End If
         If Not (.EOF Or .BOF) Then
             With DataGrid1.SelBookmarks
