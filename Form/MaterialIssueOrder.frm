@@ -769,7 +769,7 @@ Private Sub Form_Load()
     BusySystemIndicator True
     CxnMaterialIssueOrder.CursorLocation = adUseClient
     CxnMaterialIssueOrder.Open cnDatabase.ConnectionString
-    rstCompanyMaster.Open "Select PrintName, Address1, Address2, Address3, Address4, Phone, Fax, EMail, Website From CompanyMaster", CxnMaterialIssueOrder, adOpenKeyset, adLockReadOnly
+    rstCompanyMaster.Open "Select PrintName, Address1, Address2, Address3, Address4, Phone, Fax, EMail, Website FROM CompanyMaster Where FYCode='" & FYCode & "'", CxnMaterialIssueOrder, adOpenKeyset, adLockReadOnly
     rstSourceList.Open "Select Name As Col0, Code From AccountMaster Order by Name", CxnMaterialIssueOrder, adOpenKeyset, adLockReadOnly
     rstGodownList.Open "Select Name As Col0,Code From AccountMaster Order By Name", CxnMaterialIssueOrder, adOpenKeyset, adLockReadOnly
     rstOutsourceItemList.Open "Select Name,'1'+Code As NCode,(Select Name FROM GeneralMaster Where Code=M.UOM) AS UOMName From OutsourceItemMaster As M Order By Name", CxnMaterialIssueOrder, adOpenKeyset, adLockOptimistic

@@ -1504,6 +1504,11 @@ Public Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
         HiLiteRecord = True
     ElseIf Button.Index = 4 Then
         If CheckMandatoryFields Then Exit Sub
+        If blnRecordExist And AllowMastersModification = 0 Then
+            Call DisplayError("You don't have the rights to Edit this Voucher")
+            Toolbar1_ButtonClick Toolbar1.Buttons.Item(5)
+            Exit Sub
+        End If
         SaveFields
         UpdateFlag = 0
         If UpdateRecord(rstPaperIRVParent) Then

@@ -605,8 +605,8 @@ Begin VB.Form FrmPackingSlip
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PackingSlip.frx":0D2F
-               Picture         =   "PackingSlip.frx":0D4B
+               Picture         =   "PackingSlip.frx":0D84
+               Picture         =   "PackingSlip.frx":0DA0
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
                Height          =   330
@@ -632,8 +632,8 @@ Begin VB.Form FrmPackingSlip
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PackingSlip.frx":0D67
-               Picture         =   "PackingSlip.frx":0D83
+               Picture         =   "PackingSlip.frx":0DBC
+               Picture         =   "PackingSlip.frx":0DD8
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel3 
                Height          =   330
@@ -659,8 +659,8 @@ Begin VB.Form FrmPackingSlip
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PackingSlip.frx":0D9F
-               Picture         =   "PackingSlip.frx":0DBB
+               Picture         =   "PackingSlip.frx":0DF4
+               Picture         =   "PackingSlip.frx":0E10
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel11 
                Height          =   330
@@ -686,8 +686,8 @@ Begin VB.Form FrmPackingSlip
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PackingSlip.frx":0DD7
-               Picture         =   "PackingSlip.frx":0DF3
+               Picture         =   "PackingSlip.frx":0E2C
+               Picture         =   "PackingSlip.frx":0E48
             End
             Begin TDBDate6Ctl.TDBDate MhDateInput1 
                Height          =   330
@@ -699,8 +699,8 @@ Begin VB.Form FrmPackingSlip
                _Version        =   65536
                _ExtentX        =   3201
                _ExtentY        =   582
-               Calendar        =   "PackingSlip.frx":0E0F
-               Caption         =   "PackingSlip.frx":0F27
+               Calendar        =   "PackingSlip.frx":0E64
+               Caption         =   "PackingSlip.frx":0F7C
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -710,9 +710,9 @@ Begin VB.Form FrmPackingSlip
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "PackingSlip.frx":0F93
-               Keys            =   "PackingSlip.frx":0FB1
-               Spin            =   "PackingSlip.frx":100F
+               DropDown        =   "PackingSlip.frx":0FE8
+               Keys            =   "PackingSlip.frx":1006
+               Spin            =   "PackingSlip.frx":1064
                AlignHorizontal =   2
                AlignVertical   =   2
                Appearance      =   0
@@ -862,9 +862,9 @@ Begin VB.Form FrmPackingSlip
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PackingSlip.frx":1037
+               Picture         =   "PackingSlip.frx":108C
                VAlignment      =   0
-               Picture         =   "PackingSlip.frx":1053
+               Picture         =   "PackingSlip.frx":10A8
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel2 
                Height          =   330
@@ -891,8 +891,8 @@ Begin VB.Form FrmPackingSlip
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PackingSlip.frx":106F
-               Picture         =   "PackingSlip.frx":108B
+               Picture         =   "PackingSlip.frx":10C4
+               Picture         =   "PackingSlip.frx":10E0
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel6 
                Height          =   330
@@ -918,8 +918,8 @@ Begin VB.Form FrmPackingSlip
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PackingSlip.frx":10A7
-               Picture         =   "PackingSlip.frx":10C3
+               Picture         =   "PackingSlip.frx":10FC
+               Picture         =   "PackingSlip.frx":1118
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel8 
                Height          =   330
@@ -945,8 +945,8 @@ Begin VB.Form FrmPackingSlip
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PackingSlip.frx":10DF
-               Picture         =   "PackingSlip.frx":10FB
+               Picture         =   "PackingSlip.frx":1134
+               Picture         =   "PackingSlip.frx":1150
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel9 
                Height          =   330
@@ -972,8 +972,8 @@ Begin VB.Form FrmPackingSlip
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PackingSlip.frx":1117
-               Picture         =   "PackingSlip.frx":1133
+               Picture         =   "PackingSlip.frx":116C
+               Picture         =   "PackingSlip.frx":1188
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel10 
                Height          =   330
@@ -999,8 +999,8 @@ Begin VB.Form FrmPackingSlip
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PackingSlip.frx":114F
-               Picture         =   "PackingSlip.frx":116B
+               Picture         =   "PackingSlip.frx":11A4
+               Picture         =   "PackingSlip.frx":11C0
             End
             Begin TDBDate6Ctl.TDBDate MhDateInput4 
                Height          =   330
@@ -1012,8 +1012,8 @@ Begin VB.Form FrmPackingSlip
                _Version        =   65536
                _ExtentX        =   2778
                _ExtentY        =   582
-               Calendar        =   "PackingSlip.frx":1187
-               Caption         =   "PackingSlip.frx":129F
+               Calendar        =   "PackingSlip.frx":11DC
+               Caption         =   "PackingSlip.frx":12F4
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1023,9 +1023,9 @@ Begin VB.Form FrmPackingSlip
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "PackingSlip.frx":130B
-               Keys            =   "PackingSlip.frx":1329
-               Spin            =   "PackingSlip.frx":1387
+               DropDown        =   "PackingSlip.frx":1360
+               Keys            =   "PackingSlip.frx":137E
+               Spin            =   "PackingSlip.frx":13DC
                AlignHorizontal =   2
                AlignVertical   =   2
                Appearance      =   0
@@ -1089,8 +1089,8 @@ Begin VB.Form FrmPackingSlip
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PackingSlip.frx":13AF
-               Picture         =   "PackingSlip.frx":13CB
+               Picture         =   "PackingSlip.frx":1404
+               Picture         =   "PackingSlip.frx":1420
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel13 
                Height          =   330
@@ -1116,8 +1116,8 @@ Begin VB.Form FrmPackingSlip
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PackingSlip.frx":13E7
-               Picture         =   "PackingSlip.frx":1403
+               Picture         =   "PackingSlip.frx":143C
+               Picture         =   "PackingSlip.frx":1458
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel14 
                Height          =   330
@@ -1143,8 +1143,8 @@ Begin VB.Form FrmPackingSlip
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PackingSlip.frx":141F
-               Picture         =   "PackingSlip.frx":143B
+               Picture         =   "PackingSlip.frx":1474
+               Picture         =   "PackingSlip.frx":1490
             End
             Begin TDBDate6Ctl.TDBDate MhDateInput2 
                Height          =   330
@@ -1156,8 +1156,8 @@ Begin VB.Form FrmPackingSlip
                _Version        =   65536
                _ExtentX        =   2778
                _ExtentY        =   582
-               Calendar        =   "PackingSlip.frx":1457
-               Caption         =   "PackingSlip.frx":156F
+               Calendar        =   "PackingSlip.frx":14AC
+               Caption         =   "PackingSlip.frx":15C4
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1167,9 +1167,9 @@ Begin VB.Form FrmPackingSlip
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "PackingSlip.frx":15DB
-               Keys            =   "PackingSlip.frx":15F9
-               Spin            =   "PackingSlip.frx":1657
+               DropDown        =   "PackingSlip.frx":1630
+               Keys            =   "PackingSlip.frx":164E
+               Spin            =   "PackingSlip.frx":16AC
                AlignHorizontal =   2
                AlignVertical   =   2
                Appearance      =   0
@@ -1219,8 +1219,8 @@ Begin VB.Form FrmPackingSlip
                _Version        =   65536
                _ExtentX        =   2778
                _ExtentY        =   582
-               Calculator      =   "PackingSlip.frx":167F
-               Caption         =   "PackingSlip.frx":169F
+               Calculator      =   "PackingSlip.frx":16D4
+               Caption         =   "PackingSlip.frx":16F4
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1230,9 +1230,9 @@ Begin VB.Form FrmPackingSlip
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "PackingSlip.frx":170B
-               Keys            =   "PackingSlip.frx":1729
-               Spin            =   "PackingSlip.frx":1773
+               DropDown        =   "PackingSlip.frx":1760
+               Keys            =   "PackingSlip.frx":177E
+               Spin            =   "PackingSlip.frx":17C8
                AlignHorizontal =   2
                AlignVertical   =   2
                Appearance      =   0
@@ -1278,8 +1278,8 @@ Begin VB.Form FrmPackingSlip
                _Version        =   65536
                _ExtentX        =   2778
                _ExtentY        =   582
-               Calculator      =   "PackingSlip.frx":179B
-               Caption         =   "PackingSlip.frx":17BB
+               Calculator      =   "PackingSlip.frx":17F0
+               Caption         =   "PackingSlip.frx":1810
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1289,9 +1289,9 @@ Begin VB.Form FrmPackingSlip
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "PackingSlip.frx":1827
-               Keys            =   "PackingSlip.frx":1845
-               Spin            =   "PackingSlip.frx":188F
+               DropDown        =   "PackingSlip.frx":187C
+               Keys            =   "PackingSlip.frx":189A
+               Spin            =   "PackingSlip.frx":18E4
                AlignHorizontal =   2
                AlignVertical   =   2
                Appearance      =   0
@@ -1337,8 +1337,8 @@ Begin VB.Form FrmPackingSlip
                _Version        =   65536
                _ExtentX        =   2778
                _ExtentY        =   582
-               Calculator      =   "PackingSlip.frx":18B7
-               Caption         =   "PackingSlip.frx":18D7
+               Calculator      =   "PackingSlip.frx":190C
+               Caption         =   "PackingSlip.frx":192C
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1348,9 +1348,9 @@ Begin VB.Form FrmPackingSlip
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "PackingSlip.frx":1943
-               Keys            =   "PackingSlip.frx":1961
-               Spin            =   "PackingSlip.frx":19AB
+               DropDown        =   "PackingSlip.frx":1998
+               Keys            =   "PackingSlip.frx":19B6
+               Spin            =   "PackingSlip.frx":1A00
                AlignHorizontal =   2
                AlignVertical   =   2
                Appearance      =   0
@@ -1396,8 +1396,8 @@ Begin VB.Form FrmPackingSlip
                _Version        =   65536
                _ExtentX        =   1931
                _ExtentY        =   582
-               Calendar        =   "PackingSlip.frx":19D3
-               Caption         =   "PackingSlip.frx":1AEB
+               Calendar        =   "PackingSlip.frx":1A28
+               Caption         =   "PackingSlip.frx":1B40
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1407,9 +1407,9 @@ Begin VB.Form FrmPackingSlip
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "PackingSlip.frx":1B57
-               Keys            =   "PackingSlip.frx":1B75
-               Spin            =   "PackingSlip.frx":1BD3
+               DropDown        =   "PackingSlip.frx":1BAC
+               Keys            =   "PackingSlip.frx":1BCA
+               Spin            =   "PackingSlip.frx":1C28
                AlignHorizontal =   0
                AlignVertical   =   2
                Appearance      =   0
@@ -1473,8 +1473,8 @@ Begin VB.Form FrmPackingSlip
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PackingSlip.frx":1BFB
-               Picture         =   "PackingSlip.frx":1C17
+               Picture         =   "PackingSlip.frx":1C50
+               Picture         =   "PackingSlip.frx":1C6C
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel16 
                Height          =   330
@@ -1500,8 +1500,8 @@ Begin VB.Form FrmPackingSlip
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PackingSlip.frx":1C33
-               Picture         =   "PackingSlip.frx":1C4F
+               Picture         =   "PackingSlip.frx":1C88
+               Picture         =   "PackingSlip.frx":1CA4
             End
             Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame4 
                Height          =   330
@@ -1531,7 +1531,7 @@ Begin VB.Form FrmPackingSlip
                NoPrefix        =   0   'False
                FormatString    =   ""
                Caption         =   ""
-               Picture         =   "PackingSlip.frx":1C6B
+               Picture         =   "PackingSlip.frx":1CC0
                Begin VB.CheckBox Check1 
                   BackColor       =   &H00FFFFFF&
                   BeginProperty Font 
@@ -1574,8 +1574,8 @@ Begin VB.Form FrmPackingSlip
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PackingSlip.frx":1C87
-               Picture         =   "PackingSlip.frx":1CA3
+               Picture         =   "PackingSlip.frx":1CDC
+               Picture         =   "PackingSlip.frx":1CF8
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel19 
                Height          =   330
@@ -1601,8 +1601,8 @@ Begin VB.Form FrmPackingSlip
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PackingSlip.frx":1CBF
-               Picture         =   "PackingSlip.frx":1CDB
+               Picture         =   "PackingSlip.frx":1D14
+               Picture         =   "PackingSlip.frx":1D30
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel20 
                Height          =   330
@@ -1628,8 +1628,8 @@ Begin VB.Form FrmPackingSlip
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PackingSlip.frx":1CF7
-               Picture         =   "PackingSlip.frx":1D13
+               Picture         =   "PackingSlip.frx":1D4C
+               Picture         =   "PackingSlip.frx":1D68
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput13 
                Height          =   330
@@ -1640,8 +1640,8 @@ Begin VB.Form FrmPackingSlip
                _Version        =   65536
                _ExtentX        =   5530
                _ExtentY        =   582
-               Calculator      =   "PackingSlip.frx":1D2F
-               Caption         =   "PackingSlip.frx":1D4F
+               Calculator      =   "PackingSlip.frx":1D84
+               Caption         =   "PackingSlip.frx":1DA4
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1651,9 +1651,9 @@ Begin VB.Form FrmPackingSlip
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "PackingSlip.frx":1DBB
-               Keys            =   "PackingSlip.frx":1DD9
-               Spin            =   "PackingSlip.frx":1E23
+               DropDown        =   "PackingSlip.frx":1E10
+               Keys            =   "PackingSlip.frx":1E2E
+               Spin            =   "PackingSlip.frx":1E78
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -1712,8 +1712,8 @@ Begin VB.Form FrmPackingSlip
                Caption         =   ""
                Alignment       =   1
                BorderStyle     =   0
-               Picture         =   "PackingSlip.frx":1E4B
-               Picture         =   "PackingSlip.frx":1E67
+               Picture         =   "PackingSlip.frx":1EA0
+               Picture         =   "PackingSlip.frx":1EBC
             End
             Begin Mh3dlblLib.Mh3dLabel lblPkdQty 
                Height          =   240
@@ -1738,8 +1738,8 @@ Begin VB.Form FrmPackingSlip
                Caption         =   ""
                Alignment       =   1
                BorderStyle     =   0
-               Picture         =   "PackingSlip.frx":1E83
-               Picture         =   "PackingSlip.frx":1E9F
+               Picture         =   "PackingSlip.frx":1ED8
+               Picture         =   "PackingSlip.frx":1EF4
             End
             Begin Mh3dlblLib.Mh3dLabel lblVchCreator 
                Height          =   240
@@ -1764,8 +1764,8 @@ Begin VB.Form FrmPackingSlip
                Caption         =   ""
                Alignment       =   0
                BorderStyle     =   0
-               Picture         =   "PackingSlip.frx":1EBB
-               Picture         =   "PackingSlip.frx":1ED7
+               Picture         =   "PackingSlip.frx":1F10
+               Picture         =   "PackingSlip.frx":1F2C
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel23 
                Height          =   330
@@ -1791,8 +1791,8 @@ Begin VB.Form FrmPackingSlip
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PackingSlip.frx":1EF3
-               Picture         =   "PackingSlip.frx":1F0F
+               Picture         =   "PackingSlip.frx":1F48
+               Picture         =   "PackingSlip.frx":1F64
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel24 
                Height          =   330
@@ -1818,8 +1818,8 @@ Begin VB.Form FrmPackingSlip
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PackingSlip.frx":1F2B
-               Picture         =   "PackingSlip.frx":1F47
+               Picture         =   "PackingSlip.frx":1F80
+               Picture         =   "PackingSlip.frx":1F9C
             End
             Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame3 
                Height          =   330
@@ -1849,7 +1849,7 @@ Begin VB.Form FrmPackingSlip
                NoPrefix        =   0   'False
                FormatString    =   ""
                Caption         =   ""
-               Picture         =   "PackingSlip.frx":1F63
+               Picture         =   "PackingSlip.frx":1FB8
                Begin VB.CheckBox Check2 
                   BackColor       =   &H00FFFFFF&
                   BeginProperty Font 
@@ -1893,8 +1893,8 @@ Begin VB.Form FrmPackingSlip
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PackingSlip.frx":1F7F
-               Picture         =   "PackingSlip.frx":1F9B
+               Picture         =   "PackingSlip.frx":1FD4
+               Picture         =   "PackingSlip.frx":1FF0
             End
             Begin TDBDate6Ctl.TDBDate MhDateInput5 
                Height          =   330
@@ -1905,8 +1905,8 @@ Begin VB.Form FrmPackingSlip
                _Version        =   65536
                _ExtentX        =   2778
                _ExtentY        =   582
-               Calendar        =   "PackingSlip.frx":1FB7
-               Caption         =   "PackingSlip.frx":20CF
+               Calendar        =   "PackingSlip.frx":200C
+               Caption         =   "PackingSlip.frx":2124
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1916,9 +1916,9 @@ Begin VB.Form FrmPackingSlip
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "PackingSlip.frx":213B
-               Keys            =   "PackingSlip.frx":2159
-               Spin            =   "PackingSlip.frx":21B7
+               DropDown        =   "PackingSlip.frx":2190
+               Keys            =   "PackingSlip.frx":21AE
+               Spin            =   "PackingSlip.frx":220C
                AlignHorizontal =   2
                AlignVertical   =   2
                Appearance      =   0
@@ -1982,8 +1982,8 @@ Begin VB.Form FrmPackingSlip
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PackingSlip.frx":21DF
-               Picture         =   "PackingSlip.frx":21FB
+               Picture         =   "PackingSlip.frx":2234
+               Picture         =   "PackingSlip.frx":2250
             End
             Begin VB.Line Line1 
                X1              =   0
@@ -2022,8 +2022,8 @@ Begin VB.Form FrmPackingSlip
             Alignment       =   0
             FillColor       =   9164542
             TextColor       =   0
-            Picture         =   "PackingSlip.frx":2217
-            Picture         =   "PackingSlip.frx":2233
+            Picture         =   "PackingSlip.frx":226C
+            Picture         =   "PackingSlip.frx":2288
          End
          Begin Mh3dlblLib.Mh3dLabel Mh3dLabel18 
             Height          =   330
@@ -2049,8 +2049,8 @@ Begin VB.Form FrmPackingSlip
             Alignment       =   0
             FillColor       =   9164542
             TextColor       =   0
-            Picture         =   "PackingSlip.frx":224F
-            Picture         =   "PackingSlip.frx":226B
+            Picture         =   "PackingSlip.frx":22A4
+            Picture         =   "PackingSlip.frx":22C0
          End
          Begin MSForms.ComboBox Combo7 
             Height          =   330
@@ -2175,7 +2175,7 @@ Dim rstBillInfo As New ADODB.Recordset, rstVchSeriesList As New ADODB.Recordset
 Dim rstPackerList As New ADODB.Recordset, rstDelivererList As New ADODB.Recordset, rstTransporterList As New ADODB.Recordset, rstBookingRouteList As New ADODB.Recordset
 '
 Dim PackerCode As String, DelivererCode As String, TransporterCode As String, BookingRouteCode As String
-Dim VchSeries As Long, Bundles As Integer, SaveAndContinue As Boolean, VchCreator As String
+Dim VchSeries As Variant, Bundles As Integer, SaveAndContinue As Boolean, VchCreator As String
 Dim ClubbedVch As String, ClubbedGRVch As String, OldClubbedGRVch As String 'OldClubbedGRVch-For bilty clearance of all bills if the bilty of one bill is cleared
 Dim LRange As Long, URange As Long
 Dim EditMode As Boolean, SortOrder As String, PrevStr As String, dblBookMark As Double
@@ -2193,7 +2193,7 @@ Private Sub Form_Load()
     cnPackingSlip.CursorLocation = adUseClient
     If cnPackingSlip.State = adStateOpen Then cnPackingSlip.Close
     cnPackingSlip.Open cnDatabase.ConnectionString
-    rstVchSeriesList.Open "SELECT Name As Col0,Code FROM VchSeriesMaster WHERE VchType='" & VchType & "' ORDER BY Name", cnPackingSlip, adOpenKeyset, adLockReadOnly
+    rstVchSeriesList.Open "SELECT Name As Col0,Code FROM VchSeriesMaster WHERE Left(FYCode,2)='" & Left(FYCode, 2) & "' AND VchType= '" & VchType & "' ORDER BY Name", cnPackingSlip, adOpenKeyset, adLockReadOnly
     If rstVchSeriesList.RecordCount > 0 Then
         rstVchSeriesList.MoveFirst
         Dim i As Integer
@@ -3093,7 +3093,7 @@ Public Function PrintPackingSlip(ByVal VchNo As String, ByVal OutputTo As String
     If URange = 0 Then URange = 9999
     On Error Resume Next
     Screen.MousePointer = vbHourglass
-    rstPrintPackingSlip.Open "SELECT ISNULL(Station,'') As Station,SlipNo,(SELECT STUFF((SELECT '+'+(LTRIM(Name)) FROM JobworkBVParent T WHERE CHARINDEX(''''+Code+'''',ClubbedVch)>0 FOR XML PATH('')),1,1,'')) As PvtMark,SrNo,(SELECT PrintName FROM BookMaster WHERE Code=ItemCode) As ItemName,Quantity,(SELECT PrintName FROM AccountMaster WHERE Code=Packer) As Packer,(SELECT COUNT(*) FROM PackingSlipChild WHERE Code=P.Code AND SlipNo=C1.SlipNo GROUP BY SlipNo) As ItemInSlip,'' As Remarks,ISNULL(Transport,'') As Tranport FROM (PackingSlipParent P INNER JOIN PackingSlipChild C1 ON P.Code=C1.Code) LEFT JOIN JobworkBVOthInf C2 ON P.Code=C2.Code WHERE P.Code='" & Trim(VchNo) & "' AND SlipNo>=" & LRange & " AND SlipNo<=" & URange & " ORDER BY CONVERT(INT,SlipNo),CONVERT(INT,SrNo)", cnPackingSlip, adOpenKeyset, adLockOptimistic
+    rstPrintPackingSlip.Open "SELECT ISNULL(Station,'') As Station,SlipNo,(SELECT STUFF((SELECT '+'+(LTRIM(Name)) FROM JobworkBVParent T WHERE CHARINDEX(''''+Code+'''',ClubbedVch)>0 FOR XML PATH('')),1,1,'')) As PvtMark,SrNo,(SELECT PrintName FROM BookMaster WHERE Code=ItemCode) As ItemName,Quantity,(SELECT PrintName FROM AccountMaster WHERE Code=Packer) As Packer,(SELECT COUNT(*) FROM PackingSlipChild WHERE Code=P.Code AND SlipNo=C1.SlipNo GROUP BY SlipNo) As ItemInSlip,'' As Remarks,ISNULL(Transport,'') As Tranport,(SELECT Weight FROM BookMaster WHERE Code=ItemCode)*Quantity As ItemWt FROM (PackingSlipParent P INNER JOIN PackingSlipChild C1 ON P.Code=C1.Code) LEFT JOIN JobworkBVOthInf C2 ON P.Code=C2.Code WHERE P.Code='" & Trim(VchNo) & "' AND SlipNo>=" & LRange & " AND SlipNo<=" & URange & " ORDER BY CONVERT(INT,SlipNo),CONVERT(INT,SrNo)", cnPackingSlip, adOpenKeyset, adLockOptimistic
     rstPrintPackingSlip.ActiveConnection = Nothing
     Screen.MousePointer = vbNormal
     rptPackingSlip.Database.SetDataSource rstPrintPackingSlip, 3, 1
@@ -3115,12 +3115,14 @@ Public Function PrintPackingSlipWithPrivateMark(ByVal VchNo As String, ByVal Out
     If URange = 0 Then URange = 9999
     On Error Resume Next
     Screen.MousePointer = vbHourglass
-    rstCompanyMaster.Open "Select PrintName FROM CompMaster", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstCompanyMaster.Open "Select * FROM CompanyMaster Where FYCode='" & FYCode & "' ", cnDatabase, adOpenKeyset, adLockReadOnly
 '    rstPrivateMark.Open "SELECT (SELECT TOP 1 LTRIM(Name) FROM JobWorkBVParent T WHERE CHARINDEX(''''+Code+'''',ClubbedVch)>0 ORDER BY AutoVchNo DESC) As BillNo,Pkt As Bundles,UPPER(Station) As Station,CASE WHEN UPPER(BiltyType)='SELF' OR UPPER(BiltyType)='BANK' THEN 'SELF' ELSE GrType END As GRType,Transport,M.PrintName As Booking FROM (PackingSlipParent P LEFT JOIN JobWorkBVOthInf C ON P.Code=C.Code) LEFT JOIN BookingRouteMaster M ON P.BookingRoute=M.Code WHERE P.Code='" & Trim(VchNo) & "'", cnPackingSlip, adOpenKeyset, adLockOptimistic
-    rstPrivateMark.Open "SELECT (SELECT TOP 1 LTRIM(Name) FROM JobWorkBVParent T WHERE CHARINDEX(''''+Code+'''',ClubbedVch)>0 ORDER BY Name DESC) As BillNo,Pkt As Bundles,UPPER(Station) As Station,CASE WHEN UPPER(BiltyType)='SELF' OR UPPER(BiltyType)='BANK' THEN 'SELF' ELSE GrType END As GRType,Transport,M.PrintName As Booking FROM (PackingSlipParent P LEFT JOIN JobWorkBVOthInf C ON P.Code=C.Code) LEFT JOIN BookingRouteMaster M ON P.BookingRoute=M.Code WHERE P.Code='" & Trim(VchNo) & "'", cnPackingSlip, adOpenKeyset, adLockOptimistic
+    rstPrivateMark.Open "SELECT (SELECT TOP 1 LTRIM(Name) FROM JobWorkBVParent T WHERE CHARINDEX(''''+Code+'''',ClubbedVch)>0 ORDER BY Name DESC) As BillNo,Pkt As Bundles,UPPER(Station) As Station,CASE WHEN UPPER(BiltyType)='SELF' OR UPPER(BiltyType)='BANK' THEN 'SELF' ELSE GrType END As GRType,Transport,M.PrintName As Booking," & _
+                                "(Select Name From AccountMaster Where Code= (Select Consignee From JobworkBVParent Where Code='" & Trim(VchNo) & "')) As Consignee,(Select Address1 From AccountMaster Where Code= (Select Consignee From JobworkBVParent Where Code='" & Trim(VchNo) & "')) As ConsigneeAddress1,(Select Address2 From AccountMaster Where Code= (Select Consignee From JobworkBVParent Where Code='" & Trim(VchNo) & "')) As ConsigneeAddress2,(Select Address3 From AccountMaster Where Code= (Select Consignee From JobworkBVParent Where Code='" & Trim(VchNo) & "')) As ConsigneeAddress3,(Select Address4 From AccountMaster Where Code= (Select Consignee From JobworkBVParent Where Code='" & Trim(VchNo) & "')) As ConsigneeAddress4,(Select Address4 From AccountMaster Where Code= (Select Consignee From JobworkBVParent Where Code='" & Trim(VchNo) & "')) As ConsigneeAddress4,(Select Mobile From AccountMaster Where Code= (Select Consignee From JobworkBVParent Where Code='" & Trim(VchNo) & "')) As ConsigneeMobile " & _
+                                "FROM (PackingSlipParent P LEFT JOIN JobWorkBVOthInf C ON P.Code=C.Code) LEFT JOIN BookingRouteMaster M ON P.BookingRoute=M.Code WHERE P.Code='" & Trim(VchNo) & "'", cnPackingSlip, adOpenKeyset, adLockOptimistic
     rstPrivateMark.ActiveConnection = Nothing
     With rstPrintPackingSlip
-        .Open "SELECT Station,SlipNo,(SELECT STUFF((SELECT '+'+(LTRIM(Name)) FROM JobWorkBVParent T WHERE CHARINDEX(''''+Code+'''',ClubbedVch)>0 FOR XML PATH('')),1,1,'')) As PvtMark,SrNo,(SELECT PrintName FROM BookMaster WHERE Code=ItemCode) As ItemName,Quantity,(SELECT PrintName FROM AccountMaster WHERE Code=Packer) As Packer,(SELECT COUNT(*) FROM PackingSlipChild WHERE Code=P.Code AND SlipNo=C1.SlipNo GROUP BY SlipNo) As ItemInSlip,'' As Remarks,Remarks As Transport,Remarks As Booking FROM (PackingSlipParent P INNER JOIN PackingSlipChild C1 ON P.Code=C1.Code) LEFT JOIN JobWorkBVOthInf C2 ON P.Code=C2.Code WHERE P.Code='" & Trim(VchNo) & "' AND SlipNo>=" & LRange & " AND SlipNo<=" & URange & " ORDER BY CONVERT(INT,SlipNo),CONVERT(INT,SrNo)", cnPackingSlip, adOpenKeyset, adLockOptimistic
+        .Open "SELECT Station,SlipNo,(SELECT STUFF((SELECT '+'+(LTRIM(Name)) FROM JobWorkBVParent T WHERE CHARINDEX(''''+Code+'''',ClubbedVch)>0 FOR XML PATH('')),1,1,'')) As PvtMark,SrNo,(SELECT PrintName FROM BookMaster WHERE Code=ItemCode) As ItemName,Quantity,(SELECT PrintName FROM AccountMaster WHERE Code=Packer) As Packer,(SELECT COUNT(*) FROM PackingSlipChild WHERE Code=P.Code AND SlipNo=C1.SlipNo GROUP BY SlipNo) As ItemInSlip,'' As Remarks,Remarks As Transport,Remarks As Booking,(SELECT Weight FROM BookMaster WHERE Code=ItemCode)*Quantity As ItemWt FROM (PackingSlipParent P INNER JOIN PackingSlipChild C1 ON P.Code=C1.Code) LEFT JOIN JobWorkBVOthInf C2 ON P.Code=C2.Code WHERE P.Code='" & Trim(VchNo) & "' AND SlipNo>=" & LRange & " AND SlipNo<=" & URange & " ORDER BY CONVERT(INT,SlipNo),CONVERT(INT,SrNo)", cnPackingSlip, adOpenKeyset, adLockOptimistic
         .ActiveConnection = Nothing
         Do While Not .EOF
             .Fields("Booking").Value = rstPrivateMark.Fields("Booking").Value
@@ -3132,8 +3134,10 @@ Public Function PrintPackingSlipWithPrivateMark(ByVal VchNo As String, ByVal Out
     End With
     rptPackingSlipWithPrivateMark.Text17.SetText Trim(rstPrivateMark.Fields("BillNo").Value) + "/" + Trim(rstPrivateMark.Fields("Bundles").Value)
     rptPackingSlipWithPrivateMark.Text12.SetText StrConv(Trim(rstPrivateMark.Fields("GRType").Value), vbUpperCase)
+    rptPackingSlipWithPrivateMark.Text14.SetText StrConv(Trim(rstPrivateMark.Fields("ConsigneeAddress1").Value), vbUpperCase) & " " & StrConv(Trim(rstPrivateMark.Fields("ConsigneeAddress2").Value), vbUpperCase) & " " & StrConv(Trim(rstPrivateMark.Fields("ConsigneeAddress3").Value), vbUpperCase) & " " & StrConv(Trim(rstPrivateMark.Fields("ConsigneeAddress4").Value), vbUpperCase) & ", Mobile : " & StrConv(Trim(rstPrivateMark.Fields("ConsigneeMobile").Value), vbUpperCase)
     rptPackingSlipWithPrivateMark.Text13.SetText StrConv(Trim(rstPrivateMark.Fields("Station").Value), vbUpperCase)
     rptPackingSlipWithPrivateMark.Text8.SetText "From: " & StrConv(Trim(rstCompanyMaster.Fields("PrintName").Value), vbUpperCase)
+    rptPackingSlipWithPrivateMark.Text10.SetText StrConv(Trim(rstCompanyMaster.Fields("Address1").Value), vbUpperCase) & " " & StrConv(Trim(rstCompanyMaster.Fields("Address2").Value), vbUpperCase) & " " & StrConv(Trim(rstCompanyMaster.Fields("Address3").Value), vbUpperCase) & " " & StrConv(Trim(rstCompanyMaster.Fields("Address4").Value), vbUpperCase)
     Screen.MousePointer = vbNormal
     rptPackingSlipWithPrivateMark.Database.SetDataSource rstPrintPackingSlip, 3, 1
     rptPackingSlipWithPrivateMark.DiscardSavedData
@@ -3152,23 +3156,33 @@ Public Function PrintForwardingSlip(ByVal VchNo As String, ByVal OutputTo As Str
     Dim rstCompanyMaster As New ADODB.Recordset, rstForwardingSlip As New ADODB.Recordset, rstForwardingSlipChild As New ADODB.Recordset
     On Error Resume Next
     Screen.MousePointer = vbHourglass
-    rstCompanyMaster.Open "Select PrintName,Address1,Address2,Address3,Address4,Phone,Fax FROM CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
-    rstForwardingSlip.Open "SELECT CASE WHEN ClubbedGRVchNo='' THEN ClubbedVchNo ELSE ClubbedGRVchNo END As BillNo,P.CreatedOn,(SELECT SUM(Pkt) FROM JobworkBVOthInf WHERE CHARINDEX(''''+Code+'''',CASE WHEN ClubbedGRVch='' THEN ClubbedVch ELSE ClubbedGRVch END)>0) As Bundles,UPPER(Transport) As TransportName,Station,CASE WHEN UPPER(BiltyType)='SELF' OR UPPER(BiltyType)='BANK' THEN 'SELF' ELSE GrType END As GRType,(SELECT SUM(Amount) FROM JobworkBVParent T WHERE CHARINDEX(''''+Code+'''',CASE WHEN ClubbedGRVch='' THEN ClubbedVch ELSE ClubbedGRVch END)>0) As VchAmt,Remarks,PaidGR,ISNULL(M.Name,'') As Transporter,M1.PrintName As Booking,'' As Weight FROM ((PackingSlipParent P LEFT JOIN JobWorkBVOthInf C ON CONVERT(INT,P.Code)=C.Code) LEFT JOIN AccountMaster M ON P.Transporter=M.Code) LEFT JOIN BookingRouteMaster M1 ON P.BookingRoute=M1.Code WHERE P.Code='" & Trim(VchNo) & "'", cnPackingSlip, adOpenKeyset, adLockOptimistic
+    rstCompanyMaster.Open "Select PrintName,Address1,Address2,Address3,Address4,Phone,Fax,Mobile FROM CompanyMaster WHERE FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstForwardingSlip.Open "SELECT CASE WHEN ClubbedGRVchNo='' THEN ClubbedVchNo ELSE ClubbedGRVchNo END As BillNo,P.CreatedOn,(SELECT SUM(Pkt) FROM JobworkBVOthInf WHERE CHARINDEX(''''+Code+'''',CASE WHEN ClubbedGRVch='' THEN ClubbedVch ELSE ClubbedGRVch END)>0) As Bundles,UPPER(Transport) As TransportName,Station,CASE WHEN UPPER(BiltyType)='SELF' OR UPPER(BiltyType)='BANK' THEN 'SELF' ELSE GrType END As GRType,(SELECT SUM(Amount) FROM JobworkBVParent T WHERE CHARINDEX(''''+Code+'''',CASE WHEN ClubbedGRVch='' THEN ClubbedVch ELSE ClubbedGRVch END)>0) As VchAmt,Remarks,PaidGR,ISNULL(M.Name,'') As Transporter,M1.PrintName As Booking,'' As Weight," & _
+                                           "(Select PrintName From AccountMaster Where Code= (Select Consignee From JobworkBVParent Where Code='" & Trim(VchNo) & "')) As Consignee,(Select Address1 From AccountMaster Where Code= (Select Consignee From JobworkBVParent Where Code='" & Trim(VchNo) & "')) As ConsigneeAddress1,(Select Address2 From AccountMaster Where Code= (Select Consignee From JobworkBVParent Where Code='" & Trim(VchNo) & "')) As ConsigneeAddress2,(Select Address3 From AccountMaster Where Code= (Select Consignee From JobworkBVParent Where Code='" & Trim(VchNo) & "')) As ConsigneeAddress3,(Select Address4 From AccountMaster Where Code= (Select Consignee From JobworkBVParent Where Code='" & Trim(VchNo) & "')) As ConsigneeAddress4,(Select Mobile From AccountMaster Where Code= (Select Consignee From JobworkBVParent Where Code='" & Trim(VchNo) & "')) As ConsigneeMobile " & _
+                                           "FROM ((PackingSlipParent P LEFT JOIN JobWorkBVOthInf C ON CONVERT(INT,P.Code)=C.Code) LEFT JOIN AccountMaster M ON P.Transporter=M.Code) LEFT JOIN BookingRouteMaster M1 ON P.BookingRoute=M1.Code WHERE P.Code='" & Trim(VchNo) & "'", cnPackingSlip, adOpenKeyset, adLockOptimistic
 '    rstForwardingSlipChild.Open "SELECT CASE WHEN ClubbedVchNo IS NULL THEN LTRIM(AutoVchNo) ELSE ClubbedVchNo END As BillNo,Date As BillDate,Station,Transport As TransportName,Pkt As Bundles,ISNULL((SELECT Name FROM AccountMaster WHERE Code=C2.Packer),'') As Packer FROM (JobWorkBVParent P LEFT JOIN JobWorkBVOthInf C ON P.Code=C.Code) LEFT JOIN PackingSlipParent C2 ON P.Code=C2.Code WHERE LEFT(P.Type,2)='" & Left(VchType, 2) & "' AND RIGHT(P.Type,2)='" & Right(VchType, 2) & "' AND P.MaterialCentre IN (SELECT MaterialCentre FROM JobWorkBVParent WHERE Code=" & Trim(VchNo) & ") AND P.Party IN (SELECT Party FROM JobWorkBVParent WHERE Code=" & Trim(VchNo) & ") AND ISNULL(Station,'')='' AND PktPicked=0 AND P.Code<>'" & Trim(VchNo) & "' ORDER BY Date,P.Name", cnDatabase, adOpenKeyset, adLockOptimistic
-    rstForwardingSlipChild.Open "SELECT CASE WHEN ClubbedVchNo IS NULL THEN LTRIM(Name) ELSE ClubbedVchNo END As BillNo,Date As BillDate,Station,Transport As TransportName,Pkt As Bundles,ISNULL((SELECT Name FROM AccountMaster WHERE Code=C2.Packer),'') As Packer FROM (JobWorkBVParent P LEFT JOIN JobWorkBVOthInf C ON P.Code=C.Code) LEFT JOIN PackingSlipParent C2 ON P.Code=C2.Code WHERE LEFT(P.Type,2)='" & Left(VchType, 2) & "' AND RIGHT(P.Type,2)='" & Right(VchType, 2) & "' AND P.MaterialCentre IN (SELECT MaterialCentre FROM JobWorkBVParent WHERE Code=" & Trim(VchNo) & ") AND P.Party IN (SELECT Party FROM JobWorkBVParent WHERE Code=" & Trim(VchNo) & ") AND ISNULL(Station,'')='' AND PktPicked=0 AND P.Code<>'" & Trim(VchNo) & "' ORDER BY Date,P.Name", cnDatabase, adOpenKeyset, adLockOptimistic
+    rstForwardingSlipChild.Open "SELECT CASE WHEN ClubbedVchNo IS NULL THEN LTRIM(Name) ELSE ClubbedVchNo END As BillNo,Date As BillDate,P.Station,P.Transport As TransportName,Pkt As Bundles,ISNULL((SELECT Name FROM AccountMaster WHERE Code=C2.Packer),'') As Packer FROM (JobWorkBVParent P LEFT JOIN JobWorkBVOthInf C ON P.Code=C.Code) LEFT JOIN PackingSlipParent C2 ON P.Code=C2.Code WHERE LEFT(P.Type,2)='" & Left(VchType, 2) & "' AND RIGHT(P.Type,2)='" & Right(VchType, 2) & "' AND P.MaterialCentre IN (SELECT MaterialCentre FROM JobWorkBVParent WHERE Code=" & Trim(VchNo) & ") AND P.Party IN (SELECT Party FROM JobWorkBVParent WHERE Code=" & Trim(VchNo) & ") AND ISNULL(P.Station,'')='' AND PktPicked=0 AND P.Code<>'" & Trim(VchNo) & "' ORDER BY Date,P.Name", cnDatabase, adOpenKeyset, adLockOptimistic
     rstForwardingSlip.ActiveConnection = Nothing: rstForwardingSlipChild.ActiveConnection = Nothing
 '    If rstForwardingSlip.RecordCount > 0 Then rstForwardingSlip.Fields("Remarks").Value = "<Font Size='2' Face='Calibri' Align='LEFT'>Kindly arrange to book <Font Size='3'><b>" + Trim(rstForwardingSlip.Fields("Bundles").Value) + " Bundle(s) " & IIf(Val(rstForwardingSlip.Fields("Weight").Value) = 0, "", "(Weight : " & Trim(rstForwardingSlip.Fields("Weight").Value) & " Kg)") & " <Font Size='2'></b>of Printed Books (<Font Size='3'><b>Value : Rs. " + Format(rstForwardingSlip.Fields("VchAmt").Value, "0.00") + "<Font Size='2'></b>) to <Font Size='3'><b>" + StrConv(rstForwardingSlip.Fields("Station").Value, vbUpperCase) + "<Font Size='2'></b> and oblige." Else rstForwardingSlip.Fields("Remarks").Value = ""
     If rstForwardingSlip.RecordCount > 0 Then rstForwardingSlip.Fields("Remarks").Value = "<Font Size='2' Face='Calibri' Align='LEFT'>Kindly arrange to book <Font Size='3'><b>" + Trim(rstForwardingSlip.Fields("Bundles").Value) + " Bundle(s) <Font Size='2'></b>of Printed Books (<Font Size='3'><b>Value : Rs. " + Format(rstForwardingSlip.Fields("VchAmt").Value, "0.00") + "<Font Size='2'></b>) to <Font Size='3'><b>" + StrConv(rstForwardingSlip.Fields("Station").Value, vbUpperCase) + "<Font Size='2'></b> and oblige." Else rstForwardingSlip.Fields("Remarks").Value = ""
     If rstForwardingSlipChild.RecordCount = 0 Then rptForwardingSlip.Subreport1.BottomLineStyle = crLSNoLine: rptForwardingSlip.Subreport1.TopLineStyle = crLSNoLine: rptForwardingSlip.Subreport1.LeftLineStyle = crLSNoLine: rptForwardingSlip.Subreport1.RightLineStyle = crLSNoLine
     Screen.MousePointer = vbNormal
+    'Header
     rptForwardingSlip.Text1.SetText Trim(rstCompanyMaster.Fields("PrintName").Value)
     rptForwardingSlip.Text3.SetText Trim(rstCompanyMaster.Fields("Address1").Value) & Space(1) & Trim(rstCompanyMaster.Fields("Address2").Value) & Space(1) & Trim(rstCompanyMaster.Fields("Address3").Value) & Space(1) & Trim(rstCompanyMaster.Fields("Address4").Value)
     rptForwardingSlip.Text2.SetText "Phone : " & Trim(rstCompanyMaster.Fields("Phone").Value) & Space(1) & "Fax : " & Trim(rstCompanyMaster.Fields("Fax").Value)
+    
     rptForwardingSlip.Text12.SetText StrConv(Trim(rstCompanyMaster.Fields("PrintName").Value), vbProperCase)
     rptForwardingSlip.Text13.SetText StrConv(Trim(rstCompanyMaster.Fields("Address1").Value), vbProperCase)
     rptForwardingSlip.Text17.SetText StrConv(Trim(rstCompanyMaster.Fields("Address2").Value), vbProperCase)
-    rptForwardingSlip.Text18.SetText StrConv(Trim(rstCompanyMaster.Fields("Address3").Value), vbProperCase)
+    rptForwardingSlip.Text18.SetText StrConv(Trim(rstCompanyMaster.Fields("Address3").Value), vbProperCase) & " " & StrConv(Trim(rstCompanyMaster.Fields("Address4").Value), vbProperCase) & " Mobile : " & Trim(rstCompanyMaster.Fields("Mobile").Value)
     rptForwardingSlip.Text9.SetText "for " + StrConv(Trim(rstCompanyMaster.Fields("PrintName").Value), vbProperCase)
+    
+    rptForwardingSlip.Text5.SetText "Address : " & StrConv(Trim(rstForwardingSlip.Fields("ConsigneeAddress1").Value), vbProperCase)
+    rptForwardingSlip.Text11.SetText StrConv(Trim(rstForwardingSlip.Fields("ConsigneeAddress2").Value), vbProperCase)
+    rptForwardingSlip.Text15.SetText StrConv(Trim(rstForwardingSlip.Fields("ConsigneeAddress3").Value), vbProperCase)
+    rptForwardingSlip.Text16.SetText StrConv(Trim(rstForwardingSlip.Fields("ConsigneeAddress4").Value), vbProperCase)
+    rptForwardingSlip.Text19.SetText "Mobile : " & Trim(rstForwardingSlip.Fields("ConsigneeMobile").Value)
     rptForwardingSlip.DiscardSavedData
     rptForwardingSlip.Database.SetDataSource rstForwardingSlip, 3, 1
     rptForwardingSlip.Subreport1.OpenSubreport.Database.SetDataSource rstForwardingSlipChild, 3, 1
@@ -3186,16 +3200,31 @@ Public Function PrintPrivateMark(ByVal VchNo As String, ByVal OutputTo As String
     Dim rstCompanyMaster As New ADODB.Recordset, rstPrivateMark As New ADODB.Recordset
     On Error Resume Next
     Screen.MousePointer = vbHourglass
-    rstCompanyMaster.Open "Select PrintName FROM CompMaster", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstCompanyMaster.Open "Select * FROM CompanyMaster Where FYCode='" & FYCode & "' ", cnDatabase, adOpenKeyset, adLockReadOnly
 '    rstPrivateMark.Open "SELECT (SELECT TOP 1 LTRIM(Name) FROM JobWorkBVParent T WHERE CHARINDEX(''''+Code+'''',ClubbedVch)>0 ORDER BY AutoVchNo DESC) As BillNo,Pkt As Bundles,UPPER(Station) As Station,CASE WHEN UPPER(BiltyType)='SELF' OR UPPER(BiltyType)='BANK' THEN 'SELF' ELSE GrType END As GRType,Transport,M.PrintName As Booking FROM (PackingSlipParent P LEFT JOIN JobWorkBVOthInf C ON P.Code=C.Code) LEFT JOIN BookingRouteMaster M ON P.BookingRoute=M.Code WHERE P.Code='" & Trim(VchNo) & "'", cnPackingSlip, adOpenKeyset, adLockOptimistic
-    rstPrivateMark.Open "SELECT (SELECT TOP 1 LTRIM(Name) FROM JobWorkBVParent T WHERE CHARINDEX(''''+Code+'''',ClubbedVch)>0 ORDER BY Name DESC) As BillNo,Pkt As Bundles,UPPER(Station) As Station,CASE WHEN UPPER(BiltyType)='SELF' OR UPPER(BiltyType)='BANK' THEN 'SELF' ELSE GrType END As GRType,Transport,M.PrintName As Booking FROM (PackingSlipParent P LEFT JOIN JobWorkBVOthInf C ON P.Code=C.Code) LEFT JOIN BookingRouteMaster M ON P.BookingRoute=M.Code WHERE P.Code='" & Trim(VchNo) & "'", cnPackingSlip, adOpenKeyset, adLockOptimistic
+    rstPrivateMark.Open "SELECT (SELECT TOP 1 LTRIM(Name) FROM JobWorkBVParent T WHERE CHARINDEX(''''+Code+'''',ClubbedVch)>0 ORDER BY Name DESC) As BillNo,Pkt As Bundles,UPPER(Station) As Station,CASE WHEN UPPER(BiltyType)='SELF' OR UPPER(BiltyType)='BANK' THEN 'SELF' ELSE GrType END As GRType,Transport,M.PrintName As Booking,  " & _
+                                      "(Select PrintName From AccountMaster Where Code= (Select Consignee From JobworkBVParent Where Code='" & Trim(VchNo) & "')) As Consignee,(Select Address1 From AccountMaster Where Code= (Select Consignee From JobworkBVParent Where Code='" & Trim(VchNo) & "')) As ConsigneeAddress1,(Select Address2 From AccountMaster Where Code= (Select Consignee From JobworkBVParent Where Code='" & Trim(VchNo) & "')) As ConsigneeAddress2,(Select Address3 From AccountMaster Where Code= (Select Consignee From JobworkBVParent Where Code='" & Trim(VchNo) & "')) As ConsigneeAddress3,(Select Address4 From AccountMaster Where Code= (Select Consignee From JobworkBVParent Where Code='" & Trim(VchNo) & "')) As ConsigneeAddress4,(Select Mobile From AccountMaster Where Code= (Select Consignee From JobworkBVParent Where Code='" & Trim(VchNo) & "')) As ConsigneeMobile " & _
+                                      "FROM (PackingSlipParent P LEFT JOIN JobWorkBVOthInf C ON P.Code=C.Code) LEFT JOIN BookingRouteMaster M ON P.BookingRoute=M.Code WHERE P.Code='" & Trim(VchNo) & "'", cnPackingSlip, adOpenKeyset, adLockOptimistic
     rstPrivateMark.ActiveConnection = Nothing
     Screen.MousePointer = vbNormal
+    rptPrivateMark.Text5.SetText StrConv(Trim(rstPrivateMark.Fields("ConsigneeAddress1").Value), vbUpperCase) & " " & StrConv(Trim(rstPrivateMark.Fields("ConsigneeAddress2").Value), vbUpperCase) & " " & StrConv(Trim(rstPrivateMark.Fields("ConsigneeAddress3").Value), vbUpperCase) & " " & StrConv(Trim(rstPrivateMark.Fields("ConsigneeAddress4").Value), vbUpperCase)
     rptPrivateMark.Text3.SetText "From: " & StrConv(Trim(rstCompanyMaster.Fields("PrintName").Value), vbUpperCase)
+    rptPrivateMark.Text4.SetText StrConv(Trim(rstCompanyMaster.Fields("Address1").Value), vbUpperCase) & " " & StrConv(Trim(rstCompanyMaster.Fields("Address2").Value), vbUpperCase) & " " & StrConv(Trim(rstCompanyMaster.Fields("Address3").Value), vbUpperCase) & " " & StrConv(Trim(rstCompanyMaster.Fields("Address4").Value), vbUpperCase)
+    rptPrivateMark.Text10.SetText StrConv(Trim(rstPrivateMark.Fields("ConsigneeAddress1").Value), vbUpperCase) & " " & StrConv(Trim(rstPrivateMark.Fields("ConsigneeAddress2").Value), vbUpperCase) & " " & StrConv(Trim(rstPrivateMark.Fields("ConsigneeAddress3").Value), vbUpperCase) & " " & StrConv(Trim(rstPrivateMark.Fields("ConsigneeAddress4").Value), vbUpperCase)
     rptPrivateMark.Text7.SetText "From: " & StrConv(Trim(rstCompanyMaster.Fields("PrintName").Value), vbUpperCase)
+    rptPrivateMark.Text9.SetText StrConv(Trim(rstCompanyMaster.Fields("Address1").Value), vbUpperCase) & " " & StrConv(Trim(rstCompanyMaster.Fields("Address2").Value), vbUpperCase) & " " & StrConv(Trim(rstCompanyMaster.Fields("Address3").Value), vbUpperCase) & " " & StrConv(Trim(rstCompanyMaster.Fields("Address4").Value), vbUpperCase)
+    
+    'rptPrivateMark.Section4.Suppress = True
+    If MsgBox("Are You want to Print in A5 Paper Size in Place of A4 .. ?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Paper Size !") = vbYes Then
+    rptPrivateMark.PaperSize = crPaperA5: rptPrivateMark.PaperOrientation = crLandscape
+    Else
+    rptPrivateMark.PaperSize = crDefaultPaperSize: rptPrivateMark.PaperOrientation = crDefaultPaperOrientation
+    End If
     rptPrivateMark.Database.SetDataSource rstPrivateMark, 3, 1
     rptPrivateMark.DiscardSavedData
-'    rptPrivateMark.Areas.Item("D").CopiesToPrint = 2
+    'rptPrivateMark.Areas.Item("D").CopiesToPrint = 2
+    rptPrivateMark.BottomMargin = 60
+    rptPrivateMark.TopMargin = 100
     If OutputTo = "S" Then
         Set FrmReportViewer.Report = rptPrivateMark
         FrmReportViewer.Show vbModal

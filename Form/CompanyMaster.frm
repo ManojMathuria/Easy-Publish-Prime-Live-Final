@@ -1358,14 +1358,24 @@ Private Sub Form_Load()
     MhDateInput1.ReadOnly = False: MhDateInput2.ReadOnly = False: Text13.Locked = False: Text14.Locked = False: Text15.Locked = False: Text16.Locked = False: Option1.Enabled = True: Option2.Enabled = True
     End If
     If strCreateCompany = "Y" Then
+        BusySystemIndicator True
+        cnDatabase.CursorLocation = adUseClient
+        If DatabaseType = "MS SQL" Then
+            cnDatabase.CommandTimeout = 300
+            ConnectionString = "Provider=SQLOLEDB;Password=" & ServerPassword & ";Persist Security Info=True;User ID=" & ServerUser & ";Initial Catalog=EP000;Data Source=" & ServerName
+        Else
+            ConnectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & DatabasePath & "\EasyPublish." & CompCode & ";Persist Security Info=False;Jet OLEDB:Database Password=pubprint123!@#"
+        End If
+        cnDatabase.Open ConnectionString
         FrmCompanyMaster.Caption = "Company Creation"
         MhDateInput1.Text = Format(CDate("Apr-01-" & Year(Date)), "dd-MM-yyyy")
         MhDateInput2.Text = Format(CDate("Mar-31-" & Str(Year(Date) + 1)), "dd-MM-yyyy")
+        BusySystemIndicator False
     Else
         FrmCompanyMaster.Caption = "Company Modification"
         rstCompanyMaster.CursorLocation = adUseServer
         BusySystemIndicator True
-        rstCompanyMaster.Open "SELECT *,(Select Name From GeneralMaster Where Type=56 And Code=State) As StateName FROM CompanyMaster Where FYCode='" & FYCode & "' ", cnDatabase, adOpenKeyset, adLockPessimistic
+        rstCompanyMaster.Open "SELECT *,(Select Name From GeneralMaster Where Type=56 And Code=State) As StateName,State As StateCode FROM CompanyMaster Where FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockPessimistic
         rstStateList.Open "Select Name As Col0, Code From GeneralMaster Where Type = '56'  Order By Name", cnDatabase, adOpenKeyset, adLockReadOnly
         LoadFields
         BusySystemIndicator False
@@ -1428,6 +1438,7 @@ Private Sub LoadFields()
     Text22.Text = rstCompanyMaster.Fields("UserName").Value
     Text23.Text = rstCompanyMaster.Fields("Password").Value
     Text24.Text = rstCompanyMaster.Fields("StateName").Value
+    StateCode = rstCompanyMaster.Fields("StateCode").Value
 End Sub
 Private Sub SaveFields()
     If rstCompanyMaster.EOF Or rstCompanyMaster.BOF Then Exit Sub
@@ -1501,9 +1512,9 @@ Private Sub cmdSave_Click()
         If UpdateRecord(rstCompanyMaster) Then
             rstCompanyMaster.Close
             If DatabaseType = "MS SQL" Then
-            rstCompanyMaster.Open "SELECT Name, '-Financial Year From '+SUBSTRING(Format(FinancialYearFrom,'dd-mm-yyyy'),1,2)+'-'+SUBSTRING(Format(FinancialYearFrom,'dd-mmm-yyyy'),4,3)+'-'+SUBSTRING(Format(FinancialYearFrom,'dd-mm-yyyy'),7,4)+' To '+SUBSTRING(Format(FinancialYearTo,'dd-mm-yyyy'),1,2)+'-'+SUBSTRING(Format(FinancialYearTo,'dd-mmm-yyyy'),4,3)+'-'+SUBSTRING(Format(FinancialYearTo,'dd-mm-yyyy'),7,4) From CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
+            rstCompanyMaster.Open "SELECT Name,'-Financial Year From '+REPLACE(CONVERT(VARCHAR(11),FinancialYearFrom,106),' ','-')+' To '+REPLACE(CONVERT(VARCHAR(11),FinancialYearTo,106),' ','-'),* FROM CompanyMaster WHERE FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
             Else
-            rstCompanyMaster.Open "SELECT Name, '-Financial Year From '+MID(Format(FinancialYearFrom,'dd-mm-yyyy'),1,2)+'-'+SUBSTRING(Format(FinancialYearFrom,'dd-mmm-yyyy'),4,3)+'-'+MID(Format(FinancialYearFrom,'dd-mm-yyyy'),7,4)+' To '+MID(Format(FinancialYearTo,'dd-mm-yyyy'),1,2)+'-'+MID(Format(FinancialYearTo,'dd-mmm-yyyy'),4,3)+'-'+MID(Format(FinancialYearTo,'dd-mm-yyyy'),7,4) From CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
+            rstCompanyMaster.Open "SELECT Name,'-Financial Year From '+REPLACE(CONVERT(VARCHAR(11),FinancialYearFrom,106),' ','-')+' To '+REPLACE(CONVERT(VARCHAR(11),FinancialYearTo,106),' ','-'),* FROM CompanyMaster WHERE FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
             End If
             MdiMainMenu.Caption = "Easy Publish 19 Rel 4.0-Production Management System [" & Trim(rstCompanyMaster.Fields("Name").Value) & Trim(rstCompanyMaster.Fields(1).Value) & "]"
             Call CloseRecordset(rstCompanyMaster)
@@ -1536,6 +1547,8 @@ Private Sub Text24_Change()
 End Sub
 Private Sub Text24_Validate(Cancel As Boolean)
     Dim SearchString As String
+    If rstStateList.State = 1 Then rstStateList.Close
+    rstStateList.Open "Select Name As Col0, Code From GeneralMaster Where Type = '56'  Order By Name", cnDatabase, adOpenKeyset, adLockReadOnly
     SearchString = FixQuote(Text24.Text)
     If rstStateList.RecordCount = 0 Then
        DisplayError ("No Record in State Master")

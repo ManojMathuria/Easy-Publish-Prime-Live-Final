@@ -105,8 +105,8 @@ Begin VB.Form FrmGeneralMaster
          TabCaption(1)   =   "&Details"
          TabPicture(1)   =   "GeneralMaster.frx":0044
          Tab(1).ControlEnabled=   0   'False
-         Tab(1).Control(0)=   "Mh3dFrame2"
-         Tab(1).Control(1)=   "Mh3dLabel1(1)"
+         Tab(1).Control(0)=   "Mh3dLabel1(1)"
+         Tab(1).Control(1)=   "Mh3dFrame2"
          Tab(1).ControlCount=   2
          Begin VB.TextBox Text1 
             Appearance      =   0  'Flat
@@ -474,7 +474,7 @@ Begin VB.Form FrmGeneralMaster
                NoPrefix        =   0   'False
                FormatString    =   ""
                Caption         =   ""
-               Picture         =   "GeneralMaster.frx":07A5
+               Picture         =   "GeneralMaster.frx":075D
                Begin VB.CheckBox cbValue 
                   Caption         =   "Check1"
                   Height          =   210
@@ -510,8 +510,8 @@ Begin VB.Form FrmGeneralMaster
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "GeneralMaster.frx":07C1
-            Picture         =   "GeneralMaster.frx":07DD
+            Picture         =   "GeneralMaster.frx":0779
+            Picture         =   "GeneralMaster.frx":0795
          End
          Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
             Height          =   300
@@ -538,8 +538,8 @@ Begin VB.Form FrmGeneralMaster
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "GeneralMaster.frx":07F9
-            Picture         =   "GeneralMaster.frx":0815
+            Picture         =   "GeneralMaster.frx":07B1
+            Picture         =   "GeneralMaster.frx":07CD
          End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat
@@ -684,8 +684,11 @@ Private Sub Form_Load()
     ElseIf MasterType = "5" Or MasterType = "12" Or MasterType = "26" Or MasterType = "12','26" Then 'Item/Account Group Master
         Mh3dLabel2.Caption = " Under Group ": Text4.Visible = True
     ElseIf MasterType = "7" Then 'Operation Master
-        Mh3dLabel2.Caption = " Use Numb in Calc": Mh3dFrame4.Visible = True
-        Text4.Visible = True: Text4.Locked = False
+        Mh3dLabel1(0).Width = 2400: Text2.Left = 2500: Text2.Width = 4470
+        Mh3dLabel3.Width = 2400: Text3.Left = 2500: Text3.Width = 4470
+        Mh3dLabel2.Caption = " Don't Use No in Calculation": Mh3dFrame4.Visible = True
+        Mh3dLabel2.Width = 2400: Mh3dFrame4.Left = 2500: Mh3dFrame4.Width = 4470 '5295
+        Text4.Visible = False: Text4.Locked = True
     ElseIf MasterType = "15" Or MasterType = "20" Or MasterType = "23" Then  'Paper Unit/Calc Mode/Color Master
         Mh3dLabel2.Caption = IIf(MasterType = "15", " Sheets/Unit", IIf(MasterType = "20", " Value (0 if varies)", " Color")): MhRealInput1.Visible = True
     Else

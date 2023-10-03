@@ -106,6 +106,7 @@ Begin VB.Form FrmPaperMaster
          TabPicture(1)   =   "PaperMaster.frx":0038
          Tab(1).ControlEnabled=   0   'False
          Tab(1).Control(0)=   "Mh3dFrame2"
+         Tab(1).Control(0).Enabled=   0   'False
          Tab(1).ControlCount=   1
          TabCaption(2)   =   "&Op.Bal."
          TabPicture(2)   =   "PaperMaster.frx":0054
@@ -786,18 +787,18 @@ Begin VB.Form FrmPaperMaster
                ClipMode        =   0
                ClearAction     =   0
                DecimalPoint    =   "."
-               DisplayFormat   =   "##0"
+               DisplayFormat   =   "###0"
                EditMode        =   1
                Enabled         =   -1
                ErrorBeep       =   0
                ForeColor       =   -2147483640
-               Format          =   "##0"
+               Format          =   "###0"
                HighlightText   =   0
                MarginBottom    =   1
                MarginLeft      =   1
                MarginRight     =   1
                MarginTop       =   1
-               MaxValue        =   999
+               MaxValue        =   9999
                MinValue        =   0
                MousePointer    =   0
                MoveOnLRKey     =   0
@@ -807,7 +808,7 @@ Begin VB.Form FrmPaperMaster
                ReadOnly        =   0
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   1
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -2953,6 +2954,7 @@ Private Function CheckDuplicateGodown() As Boolean
     If dblBookMark <> 0 Then rstPaperChild.Bookmark = dblBookMark Else rstPaperChild.MoveLast
 End Function
 Private Function CalcDependents(Optional ByVal BeforeUpdate As Boolean) As Boolean
+On Error Resume Next
     Dim Value1 As Double
     If MhRealInput4.Value > 0 Then 'Wt/Unit
         Value1 = IIf(Option1.Value, 50, 400) / MhRealInput4.Value

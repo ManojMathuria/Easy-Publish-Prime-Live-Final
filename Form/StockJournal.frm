@@ -860,7 +860,7 @@ Private Sub Form_Load()
     BusySystemIndicator True
     cnMaterialStockAdjustment.CursorLocation = adUseClient
     cnMaterialStockAdjustment.Open cnDatabase.ConnectionString
-    rstCompanyMaster.Open "SELECT PrintName, Address1, Address2, Address3, Address4, Phone, Fax, EMail, Website From CompanyMaster", cnMaterialStockAdjustment, adOpenKeyset, adLockReadOnly
+    rstCompanyMaster.Open "SELECT PrintName, Address1, Address2, Address3, Address4, Phone, Fax, EMail, Website FROM CompanyMaster WHERE FYCode='" & FYCode & "'", cnMaterialStockAdjustment, adOpenKeyset, adLockReadOnly
     rstOutsourceItemList.Open "Select M.Name,'1'+M.Code As NCode,U.Name As UOMName From OutsourceItemMaster M INNER JOIN GeneralMaster U ON M.UOM=U.Code Order By M.Name", cnMaterialStockAdjustment, adOpenKeyset, adLockOptimistic
     rstPaperList.Open "SELECT LTRIM(M.Name)+' (UOM : '+LTRIM(C.Name)+')' As Name,'2'+M.Code As NCode,LTRIM(C.Name) AS UOMName FROM PaperMaster M INNER JOIN GeneralMaster C ON M.UOM=C.Code ORDER BY M.Name", cnMaterialStockAdjustment, adOpenKeyset, adLockOptimistic
     rstFreshBookList.Open "Select Name,Board,'3'+Code As NCode,'Piece' AS UOMName From BookMaster Where Type='F' Order By Name", cnMaterialStockAdjustment, adOpenKeyset, adLockOptimistic

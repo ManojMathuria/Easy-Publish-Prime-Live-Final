@@ -463,7 +463,7 @@ Private Sub Form_Load()
     Else
         Me.Caption = "Material Stock Register [Binderwise/Itemwise]"
     End If
-    rstCompanyMaster.Open "Select PrintName From CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstCompanyMaster.Open "Select PrintName FROM CompanyMaster Where FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
     rstAccountList.Open "Select Name As Col0, Code From AccountMaster Order By Name", cnDatabase, adOpenKeyset, adLockReadOnly
     rstAccountList.ActiveConnection = Nothing
     Call FillList(ListView3, "List of Godowns...", rstAccountList)

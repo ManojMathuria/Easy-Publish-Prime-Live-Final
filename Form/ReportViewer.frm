@@ -3,10 +3,10 @@ Object = "{C4847593-972C-11D0-9567-00A0C9273C2A}#8.0#0"; "crviewer.dll"
 Begin VB.Form FrmReportViewer 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Report Viewer"
-   ClientHeight    =   7275
+   ClientHeight    =   8775
    ClientLeft      =   45
    ClientTop       =   615
-   ClientWidth     =   6300
+   ClientWidth     =   10065
    BeginProperty Font 
       Name            =   "Comic Sans MS"
       Size            =   8.25
@@ -19,16 +19,16 @@ Begin VB.Form FrmReportViewer
    KeyPreview      =   -1  'True
    LockControls    =   -1  'True
    MaxButton       =   0   'False
-   ScaleHeight     =   7275
-   ScaleWidth      =   6300
+   ScaleHeight     =   8775
+   ScaleWidth      =   10065
    StartUpPosition =   2  'CenterScreen
    WindowState     =   2  'Maximized
    Begin CRVIEWERLibCtl.CRViewer CRViewer1 
-      Height          =   7000
+      Height          =   8685
       Left            =   0
       TabIndex        =   0
       Top             =   0
-      Width           =   5800
+      Width           =   10005
       DisplayGroupTree=   0   'False
       DisplayToolbar  =   -1  'True
       EnableGroupTree =   0   'False

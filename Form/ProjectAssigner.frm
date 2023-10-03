@@ -1843,15 +1843,20 @@ errcode:
    Screen.MousePointer = vbDefault
 End Sub
 Sub SendEmail()
-On Error Resume Next
+'On Error Resume Next
 Dim cdoMsg As Object
 Dim cdoConf As Object
 Dim cdoFields As Object
 Dim schema As String
+On Error GoTo Err:
+    'late binding
 Set cdoMsg = CreateObject("CDO.Message")
 Set cdoConf = CreateObject("CDO.Configuration")
+    ' load all default configurations
+    cdoConf.Load -1
 Set cdoFields = cdoConf.Fields
 
+'Set All Email Properties
 cdoFields.Item("http://schemas.microsoft.com/cdo/configuration/sendusing") = 2
 cdoFields.Item("http://schemas.microsoft.com/cdo/configuration/smtpserver") = rstCompanyMaster.Fields("SmtpServer").Value
 cdoFields.Item("http://schemas.microsoft.com/cdo/configuration/smtpserverport") = rstCompanyMaster.Fields("Port").Value '465
@@ -1865,6 +1870,8 @@ cdoFields.Update
 With cdoMsg
     .From = rstCompanyMaster.Fields("UserName").Value
     .To = ToEmail
+    '.CC
+    '.BCC
     .Subject = MsgSubject
      .HTMLBody = "<Font Face='Calibri' Size='3'>Dear User,<Br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" & MsgText & " <Br><b><I>Task >> " & TaskComments & "<Br><b>Kindly do acknowledge the receipt of the mail</b>.<Br><Br>Thanks & Regards<Br>" & rstItemList.Fields("AssignBy").Value & "<Br>" & Trim(rstCompanyMaster.Fields("PrintName").Value) & "<Br>Phone : " & Trim(rstCompanyMaster.Fields("Phone").Value) & "<Br>E-Mail : <a HRef='mailto:" & Trim(rstCompanyMaster.Fields("EMail").Value) & "'>" & Trim(rstCompanyMaster.Fields("EMail").Value) & "</a></Font>"
 '    If ShotFlag = False Then Call Screen_Shot
@@ -1875,14 +1882,29 @@ With cdoMsg
     Set .Configuration = cdoConf
     .Send
 End With
-If Err.Number = 0 Then
-    MsgBox "Email Send To : " & ToEmail, , "Email" '" & rstItemList.Fields("AssignTo").Value, , "Email"
-Else
-    MsgBox "Email Error" & Err.Description, , "Email"
-End If
+'If Err.Number = 0 Then
+'    MsgBox "Email Send To : " & ToEmail, , "Email" '" & rstItemList.Fields("AssignTo").Value, , "Email"
+'Else
+'    MsgBox "Email Error " & Err.Description, , "Email"
+'End If
+Exit_Err:
+    'Release object memory
 Set cdoMsg = Nothing
 Set cdoConf = Nothing
 Set cdoFields = Nothing
+End
+
+Err:
+    Select Case Err.Number
+    Case -2147220973  'Could be because of Internet Connection
+        MsgBox "Check your internet connection." & vbNewLine & Err.Number & ": " & Err.Description
+    Case -2147220975  'Incorrect credentials User ID or password
+        MsgBox "Check your login credentials and try again." & vbNewLine & Err.Number & ": " & Err.Description
+    Case Else   'Report other errors
+        MsgBox "Error encountered while sending email." & vbNewLine & Err.Number & ": " & Err.Description
+    End Select
+
+    Resume Exit_Err
 End Sub
 
 

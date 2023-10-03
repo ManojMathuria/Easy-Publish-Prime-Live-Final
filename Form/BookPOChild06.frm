@@ -24,7 +24,6 @@ Begin VB.Form FrmBookPOChild06
    EndProperty
    KeyPreview      =   -1  'True
    LinkTopic       =   "FrmLogin"
-   LockControls    =   -1  'True
    MaxButton       =   0   'False
    ScaleHeight     =   10335
    ScaleWidth      =   11700
@@ -131,6 +130,27 @@ Begin VB.Form FrmBookPOChild06
       FormatString    =   ""
       Caption         =   ""
       Picture         =   "BookPOChild06.frx":0AB0
+      Begin VB.TextBox Text13 
+         Appearance      =   0  'Flat
+         BackColor       =   &H00FFFFFF&
+         DataSource      =   "Adodc1"
+         BeginProperty Font 
+            Name            =   "Calibri"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
+         Left            =   5040
+         Locked          =   -1  'True
+         MaxLength       =   60
+         TabIndex        =   137
+         Top             =   980
+         Width           =   1575
+      End
       Begin VB.CommandButton Command1 
          Appearance      =   0  'Flat
          Height          =   290
@@ -217,7 +237,7 @@ Begin VB.Form FrmBookPOChild06
          MaxLength       =   60
          TabIndex        =   6
          Top             =   980
-         Width           =   4815
+         Width           =   1575
       End
       Begin TDBNumber6Ctl.TDBNumber MhRealInput35 
          Height          =   330
@@ -4864,6 +4884,33 @@ Begin VB.Form FrmBookPOChild06
          MaxValueVT      =   5
          MinValueVT      =   5
       End
+      Begin Mh3dlblLib.Mh3dLabel Mh3dLabel58 
+         Height          =   330
+         Left            =   3360
+         TabIndex        =   136
+         Top             =   980
+         Width           =   1710
+         _Version        =   65536
+         _ExtentX        =   3016
+         _ExtentY        =   582
+         _StockProps     =   77
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Calibri"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         TintColor       =   16711935
+         Caption         =   " Machine Name"
+         Alignment       =   0
+         FillColor       =   9164542
+         TextColor       =   0
+         Picture         =   "BookPOChild06.frx":5AE6
+         Picture         =   "BookPOChild06.frx":5B02
+      End
       Begin VB.Line Line6 
          X1              =   0
          X2              =   9970
@@ -5041,6 +5088,7 @@ Private Sub Form_Load()
     CenterForm Me
     BusySystemIndicator True
     DisableCloseButton Me
+    Mh3dLabel58.Visible = False: Text13.Visible = False: Text14.Width = 4815
     ItemCode = FrmBookPrintOrder.rstBookList.Fields("Code").Value
     Text5.Text = Trim(FrmBookPrintOrder.Text2.Text)
     Text2.Text = Trim(FrmBookPrintOrder.Text3.Text)
@@ -5669,6 +5717,7 @@ Private Sub Command1_Click(Index As Integer)
                     rstBookPOChild06c.MoveNext
                     If rstBookPOChild06c.EOF Then
                         rstBookPOChild06c.MoveLast
+                        If MsgBox("All Element has been processed..!!! Do you want to Exit the Process?", vbYesNo + vbQuestion + vbDefaultButton1, "Confirm Quit !") = vbYes Then cmdProceed_Click
                     Else
                         Command1_Click (1)
                     End If
@@ -5930,6 +5979,12 @@ Private Sub GetPrinterRates(ByVal RateType As String, Optional ByVal Position As
         Col = IIf(MhRealInput19.Value <= 2, MhRealInput19.Value, IIf(MhRealInput19.Value <= 4, "4", "6"))
         If rstFetchRate.State = adStateOpen Then rstFetchRate.Close
         rstFetchRate.Open "SELECT TOP 1 P.* FROM AccountChild05 P INNER JOIN SizeGroupChild C ON P.[Size]=C.Code WHERE P.Code='" & PartyCode & "' AND C.[Size]='" & SizeCode & "' AND Range" & Col & ">=" & MhRealInput6.Value & " ORDER BY Range" & Col, cnDatabase, adOpenKeyset, adLockReadOnly
+        
+        If rstFetchRate.RecordCount = 0 Then
+            If rstFetchRate.State = adStateOpen Then rstFetchRate.Close
+            rstFetchRate.Open "SELECT TOP 1 P.* FROM AccountChild05 P INNER JOIN SizeGroupChild C ON P.[Size]=C.Code WHERE P.Code='" & PartyCode & "' AND Left((Select Name From GeneralMaster where code=P.[Size]),5)*Convert(numeric,Substring((Select Name From GeneralMaster where code=P.[Size]),7,5))>=Left((Select Name From GeneralMaster WHERE Code='" & SizeCode & "' ),5)*Convert(numeric,Substring((Select Name From GeneralMaster WHERE Code='" & SizeCode & "' ),7,5)) AND Range" & Col & ">=" & MhRealInput6.Value & " ORDER BY Range" & Col, cnDatabase, adOpenKeyset, adLockReadOnly
+        End If
+        
         If rstFetchRate.RecordCount = 0 Then
             If rstFetchRate.State = adStateOpen Then rstFetchRate.Close
             rstFetchRate.Open "SELECT TOP 1 C1.* FROM (AccountMaster P INNER JOIN AccountChild05 C1 ON P.Code=C1.Code) INNER JOIN SizeGroupChild C2 ON C1.[Size]=C2.Code WHERE Name LIKE '%Rate%' AND C2.[Size]='" & SizeCode & "' AND Range" & Col & ">=" & MhRealInput6.Value & " ORDER BY Range" & Col, cnDatabase, adOpenKeyset, adLockReadOnly
@@ -6134,7 +6189,7 @@ Private Sub CalculateConsumption()
         If W < (MhRealInput23.Value + MhRealInput36.Value) Then W = (MhRealInput23.Value + MhRealInput36.Value) 'Comparison with Minimum Wastage
         C = q + W   'Consumption With Wastage (in Sheets)
         C = C / MhRealInput12.Value
-        MhRealInput39.Value = IIf(MhRealInput52.Value > 0, Round(((MhRealInput52.Value / 25.4) * inWidth * GSM) / 3100, 3), Wt) * (C / SPU)
+        MhRealInput39.Value = IIf(MhRealInput52.Value > 0, Round(((MhRealInput52.Value / 25.4) * inWidth * GSM) / 3100, 3), Wt) * (C / SPU) * MhRealInput40.Value
         MhRealInput33.Value = CLng(Int((W * MhRealInput40.Value) / SPU)) + (((W * MhRealInput40.Value) Mod SPU) / 1000) 'Min Wastage Final
         MhRealInput13.Value = CLng(Int((C * MhRealInput40.Value) / SPU)) + (((C * MhRealInput40.Value) Mod SPU) / 1000)
     End If

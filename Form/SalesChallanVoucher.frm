@@ -98,9 +98,9 @@ Begin VB.Form frmSalesChallanVoucher
          TabCaption(1)   =   "&Details"
          TabPicture(1)   =   "SalesChallanVoucher.frx":0038
          Tab(1).ControlEnabled=   0   'False
-         Tab(1).Control(0)=   "Mh3dFrame2"
+         Tab(1).Control(0)=   "txtNotes"
          Tab(1).Control(1)=   "btnNotes"
-         Tab(1).Control(2)=   "txtNotes"
+         Tab(1).Control(2)=   "Mh3dFrame2"
          Tab(1).ControlCount=   3
          Begin VB.TextBox txtNotes 
             Appearance      =   0  'Flat
@@ -2203,7 +2203,7 @@ Private Sub Form_Load()
     rstSalesChallanVoucherParent.CursorLocation = adUseClient
     LoadMasterList
     With rstSalesChallanVoucherList
-        .Open "SELECT T.Code,T.Name,V.Code As VchSeriesCode,V.Name As VchSeriesName,Date,T.Type,P.Name As PartyName,C.Name As ConsigneeName,ChallanNo,ChallanDate,Amount FROM ((JobworkBVParent T INNER JOIN AccountMaster P ON T.Party=P.Code) INNER JOIN AccountMaster C ON T.Consignee=C.Code) INNER JOIN VchSeriesMaster V ON T.VchSeries=V.Code  WHERE RIGHT(Type,2)='" & VchType & "' AND FYCode='" & FYCode & "' ORDER BY T.Name", cnSalesChallanVoucher, adOpenKeyset, adLockPessimistic
+        .Open "SELECT T.Code,T.Name,V.Code As VchSeriesCode,V.Name As VchSeriesName,Date,T.Type,P.Name As PartyName,C.Name As ConsigneeName,ChallanNo,ChallanDate,Amount FROM ((JobworkBVParent T INNER JOIN AccountMaster P ON T.Party=P.Code) INNER JOIN AccountMaster C ON T.Consignee=C.Code) INNER JOIN VchSeriesMaster V ON T.VchSeries=V.Code  WHERE RIGHT(Type,2)='" & VchType & "' AND T.FYCode='" & FYCode & "' ORDER BY T.Name", cnSalesChallanVoucher, adOpenKeyset, adLockPessimistic
         .Filter = adFilterNone
         If .RecordCount > 0 Then
             .MoveLast
@@ -3100,9 +3100,11 @@ Private Sub fpSpread1_KeyDown(KeyCode As Integer, Shift As Integer)
         If Shift = 0 And KeyCode = vbKeyF9 Then
             .GetText 11, .ActiveRow, Item  'Ref Code
             If Not CheckEmpty(Item, False) Then
-                If chkRef("SELECT RefCode FROM JobworkBVRef WHERE RefCode='" & Item & "' AND VchCode<>'" & rstSalesChallanVoucherParent.Fields("Code").Value & "'") Then DisplayError ("Failed to delete the record"): .SetFocus
-            ElseIf MsgBox("Are you sure to delete the Record?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Delete !") = vbYes Then
-                .DeleteRows .ActiveRow, 1: .SetFocus: CalculateTotal
+                If chkRef("SELECT RefCode FROM JobworkBVRef WHERE RefCode='" & Item & "' AND VchCode<>'" & rstSalesChallanVoucherParent.Fields("Code").Value & "'") Then
+                    DisplayError ("Failed to delete the record"): .SetFocus
+                Else
+                    If MsgBox("Are you sure to delete the Record?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Delete !") = vbYes Then .DeleteRows .ActiveRow, 1: .SetFocus: CalculateTotal
+                End If
             End If
         ElseIf KeyCode = vbKeyF3 Then
             If .ActiveCol = 1 Then
@@ -3283,7 +3285,7 @@ Private Sub LoadMasterList(Optional ByVal LoadSelected As Boolean)
     End If
     rstItemList.ActiveConnection = Nothing
     If rstVchSeriesList.State = adStateOpen Then rstVchSeriesList.Close
-    rstVchSeriesList.Open "SELECT Name As Col0,Prefix,Suffix,VchNumbering,Code FROM VchSeriesMaster WHERE VchType='" & IIf(VchType = "IF", "08", "05") & VchType & "' ORDER BY Name", cnSalesChallanVoucher, adOpenKeyset, adLockReadOnly
+    rstVchSeriesList.Open "SELECT Name As Col0,Prefix,Suffix,VchNumbering,Code FROM VchSeriesMaster WHERE Left(FYCode,2)='" & Left(FYCode, 2) & "' AND VchType ='" & IIf(VchType = "IF", "08", "05") & VchType & "' ORDER BY Name", cnSalesChallanVoucher, adOpenKeyset, adLockReadOnly
     rstVchSeriesList.ActiveConnection = Nothing
 End Sub
 Private Sub LoadOrderList()

@@ -712,8 +712,8 @@ Begin VB.Form FrmBookPOChild07
          _Version        =   65536
          _ExtentX        =   2090
          _ExtentY        =   582
-         Calculator      =   "BookPOChild07.frx":187A
-         Caption         =   "BookPOChild07.frx":189A
+         Calculator      =   "BookPOChild07.frx":197E
+         Caption         =   "BookPOChild07.frx":199E
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -723,9 +723,9 @@ Begin VB.Form FrmBookPOChild07
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "BookPOChild07.frx":1906
-         Keys            =   "BookPOChild07.frx":1924
-         Spin            =   "BookPOChild07.frx":196E
+         DropDown        =   "BookPOChild07.frx":1A0A
+         Keys            =   "BookPOChild07.frx":1A28
+         Spin            =   "BookPOChild07.frx":1A72
          AlignHorizontal =   1
          AlignVertical   =   0
          Appearance      =   0
@@ -785,8 +785,8 @@ Begin VB.Form FrmBookPOChild07
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "BookPOChild07.frx":1996
-         Picture         =   "BookPOChild07.frx":19B2
+         Picture         =   "BookPOChild07.frx":1A9A
+         Picture         =   "BookPOChild07.frx":1AB6
          Begin TDBNumber6Ctl.TDBNumber MhRealInput18 
             Height          =   330
             Left            =   14220
@@ -797,8 +797,8 @@ Begin VB.Form FrmBookPOChild07
             _Version        =   65536
             _ExtentX        =   1896
             _ExtentY        =   582
-            Calculator      =   "BookPOChild07.frx":19CE
-            Caption         =   "BookPOChild07.frx":19EE
+            Calculator      =   "BookPOChild07.frx":1AD2
+            Caption         =   "BookPOChild07.frx":1AF2
             BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                Name            =   "Calibri"
                Size            =   9.75
@@ -808,9 +808,9 @@ Begin VB.Form FrmBookPOChild07
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            DropDown        =   "BookPOChild07.frx":1A5A
-            Keys            =   "BookPOChild07.frx":1A78
-            Spin            =   "BookPOChild07.frx":1AC2
+            DropDown        =   "BookPOChild07.frx":1B5E
+            Keys            =   "BookPOChild07.frx":1B7C
+            Spin            =   "BookPOChild07.frx":1BC6
             AlignHorizontal =   1
             AlignVertical   =   0
             Appearance      =   0
@@ -872,10 +872,10 @@ Begin VB.Form FrmBookPOChild07
          AutoSize        =   -1  'True
          FillColor       =   8421504
          TextColor       =   16777215
-         Picture         =   "BookPOChild07.frx":1AEA
+         Picture         =   "BookPOChild07.frx":1BEE
          Multiline       =   -1  'True
          GlobalMem       =   -1  'True
-         Picture         =   "BookPOChild07.frx":1B06
+         Picture         =   "BookPOChild07.frx":1C0A
       End
       Begin VB.Line Line1 
          X1              =   0
@@ -1269,6 +1269,10 @@ Private Function FetchOperationRate(ByVal xOperation As String, ByVal xCalcMode 
     On Error GoTo ErrorHandler
     If rstFetchOperationRate.State = adStateOpen Then rstFetchOperationRate.Close
     rstFetchOperationRate.Open "SELECT TOP 1 Rate FROM AccountChild07 WHERE Code = '" & PartyCode & "' AND LaminationType='" & xOperation & "' AND CalcMode='" & xCalcMode & "' AND " & IIf(CheckEmpty(xSize, False), "1=1", "[Size]='" & xSize & "'") & " AND Range>=" & xRange & " ORDER BY Range", cnDatabase, adOpenKeyset, adLockReadOnly
+    If rstFetchOperationRate.RecordCount = 0 Then
+    If rstFetchOperationRate.State = adStateOpen Then rstFetchOperationRate.Close
+    rstFetchOperationRate.Open "SELECT TOP 1 Rate FROM AccountChild07 WHERE Code = '" & PartyCode & "' AND LaminationType='" & xOperation & "' AND CalcMode='" & xCalcMode & "' AND " & IIf(CheckEmpty(xSize, False), "1=1", "Left((Select Name From GeneralMaster where code=[Size]),5)*Convert(numeric,Substring((Select Name From GeneralMaster where code=[Size]),7,5))>=Left((Select Name From GeneralMaster WHERE Code='" & xSize & "'),5)*Convert(numeric,Substring((Select Name From GeneralMaster WHERE Code='" & xSize & "'),7,5))") & " AND Range>=" & xRange & " ORDER BY Range", cnDatabase, adOpenKeyset, adLockReadOnly
+    End If
     If rstFetchOperationRate.RecordCount = 0 Then
         If rstFetchOperationRate.State = adStateOpen Then rstFetchOperationRate.Close
         rstFetchOperationRate.Open "SELECT TOP 1 Rate FROM AccountMaster P INNER JOIN AccountChild07 C ON P.Code=C.Code WHERE [Name] Like '%Rate%'  AND LaminationType='" & xOperation & "' AND CalcMode='" & xCalcMode & "' AND " & IIf(CheckEmpty(xSize, False), "1=1", "[Size]='" & xSize & "'") & " AND Range>=" & xRange & " ORDER BY Range", cnDatabase, adOpenKeyset, adLockReadOnly

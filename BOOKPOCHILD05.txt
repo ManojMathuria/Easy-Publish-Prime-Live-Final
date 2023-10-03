@@ -1,0 +1,1199 @@
+Option Explicit
+Public VchCode As String, VchType As String, PartyCode As String, rstBookPOChild05 As New ADODB.Recordset
+Dim rstPaperList As New ADODB.Recordset, rstGeneralList As New ADODB.Recordset, rstPlateMakerList As New ADODB.Recordset, rstFetchRate As New ADODB.Recordset, rstElementList As New ADODB.Recordset, WithEvents rstBookPOChild05c As ADODB.Recordset
+Dim ItemCode As String, FinishSizeCode As String, SizeCode As String, TextSizeCode As String, PlateMakerCode As String, ElementCode As String, PaperCode As String, ColorCode As String, PlateCode As String, Plate As Integer
+Dim SPU As Long, Wt As Double, inLength As Double, inWidth As Double, GSM As Double, PaperForm As String
+Private Sub Form_Load()
+    On Error GoTo ErrorHandler
+    CenterForm Me
+    BusySystemIndicator True
+    DisableCloseButton Me
+    ItemCode = FrmBookPrintOrder.rstBookList.Fields("Code").Value
+    Text5.Text = Trim(FrmBookPrintOrder.Text2.Text) 'Order No.
+    Text2.Text = Trim(FrmBookPrintOrder.Text3.Text) 'Item Name
+    Combo3.AddItem "Old", 0
+    Combo3.AddItem "New", 1
+    Combo3.AddItem "Revised", 2
+    LoadMasterList
+    ClearFields
+    Set rstBookPOChild05c = New ADODB.Recordset
+    cnDatabase.Execute "IF OBJECT_ID('tempdb.dbo.#T', 'U') IS NOT NULL DROP TABLE #T"
+    cnDatabase.Execute "SELECT * INTO #T FROM (" & _
+                                              "SELECT Element,E.Name As ElementName,FinishSize,FS.Name As FinishSizeName,[Size],PS.Name As PrintSizeName,P.DuplexPrinting,[Pages/PrintingForm],[Pages/Form],[Color],C.Name As ColorName,P.Pages,Forms,[Forms-¼],[Forms-½],[Forms-1-F&B],[Forms-1-W&T],PlateType,[Forms/Sheet1] As Ups,PaperConsumptionOther As PaperReqd FROM (((BookPOChild05 P INNER JOIN ElementMaster E ON P.[Element]=E.Code) INNER JOIN GeneralMaster FS ON P.FinishSize=FS.Code) INNER JOIN GeneralMaster PS ON P.[Size]=PS.Code) INNER JOIN GeneralMaster C ON P.Color=C.Code WHERE P.Code='" & VchCode & "' UNION " & _
+                                              "SELECT Element,E.Name As ElementName,FinishSize,FS.Name As FinishSizeName,[Size],PS.Name As PrintSizeName,P.DuplexPrinting,[Pages/PrintingForm],[Pages/Form],[Color],C.Name As ColorName,P.Pages,Forms,[Forms-¼],[Forms-½],[Forms-1-F&B],[Forms-1-W&T],PlateType,Ups,0 As PaperReqd FROM (((BookChild05 P INNER JOIN ElementMaster E ON P.[Element]=E.Code) INNER JOIN GeneralMaster FS ON P.FinishSize=FS.Code) INNER JOIN GeneralMaster PS ON P.[Size]=PS.Code) INNER JOIN GeneralMaster C ON P.Color=C.Code WHERE P.Code='" & ItemCode & "' AND P.[Type]='" & VchType & "' AND Element NOT IN (SELECT Element FROM BookPOChild05 WHERE Code='" & VchCode & "')" & _
+                                              ") As Tbl ORDER BY ElementName,FinishSizeName,PrintSizeName"
+    rstBookPOChild05c.Open "SELECT * FROM #T", cnDatabase, adOpenKeyset, adLockOptimistic
+    Set DataGrid1.DataSource = rstBookPOChild05c
+    rstBookPOChild05c.ActiveConnection = Nothing
+    LockFields True
+    SetButtons True
+    BusySystemIndicator False
+    Exit Sub
+ErrorHandler:
+    BusySystemIndicator False
+    Call CloseForm(Me)
+End Sub
+Private Sub Form_Activate()
+    If Command1(0).Enabled Then If rstBookPOChild05c.RecordCount = 0 Then Command1_Click (0)
+End Sub
+Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
+    If Shift = vbCtrlMask And KeyCode = vbKeyA And Command1(0).Enabled Then
+        If Command1(0).Enabled Then Command1_Click (0)
+        KeyCode = 0
+    ElseIf Shift = vbCtrlMask And KeyCode = vbKeyE And Command1(1).Enabled Then
+        If Command1(1).Enabled Then Command1_Click (1)
+        KeyCode = 0
+    ElseIf ((Shift = vbCtrlMask And KeyCode = vbKeyD) Or (Shift = 0 And KeyCode = vbKeyF9)) And Command1(2).Enabled Then
+        If Command1(2).Enabled Then Command1_Click (2)
+        KeyCode = 0
+    ElseIf ((Shift = vbCtrlMask And KeyCode = vbKeyS) Or (Shift = 0 And KeyCode = vbKeyF2)) And Command1(3).Enabled Then
+        If Command1(3).Enabled Then Command1_Click (3)
+        KeyCode = 0
+    ElseIf Shift = 0 And KeyCode = vbKeyEscape Then
+        If Command1(4).Enabled Then
+              If MsgBox("Are you sure to abandon the changes?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Quit !") = vbYes Then Command1_Click (4)
+        Else
+            cmdProceed_Click
+        End If
+        KeyCode = 0
+    ElseIf Shift = 0 And KeyCode = vbKeyReturn Then
+        If Not MhDateInput1.ReadOnly Then Sendkeys "{TAB}"
+        KeyCode = 0
+    End If
+End Sub
+Private Sub Form_QueryUnload(Cancel As Integer, UnloadMode As Integer)
+    If UnloadMode = 0 Then Call CloseForm(Me)
+End Sub
+Private Sub Form_Unload(Cancel As Integer)
+    Call CloseRecordset(rstPaperList)
+    Call CloseRecordset(rstGeneralList)
+    Call CloseRecordset(rstFetchRate)
+    Call CloseRecordset(rstElementList)
+    Call CloseRecordset(rstPlateMakerList)
+    Call CloseRecordset(rstBookPOChild05c)
+End Sub
+Private Sub MhDateInput1_Validate(Cancel As Boolean)
+    If MhDateInput1.ReadOnly Then Exit Sub
+    If Format(GetDate(MhDateInput1.Text), "yyyymmdd") < Format(FinancialYearFrom, "yyyymmdd") Or Format(GetDate(MhDateInput1.Text), "yyyymmdd") > Format(FinancialYearTo, "yyyymmdd") Then
+        Cancel = True
+    ElseIf CheckEmpty(VchCode, False) Then
+        MhDateInput3.Text = Format(DateAdd("d", 2, CDate(GetDate(MhDateInput1.Text))), "dd-MM-yyyy")
+    End If
+End Sub
+Private Sub MhDateInput3_Validate(Cancel As Boolean)
+    If MhDateInput1.ReadOnly Then Exit Sub
+    If Format(GetDate(MhDateInput3.Text), "yyyymmdd") <= Format(GetDate(MhDateInput1.Text), "yyyymmdd") Then DisplayError ("Target Date cann't be prior to Order Date"): MhDateInput3.SetFocus: Cancel = True
+End Sub
+Private Sub Text14_KeyDown(KeyCode As Integer, Shift As Integer) 'Element
+    If MhDateInput1.ReadOnly Then Exit Sub
+    If KeyCode = vbKeySpace Then
+        Dim SearchString As String
+        SearchString = FixQuote(Text14.Text)
+        If rstElementList.RecordCount = 0 Then DisplayError ("No Record in Element Master"): Text14.SetFocus: Exit Sub Else rstElementList.MoveFirst
+        rstElementList.Find "[Col0] = '" & RTrim(SearchString) & "'"
+        SelectionType = "S": ElementCode = ""
+        Call LoadSelectionList(rstElementList, "List of Element(s)...", "Name")
+        SearchOrder = 0
+        Call DisplaySelectionList(Text14, ElementCode)
+        Call CloseForm(FrmSelectionList)
+        If RTrim(ElementCode) <> "" Then Sendkeys "{TAB}" Else Text14.Text = ""
+    End If
+End Sub
+Private Sub Text14_Validate(Cancel As Boolean)
+    If MhDateInput1.ReadOnly Then Exit Sub
+    If CheckEmpty(Text14.Text, False) Then
+        Cancel = True
+    ElseIf CheckDuplicateElement() Then
+        Call DisplayError("Duplicate Element"): Cancel = True
+    End If
+End Sub
+Private Sub Text11_KeyDown(KeyCode As Integer, Shift As Integer) 'Finish Size
+    If MhDateInput1.ReadOnly Then Exit Sub
+    If KeyCode = vbKeySpace Then
+        On Error Resume Next
+        With FrmFinishSizeMaster
+            .SL = True
+            .MasterCode = FinishSizeCode
+            Load FrmFinishSizeMaster
+            If Err.Number <> 364 Then .Show vbModal
+            On Error GoTo 0
+            FinishSizeCode = slCode: Text11.Text = slName
+            If Not CheckEmpty(FinishSizeCode, False) Then LoadMasterList: Sendkeys "{TAB}"
+        End With
+    End If
+End Sub
+Private Sub Text11_Validate(Cancel As Boolean)
+    If MhDateInput1.ReadOnly Then Exit Sub
+    If CheckEmpty(Text11.Text, False) Then
+        Cancel = True
+    Else
+        With rstFetchRate
+            If .State = adStateOpen Then .Close
+            .Open "SELECT S.Name+'|'+'Pgs/Ptg Form: '+IIF([Ups/Form]<10,'0','')+LTRIM([Ups/Form]) As Col0,S.Name,S.Code FROM FinishSizeChild C INNER JOIN GeneralMaster S ON C.[TextSize]=S.Code WHERE C.Code='" & FinishSizeCode & "' ORDER BY S.Name,[Ups/Form]", cnDatabase, adOpenKeyset, adLockReadOnly
+            SelectionType = "S": TextSizeCode = ""
+            If Not CheckEmpty(Text4.Text, False) And .RecordCount > 0 Then
+                .Find "[Name] = '" & RTrim(Text4.Text) & "'"
+                If .EOF Then .MoveFirst Else Text12.Text = .Fields("Col0").Value 'Text4 is Printing Size & Text12 is Printing Size with some prefix (if any)
+            End If
+            Call LoadSelectionList(rstFetchRate, "List of Printing Sizes...", "Name", "")
+            SearchOrder = 0
+            Call DisplaySelectionList(Text12, TextSizeCode)
+            Call CloseForm(FrmSelectionList)
+            If Not CheckEmpty(Trim(TextSizeCode), False) Then
+                .MoveFirst
+                .Find "[Code] = '" & TextSizeCode & "'"
+                Text4.Tag = .Fields("Name").Value & Right(.Fields("Col0").Value, 2)
+            End If
+        End With
+    End If
+End Sub
+Private Sub Text4_GotFocus()
+    If MhDateInput1.ReadOnly Then Exit Sub
+    If Not CheckEmpty(Trim(TextSizeCode), False) Then
+        If CheckEmpty(Text4.Text, False) Then Text4.Text = Mid(Text4.Tag, 1, Len(Text4.Tag) - 2): SizeCode = TextSizeCode
+    End If
+End Sub
+Private Sub Text4_KeyDown(KeyCode As Integer, Shift As Integer) 'Size
+    If MhDateInput1.ReadOnly Then Exit Sub
+    If KeyCode = vbKeySpace Then
+        On Error Resume Next
+        With FrmGeneralMaster
+            .SL = True
+            .MasterType = "1"
+            .MasterCode = SizeCode
+            Load FrmGeneralMaster
+            If Err.Number <> 364 Then .Show vbModal
+            On Error GoTo 0
+            SizeCode = slCode: Text4.Text = slName
+            If Not CheckEmpty(SizeCode, False) Then LoadMasterList: Sendkeys "{TAB}"
+        End With
+    End If
+End Sub
+Private Sub Text4_Validate(Cancel As Boolean)
+    If MhDateInput1.ReadOnly Then Exit Sub
+    If CheckEmpty(Text4.Text, False) Then
+        Cancel = True
+    Else
+        If Not CheckEmpty(Trim(TextSizeCode), False) Then
+            If Text4.Text <> Mid(Text4.Tag, 1, Len(Text4.Tag) - 2) Then If MsgBox("Printing Size [" & Trim(Text4.Text) & "] is different from that in Master [" & Trim(Mid(Text4.Tag, 1, Len(Text4.Tag) - 2)) & "] ! Change?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then Text4.Text = Mid(Text4.Tag, 1, Len(Text4.Tag) - 2): SizeCode = TextSizeCode
+        End If
+        If CheckEmpty(FinishSizeCode, False) Then Exit Sub
+        Dim FL As Double, FR As Double, PL As Double, PR As Double, Ups01 As Integer, Ups02 As Integer
+        PL = Val(Left(Text4.Text, InStr(1, Text4.Text, "X") - 1)) + 1: PR = Val(Mid(Text4.Text, InStr(1, Text4.Text, "X") + 1, 5)) + 1: FL = Val(Left(Text11.Text, InStr(1, Text11.Text, "X") - 1)): FR = Val(Mid(Text11.Text, InStr(1, Text11.Text, "X") + 1, 5))
+        If Val(PL) * Val(PR) < Val(FL) * Val(FR) Then If MsgBox("Printing Size is smaller than Finish Size. Would you like to continue?", vbQuestion + vbYesNo + vbDefaultButton1, "Confirm Proceed !") = vbNo Then Cancel = True
+    End If
+End Sub
+Private Sub Text7_KeyDown(KeyCode As Integer, Shift As Integer) 'Plate Maker
+    If MhDateInput1.ReadOnly Then Exit Sub
+    If KeyCode = vbKeySpace Then
+        On Error Resume Next
+        With FrmAccountMaster
+            .SL = True
+            .AccountType = "01": .AccountGroup = ""
+            .MasterCode = PlateMakerCode
+            Load FrmAccountMaster
+            If Err.Number <> 364 Then .Show vbModal
+            On Error GoTo 0
+            PlateMakerCode = slCode: Text7.Text = slName
+            If Not CheckEmpty(PlateMakerCode, False) Then LoadMasterList: Sendkeys "{TAB}"
+        End With
+    End If
+End Sub
+Private Sub Text7_Validate(Cancel As Boolean)
+    If MhDateInput1.ReadOnly Then Exit Sub
+    If CheckEmpty(Text7.Text, False) Then Cancel = True
+End Sub
+Private Sub Text16_KeyDown(KeyCode As Integer, Shift As Integer) 'plate type
+    If MhDateInput1.ReadOnly Then Exit Sub
+    If KeyCode = vbKeySpace Then
+        On Error Resume Next
+        With FrmGeneralMaster
+            .SL = True
+            .MasterType = "24"
+            .MasterCode = PlateCode
+            Load FrmGeneralMaster
+            If Err.Number <> 364 Then .Show vbModal
+        End With
+        On Error GoTo 0
+        PlateCode = slCode: Text16.Text = slName
+        If Not CheckEmpty(PlateCode, False) Then
+            LoadMasterList
+            With rstGeneralList
+                .MoveFirst
+                .Find "[Code] = '" & PlateCode & "'"
+                Plate = Val(.Fields("Value1").Value)
+            End With
+            Sendkeys "{TAB}"
+        End If
+    End If
+End Sub
+Private Sub Text16_Validate(Cancel As Boolean) 'plate type
+    If MhDateInput1.ReadOnly Then Exit Sub
+    If Left(VchType, 1) = "O" Then Exit Sub
+    If Plate Then 'PS/CTP plate details
+        On Error Resume Next
+        With FrmPSPlateRegister
+            .ItemCode = ItemCode
+            .ItemName = Trim(Text2.Text)
+            .ElementCode = ElementCode
+            .ElementName = Trim(Text14.Text)
+            .OrderCode = IIf(CheckEmpty(VchCode, False), "999999", VchCode)
+            .OrderDate = GetDate(MhDateInput1.Text)
+            .TblSuffix = "05"
+            .OrderType = VchType
+            Load FrmPSPlateRegister
+            If Err.Number <> 364 Then .Show vbModal
+        End With
+        On Error GoTo 0
+    End If
+End Sub
+Private Sub MhRealInput1_Validate(Cancel As Boolean) 'Actual quantity
+    If MhDateInput1.ReadOnly Then Exit Sub
+    If MhRealInput1.Value = 0 Then Cancel = True: Exit Sub
+    Call CalculateConsumption
+End Sub
+Private Sub MhRealInput2_GotFocus() 'Billing quantity
+    If MhDateInput1.ReadOnly Then Exit Sub
+    Dim q As Double
+    q = MhRealInput1.Value \ 1000 'integer of quotient
+    q = IIf(q = 0, 1000, q * 1000) + IIf(MhRealInput1.Value Mod 1000 <= IIf(MhRealInput1.Value <= 20000, 299, 599), 0, 1000)
+    If MhRealInput2.Value = 0 Then MhRealInput2.Value = q
+    MhRealInput2.Tag = q
+End Sub
+Private Sub MhRealInput2_Validate(Cancel As Boolean)
+    If MhDateInput1.ReadOnly Then Exit Sub
+    If MhRealInput2.Value = 0 Or MhRealInput2.Value Mod 1000 <> 0 Then Cancel = True: Exit Sub
+    If Val(MhRealInput2.Tag) <> MhRealInput2.Value And Val(MhRealInput2.Tag) <> 0 Then
+        If MsgBox("Variation in Calculated [" & Trim(MhRealInput2.Tag) & "] and Existing [" & Trim(MhRealInput2.Value) & "] Billing Quantity ! Change?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then MhRealInput2.Value = Val(MhRealInput2.Tag)
+    End If
+    CalculateTotalForms
+End Sub
+Private Sub Combo3_Validate(Cancel As Boolean) 'Plate
+    If Combo3.ListIndex = -1 Then Cancel = True
+    If Combo3.ListIndex = 0 Then If Plate Then MhRealInput4.Value = 0
+End Sub
+Private Sub Text13_KeyDown(KeyCode As Integer, Shift As Integer) 'Color
+    If MhDateInput1.ReadOnly Then Exit Sub
+    If KeyCode = vbKeySpace Then
+        On Error Resume Next
+        With FrmGeneralMaster
+            .SL = True
+            .MasterType = "23"
+            .MasterCode = ColorCode
+            Load FrmGeneralMaster
+            If Err.Number <> 364 Then .Show vbModal
+            On Error GoTo 0
+            ColorCode = slCode: Text13.Text = slName
+            If Not CheckEmpty(ColorCode, False) Then
+                LoadMasterList
+                With rstGeneralList
+                    .MoveFirst
+                    .Find "[Code] = '" & ColorCode & "'"
+                End With
+                Sendkeys "{TAB}"
+            End If
+        End With
+    End If
+End Sub
+Private Sub Text13_Validate(Cancel As Boolean)
+    If MhDateInput1.ReadOnly Then Exit Sub
+    If CheckEmpty(Text13.Text, False) Then Cancel = True Else Call CalculateTotalPlates
+End Sub
+Private Sub MhRealInput40_GotFocus() 'Pages/Printing Form
+    If MhDateInput1.ReadOnly Then Exit Sub
+    Dim Ups As Integer
+    If Not CheckEmpty(Trim(TextSizeCode), False) Then Ups = Val(Right(Text4.Tag, 2))
+    If Ups = 0 Then Ups = MaxUps("T")
+    If MhRealInput40.Value = 0 Then MhRealInput40.Value = Ups
+    MhRealInput40.Tag = Ups 'Calculated value
+End Sub
+Private Sub MhRealInput40_Validate(Cancel As Boolean)
+    If MhDateInput1.ReadOnly Then Exit Sub
+    If MhRealInput40.Value = 0 Then
+        Cancel = True
+    ElseIf Val(MhRealInput40.Tag) <> MhRealInput40.Value And Val(MhRealInput40.Tag) <> 0 Then
+        If MsgBox("Variation in Calculated [" & Trim(MhRealInput40.Tag) & "] and Existing [" & Trim(MhRealInput40.Value) & "] Pages/Printing ! Change?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then MhRealInput40.Value = Val(MhRealInput40.Tag)
+    End If
+End Sub
+Private Sub MhRealInput42_GotFocus() 'Pages/Form
+    If MhDateInput1.ReadOnly Then Exit Sub
+    If MhRealInput42.Value = 0 Then MhRealInput42.Value = MhRealInput40.Value
+End Sub
+Private Sub MhRealInput42_Validate(Cancel As Boolean)
+    If MhDateInput1.ReadOnly Then Exit Sub
+    If MhRealInput42.Value = 0 Then
+        Cancel = True
+    ElseIf MhRealInput40.Value <> MhRealInput42.Value And MhRealInput40.Value <> 0 Then
+           If MsgBox("Variation in Pages/Printing Form [" & Trim(MhRealInput40.Value) & "] and Pages/Form [" & Trim(MhRealInput42.Value) & "] ! Change?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then MhRealInput42.Value = MhRealInput40.Value
+   End If
+End Sub
+Private Sub MhRealInput15_Validate(Cancel As Boolean) 'Pages
+    If MhDateInput1.ReadOnly Then Exit Sub
+    If MhRealInput15.Value = 0 Then
+        Cancel = True
+    Else
+        If MhRealInput42.Value > 0 Then MhRealInput45.Value = MhRealInput15.Value / MhRealInput42.Value
+    End If
+End Sub
+Private Sub MhRealInput17_GotFocus() '¼ Forms
+    If MhDateInput1.ReadOnly Then Exit Sub
+    CalculateForms "Q"
+End Sub
+Private Sub MhRealInput17_Validate(Cancel As Boolean)
+    If MhDateInput1.ReadOnly Then Exit Sub
+    Call CalculateTotalForms: CalculateTotalPlates
+End Sub
+Private Sub MhRealInput20_GotFocus() '½ Forms
+    If MhDateInput1.ReadOnly Then Exit Sub
+    CalculateForms "H"
+End Sub
+Private Sub MhRealInput20_Validate(Cancel As Boolean)
+    If MhDateInput1.ReadOnly Then Exit Sub
+    Call CalculateTotalForms: CalculateTotalPlates
+End Sub
+Private Sub MhRealInput21_GotFocus() '1 Forms-F&B
+    If MhDateInput1.ReadOnly Then Exit Sub
+    CalculateForms "F"
+End Sub
+Private Sub MhRealInput21_Validate(Cancel As Boolean)
+    If MhDateInput1.ReadOnly Then Exit Sub
+    Call CalculateTotalForms: CalculateTotalPlates
+End Sub
+Private Sub MhRealInput41_GotFocus() '1 Forms-W&T
+    If MhDateInput1.ReadOnly Then Exit Sub
+    CalculateForms "W"
+End Sub
+Private Sub MhRealInput41_Validate(Cancel As Boolean)
+    If MhDateInput1.ReadOnly Then Exit Sub
+    Call CalculateTotalForms: CalculateTotalPlates
+End Sub
+Private Sub MhRealInput22_GotFocus() 'Forms/Sheet
+    If MhDateInput1.ReadOnly Then Exit Sub
+    Dim FS As Double
+    If MhRealInput40.Value > 0 Then FS = MhRealInput42.Value / MhRealInput40.Value
+    If MhRealInput22.Value = 0 Then MhRealInput22.Value = FS
+    MhRealInput22.Tag = FS
+End Sub
+Private Sub MhRealInput22_Validate(Cancel As Boolean)
+    If MhDateInput1.ReadOnly Then Exit Sub
+    If MhRealInput22.Value = 0 Then
+        Cancel = True
+    ElseIf Val(MhRealInput22.Tag) <> MhRealInput22.Value And Val(MhRealInput22.Tag) <> 0 Then
+        If MsgBox("Variation in Calculated [" & Trim(MhRealInput22.Tag) & "] and Existing [" & Trim(MhRealInput22.Value) & "] Forms/Sheet ! Change?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then MhRealInput22.Value = Val(MhRealInput22.Tag)
+    End If
+End Sub
+Private Sub Option1_Validate(Cancel As Boolean) 'Duplex Printing-Yes
+    Call CalculateTotalForms: CalculateTotalPlates
+End Sub
+Private Sub Option2_Validate(Cancel As Boolean) 'Duplex Printing-No
+    Call CalculateTotalForms: CalculateTotalPlates
+End Sub
+Private Sub MhRealInput59_Validate(Cancel As Boolean) 'Revised Plates
+    If MhDateInput1.ReadOnly Then Exit Sub
+    CalculateAmount
+End Sub
+Private Sub MhRealInput4_GotFocus() 'Plate Rate
+    If MhDateInput1.ReadOnly Then Exit Sub
+    Call GetPartyRates("L")
+End Sub
+Private Sub MhRealInput4_Validate(Cancel As Boolean)
+    If MhDateInput1.ReadOnly Then Exit Sub
+    CalculateAmount
+End Sub
+Private Sub MhRealInput5_GotFocus() 'Print Rate
+    If MhDateInput1.ReadOnly Then Exit Sub
+    Call GetPartyRates("P")
+End Sub
+Private Sub MhRealInput5_Validate(Cancel As Boolean)
+    If MhDateInput1.ReadOnly Then Exit Sub
+    CalculateAmount
+End Sub
+Private Sub Text1_KeyDown(KeyCode As Integer, Shift As Integer) 'Paper
+    If MhDateInput1.ReadOnly Then Exit Sub
+    If KeyCode = vbKeySpace Then
+        LoadMasterList True
+        With FrmPaperSearchList
+            Set .rstPaperSearchList = rstPaperList
+            FrmPaperSearchList.MhRealInput3.Value = Val(Left(Text4.Text, 5))
+            FrmPaperSearchList.MhRealInput5.Value = Val(Mid(Text4.Text, 7, 5))
+            FrmPaperSearchList.Text1.Text = Text1.Text: Sendkeys "{End}"
+            Load FrmPaperSearchList
+            .Show vbModal
+            If Not CheckEmpty(.PaperCode, False) Then PaperCode = .PaperCode: Text1.Text = .PaperName: Sendkeys "{TAB}"
+        End With
+        Call CloseForm(FrmPaperSearchList)
+    ElseIf KeyCode = vbKeyF3 Then
+        On Error Resume Next
+        FrmPaperMaster.SL = True
+        FrmPaperMaster.MasterCode = PaperCode
+        Load FrmPaperMaster
+        If Err.Number <> 364 Then FrmPaperMaster.Show vbModal
+        On Error GoTo 0
+        PaperCode = slCode: Text1.Text = slName
+        If Not CheckEmpty(PaperCode, False) Then LoadMasterList: Sendkeys "{TAB}"
+    End If
+End Sub
+Private Sub Text1_Validate(Cancel As Boolean)
+    If MhDateInput1.ReadOnly Then Exit Sub
+    If CheckEmpty(Text1.Text, False) Then
+        Cancel = True
+    Else
+        With rstPaperList
+            .MoveFirst
+            .Find "[Code]='" & PaperCode & "'"
+            Text1.Text = .Fields("Col0").Value: SPU = Val(.Fields("SPU").Value): Wt = Val(.Fields("Wt").Value): inWidth = Val(.Fields("inWidth").Value): inLength = Val(.Fields("inLength").Value): GSM = Val(.Fields("GSM").Value): PaperForm = .Fields("Form").Value
+            If PaperForm = "S" Then MhRealInput52.Value = 0: CalculateConsumption: CheckPaperSize
+        End With
+    End If
+End Sub
+Private Sub MhRealInput52_GotFocus() 'Reel cut off
+    If MhDateInput1.ReadOnly Then Exit Sub
+    If PaperForm = "R" Then If MhRealInput52.Value = 0 Then MhRealInput52.Value = inLength
+End Sub
+Private Sub MhRealInput52_Validate(Cancel As Boolean) 'Reel cut off
+    If MhDateInput1.ReadOnly Then Exit Sub
+    If PaperForm = "R" Then
+        If MhRealInput52.Value = 0 Then
+            DisplayError ("Reel cut off Size (mm) can't be zero as you are using paper reel"): Cancel = True
+        Else
+            If Val(inLength) <> MhRealInput52.Value And inLength <> 0 Then
+                If MsgBox("Reel cut off [" & Trim(MhRealInput52.Value) & "] is different from that in Master [" & Trim(Format(inLength, "#0")) & "] ! Change?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then MhRealInput52.Value = inLength
+            End If
+            CalculateConsumption
+            CheckPaperSize
+        End If
+    End If
+End Sub
+Private Sub MhRealInput27_GotFocus() 'Ups/Sheet
+    If MhDateInput1.ReadOnly Then Exit Sub
+    Dim Ups As Integer
+    Ups = MaxUps("B")
+    If MhRealInput27.Value = 0 Then MhRealInput27.Value = Ups
+    MhRealInput27.Tag = Ups 'Calculated value
+End Sub
+Private Sub MhRealInput27_Validate(Cancel As Boolean)
+    If MhDateInput1.ReadOnly Then Exit Sub
+    If MhRealInput27.Value = 0 Then
+        Cancel = True: Exit Sub
+    ElseIf Val(MhRealInput27.Tag) <> MhRealInput27.Value And Val(MhRealInput27.Tag) <> 0 Then
+        If MsgBox("Variation in Calculated [" & Trim(MhRealInput27.Tag) & "] and Existing [" & Trim(MhRealInput27.Value) & "] Ups/Sheet ! Change?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then MhRealInput27.Value = Val(MhRealInput27.Tag)
+    End If
+    CalculateConsumption
+End Sub
+Private Sub MhRealInput11_GotFocus() 'Wastage %
+    If MhDateInput1.ReadOnly Then Exit Sub
+    Call GetPartyRates("W")
+End Sub
+Private Sub MhRealInput11_Validate(Cancel As Boolean)
+    If MhDateInput1.ReadOnly Then Exit Sub
+    CalculateConsumption
+End Sub
+Private Sub MhRealInput47_GotFocus() 'Wastage Min
+    If MhDateInput1.ReadOnly Then Exit Sub
+    Call GetPartyRates("M")
+End Sub
+Private Sub MhRealInput47_Validate(Cancel As Boolean)
+    If MhDateInput1.ReadOnly Then Exit Sub
+    CalculateConsumption
+End Sub
+Private Sub MhRealInput32_Validate(Cancel As Boolean) 'Paper Rate
+    If MhDateInput1.ReadOnly Then Exit Sub
+    MhRealInput33.Value = MhRealInput32.Value * MhRealInput49.Value
+    CalculateTotalAmount
+End Sub
+Private Sub MhRealInput9_Validate(Cancel As Boolean) 'Adjustment
+    If MhDateInput1.ReadOnly Then Exit Sub
+    CalculateTotalAmount
+End Sub
+Private Sub MhRealInput14_Validate(Cancel As Boolean) 'GST %
+    If MhDateInput1.ReadOnly Then Exit Sub
+    CalculateTotalAmount
+End Sub
+Private Sub MhRealInput34_Validate(Cancel As Boolean) 'Plate Adjustment
+    If MhDateInput1.ReadOnly Then Exit Sub
+    CalculateTotalAmount
+End Sub
+Private Sub MhRealInput28_Validate(Cancel As Boolean) 'Plate GST%
+    If MhDateInput1.ReadOnly Then Exit Sub
+    CalculateTotalAmount
+End Sub
+Private Sub MhRealInput36_Validate(Cancel As Boolean) 'Paper Adjustment
+    If MhDateInput1.ReadOnly Then Exit Sub
+    CalculateTotalAmount
+End Sub
+Private Sub MhRealInput37_Validate(Cancel As Boolean) 'Paper GST%
+    If MhDateInput1.ReadOnly Then Exit Sub
+    CalculateTotalAmount
+End Sub
+Private Sub cmdProceed_Click()
+    If Not Command1(4).Enabled Then 'Cancel button disabled
+        With rstBookPOChild05c
+            If .RecordCount > 0 Then
+                .MoveFirst
+                Do Until .EOF
+                    If rstBookPOChild05c.Fields("PaperReqd").Value = 0 Then If MsgBox("[" & .Fields("ElementName").Value & "] Element has not been processed ! Process?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Process !") = vbYes Then Command1_Click (1): Exit Sub
+                    .MoveNext
+                Loop
+            End If
+        End With
+        If Not CheckEmpty(Text8.Text, False) Or Not CheckEmpty(Text10.Text, False) Then
+            With rstBookPOChild05
+                If .RecordCount > 0 Then
+                    .MoveFirst
+                    Do Until .EOF()
+                        .Fields("BillNo").Value = Text8.Text
+                        If MhDateInput2.ValueIsNull Then .Fields("BillDate").Value = Null Else .Fields("BillDate").Value = GetDate(MhDateInput2.Text)
+                        .Fields("PBillNo").Value = Text10.Text
+                        If MhDateInput4.ValueIsNull Then .Fields("PBillDate").Value = Null Else .Fields("PBillDate").Value = GetDate(MhDateInput4.Text)
+                        .Fields("PaidAmount").Value = MhRealInput16.Value
+                        .Fields("PPaidAmount").Value = MhRealInput30.Value
+                        .Update
+                        .MoveNext
+                    Loop
+                End If
+            End With
+        End If
+        FrmBookPrintOrder.Command1.Enabled = False: Call CloseForm(Me)
+    Else
+        Command1_Click (3)
+    End If
+End Sub
+Private Sub Command1_Click(Index As Integer)
+    With rstBookPOChild05c
+        Select Case Index
+            Case 0
+                ClearFields
+                Me.Tag = "A"
+                SetButtons False
+                LockFields False
+                MhDateInput1.Text = Format(Date, "dd-MM-yyyy"): MhDateInput3.Text = Format(DateAdd("d", 2, CDate(GetDate(MhDateInput1.Text))), "dd-MM-yyyy")
+                FinishSizeCode = FrmBookPrintOrder.rstBookList.Fields("FinishSize").Value
+                If rstGeneralList.RecordCount > 0 Then rstGeneralList.MoveFirst
+                rstGeneralList.Find "[Code] = '" & FinishSizeCode & "'"
+                If Not rstGeneralList.EOF Then Text11.Text = rstGeneralList.Fields("Col0").Value
+                PlateMakerCode = PartyCode
+                If rstPlateMakerList.RecordCount > 0 Then rstPlateMakerList.MoveFirst
+                rstPlateMakerList.Find "[Code] = '" & PlateMakerCode & "'"
+                If Not rstPlateMakerList.EOF Then Text7.Text = rstPlateMakerList.Fields("Col0").Value
+                MhRealInput1.Value = FrmBookPrintOrder.MhRealInput3.Value 'Final Quantity
+                MhDateInput1.SetFocus
+            Case 1
+                If .RecordCount > 0 Then
+                    ClearFields
+                    Me.Tag = "E"
+                    MhDateInput1.Text = Format(Date, "dd-MM-yyyy"): MhDateInput3.Text = Format(DateAdd("d", 2, CDate(GetDate(MhDateInput1.Text))), "dd-MM-yyyy")
+                    ElementCode = .Fields("Element").Value
+                    If rstElementList.RecordCount > 0 Then rstElementList.MoveFirst
+                    rstElementList.Find "[Code] = '" & ElementCode & "'"
+                    If Not rstElementList.EOF Then Text14.Text = rstElementList.Fields("Col0").Value
+                    FinishSizeCode = .Fields("FinishSize").Value
+                    If rstGeneralList.RecordCount > 0 Then rstGeneralList.MoveFirst
+                    rstGeneralList.Find "[Code] = '" & FinishSizeCode & "'"
+                    If Not rstGeneralList.EOF Then Text11.Text = rstGeneralList.Fields("Col0").Value
+                    SizeCode = .Fields("Size").Value
+                    If rstGeneralList.RecordCount > 0 Then rstGeneralList.MoveFirst
+                    rstGeneralList.Find "[Code] = '" & SizeCode & "'"
+                    If Not rstGeneralList.EOF Then Text4.Text = rstGeneralList.Fields("Col0").Value
+                    Option1.Value = IIf(.Fields("DuplexPrinting").Value, True, False): Option2.Value = IIf(.Fields("DuplexPrinting").Value, False, True)
+                    PlateMakerCode = PartyCode
+                    If rstPlateMakerList.RecordCount > 0 Then rstPlateMakerList.MoveFirst
+                    rstPlateMakerList.Find "[Code] = '" & PlateMakerCode & "'"
+                    If Not rstPlateMakerList.EOF Then Text7.Text = rstPlateMakerList.Fields("Col0").Value
+                    MhRealInput40.Value = Val(.Fields("Pages/PrintingForm").Value)
+                    MhRealInput42.Value = Val(.Fields("Pages/Form").Value)
+                    ColorCode = .Fields("Color").Value
+                    If rstGeneralList.RecordCount > 0 Then rstGeneralList.MoveFirst
+                    rstGeneralList.Find "[Code] = '" & ColorCode & "'"
+                    If Not rstGeneralList.EOF Then Text13.Text = Trim(rstGeneralList.Fields("Col0").Value)
+                    MhRealInput15.Value = Val(.Fields("Pages").Value)
+                    MhRealInput45.Value = Val(.Fields("Forms").Value)
+                    MhRealInput17.Value = Val(.Fields("Forms-¼").Value)
+                    MhRealInput20.Value = Val(.Fields("Forms-½").Value)
+                    MhRealInput21.Value = Val(.Fields("Forms-1-F&B").Value)
+                    MhRealInput41.Value = Val(.Fields("Forms-1-W&T").Value)
+                    PlateCode = .Fields("PlateType").Value
+                    If rstGeneralList.RecordCount > 0 Then rstGeneralList.MoveFirst
+                    rstGeneralList.Find "[Code] = '" & PlateCode & "'"
+                    If Not rstGeneralList.EOF Then Text16.Text = rstGeneralList.Fields("Col0").Value: Plate = rstGeneralList.Fields("Value1").Value
+                    MhRealInput22.Value = Val(.Fields("Ups").Value)
+                    LoadFields
+                    If MhRealInput1.Value = 0 Then MhRealInput1.Value = FrmBookPrintOrder.MhRealInput3.Value 'Final Quantity
+                    SetButtons False
+                    LockFields False
+                    DataGrid1.Enabled = False
+                    MhDateInput1.SetFocus
+                End If
+            Case 2
+                If .RecordCount > 0 Then
+                    If MsgBox("Are you sure to delete the Record?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Delete !") = vbYes Then
+                        If rstBookPOChild05.RecordCount > 0 Then
+                            rstBookPOChild05.MoveFirst
+                            rstBookPOChild05.Find "[Element]='" & .Fields("Element").Value & "'"
+                            If Not rstBookPOChild05.EOF Then rstBookPOChild05.Delete: rstBookPOChild05.MoveNext
+                        End If
+                        Me.Tag = "D"
+                        .Delete: .MoveNext
+                        Me.Tag = ""
+                    End If
+                End If
+            Case 3
+                If CheckMandatoryFields Then Exit Sub
+                If Me.Tag = "A" Then Call AddRecord(rstBookPOChild05c)
+                .Fields("Element").Value = ElementCode
+                .Fields("ElementName").Value = Text14.Text
+                .Fields("FinishSize").Value = FinishSizeCode
+                .Fields("FinishSizeName").Value = Text11.Text
+                .Fields("Size").Value = SizeCode
+                .Fields("PrintSizeName").Value = Text4.Text
+                .Fields("DuplexPrinting").Value = IIf(Option1.Value, 1, 0)
+                .Fields("Pages/PrintingForm").Value = MhRealInput40.Value
+                .Fields("Pages/Form").Value = MhRealInput42.Value
+                .Fields("Color").Value = ColorCode
+                .Fields("Pages").Value = MhRealInput15.Value
+                .Fields("Forms").Value = MhRealInput45.Value
+                .Fields("Forms-¼").Value = MhRealInput17.Value
+                .Fields("Forms-½").Value = MhRealInput20.Value
+                .Fields("Forms-1-F&B").Value = MhRealInput21.Value
+                .Fields("Forms-1-W&T").Value = MhRealInput41.Value
+                .Fields("PlateType").Value = PlateCode
+                .Fields("Ups").Value = MhRealInput22.Value
+                .Fields("PaperReqd").Value = MhRealInput49.Value
+                .Update
+                If InStr(1, "A_E1", Me.Tag) > 0 Then Call AddRecord(rstBookPOChild05)
+                SaveFields
+                rstBookPOChild05.Update
+                SetButtons True
+                LockFields True
+                DataGrid1.Enabled = True
+                DataGrid1.SetFocus
+                Me.Tag = ""
+            Case 4  'Cancel
+                ClearFields
+                SetButtons True
+                LockFields True
+                If .RecordCount > 0 Then LoadFields
+                Me.Tag = ""
+                DataGrid1.Enabled = True
+                DataGrid1.SetFocus
+        End Select
+    End With
+End Sub
+Private Sub rstBookPOChild05c_MoveComplete(ByVal adReason As ADODB.EventReasonEnum, ByVal pError As ADODB.Error, adStatus As ADODB.EventStatusEnum, ByVal pRecordset As ADODB.Recordset)
+    If CheckEmpty(Me.Tag, False) Then
+        On Error Resume Next
+        ClearFields
+        If Not (rstBookPOChild05c.EOF Or rstBookPOChild05c.BOF) Then LoadFields
+    End If
+End Sub
+Private Sub ClearFields()
+    MhDateInput1.Value = Null
+    MhDateInput3.Value = Null
+    Text14.Text = "": ElementCode = ""
+    Text11.Text = "": FinishSizeCode = "": TextSizeCode = ""
+    Text4.Text = "": SizeCode = "'"
+    Option1.Value = True: Option2.Value = False
+    Combo3.ListIndex = 0
+    Text3.Text = ""
+    Text7.Text = "": PlateMakerCode = ""
+    MhRealInput1.Value = 0
+    MhRealInput2.Value = 0
+    MhRealInput40.Value = 0
+    MhRealInput42.Value = 0
+    Text13.Text = "": ColorCode = ""
+    MhRealInput15.Value = 0
+    MhRealInput45.Value = 0
+    MhRealInput17.Value = 0
+    MhRealInput20.Value = 0
+    MhRealInput21.Value = 0
+    MhRealInput41.Value = 0
+    Text16.Text = "": PlateCode = "*24004"
+    With rstGeneralList
+        .MoveFirst
+        .Find "[Code] = '" & PlateCode & "'"
+        Text16.Text = .Fields("Col0").Value
+        Plate = Val(.Fields("Value1").Value)
+    End With
+    MhRealInput6.Value = 0
+    MhRealInput25.Value = 0
+    MhRealInput26.Value = 0
+    MhRealInput43.Value = 0
+    MhRealInput3.Value = 0
+    MhRealInput23.Value = 0
+    MhRealInput24.Value = 0
+    MhRealInput46.Value = 0
+    MhRealInput59.Value = 0
+    MhRealInput5.Value = 0
+    MhRealInput8.Value = 0
+    MhRealInput4.Value = 0
+    MhRealInput7.Value = 0
+    chkPaper.Value = 1
+    Text1.Text = "": PaperCode = "": SPU = 0: Wt = 0: inLength = 0: inWidth = 0: GSM = 0: PaperForm = ""
+    MhRealInput52.Value = 0
+    MhRealInput11.Value = 0
+    MhRealInput47.Value = 0
+    MhRealInput48.Value = 0
+    MhRealInput13.Value = 0
+    MhRealInput49.Value = 0
+    MhRealInput32.Value = 0
+    MhRealInput33.Value = 0
+    MhRealInput22.Value = 1
+    MhRealInput27.Value = 0
+    Text6.Text = ""
+    Text9.Text = ""
+    Text8.Text = ""
+    MhDateInput2.Value = Null
+    Text10.Text = ""
+    MhDateInput4.Value = Null
+    MhRealInput9.Value = 0
+    MhRealInput34.Value = 0
+    MhRealInput36.Value = 0
+    MhRealInput14.Value = 0
+    MhRealInput18.Value = 0
+    MhRealInput28.Value = 0
+    MhRealInput29.Value = 0
+    MhRealInput37.Value = 0
+    MhRealInput38.Value = 0
+    MhRealInput10.Value = 0
+    MhRealInput35.Value = 0
+    MhRealInput39.Value = 0
+    MhRealInput16.Value = 0
+    MhRealInput30.Value = 0
+    TxtAdNar.Text = ""
+    Text12.Text = ""
+End Sub
+Private Sub LoadFields()
+    With rstBookPOChild05
+        If Me.Tag = "E" Then Me.Tag = "E1"
+        If .RecordCount = 0 Then Exit Sub
+        .MoveFirst
+        .Find "[Element]='" & rstBookPOChild05c.Fields("Element").Value & "'"
+        If Not .EOF Then
+            If Me.Tag = "E1" Then Me.Tag = "E2"
+            MhDateInput1.Text = Format(.Fields("OrderDate").Value, "dd-MM-yyyy")
+            MhDateInput3.Text = Format(.Fields("TargetDate").Value, "dd-MM-yyyy")
+            ElementCode = .Fields("Element").Value
+            If rstElementList.RecordCount > 0 Then rstElementList.MoveFirst
+            rstElementList.Find "[Code] = '" & ElementCode & "'"
+            If Not rstElementList.EOF Then Text14.Text = Trim(rstElementList.Fields("Col0").Value)
+            FinishSizeCode = .Fields("FinishSize").Value
+            If rstGeneralList.RecordCount > 0 Then rstGeneralList.MoveFirst
+            rstGeneralList.Find "[Code] = '" & FinishSizeCode & "'"
+            If Not rstGeneralList.EOF Then Text11.Text = rstGeneralList.Fields("Col0").Value
+            SizeCode = .Fields("Size").Value
+            If rstGeneralList.RecordCount > 0 Then rstGeneralList.MoveFirst
+            rstGeneralList.Find "[Code] = '" & SizeCode & "'"
+            If Not rstGeneralList.EOF Then Text4.Text = rstGeneralList.Fields("Col0").Value
+            Option1.Value = IIf(.Fields("DuplexPrinting").Value, True, False): Option2.Value = IIf(.Fields("DuplexPrinting").Value, False, True)
+            Combo3.ListIndex = IIf(.Fields("Processing").Value = "O", 0, IIf(.Fields("Processing").Value = "N", 1, 2))  'O:Old N:New R:Revised
+            Text3.Text = .Fields("Ref").Value
+            PlateMakerCode = .Fields("PlateMaker").Value
+            If rstPlateMakerList.RecordCount > 0 Then rstPlateMakerList.MoveFirst
+            rstPlateMakerList.Find "[Code] = '" & PlateMakerCode & "'"
+            If Not rstPlateMakerList.EOF Then Text7.Text = Trim(rstPlateMakerList.Fields("Col0").Value)
+            MhRealInput1.Value = Val(.Fields("ActualQuantity").Value)
+            MhRealInput2.Value = Val(.Fields("BillingQuantity").Value)
+            MhRealInput40.Value = Val(.Fields("Pages/PrintingForm").Value)
+            MhRealInput42.Value = Val(.Fields("Pages/Form").Value)
+            ColorCode = .Fields("Color").Value
+            If rstGeneralList.RecordCount > 0 Then rstGeneralList.MoveFirst
+            rstGeneralList.Find "[Code] = '" & ColorCode & "'"
+            If Not rstGeneralList.EOF Then Text13.Text = Trim(rstGeneralList.Fields("Col0").Value)
+            MhRealInput15.Value = Val(.Fields("Pages").Value)
+            MhRealInput45.Value = Val(.Fields("Forms").Value)
+            MhRealInput17.Value = Val(.Fields("Forms-¼").Value)
+            MhRealInput20.Value = Val(.Fields("Forms-½").Value)
+            MhRealInput21.Value = Val(.Fields("Forms-1-F&B").Value)
+            MhRealInput41.Value = Val(.Fields("Forms-1-W&T").Value)
+            PlateCode = .Fields("PlateType").Value
+            If rstGeneralList.RecordCount > 0 Then rstGeneralList.MoveFirst
+            rstGeneralList.Find "[Code] = '" & PlateCode & "'"
+            If Not rstGeneralList.EOF Then Text16.Text = rstGeneralList.Fields("Col0").Value: Plate = rstGeneralList.Fields("Value1").Value
+            MhRealInput6.Value = Val(.Fields("TotalForms-¼").Value)
+            MhRealInput25.Value = Val(.Fields("TotalForms-½").Value)
+            MhRealInput26.Value = Val(.Fields("TotalForms-1-F&B").Value)
+            MhRealInput43.Value = Val(.Fields("TotalForms-1-W&T").Value)
+            MhRealInput3.Value = Val(.Fields("TotalPlates-¼").Value)
+            MhRealInput23.Value = Val(.Fields("TotalPlates-½").Value)
+            MhRealInput24.Value = Val(.Fields("TotalPlates-1-F&B").Value)
+            MhRealInput46.Value = Val(.Fields("TotalPlates-1-W&T").Value)
+            MhRealInput59.Value = Val(.Fields("RevisedPlates").Value)
+            MhRealInput5.Value = Val(.Fields("PrintRate").Value)
+            MhRealInput8.Value = Val(.Fields("PrintAmount").Value)
+            MhRealInput4.Value = Val(.Fields("PlateRate").Value)
+            MhRealInput7.Value = Val(.Fields("PlateAmount").Value)
+            chkPaper.Value = IIf(.Fields("PaperByParty").Value, 1, 0)
+            PaperCode = .Fields("Paper").Value
+            If rstPaperList.RecordCount > 0 Then rstPaperList.MoveFirst
+            rstPaperList.Find "[Code] = '" & PaperCode & "'"
+            If Not rstPaperList.EOF Then Text1.Text = rstPaperList.Fields("Col0").Value: SPU = Val(rstPaperList.Fields("SPU").Value): Wt = Val(rstPaperList.Fields("Wt").Value): inLength = Val(rstPaperList.Fields("inLength").Value): inWidth = Val(rstPaperList.Fields("inWidth").Value): GSM = Val(rstPaperList.Fields("GSM").Value): PaperForm = rstPaperList.Fields("Form").Value
+            MhRealInput52.Value = Val(.Fields("CutOffSize").Value)
+            MhRealInput11.Value = Val(.Fields("PaperWastage%").Value)
+            MhRealInput47.Value = Val(.Fields("PaperWastageMin").Value)
+            MhRealInput48.Value = Val(.Fields("PaperWastageFinal").Value)
+            MhRealInput13.Value = Val(.Fields("PaperConsumptionOther").Value)
+            MhRealInput49.Value = Val(.Fields("PaperConsumptionKg").Value)
+            MhRealInput32.Value = Val(.Fields("PaperRate").Value)
+            MhRealInput33.Value = Val(.Fields("PaperAmount").Value)
+            MhRealInput22.Value = Val(.Fields("Forms/Sheet1").Value)
+            MhRealInput27.Value = Val(.Fields("Forms/Sheet2").Value)
+            Text6.Text = .Fields("Remarks").Value
+            Text9.Text = .Fields("ElementPrintName").Value
+            Text8.Text = .Fields("BillNo").Value
+            If Not IsNull(.Fields("BillDate").Value) Then MhDateInput2.Text = Format(.Fields("BillDate").Value, "dd-MM-yyyy")
+            Text10.Text = .Fields("PBillNo").Value
+            If Not IsNull(.Fields("PBillDate").Value) Then MhDateInput4.Text = Format(.Fields("PBillDate").Value, "dd-MM-yyyy")
+            MhRealInput9.Value = .Fields("Adjustment").Value
+            MhRealInput34.Value = .Fields("PAdjustment").Value
+            MhRealInput36.Value = .Fields("RAdjustment").Value
+            MhRealInput14.Value = .Fields("VAT%").Value
+            MhRealInput18.Value = .Fields("VAT").Value
+            MhRealInput28.Value = .Fields("PVAT%").Value
+            MhRealInput29.Value = .Fields("PVAT").Value
+            MhRealInput37.Value = .Fields("RVAT%").Value
+            MhRealInput38.Value = .Fields("RVAT").Value
+            MhRealInput10.Value = .Fields("BillAmount").Value
+            MhRealInput35.Value = .Fields("PBillAmount").Value
+            MhRealInput39.Value = .Fields("RBillAmount").Value
+            MhRealInput16.Value = .Fields("PaidAmount").Value
+            MhRealInput30.Value = .Fields("PPaidAmount").Value
+            TxtAdNar.Text = .Fields("AdjustmentRemarks").Value
+        End If
+    End With
+End Sub
+Private Sub SaveFields()
+    With rstBookPOChild05
+        .Fields("OrderDate").Value = GetDate(MhDateInput1.Text)
+        .Fields("TargetDate").Value = GetDate(MhDateInput3.Text)
+        .Fields("SubItem").Value = ItemCode
+        .Fields("Element").Value = ElementCode
+        .Fields("ElementPrintName").Value = Text9.Text
+        .Fields("FinishSize").Value = FinishSizeCode
+        .Fields("Size").Value = SizeCode
+        .Fields("DuplexPrinting").Value = IIf(Option1.Value, 1, 0)
+        .Fields("Processing").Value = IIf(Combo3.ListIndex = 0, "O", IIf(Combo3.ListIndex = 1, "N", "R"))
+        .Fields("Ref").Value = Text3.Text
+        .Fields("PlateMaker").Value = PlateMakerCode
+        .Fields("ActualQuantity").Value = MhRealInput1.Value
+        .Fields("BillingQuantity").Value = MhRealInput2.Value
+        .Fields("Pages/PrintingForm").Value = MhRealInput40.Value
+        .Fields("Pages/Form").Value = MhRealInput42.Value
+        .Fields("Color").Value = ColorCode
+        .Fields("Pages").Value = Val(MhRealInput15.Value)
+        .Fields("Forms").Value = Val(MhRealInput45.Value)
+        .Fields("Forms-¼").Value = MhRealInput17.Value
+        .Fields("Forms-½").Value = MhRealInput20.Value
+        .Fields("Forms-1-F&B").Value = MhRealInput21.Value
+        .Fields("Forms-1-W&T").Value = MhRealInput41.Value
+        .Fields("PlateType").Value = PlateCode
+        .Fields("TotalForms-¼").Value = MhRealInput6.Value
+        .Fields("TotalForms-½").Value = MhRealInput25.Value
+        .Fields("TotalForms-1-F&B").Value = MhRealInput26.Value
+        .Fields("TotalForms-1-W&T").Value = MhRealInput43.Value
+        .Fields("TotalPlates-¼").Value = MhRealInput3.Value
+        .Fields("TotalPlates-½").Value = MhRealInput23.Value
+        .Fields("TotalPlates-1-F&B").Value = MhRealInput24.Value
+        .Fields("TotalPlates-1-W&T").Value = MhRealInput46.Value
+        .Fields("RevisedPlates").Value = MhRealInput59.Value
+        .Fields("aTotalPlates-¼").Value = MhRealInput3.Value
+        .Fields("aTotalPlates-½").Value = MhRealInput23.Value
+        .Fields("aTotalPlates-1-F&B").Value = MhRealInput24.Value
+        .Fields("aTotalPlates-1-W&T").Value = MhRealInput46.Value
+        .Fields("aRevisedPlates").Value = MhRealInput59.Value
+        .Fields("PrintRate").Value = MhRealInput5.Value
+        .Fields("PrintAmount").Value = MhRealInput8.Value
+        .Fields("PlateRate").Value = MhRealInput4.Value
+        .Fields("PlateAmount").Value = MhRealInput7.Value
+        .Fields("PaperByParty").Value = chkPaper.Value
+        .Fields("Paper").Value = PaperCode
+        .Fields("CutOffSize").Value = MhRealInput52.Value
+        .Fields("PaperWastage%").Value = MhRealInput11.Value
+        .Fields("PaperWastageMin").Value = MhRealInput47.Value
+        .Fields("Wastage/Set").Value = MhRealInput47.Value
+        .Fields("PaperWastageFinal").Value = MhRealInput48.Value
+        .Fields("PaperConsumptionOther").Value = MhRealInput13.Value
+        .Fields("PaperConsumptionSheets").Value = CLng(Int(MhRealInput13.Value) * SPU) + ((MhRealInput13.Value - Int(MhRealInput13.Value)) * 1000)
+        .Fields("PaperConsumptionKg").Value = MhRealInput49.Value
+        .Fields("aPaperWastage%").Value = MhRealInput11.Value
+        .Fields("aPaperWastageMin").Value = MhRealInput47.Value
+        .Fields("aWastage/Set").Value = MhRealInput47.Value
+        .Fields("aPaperWastageFinal").Value = MhRealInput48.Value
+        .Fields("aPaperConsumptionOther").Value = MhRealInput13.Value
+        .Fields("aPaperConsumptionSheets").Value = CLng(Int(MhRealInput13.Value) * SPU) + ((MhRealInput13.Value - Int(MhRealInput13.Value)) * 1000)
+        .Fields("aPaperConsumptionKg").Value = MhRealInput49.Value
+        .Fields("PaperRate").Value = MhRealInput32.Value
+        .Fields("PaperAmount").Value = MhRealInput33.Value
+        .Fields("Forms/Sheet1").Value = MhRealInput22.Value
+        .Fields("Forms/Sheet2").Value = MhRealInput27.Value
+        .Fields("Remarks").Value = Text6.Text
+        .Fields("BillNo").Value = Text8.Text
+        If MhDateInput2.ValueIsNull Then .Fields("BillDate").Value = Null Else .Fields("BillDate").Value = GetDate(MhDateInput2.Text)
+        .Fields("PBillNo").Value = Text10.Text
+        If MhDateInput4.ValueIsNull Then .Fields("PBillDate").Value = Null Else .Fields("PBillDate").Value = GetDate(MhDateInput4.Text)
+        .Fields("Adjustment").Value = MhRealInput9.Value
+        .Fields("PAdjustment").Value = MhRealInput34.Value
+        .Fields("RAdjustment").Value = MhRealInput36.Value
+        .Fields("VAT%").Value = MhRealInput14.Value
+        .Fields("VAT").Value = MhRealInput18.Value
+         .Fields("PVAT%").Value = MhRealInput28.Value
+        .Fields("PVAT").Value = MhRealInput29.Value
+        .Fields("RVAT%").Value = MhRealInput37.Value
+        .Fields("RVAT").Value = MhRealInput38.Value
+        .Fields("BillAmount").Value = MhRealInput10.Value
+        .Fields("PBillAmount").Value = MhRealInput35.Value
+        .Fields("RBillAmount").Value = MhRealInput39.Value
+        .Fields("PaidAmount").Value = MhRealInput16.Value
+        .Fields("PPaidAmount").Value = MhRealInput30.Value
+        .Fields("AdjustmentRemarks").Value = IIf(MhRealInput9.Value <> 0 Or MhRealInput34.Value <> 0 Or MhRealInput36.Value <> 0, TxtAdNar.Text, "")
+    End With
+End Sub
+Private Function CheckMandatoryFields() As Boolean
+    If CheckEmpty(Text11.Text, False) Then Text11.SetFocus: CheckMandatoryFields = True: Exit Function 'Finish Size
+    If CheckEmpty(Text4.Text, False) Then Text4.SetFocus: CheckMandatoryFields = True: Exit Function 'Printing Size
+    If CheckEmpty(Text7.Text, False) Then Text7.SetFocus: CheckMandatoryFields = True: Exit Function 'Plate Party
+    If Combo3.ListIndex < 0 Then Combo3.SetFocus: CheckMandatoryFields = True: Exit Function
+    If CheckEmpty(Text16.Text, False) Then Text16.SetFocus: CheckMandatoryFields = True: Exit Function
+    If MhRealInput16.Value <> 0 Then If MhRealInput16.Value <> MhRealInput10.Value + MhRealInput39.Value Then MhRealInput9.SetFocus: CheckMandatoryFields = True: Exit Function
+    If MhRealInput30.Value <> 0 Then If MhRealInput30.Value <> MhRealInput35.Value Then MhRealInput34.SetFocus: CheckMandatoryFields = True: Exit Function
+    If MhRealInput9.Value <> 0 Or MhRealInput34.Value <> 0 Or MhRealInput36.Value <> 0 Then If CheckEmpty(TxtAdNar.Text, False) Then TxtAdNar.SetFocus: CheckMandatoryFields = True: Exit Function
+End Function
+Private Sub GetPartyRates(ByVal RateType As String)
+    If MhRealInput2.Value = 0 Or CheckEmpty(SizeCode, False) Or CheckEmpty(Text13.Text, False) Then Exit Sub
+    Dim PlateRate As Double, PrintRate As Double, PaperWastageRate As Double, PaperWastageMin As Long
+    On Error GoTo ErrorHandler
+    'Fetching Rates
+    With rstFetchRate
+        If .State = adStateOpen Then .Close
+        If RateType = "L" Then  'Plate Rate
+            .Open "SELECT TOP 1 P.* FROM AccountChild06 P INNER JOIN SizeGroupChild C ON P.[SizeGroup]=C.Code WHERE P.Code='" & PartyCode & "' AND C.[Size]='" & SizeCode & "' AND [Plate]='" & PlateCode & "' AND wef<='" & GetDate(MhDateInput1.Text) & "' ORDER BY wef DESC", cnDatabase, adOpenKeyset, adLockReadOnly
+            If .RecordCount = 0 Then
+                If .State = adStateOpen Then .Close
+                .Open "SELECT TOP 1 C1.* FROM (AccountMaster P INNER JOIN AccountChild06 C1 ON P.Code=C1.Code) INNER JOIN SizeGroupChild C2 ON C1.[SizeGroup]=C2.Code WHERE [Name] LIKE '%Rate%' AND C2.[Size]='" & SizeCode & "' AND [Plate]='" & PlateCode & "' AND wef<='" & GetDate(MhDateInput1.Text) & "' ORDER BY wef DESC", cnDatabase, adOpenKeyset, adLockReadOnly
+            End If
+            If .RecordCount > 0 Then PlateRate = Val(.Fields("Rate").Value)
+        Else
+            .Open "SELECT TOP 1 P.* FROM AccountChild05 P INNER JOIN SizeGroupChild C ON P.[SizeGroup]=C.Code WHERE P.Code='" & PartyCode & "' AND C.[Size]='" & SizeCode & "' AND [Color]='" & ColorCode & "' AND [Range]>=" & MhRealInput2.Value & " AND wef<='" & GetDate(MhDateInput1.Text) & "' ORDER BY [Range],wef DESC", cnDatabase, adOpenKeyset, adLockReadOnly
+            If .RecordCount = 0 Then
+                If .State = adStateOpen Then .Close
+                .Open "SELECT TOP 1 C1.* FROM (AccountMaster P INNER JOIN AccountChild05 C1 ON P.Code=C1.Code) INNER JOIN SizeGroupChild C2 ON C1.[SizeGroup]=C2.Code WHERE [Name] LIKE '%Rate%' AND C2.[Size]='" & SizeCode & "' AND [Color]='" & ColorCode & "' AND [Range]>=" & MhRealInput2.Value & " AND wef<='" & GetDate(MhDateInput1.Text) & "' ORDER BY [Range],wef DESC", cnDatabase, adOpenKeyset, adLockReadOnly
+            End If
+            If .RecordCount > 0 Then
+                If RateType = "P" Then  'Print Rate
+                    PrintRate = Val(.Fields("PrintingRate").Value)
+                ElseIf RateType = "W" Then  'Paper Wastage (Percentage)
+                    PaperWastageRate = Val(.Fields("PaperWastageRate").Value)
+                ElseIf RateType = "M" Then  'Paper Wastage (Minimum Sheets)
+                    PaperWastageMin = Val(.Fields("PaperWastageMin").Value)
+                End If
+            End If
+        End If
+    End With
+    If RateType = "L" Then
+        If Combo3.ListIndex > 0 Then 'not old
+            If PlateRate > 0 Then
+                If MhRealInput4.Value = 0 Then
+                    MhRealInput4.Value = PlateRate
+                ElseIf MhRealInput4.Value <> PlateRate Then
+                    If MsgBox("Plate Rate [" & Trim(MhRealInput4.Value) & "] is different from that in Master [" & Trim(Format(PlateRate, "#0.00")) & "] ! Change?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then MhRealInput4.Value = PlateRate
+                End If
+            End If
+        Else
+            If Plate Then MhRealInput4.Value = 0 'old 3 times usable plates
+        End If
+    ElseIf RateType = "P" Then
+        If PrintRate > 0 Then
+            If MhRealInput5.Value = 0 Then
+                MhRealInput5.Value = PrintRate
+            ElseIf MhRealInput5.Value <> PrintRate Then
+                If MsgBox("Print Rate [" & Trim(MhRealInput5.Value) & "] is different from that in Master [" & Trim(Format(PrintRate, "#0.00")) & "] ! Change?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then MhRealInput5.Value = PrintRate
+            End If
+        End If
+    ElseIf RateType = "W" Then
+        If PaperWastageRate > 0 Then
+            If MhRealInput11.Value = 0 Then
+                MhRealInput11.Value = PaperWastageRate
+            ElseIf MhRealInput11.Value <> PaperWastageRate Then
+                If MsgBox("Paper Wastage Rate [" & Trim(MhRealInput11.Value) & "] is different from that in Master [" & Trim(Format(PaperWastageRate, "#0.00")) & "] ! Change?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then MhRealInput11.Value = PaperWastageRate
+            End If
+        End If
+    ElseIf RateType = "M" Then
+        If PaperWastageMin > 0 Then
+            If MhRealInput47.Value = 0 Then
+                MhRealInput47.Value = PaperWastageMin
+            ElseIf MhRealInput47.Value <> PaperWastageMin Then
+                If MsgBox("Paper Wastage Min [" & Trim(MhRealInput47.Value) & "] is different from that in Master [" & Trim(Format(PaperWastageMin, "#0")) & "] ! Change?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then MhRealInput47.Value = PaperWastageMin
+            End If
+        End If
+    End If
+    Exit Sub
+ErrorHandler:
+    DisplayError (Err.Description)
+End Sub
+Private Sub CalculateForms(ByVal FormType As String)
+    Dim Forms As Double
+    Forms = MhRealInput45.Value
+    If FormType = "Q" Then '¼ Forms
+        Forms = Forms - Int(Forms)
+        If Forms > 0 Then
+            Forms = IIf(InStr(1, "0.25_0.75_0.375_0.875", Forms) > 0, 1, 0)
+            If MhRealInput17.Value = 0 Then
+                MhRealInput17.Value = Forms
+            ElseIf Forms <> MhRealInput17.Value Then
+                If MsgBox("Variation in Calculated [" & Trim(Forms) & "] and Existing [" & Trim(MhRealInput17.Value) & "] ¼ Forms ! Change?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then MhRealInput17.Value = Forms
+            End If
+        End If
+    ElseIf FormType = "H" Then '½ Forms
+        Forms = Forms - Int(Forms)
+        If Forms > 0 Then
+            Forms = IIf(InStr(1, "0.5_0.75_0.625_0.875", Forms) > 0 Or Forms = (5 / 6), 1, 0)
+            If MhRealInput20.Value = 0 Then
+                MhRealInput20.Value = Forms
+            ElseIf Forms <> MhRealInput20.Value Then
+                If MsgBox("Variation in Calculated [" & Trim(Forms) & "] and Existing [" & Trim(MhRealInput20.Value) & "] ½ Forms ! Change?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then MhRealInput20.Value = Forms
+            End If
+        End If
+    ElseIf FormType = "F" Then '1 Form-F&B
+        Forms = Int(Forms / 2) * 2
+        If MhRealInput21.Value = 0 Then
+            MhRealInput21.Value = Forms
+        ElseIf Forms <> MhRealInput21.Value Then
+            If MsgBox("Variation in Calculated [" & Trim(Forms) & "] and Existing [" & Trim(MhRealInput21.Value) & "] 1 Forms-F&B ! Change?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then MhRealInput21.Value = Forms
+        End If
+    ElseIf FormType = "W" Then '1 Form-W&T
+        Forms = Int(Forms) - Int(Forms / 2) * 2
+        If MhRealInput41.Value = 0 Then
+            MhRealInput41.Value = Forms
+        ElseIf Forms <> MhRealInput41.Value Then
+            If MsgBox("Variation in Calculated [" & Trim(Forms) & "] and Existing [" & Trim(MhRealInput41.Value) & "] 1 Forms-W&T ! Change?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then MhRealInput41.Value = Forms
+        End If
+    End If
+End Sub
+Private Sub CalculateTotalForms()
+    If MhRealInput22.Value = 0 Then Exit Sub
+    Dim TotalForms As Double
+    TotalForms = MhRealInput2.Value / MhRealInput22.Value
+    TotalForms = IIf(Option2.Value, 0.5, 1) * TotalForms
+    MhRealInput6.Value = (Int((TotalForms * 0.25) / 1000) + IIf((TotalForms * 0.25) Mod 1000 = 0, 0, 1)) * MhRealInput17.Value
+    MhRealInput25.Value = (Int((TotalForms * 0.5) / 1000) + IIf((TotalForms * 0.5) Mod 1000 = 0, 0, 1)) * MhRealInput20.Value
+    MhRealInput26.Value = (Int((TotalForms * 1) / 1000) + IIf((TotalForms * 1) Mod 1000 = 0, 0, 1)) * MhRealInput21.Value
+    MhRealInput43.Value = (Int((TotalForms * 1) / 1000) + IIf((TotalForms * 1) Mod 1000 = 0, 0, 1)) * MhRealInput41.Value
+End Sub
+Private Sub CalculateTotalPlates()
+    If MhRealInput22.Value = 0 Then Exit Sub
+    Dim TotalPlates As Double, i As Byte
+    For i = 1 To 4
+        TotalPlates = Choose(i, MhRealInput17.Value, MhRealInput20.Value, MhRealInput21.Value, MhRealInput41.Value)
+        TotalPlates = TotalPlates / MhRealInput22.Value
+        TotalPlates = IIf(Option2.Value, 0.5, 1) * TotalPlates
+        TotalPlates = Int(TotalPlates) + IIf(TotalPlates - Int(TotalPlates) = 0.5, 1, 0)
+        Choose(i, MhRealInput3, MhRealInput23, MhRealInput24, MhRealInput46).Value = TotalPlates * Color
+    Next
+End Sub
+Private Sub CalculateConsumption()
+    If SPU = 0 Or MhRealInput27.Value = 0 Then Exit Sub
+    Dim Forms As Double, W As Double, Consumption As Double
+    Forms = MhRealInput17.Value * 0.25 + MhRealInput20.Value * 0.5 + (MhRealInput21.Value + MhRealInput41.Value) * 1
+    'Consumption & Wastage Calculation (For Single Form)
+    Consumption = (MhRealInput1.Value / 1000) * 1 * 500 'Sheets
+    W = (Consumption * MhRealInput11.Value) / 100 'Sheets
+    If W < MhRealInput47.Value Then W = MhRealInput47.Value 'Comparison with Minimum Wastage
+    'Final Consumption & Wastage (for All Forms)
+    W = W * Forms 'Sheets
+    Consumption = Consumption * Forms + W 'Sheets
+    Consumption = Consumption / MhRealInput27.Value 'Sheets
+    MhRealInput49.Value = IIf(MhRealInput52.Value > 0, Round(((MhRealInput52.Value / 25.4) * inWidth * GSM) / 3100, 3), Wt) * (Consumption / SPU) 'Consumption-Kg
+    MhRealInput13.Value = CLng(Int(Consumption / SPU)) + ((Consumption Mod SPU) / 1000) 'UOM
+    MhRealInput48.Value = CLng(Int(W / SPU)) + ((W Mod SPU) / 1000)
+End Sub
+Private Sub CalculateAmount()
+    MhRealInput7.Value = IIf(MhRealInput59.Value = 0, MhRealInput3.Value + MhRealInput23.Value + MhRealInput24.Value + MhRealInput46.Value, MhRealInput59.Value) * MhRealInput4.Value 'Plate Amount
+    MhRealInput8.Value = Val(Left(Text13.Text, 2)) * (MhRealInput6.Value + MhRealInput25.Value + MhRealInput26.Value + MhRealInput43.Value) * MhRealInput5.Value 'Print Amount
+    CalculateTotalAmount
+End Sub
+Private Sub CalculateTotalAmount()
+    MhRealInput29.Value = (MhRealInput7.Value + MhRealInput34.Value) * MhRealInput28.Value / 100 'GST Plate
+    MhRealInput18.Value = (MhRealInput8.Value + MhRealInput9.Value) * MhRealInput14.Value / 100 'GST Printing
+    MhRealInput38.Value = (MhRealInput33.Value + MhRealInput36.Value) * MhRealInput37.Value / 100 'GST Paper
+    MhRealInput10.Value = Round(MhRealInput8.Value + MhRealInput9.Value + MhRealInput18.Value, 0) 'Total Printing Amount
+    MhRealInput35.Value = Round(MhRealInput7.Value + MhRealInput29.Value + MhRealInput34.Value, 0) 'Total Plate Amount
+    MhRealInput39.Value = Round(MhRealInput33.Value + MhRealInput38.Value + MhRealInput36.Value, 0) 'Total Paper Amount
+End Sub
+Private Sub LoadMasterList(Optional ByVal LoadSelected As Boolean)
+    If rstGeneralList.State = adStateOpen Then rstGeneralList.Close 'Size/Color/Plate Master List
+    rstGeneralList.Open "SELECT Name As Col0,Value1,Code From GeneralMaster ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstGeneralList.ActiveConnection = Nothing
+    If rstPaperList.State = adStateOpen Then rstPaperList.Close
+    If LoadSelected Then
+        rstPaperList.Open "SELECT * FROM (SELECT LTRIM(P.Name)+' (UOM : '+LTRIM(C.Name)+'='+LTRIM(C.Value1)+')' As Col0,FORMAT(dbo.ufnGetPaperStock('" & IIf(chkPaper.Value, PartyCode, "000000") & "',P.Code,'PO','" & VchCode & "','" & GetDate(MhDateInput1.Text) & "'),'#0.000') As Col1,C.Name As UOM,GSM,inWidth,inLength,P.Code,C.Value1 As SPU,[Form],[Weight/Unit] As Wt,LTRIM(Q.Name) As Quality,Grade FROM (PaperMaster P INNER JOIN GeneralMaster C ON P.UOM=C.Code) INNER JOIN GeneralMaster Q ON P.Quality=Q.Code) As Tbl WHERE CONVERT(DECIMAL(12,3),Col1)<>0 ORDER BY Col0", cnDatabase, adOpenKeyset, adLockReadOnly
+    Else
+        rstPaperList.Open "SELECT LTRIM(P.Name)+' (UOM : '+LTRIM(C.Name)+'='+LTRIM(C.Value1)+')' As Col0,FORMAT(0,'#0.000') As Col1,C.Name As UOM,GSM,inWidth,inLength,P.Code,C.Value1 As SPU,[Form],[Weight/Unit] As Wt,LTRIM(Q.Name) As Quality,Grade FROM (PaperMaster P INNER JOIN GeneralMaster C ON P.UOM=C.Code) INNER JOIN GeneralMaster Q ON P.Quality=Q.Code ORDER BY Col0", cnDatabase, adOpenKeyset, adLockReadOnly
+    End If
+    rstPaperList.ActiveConnection = Nothing
+    If rstPlateMakerList.State = adStateOpen Then rstPlateMakerList.Close
+    rstPlateMakerList.Open "SELECT Name As Col0,Code FROM AccountMaster ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstPlateMakerList.ActiveConnection = Nothing
+    If rstElementList.State = adStateOpen Then rstElementList.Close
+    rstElementList.Open "SELECT Name As Col0,Code FROM ElementMaster ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstElementList.ActiveConnection = Nothing
+End Sub
+Private Sub LockFields(ByVal bVal As Boolean)
+    Dim O As Object
+    For Each O In Me
+        If TypeName(O) = "TextBox" Then
+            O.Locked = bVal
+        ElseIf TypeName(O) = "TDBNumber" Then
+            O.ReadOnly = bVal
+        ElseIf TypeName(O) = "TDBDate" Then
+            O.ReadOnly = bVal
+        ElseIf TypeName(O) = "ComboBox" Or TypeName(O) = "OptionButton" Then
+            O.Enabled = Not bVal
+        End If
+    Next
+    If Not bVal Then Text5.Locked = True: Text2.Locked = True: Text7.Locked = True: Text14.Locked = True: Text11.Locked = True: Text4.Locked = True: Text1.Locked = True: Text13.Locked = True: Text16.Locked = True: MhRealInput45.ReadOnly = True: MhRealInput3.ReadOnly = True: MhRealInput23.ReadOnly = True: MhRealInput24.ReadOnly = True: MhRealInput46.ReadOnly = True: MhRealInput7.ReadOnly = True: MhRealInput6.ReadOnly = True: MhRealInput25.ReadOnly = True: MhRealInput26.ReadOnly = True: MhRealInput43.ReadOnly = True: MhRealInput8.ReadOnly = True: MhRealInput48.ReadOnly = True: MhRealInput13.ReadOnly = True: MhRealInput33.ReadOnly = True: MhRealInput49.ReadOnly = True: MhRealInput18.ReadOnly = True: MhRealInput10.ReadOnly = True: MhRealInput29.ReadOnly = True: MhRealInput35.ReadOnly = True: MhRealInput38.ReadOnly = True: MhRealInput39.ReadOnly = True
+End Sub
+Private Sub SetButtons(ByVal bVal As Boolean)
+    Command1(0).Enabled = bVal
+    Command1(1).Enabled = bVal
+    Command1(2).Enabled = bVal
+    Command1(3).Enabled = Not bVal
+    Command1(4).Enabled = Not bVal
+End Sub
+Private Function CheckDuplicateElement() As Boolean
+    Dim dblBookMark As Double
+    With rstBookPOChild05c
+        If .RecordCount = 0 Then Exit Function
+        If Not (.EOF Or .BOF) Then dblBookMark = .Bookmark 'current record no.
+        .MoveFirst
+        Do Until .EOF
+            If Me.Tag = "A" Then 'Add
+                If .Fields("ElementName").Value = Trim(Text14.Text) Then CheckDuplicateElement = True: Exit Do
+            ElseIf Left(Me.Tag, 1) = "E" Then 'Edit
+                If .Fields("ElementName").Value = Trim(Text14.Text) And .Bookmark <> dblBookMark Then CheckDuplicateElement = True: Exit Do
+            End If
+            .MoveNext
+        Loop
+        If dblBookMark <> 0 Then .Bookmark = dblBookMark Else .MoveLast
+    End With
+End Function
+Private Function MaxUps(ByVal Position As String) As Integer
+    Dim FL As Double, FR As Double, PL As Double, PR As Double, PW As Double, Ups01 As Integer, Ups02 As Integer, Ups03 As Integer
+    If Position = "T" Then
+        If CheckEmpty(FinishSizeCode, False) Or CheckEmpty(SizeCode, False) Then MaxUps = 0: Exit Function
+        PL = Val(Left(Text4.Text, InStr(1, Text4.Text, "X") - 1)) + 1: PR = Val(Mid(Text4.Text, InStr(1, Text4.Text, "X") + 1, 5)) + 1: FL = Val(Left(Text11.Text, InStr(1, Text11.Text, "X") - 1)): FR = Val(Mid(Text11.Text, InStr(1, Text11.Text, "X") + 1, 5))
+        Ups01 = Int(IIf(PL > PR, PL, PR) / IIf(FL > FR, FL, FR)) * Int(IIf(PL < PR, PL, PR) / IIf(FL < FR, FL, FR)): Ups02 = Int(IIf(PL < PR, PL, PR) / IIf(FL > FR, FL, FR)) * Int(IIf(PL > PR, PL, PR) / IIf(FL < FR, FL, FR))
+        MaxUps = IIf(Ups01 > Ups02, Ups01, Ups02)
+    Else
+            If CheckEmpty(PaperCode, False) Or CheckEmpty(SizeCode, False) Then MaxUps = 0: Exit Function
+            FL = Val(Left(Text4.Text, InStr(1, Text4.Text, "X") - 1)): FR = Val(Mid(Text4.Text, InStr(1, Text4.Text, "X") + 1, 5)): PL = IIf(PaperForm = "R", MhRealInput52.Value / 25.4, inLength): PW = inWidth 'Printing Size Left & Right + Paper Length & Width
+            If Abs(FL - PL) <= 1 Then PL = FL: If Abs(FR - PL) <= 1 Then PL = FR: If Abs(FL - PW) <= 1 Then PW = FL: If Abs(FR - PW) <= 1 Then PW = FR
+            Ups01 = Int(IIf(PW > PL, PW, PL) / IIf(FL > FR, FL, FR)) * Int(IIf(PW < PL, PW, PL) / IIf(FL < FR, FL, FR)): Ups02 = Int(IIf(PW > PL, PW, PL) / IIf(FL < FR, FL, FR)) * Int(IIf(PW < PL, PW, PL) / IIf(FL > FR, FL, FR)): Ups03 = Int((PW * PL) / (FL * FR))
+            MaxUps = IIf(Ups03 > IIf(Ups01 > Ups02, Ups01, Ups02), Ups03, IIf(Ups01 > Ups02, Ups01, Ups02))
+    End If
+End Function
+Private Sub CheckPaperSize()
+    If CheckEmpty(SizeCode, False) Then Exit Sub 'Printing Size
+    Dim FL As Double, FR As Double, PL As Double, PW As Double
+    FL = Val(Left(Text4.Text, InStr(1, Text4.Text, "X") - 1)): FR = Val(Mid(Text4.Text, InStr(1, Text4.Text, "X") + 1, 5)): PL = IIf(PaperForm = "R", MhRealInput52.Value / 25.4, inLength): PW = inWidth 'Printing Size Left & Right + Paper Length & Width
+    If Abs(FL - PL) <= 1 Then PL = FL: If Abs(FR - PL) <= 1 Then PL = FR: If Abs(FL - PW) <= 1 Then PW = FL: If Abs(FR - PW) <= 1 Then PW = FR
+    Call CalcUps(PL * PW, FL * FR)
+End Sub
+	

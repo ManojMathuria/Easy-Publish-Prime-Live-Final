@@ -2092,6 +2092,7 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
+Dim FI As Object
 Public VchCode As String 'Vch to Modify
 Public VchType As String, oVchType As String 'SF-Sales Voucher PF-Purchase Voucher TF-Sales Return Voucher OF-Purchase Return Voucher
 Public PtgType As String 'IIf(PtgType = 1, "Sales Invoice", IIf(PtgType = 2, "Tax Invoice", IIf(PtgType = 3, "Speciman Challan", "Delivery Challan")))
@@ -2099,11 +2100,13 @@ Dim cnSalesVoucher As New ADODB.Connection, cnTally As New ADODB.Connection
 Dim rstCompanyMaster As New ADODB.Recordset
 Dim rstPartyList As New ADODB.Recordset, rstMaterialCentreList As New ADODB.Recordset, rstTaxList As New ADODB.Recordset, rstItemList As New ADODB.Recordset, rstHSNCodeList As New ADODB.Recordset, rstVchSeriesList As New ADODB.Recordset, rstSalesTypeList As New ADODB.Recordset
 Dim rstSalesVoucherList As New ADODB.Recordset, rstSalesVoucherParent As New ADODB.Recordset, rstSalesVoucherChild As New ADODB.Recordset, rstOrderList As New ADODB.Recordset
-Dim PartyCode As String, ConsigneeCode As String, MaterialCentreCode As String, TaxCode As String, VchPrefix As String, VchNumbering As String, VchSeriesCode As String, oVchSeriesCode As String, oVchNo As String, AutoVchNo As String, oVchDate As Date, SalesTypeCode As String
+Dim PartyCode As String, PartyStateCode As String, ConsigneeCode As String, MaterialCentreCode As String, TaxCode As String, VchPrefix As String, VchNumbering As String, VchSeriesCode As String, oVchSeriesCode As String, oVchNo As String, AutoVchNo As String, oVchDate As Date, SalesTypeCode As String
 Dim SortOrder, PrevStr, dblBookMark As Double, blnRecordExist As Boolean, EditMode As Boolean, VchSeries As String
 Dim frmSalesTptDetails As New FrmDespatchDetails
 Private Sub Form_Load()
     On Error GoTo ErrorHandler
+    Set FI = CreateObject("Busy2L21.CFixedInterface")
+    
     If Dir(App.Path & "\Icon\ICON.ICO", vbDirectory) <> "" Then Me.Icon = LoadPicture(App.Path & "\Icon\ICON.ICO")
     CenterForm Me
     WheelHook DataGrid1
@@ -2115,7 +2118,7 @@ Private Sub Form_Load()
     rstSalesVoucherParent.CursorLocation = adUseClient
     LoadMasterList
     With rstSalesVoucherList
-        .Open "SELECT T.Code,T.Name,V.Code As VchSeriesCode,V.Name As VchSeriesName,Date,T.Type,P.Name As PartyName,C.Name As ConsigneeName,Amount,IntegrationStatus FROM ((JobworkBVParent T INNER JOIN AccountMaster P ON T.Party=P.Code) INNER JOIN AccountMaster C ON T.Consignee=C.Code) INNER JOIN VchSeriesMaster V ON T.VchSeries=V.Code WHERE RIGHT(Type,2)='" & VchType & "' AND FYCode='" & FYCode & "' ORDER BY T.Name", cnSalesVoucher, adOpenKeyset, adLockPessimistic
+        .Open "SELECT T.Code,T.Name,V.Code As VchSeriesCode,V.Name As VchSeriesName,Date,T.Type,P.Name As PartyName,C.Name As ConsigneeName,Amount,IntegrationStatus FROM ((JobworkBVParent T INNER JOIN AccountMaster P ON T.Party=P.Code) INNER JOIN AccountMaster C ON T.Consignee=C.Code) INNER JOIN VchSeriesMaster V ON T.VchSeries=V.Code WHERE RIGHT(Type,2)='" & VchType & "' AND T.FYCode='" & FYCode & "' ORDER BY T.Name", cnSalesVoucher, adOpenKeyset, adLockPessimistic
         .Filter = adFilterNone
         If .RecordCount > 0 Then
             .MoveLast
@@ -2645,10 +2648,14 @@ Private Sub Text3_KeyDown(KeyCode As Integer, Shift As Integer)
         FrmAccountMaster.SL = True
         FrmAccountMaster.AccountType = "01": FrmAccountMaster.AccountGroup = ""
         FrmAccountMaster.MasterCode = PartyCode
+        FrmAccountMaster.StateCode = PartyStateCode
         Load FrmAccountMaster
         If Err.Number <> 364 Then FrmAccountMaster.Show vbModal
         On Error GoTo 0
         PartyCode = slCode: Text3.Text = slName
+        If Not IsNull(slStateCode) Then
+        PartyStateCode = slStateCode
+        End If
         If Not CheckEmpty(PartyCode, False) Then LoadMasterList: Sendkeys "{TAB}"
     ElseIf KeyCode = vbKeyDelete Then
         PartyCode = "": Text3.Text = ""
@@ -2697,6 +2704,7 @@ End Sub
 Private Sub Text5_KeyDown(KeyCode As Integer, Shift As Integer)
     If KeyCode = vbKeySpace Then
         On Error Resume Next
+        slStateCode = PartyStateCode
         FrmTaxMaster.SL = True
         FrmTaxMaster.MasterCode = TaxCode
         Load FrmTaxMaster
@@ -2745,7 +2753,7 @@ End Sub
 Private Sub FindRecord()
     With rstSalesVoucherParent
         If .State = adStateOpen Then .Close
-        .Open "SELECT * FROM JobworkBVParent WHERE Code='" & FixQuote(rstSalesVoucherList.Fields("Code").Value) & "'", cnSalesVoucher, adOpenKeyset, adLockOptimistic
+        .Open "SELECT *, (Select State From AccountMaster Where Code=Party) AS State FROM JobworkBVParent WHERE Code='" & FixQuote(rstSalesVoucherList.Fields("Code").Value) & "'", cnSalesVoucher, adOpenKeyset, adLockOptimistic
         If .RecordCount = 0 Then Call DisplayError("This Record has been deleted by Another User ! Click Ok To Refresh the Recordset"): Toolbar1_ButtonClick Toolbar1.Buttons.Item(6)
     End With
 End Sub
@@ -2774,6 +2782,7 @@ Private Sub ClearFields()
     MhRealInput10.Value = 0
     MhRealInput11.Value = 0
     chkIntegrate.Value = 0
+    PartyStateCode = ""
     PartyCode = "": ConsigneeCode = "": MaterialCentreCode = "": TaxCode = "": VchSeriesCode = "": oVchSeriesCode = "": oVchNo = "": AutoVchNo = ""
     frmSalesTptDetails.Text1.Text = "": frmSalesTptDetails.Text2.Text = "": frmSalesTptDetails.Text3.Text = "": frmSalesTptDetails.Text4.Text = "": frmSalesTptDetails.Text5.Text = "": frmSalesTptDetails.MhDateInput1.Value = Null: frmSalesTptDetails.MhDateInput2.Value = Null
 End Sub
@@ -2790,6 +2799,7 @@ Private Sub LoadFields()
         oVchDate = Format(.Fields("Date").Value, "dd-MMM-yyyy")
         MhDateInput1.Text = Format(.Fields("Date").Value, "dd-MM-yyyy")
         PartyCode = .Fields("Party").Value
+        PartyStateCode = .Fields("State").Value
         If rstPartyList.RecordCount > 0 Then rstPartyList.MoveFirst
         rstPartyList.Find "[Code] = '" & PartyCode & "'"
         If Not rstPartyList.EOF Then Text3.Text = rstPartyList.Fields("Col0").Value
@@ -3218,13 +3228,18 @@ Private Sub LoadMasterList(Optional ByVal LoadSelected As Boolean)
     If rstSalesTypeList.State = adStateOpen Then rstSalesTypeList.Close
     rstSalesTypeList.Open "SELECT Name As Col0,Code FROM AccountMaster WHERE [Group]='" & IIf(InStr(1, "SF_TF", VchType) > 0, "*26027", "*26025") & "' ORDER BY Name", cnSalesVoucher, adOpenKeyset, adLockReadOnly
     If rstTaxList.State = adStateOpen Then rstTaxList.Close
+    If PartyStateCode = "" Or PartyStateCode = Null Then
     rstTaxList.Open "SELECT Name As Col0,[IGST%],[SGST%],[CGST%],Region,Code FROM TaxMaster ORDER BY Name", cnSalesVoucher, adOpenKeyset, adLockReadOnly
+    Else
+    rstTaxList.Open "SELECT Name As Col0,[IGST%],[SGST%],[CGST%],Region,Code FROM TaxMaster Where Region='" & IIf(CompStateCode = PartyStateCode, "L", "I") & "' ORDER BY Name", cnSalesVoucher, adOpenKeyset, adLockReadOnly
+    End If
     rstTaxList.ActiveConnection = Nothing
     If rstHSNCodeList.State = adStateOpen Then rstHSNCodeList.Close
     rstHSNCodeList.Open "SELECT Name As Col0,Code FROM GeneralMaster WHERE Type='18' ORDER BY Name", cnSalesVoucher, adOpenKeyset, adLockReadOnly
     rstHSNCodeList.ActiveConnection = Nothing
     If rstItemList.State = adStateOpen Then rstItemList.Close
     If LoadSelected Then
+    On Error Resume Next
 '        rstItemList.Open "SELECT I.Name As Col0,FORMAT(dbo.ufnGetItemStock('" & MaterialCentreCode & "',I.Code,'" & Left(VchPrefix, 2) & "','" & CheckNull(rstSalesVoucherParent.Fields("Code").Value) & "','" & GetDate(MhDateInput1.Text) & "'),'#0') As Col1,0 As Quantity,I.Price,I.Code,H.Code As HSNCode,H.Name As HSNName FROM BookMaster I INNER JOIN GeneralMaster H ON I.HSNCode=H.Code WHERE I.Type='F' ORDER BY I.Name", cnSalesVoucher, adOpenKeyset, adLockReadOnly
         rstItemList.Open "SELECT * FROM(SELECT I.Name As Col0," & _
                 "FORMAT((ISNULL((SELECT SUM(OPBAL) FROM BookChild C WHERE C.MaterialCentre ='" & MaterialCentreCode & "' AND C.Item=I.Code),0) " & _
@@ -3243,12 +3258,13 @@ Private Sub LoadMasterList(Optional ByVal LoadSelected As Boolean)
                 "),'#0') As Col1,0 As Quantity,I.Price,I.Code As code,H.Code As HSNCode,H.Name As HSNName " & _
                 " FROM (BookMaster I INNER Join GeneralMaster H ON H.Code=I.HSNCode)" & _
                 "WHERE I.Type='F') As Tbl ORDER BY Col0 ASC", cnSalesVoucher, adOpenKeyset, adLockReadOnly
+    If Err.Number = -2147217871 Then MsgBox "Due To Query Timeout. Unable To Fetch Stock !!!", vbInformation: rstItemList.Open "SELECT * FROM(SELECT I.Name As Col0,FORMAT(0,'#0') As Col1,0 As Quantity,I.Price,I.Code As code,H.Code As HSNCode,H.Name As HSNName  FROM (BookMaster I INNER Join GeneralMaster H ON H.Code=I.HSNCode)WHERE I.Type='F') As Tbl ORDER BY Col0 ASC", cnSalesVoucher, adOpenKeyset, adLockReadOnly
     Else
-        rstItemList.Open "SELECT I.Name As Col0,FORMAT(0,'#0') As Col1,0 As Quantity,I.Price,I.Code,H.Name As HSNName,H.Code As HSNCode FROM BookMaster I INNER JOIN GeneralMaster H ON I.HSNCode=H.Code WHERE I.Type='F' ORDER BY I.Name", cnSalesVoucher, adOpenKeyset, adLockReadOnly
+            rstItemList.Open "SELECT I.Name As Col0,FORMAT(0,'#0') As Col1,0 As Quantity,I.Price,I.Code,H.Name As HSNName,H.Code As HSNCode FROM BookMaster I INNER JOIN GeneralMaster H ON I.HSNCode=H.Code WHERE I.Type='F' ORDER BY I.Name", cnSalesVoucher, adOpenKeyset, adLockReadOnly
     End If
     rstItemList.ActiveConnection = Nothing
     If rstVchSeriesList.State = adStateOpen Then rstVchSeriesList.Close
-    rstVchSeriesList.Open "SELECT Name As Col0,Prefix,Suffix,VchNumbering,Code FROM VchSeriesMaster WHERE VchType='" & IIf(VchType = "SF", "04", IIf(VchType = "PF", "01", IIf(VchType = "TF", "03", "02"))) & VchType & "' ORDER BY Name", cnSalesVoucher, adOpenKeyset, adLockReadOnly
+    rstVchSeriesList.Open "SELECT Name As Col0,Prefix,Suffix,VchNumbering,Code FROM VchSeriesMaster WHERE Left(FYCode,2)='" & Left(FYCode, 2) & "' AND VchType='" & IIf(VchType = "SF", "04", IIf(VchType = "PF", "01", IIf(VchType = "TF", "03", "02"))) & VchType & "' ORDER BY Name", cnSalesVoucher, adOpenKeyset, adLockReadOnly
     rstVchSeriesList.ActiveConnection = Nothing
 End Sub
 Private Sub LoadOrderList()
@@ -3773,57 +3789,75 @@ Private Sub PushVch()
                     If Err.Number = -2147012867 Then
                         If MsgBox(Err.Description + "Tally is not open. Would you like to continue?", vbQuestion + vbYesNo + vbDefaultButton1, "Confirm Proceed !") = vbNo Then Exit Do
                     Else
-                        .WaitForResponse 4000
-                        Dom.Loadxml .responseText
-                        If Dom.SelectSingleNode("//CREATED").Text = "1" Then
+                        .waitForResponse 4000
+                        Dom.loadXML .responseText
+                        If Dom.selectSingleNode("//CREATED").Text = "1" Then
                             MsgBox "Voucher Exported to Tally !!!", vbInformation, App.Title: UpdateIntegration: Exit Do
                         Else
-                            If MsgBox(Dom.SelectSingleNode("//LINEERROR").Text + " Would you like to continue?", vbQuestion + vbYesNo + vbDefaultButton1, "Confirm Proceed !") = vbNo Then Exit Do
+                            If MsgBox(Dom.selectSingleNode("//LINEERROR").Text + " Would you like to continue?", vbQuestion + vbYesNo + vbDefaultButton1, "Confirm Proceed !") = vbNo Then Exit Do
                         End If
                     End If
                 Loop
             End With
             
         ElseIf BusyIntegration Then
-            Dim FI  As CFixedInterface
-            Dim rstBusy As Dao.Recordset
+        DatabaseType = "MS Access"
+            Dim FI As Busy2L21.CFixedInterface
+            
+            'Dim rstBusy As DAO.Recordset
             Dim cnBusy As New ADODB.Connection
+            Dim rstBusy As New ADODB.Recordset
             Dim VchSeriesName, VchDate, VchNo, STName, AccountCode, AccountName, MCName
             Dim ItemCode, ItemName, Qty, Price
-            Set FI = CreateObject("Busy2L16.CFixedInterface")
+            Set FI = New Busy2L21.CFixedInterface
+
+            Set FI = CreateObject("Busy2L21.CFixedInterface")
             Dim BusyServerPassword, BusyServerUser, BusyDatabaseName, BusyServerName, BusyConnectionString As String
             BusyServerPassword = Trim(ReadFromFile("Busy Server Password"))
+            If DatabaseType = "MS Access" Then BusyServerPassword = "ILoveMyINDIA"
             BusyServerUser = "sa"
-            BusyDatabaseName = "BusyComp0007_db"
+            BusyDatabaseName = "BusyComp0006_db"
             BusyServerName = "182.71.145.139"
             cnBusy.CursorLocation = adUseClient
         If DatabaseType = "MS SQL" Then
-        If cnBusy.State = adStateOpen Then cnBusy.Close
+            If cnBusy.State = adStateOpen Then cnBusy.Close
             cnBusy.CommandTimeout = 300
             BusyConnectionString = "Provider=SQLOLEDB.1;Password=" & BusyServerPassword & ";Persist Security Info=True;User ID=" & BusyServerUser & ";Initial Catalog=" & BusyDatabaseName & ";Data Source=" & BusyServerName
         Else
-            BusyConnectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\Printwell Printers International\PPI Busy win Data\DATA\COMP0006\db12022.bds;Persist Security Info=True;Jet OLEDB:Database Password=ILoveMyINDIA"
+                                                        
+            BusyConnectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\Printwell Printers International\PPI Busy win Data\DATA\COMP0006\db12022.bds;Persist Security Info=False;Jet OLEDB:Database Password=ILoveMyINDIA"
         End If
             If cnBusy.State = adStateOpen Then cnBusy.Close
             cnBusy.Open BusyConnectionString
                         
+            rstBusy.Open "SELECT * FROM Master1  ", cnBusy, adOpenKeyset, adLockPessimistic
+                        
             If DatabaseType = "MS SQL" Then
-            
+            FI.OpenCSDB Trim(ReadFromFile("Busy Path")), Trim(ReadFromFile("Busy Server Name")), "sa", Trim(ReadFromFile("Busy Server Password")), Mid(cnBusy.DefaultDatabase, 5, 8)
             FI.OpenCSDB Trim(ReadFromFile("Busy Path")), Trim(ReadFromFile("Busy Server Name")), "sa", Trim(ReadFromFile("Busy Server Password")), cnBusy.DefaultDatabase 'Mid(cnBusy.DefaultDatabase, 8, 12)
             ElseIf DatabaseType = "MS Access" Then
             FI.OpenDB (ReadFromFile("Busy Path")), Trim(ReadFromFile("Busy Data Path")), Trim(ReadFromFile("Busy CompCode")), Trim(ReadFromFile("Busy FY"))
+            
             End If
             AccountCode = Trim(.Fields("AccountCode").Value)
             If CheckEmpty(AccountCode, False) Then Set FI = Nothing: Exit Sub
-            VchSeriesName = VchSeries: MCName = Trim(.Fields("MatCentre").Value): VchNo = Trim(Text2.Text): VchDate = FI.FormatDate(MhDateInput1.Value): Qty = Val(MhRealInput1.Value)
-            Set rstBusy = FI.GetRecordset("SELECT Name,GSTNo FROM Master1 P INNER JOIN MasterAddressInfo C ON P.Code=C.MasterCode WHERE Code=" & AccountCode)
-            Set rstBusy = FI.GetRecordset("SELECT Name,GSTNo FROM Master1 P INNER JOIN MasterAddressInfo C ON P.Code=C.MasterCode")
-            Set rstBusy = FI.GetRecordset("SELECT * FROM Master1  ")
+            VchDate = MhDateInput1.Value
+            VchSeriesName = VchSeries: MCName = Trim(.Fields("MatCentre").Value): VchNo = Trim(Text2.Text): Qty = Val(MhRealInput1.Value): VchDate = MhDateInput1.Value: VchDate = FI.FormatDate(.Fields("BillDate").Value)
+            If rstBusy.State = adStateOpen Then rstBusy.Close
             
+            rstBusy.Open "SELECT Name,GSTNo FROM Master1 P INNER JOIN MasterAddressInfo C ON P.Code=C.MasterCode WHERE Code=1193", cnBusy, adOpenKeyset, adLockPessimistic
+            'rstBusy.Open "SELECT Name,GSTNo FROM Master1 P INNER JOIN MasterAddressInfo C ON P.Code=C.MasterCode WHERE Code=" & AccountCode, cnBusy, adOpenKeyset, adLockPessimistic
+            'Set rstBusy = FI.GetRecordset("SELECT Name,GSTNo FROM Master1 P INNER JOIN MasterAddressInfo C ON P.Code=C.MasterCode WHERE Code=" & AccountCode)
+            'Set rstBusy = FI.GetRecordset("SELECT Name,GSTNo FROM Master1 P INNER JOIN MasterAddressInfo C ON P.Code=C.MasterCode")
+            'Set rstBusy = FI.GetRecordset("SELECT * FROM Master1  ")
             AccountName = Replace(rstBusy.Fields("Name").Value, "&", "&amp;", 1)
             STName = IIf(Left(rstBusy.Fields("GSTNo").Value, 2) = "07", "L/GST-Exempt", "I/GST-Exempt")
+            ItemCode = Trim(.Fields("ItemCode").Value)
             ItemCode = Mid(ItemCode, 2, 6)
-            Set rstBusy = FI.GetRecordset("SELECT Name,D3 As Price FROM Master1 WHERE Code=" & ItemCode)
+            ItemCode = 1187
+            If rstBusy.State = adStateOpen Then rstBusy.Close
+            rstBusy.Open "SELECT Name,D3 As Price FROM Master1 WHERE Code=" & ItemCode, cnBusy, adOpenKeyset, adLockPessimistic
+            'Set rstBusy = FI.GetRecordset("SELECT Name,D3 As Price FROM Master1 WHERE Code=" & ItemCode)
             ItemName = Replace(rstBusy.Fields("Name").Value, "&", "&amp;", 1): Price = Val(rstBusy.Fields("Price").Value)
             XMLStr = "<PurchaseOrder>"
                 XMLStr = XMLStr & "<VchSeriesName>" & VchSeriesName & "</VchSeriesName><Date>" & VchDate & "</Date><VchType>13</VchType><VchNo>" & VchNo & "</VchNo><STPTName>" & STName & "</STPTName><MasterName1>" & AccountName & "</MasterName1><MasterName2>" & MCName & "</MasterName2>"
@@ -3837,6 +3871,7 @@ Private Sub PushVch()
                 XMLStr = XMLStr & "</PendingOrders>"
             XMLStr = XMLStr & "</PurchaseOrder>"
             If Not FI.SaveVchFromXML(13, XMLStr, Err, True, 2) Then DisplayError (Err)
+            
 '            Dim VchSeriesName, VchDate, VchNo, STName, AccountCode, AccountName, MCName, XMLStr
 '            Dim ItemCode, ItemName, Qty, Price
 '            AccountCode = IIf(Not CheckEmpty(BookPrinterCode, False), BookPrinterCode, BinderCode)
@@ -3901,15 +3936,15 @@ Private Sub DelOldVch(ByVal dspMsg As Boolean)
                 If Err.Number = -2147012867 Then
                     If MsgBox(Err.Description + "Tally is not open. Would you like to continue?", vbQuestion + vbYesNo + vbDefaultButton1, "Confirm Proceed !") = vbNo Then Exit Do
                 Else
-                    .WaitForResponse 4000
-                    Dom.Loadxml .responseText
-                    If Dom.SelectSingleNode("//DELETED").Text = "1" Then
+                    .waitForResponse 4000
+                    Dom.loadXML .responseText
+                    If Dom.selectSingleNode("//DELETED").Text = "1" Then
                         If dspMsg Then MsgBox "Voucher from Tally Deleted !!!", vbInformation, App.Title: Exit Do
                     Else
-                        If Dom.SelectSingleNode("//LINEERROR").Text = "Voucher does not exist!" Then
+                        If Dom.selectSingleNode("//LINEERROR").Text = "Voucher does not exist!" Then
                             Exit Do
                         Else
-                            If MsgBox(Dom.SelectSingleNode("//LINEERROR").Text + " Would you like to continue?", vbQuestion + vbYesNo + vbDefaultButton1, "Confirm Proceed !") = vbNo Then Exit Do
+                            If MsgBox(Dom.selectSingleNode("//LINEERROR").Text + " Would you like to continue?", vbQuestion + vbYesNo + vbDefaultButton1, "Confirm Proceed !") = vbNo Then Exit Do
                         End If
                     End If
                 End If

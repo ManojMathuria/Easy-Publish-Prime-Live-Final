@@ -829,8 +829,8 @@ Begin VB.Form frmDebitCreditVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "DebitCreditVoucher.frx":0DCB
-               Picture         =   "DebitCreditVoucher.frx":0DE7
+               Picture         =   "DebitCreditVoucher.frx":0E13
+               Picture         =   "DebitCreditVoucher.frx":0E2F
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel15 
                Height          =   390
@@ -856,8 +856,8 @@ Begin VB.Form frmDebitCreditVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "DebitCreditVoucher.frx":0E03
-               Picture         =   "DebitCreditVoucher.frx":0E1F
+               Picture         =   "DebitCreditVoucher.frx":0E4B
+               Picture         =   "DebitCreditVoucher.frx":0E67
             End
             Begin VB.Line Line1 
                X1              =   0
@@ -1021,7 +1021,7 @@ Private Sub Form_Load()
     rstDebitCreditVoucherParent.CursorLocation = adUseClient
     LoadMasterList
     With rstDebitCreditVoucherList
-        .Open "SELECT T.Code As Code,T.Name,V.Name As VchSeriesName,Date,A.Name As Account, C.Debit,C.Credit,ShortNarration,T.Type FROM DebitCreditParent T LEFT JOIN DebitCreditChild C On C.Code=T.Code LEFT JOIN VchSeriesMaster V ON T.VchSeries=V.Code LEFT JOIN AccountMaster A On C.Account=A.Code WHERE RIGHT(Type,2)='" & VchType & "' AND FYCode='" & FYCode & "' ORDER BY T.CODE", cnDebitCreditVoucher, adOpenKeyset, adLockPessimistic
+        .Open "SELECT T.Code As Code,T.Name,V.Name As VchSeriesName,Date,A.Name As Account, C.Debit,C.Credit,ShortNarration,T.Type FROM DebitCreditParent T LEFT JOIN DebitCreditChild C On C.Code=T.Code LEFT JOIN VchSeriesMaster V ON T.VchSeries=V.Code LEFT JOIN AccountMaster A On C.Account=A.Code WHERE RIGHT(Type,2)='" & VchType & "' AND T.FYCode='" & FYCode & "' ORDER BY T.CODE", cnDebitCreditVoucher, adOpenKeyset, adLockPessimistic
         .Filter = adFilterNone
         If .RecordCount > 0 Then
             .MoveLast
@@ -2047,6 +2047,6 @@ Private Sub LoadMasterList(Optional ByVal LoadSelected As Boolean)
     rstJEAccountList.ActiveConnection = Nothing
     
     If rstVchSeriesList.State = adStateOpen Then rstVchSeriesList.Close
-    rstVchSeriesList.Open "SELECT Name As Col0,Prefix,Suffix,VchNumbering,Code FROM VchSeriesMaster WHERE VchType='" & IIf(VchType = "PI", "51", IIf(VchType = "PR", "52", IIf(VchType = "JE", "53", IIf(VchType = "CE", "54", IIf(VchType = "CN", "55", "56"))))) & VchType & "' ORDER BY Name", cnDebitCreditVoucher, adOpenKeyset, adLockReadOnly
+    rstVchSeriesList.Open "SELECT Name As Col0,Prefix,Suffix,VchNumbering,Code FROM VchSeriesMaster WHERE Left(FYCode,2)='" & Left(FYCode, 2) & "' AND VchType= '" & IIf(VchType = "PI", "51", IIf(VchType = "PR", "52", IIf(VchType = "JE", "53", IIf(VchType = "CE", "54", IIf(VchType = "CN", "55", "56"))))) & VchType & "' ORDER BY Name", cnDebitCreditVoucher, adOpenKeyset, adLockReadOnly
     rstVchSeriesList.ActiveConnection = Nothing
 End Sub

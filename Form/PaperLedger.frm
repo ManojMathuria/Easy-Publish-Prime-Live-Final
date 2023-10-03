@@ -705,7 +705,7 @@ If Reset = 1 Then Call cmdRefresh_Click
 End Sub
 Private Sub Form_Load()
     If rstCompanyMaster.State = adStateOpen Then rstCompanyMaster.Close
-    rstCompanyMaster.Open "SELECT PrintName FROM CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstCompanyMaster.Open "SELECT PrintName FROM CompanyMaster WHERE FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
     Reset = 0:
     On Error GoTo ErrorHandler
     CenterForm Me
@@ -825,15 +825,15 @@ fpSpread1.ColUserSortIndicator(30) = ColUserSortIndicatorDescending
     
     Reset = 1
     If VchType = 11 Then Check0.Caption = "Show Paper Receipt Against 'PO' Only": Me.Caption = "Paper Receipt Party-Wise" '11-11
-    If VchType = 12 Then Combo1.Width = 2000: Check0.value = 1: Check0.Visible = False: Me.Caption = "Paper Receipt Order-Wise" '13-12
-    If VchType = 13 Then Combo1.Width = 2000: Check0.value = 1: Check0.Visible = False: Me.Caption = "Paper Receipt Without-Order" '15-13
+    If VchType = 12 Then Combo1.Width = 2000: Check0.Value = 1: Check0.Visible = False: Me.Caption = "Paper Receipt Order-Wise" '13-12
+    If VchType = 13 Then Combo1.Width = 2000: Check0.Value = 1: Check0.Visible = False: Me.Caption = "Paper Receipt Without-Order" '15-13
     If VchType = 14 Then Check0.Caption = "Show Paper Issue Against 'SO' Only": Check2.Visible = False: Me.Caption = "Paper Issue Party-Wise" '12-14
     If VchType = 15 Then Check0.Caption = "Show Paper Issue Against 'SO' Only": Check2.Visible = False: Me.Caption = "Paper Issue Order-Wise" '14-15
     If VchType = 16 Then Check0.Caption = "Show Paper Issue Against 'SO' Only": Check2.Visible = False: Me.Caption = "Paper Issue Without-Order" '16-16
     If VchType = 17 Then Check0.Caption = "Show Paper Issue Against 'SO' Only": Check2.Visible = False: Me.Caption = "Paper Transfer Party-Wise" '17
     If VchType = 18 Then Combo1.Width = 2250: Check0.Left = 7000: Check0.Caption = "Show Paper Pending 'PO' Only": Check3.Visible = True: Check2.Visible = True: Me.Caption = "Paper Pending Order Supplier-Wise" '18
-    MhDateInput1.value = Format(sDate, "dd-MM-yyyy")
-    MhDateInput2.value = Format(eDate, "dd-MM-yyyy")
+    MhDateInput1.Value = Format(sDate, "dd-MM-yyyy")
+    MhDateInput2.Value = Format(eDate, "dd-MM-yyyy")
     cmdRefresh_Click
     BusySystemIndicator False
     Exit Sub
@@ -1033,37 +1033,37 @@ Private Sub cmdRefresh_Click()
         Do While Not rstPaperLedger.EOF
             i = i + 1
             .SetText 1, i, i 'S.No.
-            .SetText 2, i, rstPaperLedger.Fields("FromAccountName").value: If Len(rstPaperLedger.Fields("FromAccountName").value) > 25 Then fpSpread1.RowHeight(i) = 25.5: fpSpread1.CellType = CellTypeStaticText: fpSpread1.TypeTextWordWrap = True: fpSpread1.TypeHAlign = TypeHAlignRight
-            .SetText 3, i, rstPaperLedger.Fields("PartyAccountName").value: If Len(rstPaperLedger.Fields("PartyAccountName").value) > 25 Then fpSpread1.RowHeight(i) = 25.5: fpSpread1.CellType = CellTypeStaticText: fpSpread1.TypeTextWordWrap = True: fpSpread1.TypeHAlign = TypeHAlignRight
-            .SetText 4, i, rstPaperLedger.Fields("ChallanNo").value
-            .SetText 5, i, rstPaperLedger.Fields("ChallanDate").value
-            .SetText 6, i, rstPaperLedger.Fields("BillNO").value
-            .SetText 7, i, rstPaperLedger.Fields("BillDate").value
-            .SetText 8, i, rstPaperLedger.Fields("Paper").value: fpSpread1.CellType = CellTypeStaticText: fpSpread1.TypeTextWordWrap = True: If Len(rstPaperLedger.Fields("Paper").value) > 75 Then fpSpread1.RowHeight(i) = 25.5: fpSpread1.TypeHAlign = TypeHAlignRight
-            .SetText 9, i, rstPaperLedger.Fields("VchRef").value
-            .SetText 10, i, rstPaperLedger.Fields("Date").value
-            .SetText 11, i, rstPaperLedger.Fields("Ref").value
-            .SetText 12, i, Val(rstPaperLedger.Fields("wtUOM").value)
-            .SetText 13, i, IIf(Val(rstPaperLedger.Fields("Quantity").value) = 0, "", Val(rstPaperLedger.Fields("Quantity").value))
-            .SetText 14, i, rstPaperLedger.Fields("UOM").value
-            .SetText 15, i, IIf(Val(rstPaperLedger.Fields("QuantitySheets").value) = 0, "", Val(rstPaperLedger.Fields("QuantitySheets").value))
-            .SetText 16, i, IIf(Val(rstPaperLedger.Fields("QuantityKg").value) = 0, "", Val(rstPaperLedger.Fields("QuantityKg").value))
-            .SetText 17, i, Val(rstPaperLedger.Fields("Units/Bundle").value)
-            .SetText 18, i, Val(rstPaperLedger.Fields("TotalBundles").value)
+            .SetText 2, i, rstPaperLedger.Fields("FromAccountName").Value: If Len(rstPaperLedger.Fields("FromAccountName").Value) > 25 Then fpSpread1.RowHeight(i) = 25.5: fpSpread1.CellType = CellTypeStaticText: fpSpread1.TypeTextWordWrap = True: fpSpread1.TypeHAlign = TypeHAlignRight
+            .SetText 3, i, rstPaperLedger.Fields("PartyAccountName").Value: If Len(rstPaperLedger.Fields("PartyAccountName").Value) > 25 Then fpSpread1.RowHeight(i) = 25.5: fpSpread1.CellType = CellTypeStaticText: fpSpread1.TypeTextWordWrap = True: fpSpread1.TypeHAlign = TypeHAlignRight
+            .SetText 4, i, rstPaperLedger.Fields("ChallanNo").Value
+            .SetText 5, i, rstPaperLedger.Fields("ChallanDate").Value
+            .SetText 6, i, rstPaperLedger.Fields("BillNO").Value
+            .SetText 7, i, rstPaperLedger.Fields("BillDate").Value
+            .SetText 8, i, rstPaperLedger.Fields("Paper").Value: fpSpread1.CellType = CellTypeStaticText: fpSpread1.TypeTextWordWrap = True: If Len(rstPaperLedger.Fields("Paper").Value) > 75 Then fpSpread1.RowHeight(i) = 25.5: fpSpread1.TypeHAlign = TypeHAlignRight
+            .SetText 9, i, rstPaperLedger.Fields("VchRef").Value
+            .SetText 10, i, rstPaperLedger.Fields("Date").Value
+            .SetText 11, i, rstPaperLedger.Fields("Ref").Value
+            .SetText 12, i, Val(rstPaperLedger.Fields("wtUOM").Value)
+            .SetText 13, i, IIf(Val(rstPaperLedger.Fields("Quantity").Value) = 0, "", Val(rstPaperLedger.Fields("Quantity").Value))
+            .SetText 14, i, rstPaperLedger.Fields("UOM").Value
+            .SetText 15, i, IIf(Val(rstPaperLedger.Fields("QuantitySheets").Value) = 0, "", Val(rstPaperLedger.Fields("QuantitySheets").Value))
+            .SetText 16, i, IIf(Val(rstPaperLedger.Fields("QuantityKg").Value) = 0, "", Val(rstPaperLedger.Fields("QuantityKg").Value))
+            .SetText 17, i, Val(rstPaperLedger.Fields("Units/Bundle").Value)
+            .SetText 18, i, Val(rstPaperLedger.Fields("TotalBundles").Value)
             If VchType = 11 Or VchType = 12 Or VchType = 13 Or VchType = 18 Or VchType = 19 Then
-            .SetText 19, i, IIf(Val(rstPaperLedger.Fields("QuantityIssue").value) = 0, "", Val(rstPaperLedger.Fields("QuantityIssue").value))
-            .SetText 20, i, rstPaperLedger.Fields("UOM").value
-            .SetText 21, i, IIf(Val(rstPaperLedger.Fields("IssueQtySheets").value) = 0, "", Val(rstPaperLedger.Fields("IssueQtySheets").value))
-            .SetText 22, i, IIf(Val(rstPaperLedger.Fields("IssueQtyKg").value) = 0, "", Val(rstPaperLedger.Fields("IssueQtyKg").value))
+            .SetText 19, i, IIf(Val(rstPaperLedger.Fields("QuantityIssue").Value) = 0, "", Val(rstPaperLedger.Fields("QuantityIssue").Value))
+            .SetText 20, i, rstPaperLedger.Fields("UOM").Value
+            .SetText 21, i, IIf(Val(rstPaperLedger.Fields("IssueQtySheets").Value) = 0, "", Val(rstPaperLedger.Fields("IssueQtySheets").Value))
+            .SetText 22, i, IIf(Val(rstPaperLedger.Fields("IssueQtyKg").Value) = 0, "", Val(rstPaperLedger.Fields("IssueQtyKg").Value))
             End If
             If VchType = 18 Or VchType = 19 Then
-            .SetText 23, i, IIf(Val(rstPaperLedger.Fields("PendingQty").value) = 0, "", Val(rstPaperLedger.Fields("PendingQty").value))
-            .SetText 24, i, rstPaperLedger.Fields("UOM").value
-            .SetText 25, i, IIf(Val(rstPaperLedger.Fields("PendingQtySheets").value) = 0, "", Val(rstPaperLedger.Fields("PendingQtySheets").value))
-            .SetText 26, i, IIf(Val(rstPaperLedger.Fields("PendingQtyKG").value) = 0, "", Val(rstPaperLedger.Fields("PendingQtyKG").value))
-            .SetText 27, i, Val(rstPaperLedger.Fields("Rate/Kg").value)
-            .SetText 28, i, Val(rstPaperLedger.Fields("Rate/Unit").value)
-            .SetText 29, i, Val(rstPaperLedger.Fields("Amount").value)
+            .SetText 23, i, IIf(Val(rstPaperLedger.Fields("PendingQty").Value) = 0, "", Val(rstPaperLedger.Fields("PendingQty").Value))
+            .SetText 24, i, rstPaperLedger.Fields("UOM").Value
+            .SetText 25, i, IIf(Val(rstPaperLedger.Fields("PendingQtySheets").Value) = 0, "", Val(rstPaperLedger.Fields("PendingQtySheets").Value))
+            .SetText 26, i, IIf(Val(rstPaperLedger.Fields("PendingQtyKG").Value) = 0, "", Val(rstPaperLedger.Fields("PendingQtyKG").Value))
+            .SetText 27, i, Val(rstPaperLedger.Fields("Rate/Kg").Value)
+            .SetText 28, i, Val(rstPaperLedger.Fields("Rate/Unit").Value)
+            .SetText 29, i, Val(rstPaperLedger.Fields("Amount").Value)
             End If
             rstPaperLedger.MoveNext
         Loop
@@ -1079,7 +1079,7 @@ ErrHandler:
 End Sub
 Private Sub Check2_Click() 'Show Bill Details
     With fpSpread1
-            If Check2.value Then
+            If Check2.Value Then
                 .Col = 6: .ColHidden = False
                 .Col = 7: .ColHidden = False
             Else
@@ -1090,7 +1090,7 @@ Private Sub Check2_Click() 'Show Bill Details
 End Sub
 Private Sub Check3_Click() 'Show Challan Details
     With fpSpread1
-            If Check3.value Then
+            If Check3.Value Then
                 .Col = 4: .ColHidden = False
                 .Col = 5: .ColHidden = False
             Else
@@ -1104,10 +1104,10 @@ Private Sub Check0_Click() 'Show Paper PO
 If VchType = 18 Or VchType = 19 Then
         With fpSpread1
         For i = 1 To .DataRowCnt
-            If Check0.value Then
+            If Check0.Value Then
                 .GetText 26, i, PO
                 If PO = 0 Then .Row = i: .RowHidden = True Else .Row = i: .RowHidden = False
-            ElseIf Check0.value Then
+            ElseIf Check0.Value Then
                 .GetText 26, i, PO
                 If PO > 0 Then .Row = i: .RowHidden = False Else .Row = i: .RowHidden = True
             Else
@@ -1118,10 +1118,10 @@ If VchType = 18 Or VchType = 19 Then
 Else
     With fpSpread1
         For i = 1 To .DataRowCnt
-            If Check0.value Then
+            If Check0.Value Then
                 .GetText 11, i, PO
                 If Left(PO, 3) = "Pur" Then .Row = i: .RowHidden = False Else .Row = i: .RowHidden = True
-            ElseIf Check0.value Then
+            ElseIf Check0.Value Then
                 .GetText 11, i, PO
                 If Left(PO, 4) = "Sale" Then .Row = i: .RowHidden = False Else .Row = i: .RowHidden = True
             Else
@@ -1181,7 +1181,7 @@ fpSpread1.PrintSheet
  End With
 End Sub
 Private Sub Mh3dLabel6_Click()
-Dim x As Boolean, fileName As String, SheetName As String, LogFileName As String
+Dim x As Boolean, FileName As String, SheetName As String, LogFileName As String
 Dim R As Long, C As Long
 With fpSpread1
 If VchType <= 10 And VchType >= 7 Or VchType <= 28 And VchType >= 25 Then fpSpread1.InsertRows 1, 2 Else fpSpread1.InsertRows 1, 1
@@ -1195,16 +1195,16 @@ If VchType <= 10 And VchType >= 7 Or VchType <= 28 And VchType >= 25 Then fpSpre
 End With
 '
 ' Export Excel file and set result to x
-fileName = "Export Data" & "(" & CompCode & "_Vch-" & VchType & ")" & Format(Date, "dd-MMM-yyyy") & ".xls"
+FileName = "Export Data" & "(" & CompCode & "_Vch-" & VchType & ")" & Format(Date, "dd-MMM-yyyy") & ".xls"
 SheetName = "Export Data" & "(" & CompCode & "_Vch-" & VchType & ")"
 LogFileName = "Export Data" & "(" & CompCode & "_Vch-" & VchType & ")" & Format(Date, "dd-MMM-yyyy") & ".txt"
-x = fpSpread1.ExportToExcelEx(fileName, SheetName, LogFileName, ExcelSaveFlagNoFormulas)
+x = fpSpread1.ExportToExcelEx(FileName, SheetName, LogFileName, ExcelSaveFlagNoFormulas)
 ' Display result to user based on T/F value of x
 If x = True Then
 MsgBox "Export complete.", vbInformation, "Easy Publish...Export !!! "
     Dim oExcel As Object
     Set oExcel = CreateObject("Excel.Application")
-    oExcel.Workbooks.Open (App.Path & "\" & fileName)
+    oExcel.Workbooks.Open (App.Path & "\" & FileName)
     oExcel.Visible = True
     Set oExcel = Nothing
 Else
@@ -1349,7 +1349,7 @@ Const PaperHeight = 15840
 fpSpread1.PrintAbortMsg = "Printing - Click Cancel to .Quit"
 fpSpread1.PrintJobName = "Export Data" & "(" & CompCode & "_" & PrintHeader & ")" & Format(Date, "dd-MMM-yyyy") '& ".pdf"
 'fpSpread1.PrintHeader = "_" & PrintHeader & ")" & Format(Date, "dd-MMM-yyyy"): fpSpread1.PrintHeader=: .Font = 20 '"/cPrint Header/rPage # ./p/n2nd Line"
-fpSpread1.PrintFooter = "        Export Data Company : " & rstCompanyMaster.Fields("PrintName").value & " _(" & CompCode & "_" & PrintHeader & ")" & "  From [" + Format(GetDate(MhDateInput1.Text), "dd-MM-yyyy") + "] To [" + Format(GetDate(MhDateInput2.Text), "dd-MM-yyyy") & "]" & " /rPage # ./p " & " Print Date : ( " & Format(Date, "dd-MMM-yyyy") & " )         ": .FontSize = 16 '& ".pdf" ' "/cPrint Footer/rPage # ./p/n2nd Line"
+fpSpread1.PrintFooter = "        Export Data Company : " & rstCompanyMaster.Fields("PrintName").Value & " _(" & CompCode & "_" & PrintHeader & ")" & "  From [" + Format(GetDate(MhDateInput1.Text), "dd-MM-yyyy") + "] To [" + Format(GetDate(MhDateInput2.Text), "dd-MM-yyyy") & "]" & " /rPage # ./p " & " Print Date : ( " & Format(Date, "dd-MMM-yyyy") & " )         ": .FontSize = 16 '& ".pdf" ' "/cPrint Footer/rPage # ./p/n2nd Line"
 fpSpread1.PrintBorder = True
 fpSpread1.PrintColHeaders = True
 fpSpread1.PrintColor = True
