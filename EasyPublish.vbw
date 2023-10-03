@@ -1,4 +1,4 @@
-MdiMainMenu = 197, 261, 826, 669, , 75, 75, 679, 524, C
+MdiMainMenu = 197, 261, 826, 669, Z, 75, 75, 679, 524, C
 FrmChangePassword = 0, 0, 829, 313, C, 125, 125, 729, 574, C
 FrmCompanyList = 0, 0, 629, 413, C, 150, 150, 754, 599, C
 FrmLogin = 78, 78, 1275, 391, C, 175, 175, 779, 624, C
@@ -82,7 +82,7 @@ rptSalesOrderVoucher = 0, 0, 0, 0, C, -11, 75, 1061, 788, C
 FrmOrderList = 104, 104, 990, 457, , 52, 52, 854, 500, C
 FrmCompanyMaster = 156, 156, 1362, 478, , 78, 78, 880, 526, C
 rptJobworkBill = 0, 0, 886, 353, C, 130, 130, 1202, 837, C
-frmJobworkBill = 52, 52, 902, 419, Z, 130, 130, 928, 578, C
+frmJobworkBill = 52, 52, 902, 419, , 130, 130, 928, 578, C
 rptPaperPurchaseOrder = 208, 208, 959, 669, , 156, 156, 1206, 856, C
 FrmBookPOChild0801 = 0, 0, 860, 384, , 182, 182, 984, 630, C
 FrmProjectTracker = 104, 104, 919, 578, , 307, 264, 1109, 712, C
