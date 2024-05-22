@@ -2105,7 +2105,7 @@ Dim SortOrder, PrevStr, dblBookMark As Double, blnRecordExist As Boolean, EditMo
 Dim frmSalesTptDetails As New FrmDespatchDetails
 Private Sub Form_Load()
     On Error GoTo ErrorHandler
-    Set FI = CreateObject("Busy2L21.CFixedInterface")
+    'Set FI = CreateObject("Busy2L21.CFixedInterface")
     
     If Dir(App.Path & "\Icon\ICON.ICO", vbDirectory) <> "" Then Me.Icon = LoadPicture(App.Path & "\Icon\ICON.ICO")
     CenterForm Me
@@ -2118,7 +2118,7 @@ Private Sub Form_Load()
     rstSalesVoucherParent.CursorLocation = adUseClient
     LoadMasterList
     With rstSalesVoucherList
-        .Open "SELECT T.Code,T.Name,V.Code As VchSeriesCode,V.Name As VchSeriesName,Date,T.Type,P.Name As PartyName,C.Name As ConsigneeName,Amount,IntegrationStatus FROM ((JobworkBVParent T INNER JOIN AccountMaster P ON T.Party=P.Code) INNER JOIN AccountMaster C ON T.Consignee=C.Code) INNER JOIN VchSeriesMaster V ON T.VchSeries=V.Code WHERE RIGHT(Type,2)='" & VchType & "' AND T.FYCode='" & FYCode & "' ORDER BY T.Name", cnSalesVoucher, adOpenKeyset, adLockPessimistic
+        .Open "SELECT T.Code,T.Name,V.Code As VchSeriesCode,V.Name As VchSeriesName,Date,T.Type,P.Name As PartyName,C.Name As ConsigneeName,Amount,IntegrationStatus,T.Name+V.Name+P.Name+C.Name As Search,T.AutoVchNo FROM ((JobworkBVParent T INNER JOIN AccountMaster P ON T.Party=P.Code) INNER JOIN AccountMaster C ON T.Consignee=C.Code) INNER JOIN VchSeriesMaster V ON T.VchSeries=V.Code WHERE RIGHT(Type,2)='" & VchType & "' AND T.FYCode='" & FYCode & "' ORDER BY LTrim(T.AutoVchNo)", cnSalesVoucher, adOpenKeyset, adLockPessimistic
         .Filter = adFilterNone
         If .RecordCount > 0 Then
             .MoveLast
@@ -2150,6 +2150,7 @@ Private Sub Form_Load()
     Load frmSalesTptDetails
     Exit Sub
 ErrorHandler:
+    DisplayError (Err.Description)
     BusySystemIndicator False
     Unload Me
 End Sub
@@ -3238,6 +3239,7 @@ Private Sub LoadMasterList(Optional ByVal LoadSelected As Boolean)
     rstHSNCodeList.Open "SELECT Name As Col0,Code FROM GeneralMaster WHERE Type='18' ORDER BY Name", cnSalesVoucher, adOpenKeyset, adLockReadOnly
     rstHSNCodeList.ActiveConnection = Nothing
     If rstItemList.State = adStateOpen Then rstItemList.Close
+    If LoadSelected Then If MsgBox("Do you want's Item List Display With closing Stock", vbInformation + vbDefaultButton2 + vbYesNo) = vbNo Then LoadSelected = False
     If LoadSelected Then
     On Error Resume Next
 '        rstItemList.Open "SELECT I.Name As Col0,FORMAT(dbo.ufnGetItemStock('" & MaterialCentreCode & "',I.Code,'" & Left(VchPrefix, 2) & "','" & CheckNull(rstSalesVoucherParent.Fields("Code").Value) & "','" & GetDate(MhDateInput1.Text) & "'),'#0') As Col1,0 As Quantity,I.Price,I.Code,H.Code As HSNCode,H.Name As HSNName FROM BookMaster I INNER JOIN GeneralMaster H ON I.HSNCode=H.Code WHERE I.Type='F' ORDER BY I.Name", cnSalesVoucher, adOpenKeyset, adLockReadOnly

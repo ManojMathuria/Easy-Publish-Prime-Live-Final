@@ -97,9 +97,9 @@ Begin VB.Form frmSalesOrderVoucher
          TabCaption(1)   =   "&Details"
          TabPicture(1)   =   "SalesOrderVoucher.frx":0038
          Tab(1).ControlEnabled=   0   'False
-         Tab(1).Control(0)=   "txtNotes"
+         Tab(1).Control(0)=   "btnNotes"
          Tab(1).Control(1)=   "Mh3dFrame2"
-         Tab(1).Control(2)=   "btnNotes"
+         Tab(1).Control(2)=   "txtNotes"
          Tab(1).ControlCount=   3
          Begin VB.CommandButton btnNotes 
             Caption         =   " Notes"
