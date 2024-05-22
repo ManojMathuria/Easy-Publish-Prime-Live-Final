@@ -5134,6 +5134,10 @@ Private Sub GetPrinterRates(ByVal xPrintingType As String, ByVal xRateType As St
     rstPrinterRates.Open "SELECT TOP 1 * FROM AccountChild05 WHERE Code = '" & PrinterCode & "' And [Size]=(SELECT Code FROM SizeGroupChild WHERE [Size]='" & SizeCode & "') And Range" & Trim(xPrintingType) & " >= " & IIf(xPrintingType = "1", Val(MhRealInput2.Text), Val(MhRealInput19.Text)) & " ORDER BY Range" & Trim(xPrintingType), cnDatabase, adOpenKeyset, adLockReadOnly
     If rstPrinterRates.RecordCount = 0 Then
         If rstPrinterRates.State = adStateOpen Then rstPrinterRates.Close
+        rstPrinterRates.Open "SELECT TOP 1 * FROM AccountChild05 WHERE Code = '" & PrinterCode & "' And Left((Select Name From GeneralMaster where code=[Size]),5)*Convert(numeric,Substring((Select Name From GeneralMaster where code=[Size]),7,5))>=Left((Select Name From GeneralMaster WHERE Code='" & SizeCode & "'),5)*Convert(numeric,Substring((Select Name From GeneralMaster WHERE Code='" & SizeCode & "'),7,5)) And Range" & Trim(xPrintingType) & " >= " & IIf(xPrintingType = "1", Val(MhRealInput2.Text), Val(MhRealInput19.Text)) & " ORDER BY Range" & Trim(xPrintingType), cnDatabase, adOpenKeyset, adLockReadOnly
+    End If
+    If rstPrinterRates.RecordCount = 0 Then
+        If rstPrinterRates.State = adStateOpen Then rstPrinterRates.Close
         rstPrinterRates.Open "SELECT TOP 1 * FROM AccountMaster P INNER JOIN AccountChild05 C ON P.Code=C.Code WHERE Name Like '%Rate%' And [Size]=(SELECT Code FROM SizeGroupChild WHERE [Size]='" & SizeCode & "') AND Range" & Trim(xPrintingType) & " >= " & IIf(xPrintingType = "1", Val(MhRealInput2.Text), Val(MhRealInput19.Text)) & " ORDER BY Range" & Trim(xPrintingType), cnDatabase, adOpenKeyset, adLockReadOnly
     End If
     If rstPrinterRates.RecordCount > 0 Then

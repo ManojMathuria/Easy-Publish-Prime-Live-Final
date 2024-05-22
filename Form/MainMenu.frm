@@ -383,7 +383,6 @@ Begin VB.MDIForm MdiMainMenu
    End
    Begin VB.Menu MnuMasters 
       Caption         =   "&Masters"
-      Enabled         =   0   'False
       Tag             =   "01000000"
       Begin VB.Menu mnuAccountMaster 
          Caption         =   "Account"
@@ -588,7 +587,6 @@ Begin VB.MDIForm MdiMainMenu
    End
    Begin VB.Menu MnuTransactions 
       Caption         =   "&Transactions"
-      Enabled         =   0   'False
       Tag             =   "02000000"
       Begin VB.Menu mnuPrintPlanningModule 
          Caption         =   "Print Planning"
@@ -1032,14 +1030,16 @@ Begin VB.MDIForm MdiMainMenu
       End
       Begin VB.Menu MenuPendingBilling 
          Caption         =   "Order Processing"
+         Tag             =   "03140000"
          Begin VB.Menu MenuPendingBillingJobworkDirect 
             Caption         =   "Pending Sales Order-Wise"
             Index           =   46
-            Tag             =   "03100110"
+            Tag             =   "03140100"
          End
          Begin VB.Menu MenuPendingBillingJobworkDirect 
             Caption         =   "Pending Sales Party-Wise"
             Index           =   47
+            Tag             =   "03140200"
          End
       End
       Begin VB.Menu MnuOrderProcessingStatus 
@@ -1654,7 +1654,6 @@ Begin VB.MDIForm MdiMainMenu
    End
    Begin VB.Menu MnuUtilities 
       Caption         =   "&Utilities"
-      Enabled         =   0   'False
       Tag             =   "05000000"
       Begin VB.Menu MnuEmailUtilities 
          Caption         =   "Email Profile"
@@ -1735,7 +1734,6 @@ Begin VB.MDIForm MdiMainMenu
    End
    Begin VB.Menu mnuProjectManagementParent 
       Caption         =   "&Project Management"
-      Enabled         =   0   'False
       Tag             =   "06000000"
       Begin VB.Menu mnuEditorial 
          Caption         =   "Editorial"
@@ -1757,7 +1755,21 @@ Begin VB.MDIForm MdiMainMenu
       Tag             =   "07000000"
       Begin VB.Menu MnuHelp 
          Caption         =   "Users Manual – Easy Publish"
+         Index           =   1
          Tag             =   "07010000"
+      End
+      Begin VB.Menu MnuHelp 
+         Caption         =   "Easy Publish Application Folder"
+         Index           =   2
+         Tag             =   "07020000"
+      End
+      Begin VB.Menu MnuHelp 
+         Caption         =   "Update Application Versions"
+         Index           =   3
+      End
+      Begin VB.Menu MnuHelp 
+         Caption         =   "Create New Financial Year"
+         Index           =   4
       End
    End
 End
@@ -1768,7 +1780,7 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 Dim iCount As Long
-Public Version As String
+Public FY, Version As String
 Private WithEvents oHuffman As clsHuffman
 Attribute oHuffman.VB_VarHelpID = -1
 Private oRegistry As New clsRegistry
@@ -1850,6 +1862,7 @@ If Dir(App.Path & "\Icon\ICON.ICO", vbDirectory) <> "" Then Me.Icon = LoadPictur
         If Dir(App.Path & "\Imposition", vbDirectory) = "" Then FSO.CreateFolder App.Path & "\Imposition"
         If Dir(App.Path & "\Pic", vbDirectory) = "" Then FSO.CreateFolder App.Path & "\Pic"
         If Dir(App.Path & "\Report", vbDirectory) = "" Then FSO.CreateFolder App.Path & "\Report"
+        If Dir(App.Path & "\JSON", vbDirectory) = "" Then FSO.CreateFolder App.Path & "\JSON"
     If DatabaseType = "MS Access" Then
         If Dir(App.Path & "\EasyPublish.ini") = "" Then WriteToFile "Database Path", App.Path & "\Database": WriteToFile "Database Name", ""
         DatabasePath = Trim(ReadFromFile("Database Path"))
@@ -1897,6 +1910,11 @@ If Dir(App.Path & "\Icon\ICON.ICO", vbDirectory) <> "" Then Me.Icon = LoadPictur
             
     Loop
             If RenewFlag = True Then Call MsgBox("Your Easy Publish ERP Subscription is renewed now " & Chr(13) & " till  :" & dueDate & ". " & Chr(13) & "If you would have any query, Please contact" & Chr(13) & "Easy Info Solutions International" & Chr(13) & "E-Mail:sales@easyinfosolution.com" & Chr(13) & "Mobile:+91-987-342-2907", vbInformation, App.Title): RenewFlag = False
+    MnuMasters.Enabled = False
+    MnuDisplay.Enabled = False
+    MnuTransactions.Enabled = False
+    MnuReports.Enabled = False
+    mnuProjectManagementParent.Enabled = False
 End Sub
 Private Sub MDIForm_Resize()
     On Error Resume Next
@@ -1965,7 +1983,7 @@ Private Sub mnuOpen_Click()
             StatusBar1.Panels(3).Text = "User Name : " & Trim(UserName)
             SetMenuOptions (True)
             rstCompanyMaster.Open "SELECT Name,'-Financial Year From '+REPLACE(CONVERT(VARCHAR(11),FinancialYearFrom,106),' ','-')+' To '+REPLACE(CONVERT(VARCHAR(11),FinancialYearTo,106),' ','-'),* FROM CompanyMaster WHERE FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
-            MdiMainMenu.Caption = Version & " [" & Trim(rstCompanyMaster.Fields("Name").Value) & Trim(rstCompanyMaster.Fields(1).Value) & "]"                       '"Easy Publish  21|Rel 05 | 06.29 Version |Production & Inventory Management System [" & Trim(rstCompanyMaster.Fields("Name").Value) & Trim(rstCompanyMaster.Fields(1).Value) & "]"
+            MdiMainMenu.Caption = Version & " [" & Trim(rstCompanyMaster.Fields("Name").Value) & Trim(rstCompanyMaster.Fields(1).Value) & "]"
             CompStateCode = Trim(rstCompanyMaster.Fields("State").Value)
             Call CustomSettings
             Call CloseRecordset(rstCompanyMaster)
@@ -2010,11 +2028,11 @@ Private Sub SetMenuOptions(bVal As Boolean)
     MnuRestore.Enabled = Not bVal
     MnuLicenceAgreement.Enabled = True
     MnuUtilities.Enabled = bVal
-    mnuProjectManagementParent.Enabled = bVal
     If bVal Then
         rstUserChild.Open "Select [Module] From UserChild Where Code = '" & FixQuote(UserCode) & "' Order by [Module]", cnDatabase, adOpenKeyset, adLockReadOnly
         For Each Object In Me
             If TypeName(Object) = "Menu" Then
+            On Error Resume Next
                 If Object.Tag <> "" Then
                     If UserLevel <> "1" Then
                         rstUserChild.MoveFirst
@@ -2029,12 +2047,42 @@ Private Sub SetMenuOptions(bVal As Boolean)
             End If
         Next
     Else
+        MnuCompany.Enabled = bVal
         MnuMasters.Enabled = bVal
-        MnuDisplay.Enabled = bVal
         MnuTransactions.Enabled = bVal
+        MnuDisplay.Enabled = bVal
         MnuReports.Enabled = bVal
+        MnuUtilities.Enabled = bVal
         mnuProjectManagementParent.Enabled = bVal
+        MnuHelpm.Enabled = bVal
     End If
+
+    Call CloseRecordset(rstUserChild)
+If bVal Then
+    MnuCompany.Enabled = bVal: MnuCompany.Visible = bVal
+    MnuOpen.Enabled = False: MnuOpen.Visible = True
+    MnuClose.Enabled = bVal: MnuClose.Visible = bVal
+    MnuLicenceAgreement.Enabled = bVal: MnuLicenceAgreement.Visible = bVal
+    MnuYouTube.Enabled = bVal: MnuYouTube.Visible = bVal
+    MnuRemoteSupprort.Enabled = bVal: MnuRemoteSupprort.Visible = bVal
+    MnuExit.Enabled = bVal: MnuExit.Visible = bVal
+    MnuHelpm.Enabled = bVal: MnuHelpm.Visible = bVal
+    MnuHelp(1).Enabled = bVal: MnuHelp(1).Visible = bVal
+    MnuHelp(2).Enabled = bVal: MnuHelp(2).Visible = bVal
+    MnuHelp(3).Enabled = bVal: MnuHelp(3).Visible = bVal
+    MnuHelp(4).Enabled = False: MnuHelp(4).Visible = False
+    If Trim(ReadFromFile("Super User")) = "EasyPublish" Then MnuHelp(4).Enabled = bVal: MnuHelp(4).Visible = bVal
+Else
+    MnuCompany.Enabled = True: MnuCompany.Visible = True
+    MnuOpen.Enabled = True: MnuOpen.Visible = True
+    MnuHelpm.Enabled = True: MnuHelpm.Visible = True
+    MnuHelp(1).Enabled = True: MnuHelp(1).Visible = True
+    MnuHelp(2).Enabled = True: MnuHelp(2).Visible = True
+    MnuHelp(3).Enabled = True: MnuHelp(3).Visible = True
+    MnuHelp(4).Enabled = False: MnuHelp(4).Visible = False
+    If Trim(ReadFromFile("Super User")) = "EasyPublish" Then MnuHelp(4).Enabled = True: MnuHelp(4).Visible = True
+End If
+Exit Sub
 ErrorHandler:
     Call CloseRecordset(rstUserChild)
 End Sub
@@ -2615,7 +2663,7 @@ Private Sub mnuOpBal_Click()
     End If
     Screen.MousePointer = vbHourglass
     If rstPaperOpBal.State = adStateOpen Then rstPaperOpBal.Close
-    rstCompanyMaster.Open "Select PrintName From CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstCompanyMaster.Open "Select PrintName FROM CompanyMaster WHERE FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
     rstPaperOpBal.Open "SELECT M2.Name As GodownName,TRIM(M1.Name)+' (UOM : '+TRIM(U.Name)+')' As PaperName,[Weight/Unit],C.OpBalOther,C.OpBalSheets,C.OpBalTat,U.Value1 As SPU FROM ((PaperChild C INNER JOIN PaperMaster M1 ON M1.Code=C.Code) INNER JOIN AccountMaster M2 ON M2.Code=C.Account) INNER JOIN GeneralMaster U ON M1.UOM=U.Code ORDER BY M2.Name,M1.Name", cnDatabase, adOpenKeyset, adLockReadOnly
     If rstPaperOpBal.RecordCount = 0 Then
         Screen.MousePointer = vbNormal
@@ -2683,7 +2731,7 @@ Private Sub mnuImportBal01_Click()  'Print Order
     Dim SQL As String
     On Error GoTo ErrorHandler
     BusySystemIndicator True
-    rstCompanyMaster.Open "Select CreatedFrom From CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstCompanyMaster.Open "Select CreatedFrom FROM CompanyMaster WHERE FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
     If rstCompanyMaster.Fields("CreatedFrom").Value <> "" Then
         If MsgBox("Are you sure to Proceed?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Proceed !") = vbYes Then
             rstCompanyMaster.ActiveConnection = Nothing
@@ -2832,7 +2880,7 @@ Private Sub mnuImportBal02_Click()
     Dim ClBal As Double
     On Error GoTo ErrorHandler
     BusySystemIndicator True
-    rstCompanyMaster.Open "Select CreatedFrom From CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstCompanyMaster.Open "Select CreatedFrom FROM CompanyMaster WHERE FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
     If rstCompanyMaster.Fields("CreatedFrom").Value <> "" Then
         If MsgBox("Are you sure to Proceed?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Proceed !") = vbYes Then
             CxnImporter.CursorLocation = adUseClient
@@ -2902,7 +2950,7 @@ Private Sub mnuImportBal03_Click()
     On Error GoTo ErrorHandler
     
     BusySystemIndicator True
-    rstCompanyMaster.Open "Select CreatedFrom From CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstCompanyMaster.Open "Select CreatedFrom FROM CompanyMaster WHERE FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
     If rstCompanyMaster.Fields("CreatedFrom").Value <> "" Then
         If MsgBox("Are you sure to Proceed?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Proceed !") = vbYes Then
             CxnImporter.CursorLocation = adUseClient
@@ -3502,7 +3550,7 @@ Private Sub mnuDespatchManagement_Click(Index As Integer)
 End Sub
 Private Sub MenuSaleLedger_Click(Index As Integer)
     On Error Resume Next
-    FrmItemSelectionList.VchType = IIf(Trim(Index) <= 6, Trim(Index), IIf(Trim(Index) >= 7 And Trim(Index) <= 11, (Trim(Index) - 1), IIf(Trim(Index) >= 21 And Trim(Index) <= 25, (Trim(Index) - 1), IIf(Trim(Index) = 32, (Trim(Index) - 3), (Trim(Index) - 2)))))
+    FrmItemSelectionList.VchType = IIf(Trim(Index) <= 6, Trim(Index), IIf(Trim(Index) >= 7 And Trim(Index) <= 11, (Trim(Index) - 1), IIf(Trim(Index) >= 21 And Trim(Index) <= 25, (Trim(Index) - 1), IIf(Trim(Index) = 32, "0448", (Trim(Index) - 2)))))
     Load FrmItemSelectionList
     If Err.Number <> 364 Then FrmItemSelectionList.Show
 End Sub
@@ -3542,12 +3590,31 @@ Private Sub MnuEmailUtilities_Click()
     Load FrmEmailing
     If Err.Number <> 364 Then FrmEmailing.Caption = "Emailing ": FrmEmailing.Show
 End Sub
-Private Sub MnuHelp_Click()
+Private Sub MnuHelp_Click(Index As Integer)
     On Error Resume Next
     Dim R As Long
-    If Dir(App.Path & "\HelpFiles\Easy Publish Prime v22.chm", vbDirectory) = "" Then
-            R = ShellExecute(0, "open", "http://www.easyinfosolution.com", 0, 0, 1)
-    Else
-            R = ShellExecute(0, "open", App.Path & "\HelpFiles\Easy Publish Prime v22.chm", 0, 0, 1)
+    Dim Foldername As String
+    Foldername = App.Path
+    If Trim(Index) = 1 Then
+        If Dir(App.Path & "\HelpFiles\Easy Publish Prime v22.chm", vbDirectory) = "" Then
+                R = ShellExecute(0, "open", "http://www.easyinfosolution.com", 0, 0, 1)
+        Else
+                R = ShellExecute(0, "open", App.Path & "\HelpFiles\Easy Publish Prime v22.chm", 0, 0, 1)
+        End If
+    ElseIf Trim(Index) = 2 Then
+        Shell "C:\WINDOWS\explorer.exe """ & Foldername & "", vbNormalFocus
+    ElseIf Trim(Index) = 3 Then
+        If Dir(App.Path & "\VersionUpdate.exe", vbDirectory) = "" Then
+                R = ShellExecute(0, "open", "http://www.easyinfosolution.com", 0, 0, 1)
+        Else
+                R = ShellExecute(0, "open", App.Path & "\VersionUpdate.exe", 0, 0, 1)
+                mnuExit_Click
+        End If
+    ElseIf Trim(Index) = 4 Then
+        If CompCode <> "" Then
+            Load FrmFY: Screen.MousePointer = vbNormal:  FrmFY.Show vbModal
+        Else
+            MsgBox "Please Login Company First", vbExclamation
+        End If
     End If
 End Sub

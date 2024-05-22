@@ -7,6 +7,7 @@ Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
 Object = "{0F1F1508-C40A-101B-AD04-00AA00575482}#1.0#0"; "mhrinp32.ocx"
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
 Begin VB.Form FrmBookPrintOrder 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Item Print Order"
@@ -86,17 +87,25 @@ Begin VB.Form FrmBookPrintOrder
          Tab(0).ControlEnabled=   -1  'True
          Tab(0).Control(0)=   "Label1"
          Tab(0).Control(0).Enabled=   0   'False
-         Tab(0).Control(1)=   "Mh3dLabel1(1)"
+         Tab(0).Control(1)=   "CmdPrint"
          Tab(0).Control(1).Enabled=   0   'False
-         Tab(0).Control(2)=   "Mh3dLabel1(2)"
+         Tab(0).Control(2)=   "CmdExport"
          Tab(0).Control(2).Enabled=   0   'False
-         Tab(0).Control(3)=   "Text1"
+         Tab(0).Control(3)=   "Mh3dLabel1(1)"
          Tab(0).Control(3).Enabled=   0   'False
-         Tab(0).Control(4)=   "DataGrid1"
+         Tab(0).Control(4)=   "Mh3dLabel1(2)"
          Tab(0).Control(4).Enabled=   0   'False
-         Tab(0).Control(5)=   "cmdProceed"
+         Tab(0).Control(5)=   "Text1"
          Tab(0).Control(5).Enabled=   0   'False
-         Tab(0).ControlCount=   6
+         Tab(0).Control(6)=   "DataGrid1"
+         Tab(0).Control(6).Enabled=   0   'False
+         Tab(0).Control(7)=   "cmdProceed"
+         Tab(0).Control(7).Enabled=   0   'False
+         Tab(0).Control(8)=   "CommonDialog1"
+         Tab(0).Control(8).Enabled=   0   'False
+         Tab(0).Control(9)=   "ImageList1"
+         Tab(0).Control(9).Enabled=   0   'False
+         Tab(0).ControlCount=   10
          TabCaption(1)   =   "&Details"
          TabPicture(1)   =   "BookPrintOrder.frx":0038
          Tab(1).ControlEnabled=   0   'False
@@ -106,6 +115,87 @@ Begin VB.Form FrmBookPrintOrder
          Tab(1).Control(3)=   "Mh3dFrame3"
          Tab(1).Control(4)=   "Mh3dFrame7"
          Tab(1).ControlCount=   5
+         Begin MSComctlLib.ImageList ImageList1 
+            Left            =   6240
+            Top             =   3960
+            _ExtentX        =   1005
+            _ExtentY        =   1005
+            BackColor       =   -2147483643
+            ImageWidth      =   16
+            ImageHeight     =   16
+            MaskColor       =   12632256
+            _Version        =   393216
+            BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
+               NumListImages   =   15
+               BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+                  Picture         =   "BookPrintOrder.frx":0054
+                  Key             =   ""
+               EndProperty
+               BeginProperty ListImage2 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+                  Picture         =   "BookPrintOrder.frx":0598
+                  Key             =   ""
+               EndProperty
+               BeginProperty ListImage3 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+                  Picture         =   "BookPrintOrder.frx":0ADC
+                  Key             =   ""
+               EndProperty
+               BeginProperty ListImage4 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+                  Picture         =   "BookPrintOrder.frx":0BF0
+                  Key             =   ""
+               EndProperty
+               BeginProperty ListImage5 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+                  Picture         =   "BookPrintOrder.frx":0D04
+                  Key             =   ""
+               EndProperty
+               BeginProperty ListImage6 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+                  Picture         =   "BookPrintOrder.frx":0E18
+                  Key             =   ""
+               EndProperty
+               BeginProperty ListImage7 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+                  Picture         =   "BookPrintOrder.frx":0F74
+                  Key             =   ""
+               EndProperty
+               BeginProperty ListImage8 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+                  Picture         =   "BookPrintOrder.frx":14B8
+                  Key             =   ""
+               EndProperty
+               BeginProperty ListImage9 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+                  Picture         =   "BookPrintOrder.frx":15CC
+                  Key             =   ""
+               EndProperty
+               BeginProperty ListImage10 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+                  Picture         =   "BookPrintOrder.frx":1B10
+                  Key             =   ""
+               EndProperty
+               BeginProperty ListImage11 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+                  Picture         =   "BookPrintOrder.frx":1C24
+                  Key             =   ""
+               EndProperty
+               BeginProperty ListImage12 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+                  Picture         =   "BookPrintOrder.frx":1D38
+                  Key             =   ""
+               EndProperty
+               BeginProperty ListImage13 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+                  Picture         =   "BookPrintOrder.frx":1E4C
+                  Key             =   ""
+               EndProperty
+               BeginProperty ListImage14 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+                  Picture         =   "BookPrintOrder.frx":1F60
+                  Key             =   ""
+               EndProperty
+               BeginProperty ListImage15 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+                  Picture         =   "BookPrintOrder.frx":2074
+                  Key             =   ""
+               EndProperty
+            EndProperty
+         End
+         Begin MSComDlg.CommonDialog CommonDialog1 
+            Left            =   3480
+            Top             =   3960
+            _ExtentX        =   847
+            _ExtentY        =   847
+            _Version        =   393216
+         End
          Begin VB.CommandButton cmdProceed 
             Caption         =   " Show Combo Item List Only"
             BeginProperty Font 
@@ -118,7 +208,7 @@ Begin VB.Form FrmBookPrintOrder
                Strikethrough   =   0   'False
             EndProperty
             Height          =   330
-            Left            =   14745
+            Left            =   12585
             Style           =   1  'Graphical
             TabIndex        =   97
             ToolTipText     =   "Save"
@@ -154,7 +244,7 @@ Begin VB.Form FrmBookPrintOrder
             NoPrefix        =   0   'False
             FormatString    =   ""
             Caption         =   ""
-            Picture         =   "BookPrintOrder.frx":0054
+            Picture         =   "BookPrintOrder.frx":2188
             Begin TDBNumber6Ctl.TDBNumber MhRealInput14 
                Height          =   330
                Left            =   2040
@@ -165,8 +255,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1711
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":0070
-               Caption         =   "BookPrintOrder.frx":0090
+               Calculator      =   "BookPrintOrder.frx":21A4
+               Caption         =   "BookPrintOrder.frx":21C4
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -176,9 +266,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":00FC
-               Keys            =   "BookPrintOrder.frx":011A
-               Spin            =   "BookPrintOrder.frx":0164
+               DropDown        =   "BookPrintOrder.frx":2230
+               Keys            =   "BookPrintOrder.frx":224E
+               Spin            =   "BookPrintOrder.frx":2298
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -209,7 +299,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   209649669
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -224,8 +314,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1711
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":018C
-               Caption         =   "BookPrintOrder.frx":01AC
+               Calculator      =   "BookPrintOrder.frx":22C0
+               Caption         =   "BookPrintOrder.frx":22E0
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -235,9 +325,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":0218
-               Keys            =   "BookPrintOrder.frx":0236
-               Spin            =   "BookPrintOrder.frx":0280
+               DropDown        =   "BookPrintOrder.frx":234C
+               Keys            =   "BookPrintOrder.frx":236A
+               Spin            =   "BookPrintOrder.frx":23B4
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -268,7 +358,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   70057989
+               ValueVT         =   209649669
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -297,8 +387,8 @@ Begin VB.Form FrmBookPrintOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":02A8
-               Picture         =   "BookPrintOrder.frx":02C4
+               Picture         =   "BookPrintOrder.frx":23DC
+               Picture         =   "BookPrintOrder.frx":23F8
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput10 
                Height          =   330
@@ -310,8 +400,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1711
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":02E0
-               Caption         =   "BookPrintOrder.frx":0300
+               Calculator      =   "BookPrintOrder.frx":2414
+               Caption         =   "BookPrintOrder.frx":2434
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -321,9 +411,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":036C
-               Keys            =   "BookPrintOrder.frx":038A
-               Spin            =   "BookPrintOrder.frx":03D4
+               DropDown        =   "BookPrintOrder.frx":24A0
+               Keys            =   "BookPrintOrder.frx":24BE
+               Spin            =   "BookPrintOrder.frx":2508
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -354,7 +444,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   70057989
+               ValueVT         =   209649669
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -369,8 +459,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1711
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":03FC
-               Caption         =   "BookPrintOrder.frx":041C
+               Calculator      =   "BookPrintOrder.frx":2530
+               Caption         =   "BookPrintOrder.frx":2550
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -380,9 +470,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":0488
-               Keys            =   "BookPrintOrder.frx":04A6
-               Spin            =   "BookPrintOrder.frx":04F0
+               DropDown        =   "BookPrintOrder.frx":25BC
+               Keys            =   "BookPrintOrder.frx":25DA
+               Spin            =   "BookPrintOrder.frx":2624
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -413,7 +503,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   70057989
+               ValueVT         =   209715205
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -428,8 +518,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1711
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":0518
-               Caption         =   "BookPrintOrder.frx":0538
+               Calculator      =   "BookPrintOrder.frx":264C
+               Caption         =   "BookPrintOrder.frx":266C
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -439,9 +529,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":05A4
-               Keys            =   "BookPrintOrder.frx":05C2
-               Spin            =   "BookPrintOrder.frx":060C
+               DropDown        =   "BookPrintOrder.frx":26D8
+               Keys            =   "BookPrintOrder.frx":26F6
+               Spin            =   "BookPrintOrder.frx":2740
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -472,7 +562,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   70057989
+               ValueVT         =   209649669
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -501,8 +591,8 @@ Begin VB.Form FrmBookPrintOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":0634
-               Picture         =   "BookPrintOrder.frx":0650
+               Picture         =   "BookPrintOrder.frx":2768
+               Picture         =   "BookPrintOrder.frx":2784
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput15 
                Height          =   330
@@ -514,8 +604,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1720
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":066C
-               Caption         =   "BookPrintOrder.frx":068C
+               Calculator      =   "BookPrintOrder.frx":27A0
+               Caption         =   "BookPrintOrder.frx":27C0
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -525,9 +615,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":06F8
-               Keys            =   "BookPrintOrder.frx":0716
-               Spin            =   "BookPrintOrder.frx":0760
+               DropDown        =   "BookPrintOrder.frx":282C
+               Keys            =   "BookPrintOrder.frx":284A
+               Spin            =   "BookPrintOrder.frx":2894
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -558,7 +648,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   209715205
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -573,8 +663,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1711
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":0788
-               Caption         =   "BookPrintOrder.frx":07A8
+               Calculator      =   "BookPrintOrder.frx":28BC
+               Caption         =   "BookPrintOrder.frx":28DC
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -584,9 +674,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":0814
-               Keys            =   "BookPrintOrder.frx":0832
-               Spin            =   "BookPrintOrder.frx":087C
+               DropDown        =   "BookPrintOrder.frx":2948
+               Keys            =   "BookPrintOrder.frx":2966
+               Spin            =   "BookPrintOrder.frx":29B0
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -617,7 +707,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   209715205
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -632,8 +722,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1711
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":08A4
-               Caption         =   "BookPrintOrder.frx":08C4
+               Calculator      =   "BookPrintOrder.frx":29D8
+               Caption         =   "BookPrintOrder.frx":29F8
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -643,9 +733,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":0930
-               Keys            =   "BookPrintOrder.frx":094E
-               Spin            =   "BookPrintOrder.frx":0998
+               DropDown        =   "BookPrintOrder.frx":2A64
+               Keys            =   "BookPrintOrder.frx":2A82
+               Spin            =   "BookPrintOrder.frx":2ACC
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -676,7 +766,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   209715205
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -691,8 +781,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1711
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":09C0
-               Caption         =   "BookPrintOrder.frx":09E0
+               Calculator      =   "BookPrintOrder.frx":2AF4
+               Caption         =   "BookPrintOrder.frx":2B14
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -702,9 +792,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":0A4C
-               Keys            =   "BookPrintOrder.frx":0A6A
-               Spin            =   "BookPrintOrder.frx":0AB4
+               DropDown        =   "BookPrintOrder.frx":2B80
+               Keys            =   "BookPrintOrder.frx":2B9E
+               Spin            =   "BookPrintOrder.frx":2BE8
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -735,7 +825,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   70057989
+               ValueVT         =   209715205
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -750,8 +840,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1711
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":0ADC
-               Caption         =   "BookPrintOrder.frx":0AFC
+               Calculator      =   "BookPrintOrder.frx":2C10
+               Caption         =   "BookPrintOrder.frx":2C30
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -761,9 +851,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":0B68
-               Keys            =   "BookPrintOrder.frx":0B86
-               Spin            =   "BookPrintOrder.frx":0BD0
+               DropDown        =   "BookPrintOrder.frx":2C9C
+               Keys            =   "BookPrintOrder.frx":2CBA
+               Spin            =   "BookPrintOrder.frx":2D04
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -794,7 +884,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   209715205
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -822,8 +912,8 @@ Begin VB.Form FrmBookPrintOrder
                Caption         =   " Variable Qnty Detail"
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":0BF8
-               Picture         =   "BookPrintOrder.frx":0C14
+               Picture         =   "BookPrintOrder.frx":2D2C
+               Picture         =   "BookPrintOrder.frx":2D48
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput29 
                Height          =   330
@@ -835,8 +925,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1693
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":0C30
-               Caption         =   "BookPrintOrder.frx":0C50
+               Calculator      =   "BookPrintOrder.frx":2D64
+               Caption         =   "BookPrintOrder.frx":2D84
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -846,9 +936,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":0CBC
-               Keys            =   "BookPrintOrder.frx":0CDA
-               Spin            =   "BookPrintOrder.frx":0D24
+               DropDown        =   "BookPrintOrder.frx":2DF0
+               Keys            =   "BookPrintOrder.frx":2E0E
+               Spin            =   "BookPrintOrder.frx":2E58
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -879,7 +969,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   70057989
+               ValueVT         =   209846277
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -894,8 +984,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1693
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":0D4C
-               Caption         =   "BookPrintOrder.frx":0D6C
+               Calculator      =   "BookPrintOrder.frx":2E80
+               Caption         =   "BookPrintOrder.frx":2EA0
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -905,9 +995,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":0DD8
-               Keys            =   "BookPrintOrder.frx":0DF6
-               Spin            =   "BookPrintOrder.frx":0E40
+               DropDown        =   "BookPrintOrder.frx":2F0C
+               Keys            =   "BookPrintOrder.frx":2F2A
+               Spin            =   "BookPrintOrder.frx":2F74
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -938,7 +1028,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   209846277
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -1265,7 +1355,7 @@ Begin VB.Form FrmBookPrintOrder
             Left            =   600
             TabIndex        =   32
             Top             =   7020
-            Width           =   9945
+            Width           =   7665
          End
          Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame2 
             Height          =   3280
@@ -1296,7 +1386,7 @@ Begin VB.Form FrmBookPrintOrder
             NoPrefix        =   0   'False
             FormatString    =   ""
             Caption         =   ""
-            Picture         =   "BookPrintOrder.frx":0E68
+            Picture         =   "BookPrintOrder.frx":2F9C
             Begin VB.TextBox Text11 
                Appearance      =   0  'Flat
                BackColor       =   &H00FFFFFF&
@@ -1637,8 +1727,8 @@ Begin VB.Form FrmBookPrintOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":0E84
-               Picture         =   "BookPrintOrder.frx":0EA0
+               Picture         =   "BookPrintOrder.frx":2FB8
+               Picture         =   "BookPrintOrder.frx":2FD4
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
                Height          =   330
@@ -1665,8 +1755,8 @@ Begin VB.Form FrmBookPrintOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":0EBC
-               Picture         =   "BookPrintOrder.frx":0ED8
+               Picture         =   "BookPrintOrder.frx":2FF0
+               Picture         =   "BookPrintOrder.frx":300C
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel3 
                Height          =   330
@@ -1692,8 +1782,8 @@ Begin VB.Form FrmBookPrintOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":0EF4
-               Picture         =   "BookPrintOrder.frx":0F10
+               Picture         =   "BookPrintOrder.frx":3028
+               Picture         =   "BookPrintOrder.frx":3044
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel11 
                Height          =   330
@@ -1719,8 +1809,8 @@ Begin VB.Form FrmBookPrintOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":0F2C
-               Picture         =   "BookPrintOrder.frx":0F48
+               Picture         =   "BookPrintOrder.frx":3060
+               Picture         =   "BookPrintOrder.frx":307C
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel9 
                Height          =   330
@@ -1746,8 +1836,8 @@ Begin VB.Form FrmBookPrintOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":0F64
-               Picture         =   "BookPrintOrder.frx":0F80
+               Picture         =   "BookPrintOrder.frx":3098
+               Picture         =   "BookPrintOrder.frx":30B4
             End
             Begin MhinrelLib.MhRealInput MhRealInput1 
                Height          =   330
@@ -1803,8 +1893,8 @@ Begin VB.Form FrmBookPrintOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":0F9C
-               Picture         =   "BookPrintOrder.frx":0FB8
+               Picture         =   "BookPrintOrder.frx":30D0
+               Picture         =   "BookPrintOrder.frx":30EC
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel12 
                Height          =   330
@@ -1830,8 +1920,8 @@ Begin VB.Form FrmBookPrintOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":0FD4
-               Picture         =   "BookPrintOrder.frx":0FF0
+               Picture         =   "BookPrintOrder.frx":3108
+               Picture         =   "BookPrintOrder.frx":3124
             End
             Begin TDBDate6Ctl.TDBDate MhDateInput1 
                Height          =   330
@@ -1842,8 +1932,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   2778
                _ExtentY        =   582
-               Calendar        =   "BookPrintOrder.frx":100C
-               Caption         =   "BookPrintOrder.frx":1124
+               Calendar        =   "BookPrintOrder.frx":3140
+               Caption         =   "BookPrintOrder.frx":3258
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1853,9 +1943,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":1190
-               Keys            =   "BookPrintOrder.frx":11AE
-               Spin            =   "BookPrintOrder.frx":120C
+               DropDown        =   "BookPrintOrder.frx":32C4
+               Keys            =   "BookPrintOrder.frx":32E2
+               Spin            =   "BookPrintOrder.frx":3340
                AlignHorizontal =   0
                AlignVertical   =   0
                Appearance      =   0
@@ -1919,8 +2009,8 @@ Begin VB.Form FrmBookPrintOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":1234
-               Picture         =   "BookPrintOrder.frx":1250
+               Picture         =   "BookPrintOrder.frx":3368
+               Picture         =   "BookPrintOrder.frx":3384
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel4 
                Height          =   330
@@ -1946,8 +2036,8 @@ Begin VB.Form FrmBookPrintOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":126C
-               Picture         =   "BookPrintOrder.frx":1288
+               Picture         =   "BookPrintOrder.frx":33A0
+               Picture         =   "BookPrintOrder.frx":33BC
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel6 
                Height          =   330
@@ -1973,8 +2063,8 @@ Begin VB.Form FrmBookPrintOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":12A4
-               Picture         =   "BookPrintOrder.frx":12C0
+               Picture         =   "BookPrintOrder.frx":33D8
+               Picture         =   "BookPrintOrder.frx":33F4
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel7 
                Height          =   330
@@ -2000,8 +2090,8 @@ Begin VB.Form FrmBookPrintOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":12DC
-               Picture         =   "BookPrintOrder.frx":12F8
+               Picture         =   "BookPrintOrder.frx":3410
+               Picture         =   "BookPrintOrder.frx":342C
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel27 
                Height          =   330
@@ -2027,8 +2117,8 @@ Begin VB.Form FrmBookPrintOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":1314
-               Picture         =   "BookPrintOrder.frx":1330
+               Picture         =   "BookPrintOrder.frx":3448
+               Picture         =   "BookPrintOrder.frx":3464
             End
             Begin VB.TextBox Text5 
                Appearance      =   0  'Flat
@@ -2076,8 +2166,8 @@ Begin VB.Form FrmBookPrintOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":134C
-               Picture         =   "BookPrintOrder.frx":1368
+               Picture         =   "BookPrintOrder.frx":3480
+               Picture         =   "BookPrintOrder.frx":349C
             End
             Begin VB.Line Line1 
                X1              =   0
@@ -2115,7 +2205,7 @@ Begin VB.Form FrmBookPrintOrder
             NoPrefix        =   0   'False
             FormatString    =   ""
             Caption         =   ""
-            Picture         =   "BookPrintOrder.frx":1384
+            Picture         =   "BookPrintOrder.frx":34B8
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel13 
                Height          =   330
                Left            =   120
@@ -2140,8 +2230,8 @@ Begin VB.Form FrmBookPrintOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":13A0
-               Picture         =   "BookPrintOrder.frx":13BC
+               Picture         =   "BookPrintOrder.frx":34D4
+               Picture         =   "BookPrintOrder.frx":34F0
             End
             Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame4 
                Height          =   330
@@ -2171,7 +2261,7 @@ Begin VB.Form FrmBookPrintOrder
                NoPrefix        =   0   'False
                FormatString    =   ""
                Caption         =   ""
-               Picture         =   "BookPrintOrder.frx":13D8
+               Picture         =   "BookPrintOrder.frx":350C
                Begin VB.CheckBox Check1 
                   BackColor       =   &H00FFFFFF&
                   Caption         =   "CF"
@@ -2293,7 +2383,7 @@ Begin VB.Form FrmBookPrintOrder
             NoPrefix        =   0   'False
             FormatString    =   ""
             Caption         =   ""
-            Picture         =   "BookPrintOrder.frx":13F4
+            Picture         =   "BookPrintOrder.frx":3528
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel14 
                Height          =   330
                Left            =   120
@@ -2318,8 +2408,8 @@ Begin VB.Form FrmBookPrintOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":1410
-               Picture         =   "BookPrintOrder.frx":142C
+               Picture         =   "BookPrintOrder.frx":3544
+               Picture         =   "BookPrintOrder.frx":3560
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput3 
                Height          =   330
@@ -2330,8 +2420,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1711
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":1448
-               Caption         =   "BookPrintOrder.frx":1468
+               Calculator      =   "BookPrintOrder.frx":357C
+               Caption         =   "BookPrintOrder.frx":359C
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -2341,9 +2431,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":14D4
-               Keys            =   "BookPrintOrder.frx":14F2
-               Spin            =   "BookPrintOrder.frx":153C
+               DropDown        =   "BookPrintOrder.frx":3608
+               Keys            =   "BookPrintOrder.frx":3626
+               Spin            =   "BookPrintOrder.frx":3670
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -2374,7 +2464,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   0
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   70057989
+               ValueVT         =   209846277
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -2388,8 +2478,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1711
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":1564
-               Caption         =   "BookPrintOrder.frx":1584
+               Calculator      =   "BookPrintOrder.frx":3698
+               Caption         =   "BookPrintOrder.frx":36B8
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -2399,9 +2489,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":15F0
-               Keys            =   "BookPrintOrder.frx":160E
-               Spin            =   "BookPrintOrder.frx":1658
+               DropDown        =   "BookPrintOrder.frx":3724
+               Keys            =   "BookPrintOrder.frx":3742
+               Spin            =   "BookPrintOrder.frx":378C
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -2432,7 +2522,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   0
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   70057989
+               ValueVT         =   209846277
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -2446,8 +2536,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1711
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":1680
-               Caption         =   "BookPrintOrder.frx":16A0
+               Calculator      =   "BookPrintOrder.frx":37B4
+               Caption         =   "BookPrintOrder.frx":37D4
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -2457,9 +2547,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":170C
-               Keys            =   "BookPrintOrder.frx":172A
-               Spin            =   "BookPrintOrder.frx":1774
+               DropDown        =   "BookPrintOrder.frx":3840
+               Keys            =   "BookPrintOrder.frx":385E
+               Spin            =   "BookPrintOrder.frx":38A8
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -2490,7 +2580,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   0
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   209846277
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -2504,8 +2594,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1711
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":179C
-               Caption         =   "BookPrintOrder.frx":17BC
+               Calculator      =   "BookPrintOrder.frx":38D0
+               Caption         =   "BookPrintOrder.frx":38F0
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -2515,9 +2605,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":1828
-               Keys            =   "BookPrintOrder.frx":1846
-               Spin            =   "BookPrintOrder.frx":1890
+               DropDown        =   "BookPrintOrder.frx":395C
+               Keys            =   "BookPrintOrder.frx":397A
+               Spin            =   "BookPrintOrder.frx":39C4
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -2562,8 +2652,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1711
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":18B8
-               Caption         =   "BookPrintOrder.frx":18D8
+               Calculator      =   "BookPrintOrder.frx":39EC
+               Caption         =   "BookPrintOrder.frx":3A0C
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -2573,9 +2663,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":1944
-               Keys            =   "BookPrintOrder.frx":1962
-               Spin            =   "BookPrintOrder.frx":19AC
+               DropDown        =   "BookPrintOrder.frx":3A78
+               Keys            =   "BookPrintOrder.frx":3A96
+               Spin            =   "BookPrintOrder.frx":3AE0
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -2621,8 +2711,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1640
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":19D4
-               Caption         =   "BookPrintOrder.frx":19F4
+               Calculator      =   "BookPrintOrder.frx":3B08
+               Caption         =   "BookPrintOrder.frx":3B28
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -2632,9 +2722,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":1A60
-               Keys            =   "BookPrintOrder.frx":1A7E
-               Spin            =   "BookPrintOrder.frx":1AC8
+               DropDown        =   "BookPrintOrder.frx":3B94
+               Keys            =   "BookPrintOrder.frx":3BB2
+               Spin            =   "BookPrintOrder.frx":3BFC
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -2694,8 +2784,8 @@ Begin VB.Form FrmBookPrintOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":1AF0
-               Picture         =   "BookPrintOrder.frx":1B0C
+               Picture         =   "BookPrintOrder.frx":3C24
+               Picture         =   "BookPrintOrder.frx":3C40
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput33 
                Height          =   330
@@ -2706,8 +2796,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1693
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":1B28
-               Caption         =   "BookPrintOrder.frx":1B48
+               Calculator      =   "BookPrintOrder.frx":3C5C
+               Caption         =   "BookPrintOrder.frx":3C7C
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -2717,9 +2807,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":1BB4
-               Keys            =   "BookPrintOrder.frx":1BD2
-               Spin            =   "BookPrintOrder.frx":1C1C
+               DropDown        =   "BookPrintOrder.frx":3CE8
+               Keys            =   "BookPrintOrder.frx":3D06
+               Spin            =   "BookPrintOrder.frx":3D50
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -2750,7 +2840,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   0
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   70057989
+               ValueVT         =   209846277
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -2785,7 +2875,7 @@ Begin VB.Form FrmBookPrintOrder
             NoPrefix        =   0   'False
             FormatString    =   ""
             Caption         =   ""
-            Picture         =   "BookPrintOrder.frx":1C44
+            Picture         =   "BookPrintOrder.frx":3D78
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel22 
                Height          =   330
                Left            =   5880
@@ -2810,8 +2900,8 @@ Begin VB.Form FrmBookPrintOrder
                Alignment       =   1
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":1C60
-               Picture         =   "BookPrintOrder.frx":1C7C
+               Picture         =   "BookPrintOrder.frx":3D94
+               Picture         =   "BookPrintOrder.frx":3DB0
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel23 
                Height          =   330
@@ -2837,8 +2927,8 @@ Begin VB.Form FrmBookPrintOrder
                Alignment       =   1
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":1C98
-               Picture         =   "BookPrintOrder.frx":1CB4
+               Picture         =   "BookPrintOrder.frx":3DCC
+               Picture         =   "BookPrintOrder.frx":3DE8
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel17 
                Height          =   330
@@ -2864,8 +2954,8 @@ Begin VB.Form FrmBookPrintOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":1CD0
-               Picture         =   "BookPrintOrder.frx":1CEC
+               Picture         =   "BookPrintOrder.frx":3E04
+               Picture         =   "BookPrintOrder.frx":3E20
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput19 
                Height          =   330
@@ -2877,8 +2967,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1711
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":1D08
-               Caption         =   "BookPrintOrder.frx":1D28
+               Calculator      =   "BookPrintOrder.frx":3E3C
+               Caption         =   "BookPrintOrder.frx":3E5C
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -2888,9 +2978,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":1D94
-               Keys            =   "BookPrintOrder.frx":1DB2
-               Spin            =   "BookPrintOrder.frx":1DFC
+               DropDown        =   "BookPrintOrder.frx":3EC8
+               Keys            =   "BookPrintOrder.frx":3EE6
+               Spin            =   "BookPrintOrder.frx":3F30
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -2921,7 +3011,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   209846277
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -2936,8 +3026,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1720
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":1E24
-               Caption         =   "BookPrintOrder.frx":1E44
+               Calculator      =   "BookPrintOrder.frx":3F58
+               Caption         =   "BookPrintOrder.frx":3F78
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -2947,9 +3037,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":1EB0
-               Keys            =   "BookPrintOrder.frx":1ECE
-               Spin            =   "BookPrintOrder.frx":1F18
+               DropDown        =   "BookPrintOrder.frx":3FE4
+               Keys            =   "BookPrintOrder.frx":4002
+               Spin            =   "BookPrintOrder.frx":404C
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -2980,7 +3070,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   209846277
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -2995,8 +3085,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1711
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":1F40
-               Caption         =   "BookPrintOrder.frx":1F60
+               Calculator      =   "BookPrintOrder.frx":4074
+               Caption         =   "BookPrintOrder.frx":4094
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -3006,9 +3096,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":1FCC
-               Keys            =   "BookPrintOrder.frx":1FEA
-               Spin            =   "BookPrintOrder.frx":2034
+               DropDown        =   "BookPrintOrder.frx":4100
+               Keys            =   "BookPrintOrder.frx":411E
+               Spin            =   "BookPrintOrder.frx":4168
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -3039,7 +3129,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   209977349
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -3054,8 +3144,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1711
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":205C
-               Caption         =   "BookPrintOrder.frx":207C
+               Calculator      =   "BookPrintOrder.frx":4190
+               Caption         =   "BookPrintOrder.frx":41B0
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -3065,9 +3155,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":20E8
-               Keys            =   "BookPrintOrder.frx":2106
-               Spin            =   "BookPrintOrder.frx":2150
+               DropDown        =   "BookPrintOrder.frx":421C
+               Keys            =   "BookPrintOrder.frx":423A
+               Spin            =   "BookPrintOrder.frx":4284
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -3098,7 +3188,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   209977349
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -3113,8 +3203,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1711
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":2178
-               Caption         =   "BookPrintOrder.frx":2198
+               Calculator      =   "BookPrintOrder.frx":42AC
+               Caption         =   "BookPrintOrder.frx":42CC
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -3124,9 +3214,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":2204
-               Keys            =   "BookPrintOrder.frx":2222
-               Spin            =   "BookPrintOrder.frx":226C
+               DropDown        =   "BookPrintOrder.frx":4338
+               Keys            =   "BookPrintOrder.frx":4356
+               Spin            =   "BookPrintOrder.frx":43A0
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -3157,7 +3247,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   209977349
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -3186,8 +3276,8 @@ Begin VB.Form FrmBookPrintOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":2294
-               Picture         =   "BookPrintOrder.frx":22B0
+               Picture         =   "BookPrintOrder.frx":43C8
+               Picture         =   "BookPrintOrder.frx":43E4
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput20 
                Height          =   330
@@ -3199,8 +3289,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1711
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":22CC
-               Caption         =   "BookPrintOrder.frx":22EC
+               Calculator      =   "BookPrintOrder.frx":4400
+               Caption         =   "BookPrintOrder.frx":4420
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -3210,9 +3300,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":2358
-               Keys            =   "BookPrintOrder.frx":2376
-               Spin            =   "BookPrintOrder.frx":23C0
+               DropDown        =   "BookPrintOrder.frx":448C
+               Keys            =   "BookPrintOrder.frx":44AA
+               Spin            =   "BookPrintOrder.frx":44F4
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -3243,7 +3333,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   209977349
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -3258,8 +3348,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1720
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":23E8
-               Caption         =   "BookPrintOrder.frx":2408
+               Calculator      =   "BookPrintOrder.frx":451C
+               Caption         =   "BookPrintOrder.frx":453C
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -3269,9 +3359,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":2474
-               Keys            =   "BookPrintOrder.frx":2492
-               Spin            =   "BookPrintOrder.frx":24DC
+               DropDown        =   "BookPrintOrder.frx":45A8
+               Keys            =   "BookPrintOrder.frx":45C6
+               Spin            =   "BookPrintOrder.frx":4610
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -3302,7 +3392,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   209977349
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -3317,8 +3407,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1711
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":2504
-               Caption         =   "BookPrintOrder.frx":2524
+               Calculator      =   "BookPrintOrder.frx":4638
+               Caption         =   "BookPrintOrder.frx":4658
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -3328,9 +3418,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":2590
-               Keys            =   "BookPrintOrder.frx":25AE
-               Spin            =   "BookPrintOrder.frx":25F8
+               DropDown        =   "BookPrintOrder.frx":46C4
+               Keys            =   "BookPrintOrder.frx":46E2
+               Spin            =   "BookPrintOrder.frx":472C
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -3361,7 +3451,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   209977349
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -3376,8 +3466,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1711
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":2620
-               Caption         =   "BookPrintOrder.frx":2640
+               Calculator      =   "BookPrintOrder.frx":4754
+               Caption         =   "BookPrintOrder.frx":4774
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -3387,9 +3477,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":26AC
-               Keys            =   "BookPrintOrder.frx":26CA
-               Spin            =   "BookPrintOrder.frx":2714
+               DropDown        =   "BookPrintOrder.frx":47E0
+               Keys            =   "BookPrintOrder.frx":47FE
+               Spin            =   "BookPrintOrder.frx":4848
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -3420,7 +3510,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   209977349
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -3435,8 +3525,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1711
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":273C
-               Caption         =   "BookPrintOrder.frx":275C
+               Calculator      =   "BookPrintOrder.frx":4870
+               Caption         =   "BookPrintOrder.frx":4890
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -3446,9 +3536,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":27C8
-               Keys            =   "BookPrintOrder.frx":27E6
-               Spin            =   "BookPrintOrder.frx":2830
+               DropDown        =   "BookPrintOrder.frx":48FC
+               Keys            =   "BookPrintOrder.frx":491A
+               Spin            =   "BookPrintOrder.frx":4964
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -3479,7 +3569,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   209977349
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -3508,8 +3598,8 @@ Begin VB.Form FrmBookPrintOrder
                Alignment       =   1
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":2858
-               Picture         =   "BookPrintOrder.frx":2874
+               Picture         =   "BookPrintOrder.frx":498C
+               Picture         =   "BookPrintOrder.frx":49A8
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel20 
                Height          =   330
@@ -3535,8 +3625,8 @@ Begin VB.Form FrmBookPrintOrder
                Alignment       =   1
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":2890
-               Picture         =   "BookPrintOrder.frx":28AC
+               Picture         =   "BookPrintOrder.frx":49C4
+               Picture         =   "BookPrintOrder.frx":49E0
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel21 
                Height          =   330
@@ -3562,8 +3652,8 @@ Begin VB.Form FrmBookPrintOrder
                Alignment       =   1
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":28C8
-               Picture         =   "BookPrintOrder.frx":28E4
+               Picture         =   "BookPrintOrder.frx":49FC
+               Picture         =   "BookPrintOrder.frx":4A18
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel24 
                Height          =   330
@@ -3588,8 +3678,8 @@ Begin VB.Form FrmBookPrintOrder
                Caption         =   ""
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":2900
-               Picture         =   "BookPrintOrder.frx":291C
+               Picture         =   "BookPrintOrder.frx":4A34
+               Picture         =   "BookPrintOrder.frx":4A50
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel26 
                Height          =   960
@@ -3614,8 +3704,8 @@ Begin VB.Form FrmBookPrintOrder
                Caption         =   " Base Qnty Detail"
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":2938
-               Picture         =   "BookPrintOrder.frx":2954
+               Picture         =   "BookPrintOrder.frx":4A6C
+               Picture         =   "BookPrintOrder.frx":4A88
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput31 
                Height          =   330
@@ -3627,8 +3717,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1693
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":2970
-               Caption         =   "BookPrintOrder.frx":2990
+               Calculator      =   "BookPrintOrder.frx":4AA4
+               Caption         =   "BookPrintOrder.frx":4AC4
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -3638,9 +3728,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":29FC
-               Keys            =   "BookPrintOrder.frx":2A1A
-               Spin            =   "BookPrintOrder.frx":2A64
+               DropDown        =   "BookPrintOrder.frx":4B30
+               Keys            =   "BookPrintOrder.frx":4B4E
+               Spin            =   "BookPrintOrder.frx":4B98
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -3671,7 +3761,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   209977349
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -3700,8 +3790,8 @@ Begin VB.Form FrmBookPrintOrder
                Alignment       =   1
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":2A8C
-               Picture         =   "BookPrintOrder.frx":2AA8
+               Picture         =   "BookPrintOrder.frx":4BC0
+               Picture         =   "BookPrintOrder.frx":4BDC
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput32 
                Height          =   330
@@ -3713,8 +3803,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1720
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":2AC4
-               Caption         =   "BookPrintOrder.frx":2AE4
+               Calculator      =   "BookPrintOrder.frx":4BF8
+               Caption         =   "BookPrintOrder.frx":4C18
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -3724,9 +3814,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":2B50
-               Keys            =   "BookPrintOrder.frx":2B6E
-               Spin            =   "BookPrintOrder.frx":2BB8
+               DropDown        =   "BookPrintOrder.frx":4C84
+               Keys            =   "BookPrintOrder.frx":4CA2
+               Spin            =   "BookPrintOrder.frx":4CEC
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -3757,7 +3847,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   210042885
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -3766,7 +3856,7 @@ Begin VB.Form FrmBookPrintOrder
          Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
             Height          =   330
             Index           =   2
-            Left            =   10530
+            Left            =   8250
             TabIndex        =   94
             Top             =   7020
             Width           =   4215
@@ -3788,8 +3878,8 @@ Begin VB.Form FrmBookPrintOrder
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "BookPrintOrder.frx":2BE0
-            Picture         =   "BookPrintOrder.frx":2BFC
+            Picture         =   "BookPrintOrder.frx":4D14
+            Picture         =   "BookPrintOrder.frx":4D30
          End
          Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
             Height          =   330
@@ -3816,8 +3906,60 @@ Begin VB.Form FrmBookPrintOrder
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "BookPrintOrder.frx":2C18
-            Picture         =   "BookPrintOrder.frx":2C34
+            Picture         =   "BookPrintOrder.frx":4D4C
+            Picture         =   "BookPrintOrder.frx":4D68
+         End
+         Begin Mh3dlblLib.Mh3dLabel CmdExport 
+            Height          =   330
+            Left            =   16260
+            TabIndex        =   98
+            Top             =   7020
+            Width           =   1005
+            _Version        =   65536
+            _ExtentX        =   1773
+            _ExtentY        =   582
+            _StockProps     =   77
+            BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+               Name            =   "Calibri"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            TintColor       =   16711935
+            Caption         =   " &Export "
+            FillColor       =   9164542
+            TextColor       =   0
+            Picture         =   "BookPrintOrder.frx":4D84
+            Picture         =   "BookPrintOrder.frx":4DA0
+         End
+         Begin Mh3dlblLib.Mh3dLabel CmdPrint 
+            Height          =   330
+            Left            =   15200
+            TabIndex        =   99
+            Top             =   7020
+            Width           =   1005
+            _Version        =   65536
+            _ExtentX        =   1773
+            _ExtentY        =   582
+            _StockProps     =   77
+            BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+               Name            =   "Calibri"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            TintColor       =   16711935
+            Caption         =   " &Print"
+            FillColor       =   9164542
+            TextColor       =   0
+            Picture         =   "BookPrintOrder.frx":4DBC
+            Picture         =   "BookPrintOrder.frx":4DD8
          End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat
@@ -3936,7 +4078,9 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
-Dim FI As Object, rstEasyPublish As Dao.Recordset
+Dim StartColumn As String, StartRow As String, EndColumn As String, EndRow As String
+Dim PrintFlag As Boolean
+Dim rstEasyPublish As Dao.Recordset
 Public BookPOType As String, DisplayListType As String
 Dim cnBookPrintOrder As New ADODB.Connection
 Dim rstCompanyMaster As New ADODB.Recordset, rstBookPOList As New ADODB.Recordset, rstBookPOParent As New ADODB.Recordset, rstBookPOChild05 As New ADODB.Recordset, rstBookPOChild06 As New ADODB.Recordset, rstBookPOChild09 As New ADODB.Recordset, rstBookPOChild10 As New ADODB.Recordset, rstBookPOChild0901 As New ADODB.Recordset, rstBookPOChild07 As New ADODB.Recordset, rstBookPOChild08 As New ADODB.Recordset, rstBookPOChild0801 As New ADODB.Recordset, rstCorrections As New ADODB.Recordset, rstAccountList As New ADODB.Recordset, rstMaterialCentreList As New ADODB.Recordset, srmPicMgr As New ADODB.Stream
@@ -3951,8 +4095,8 @@ Dim oOutlook As New Outlook.Application
 Dim EMailID As String, Attachment As String, Message As String, OutputTo As String
 Private Sub Form_Load()
     On Error GoTo ErrorHandler
-'    Set FI = CreateObject("Busy2L16.CFixedInterface")
- '   FI.OpenCSDB Trim(ReadFromFile("BusyPath")), Trim(ReadFromFile("Server Name")), "sa", Trim(ReadFromFile("Server Password")), Mid(cnBusy.DefaultDatabase, 5, 8)
+'    Set FI = CreateObject("Busy2L21.CFixedInterface")
+'    FI.OpenCSDB Trim(ReadFromFile("BusyPath")), Trim(ReadFromFile("Server Name")), "sa", Trim(ReadFromFile("Server Password")), Mid(cnBusy.DefaultDatabase, 5, 8)
     If Dir(App.Path & "\Icon\ICON.ICO", vbDirectory) <> "" Then Me.Icon = LoadPicture(App.Path & "\Icon\ICON.ICO")
     Unload FrmBookPOPrintUtility
     CenterForm Me
@@ -3961,7 +4105,7 @@ Private Sub Form_Load()
     If Left(BookPOType, 1) = "O" Then Mh3dFrame5.Visible = False: Mh3dFrame3.Top = 3750: Mh3dFrame6.Top = 4280: Mh3dFrame7.Top = 5120 Else Mh3dLabel14.Caption = " Final Quantity": Mh3dLabel15.Caption = " Final Unit Rate": Mh3dLabel16.Caption = " Final Amount": Mh3dLabel17.Caption = " Unit Rate": Mh3dLabel18.Caption = " Amount": Mh3dLabel26.Caption = " Final Qnty Detail": MhRealInput3.Width = 5780: MhRealInput9.Width = 7530: MhRealInput14.Width = 7530: MhRealInput4.Visible = False: MhRealInput5.Visible = False: MhRealInput6.Visible = False: MhRealInput7.Visible = False: MhRealInput33.Visible = False: Mh3dLabel25.Visible = False
     cnBookPrintOrder.CursorLocation = adUseClient
     cnBookPrintOrder.Open cnDatabase.ConnectionString
-    rstCompanyMaster.Open "SELECT PrintName,Address1,Address2,Address3,Address4,Phone,Fax,EMail,Website From CompanyMaster", cnBookPrintOrder, adOpenKeyset, adLockReadOnly
+    rstCompanyMaster.Open "SELECT PrintName,Address1,Address2,Address3,Address4,Phone,Fax,EMail,Website FROM CompanyMaster WHERE FYCode='" & FYCode & "'", cnBookPrintOrder, adOpenKeyset, adLockReadOnly
     rstBookPOParent.CursorLocation = adUseClient
     SSTab1.Tab = 0
 '    SortOrder = "Name"
@@ -4210,7 +4354,6 @@ End Sub
 Public Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
     Dim HiLiteRecord As Boolean
     Dim UpdateFlag As Integer, i As Integer, CellVal As Variant
-    
     If Button.Index = 1 Then
         If rstBookPOParent.State = adStateOpen Then rstBookPOParent.Close
         rstBookPOParent.Open "SELECT * FROM BookPOParent WHERE Code=''", cnBookPrintOrder, adOpenKeyset, adLockOptimistic
@@ -4268,6 +4411,11 @@ Public Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
         Load FrmBookPOChild0801
         FrmBookPOChild0801.Show vbModal
         MhRealInput8_Validate False
+        If blnRecordExist And AllowMastersModification = 0 Then
+            Call DisplayError("You don't have the rights to Edit this Voucher")
+            Toolbar1_ButtonClick Toolbar1.Buttons.Item(5)
+            Exit Sub
+        End If
         SaveFields
         UpdateFlag = 0
         If UpdateRecord(rstBookPOParent) Then
@@ -4846,7 +4994,7 @@ Private Sub EditRecord()
     If rstBookPOChild05.State = adStateClosed Or rstBookPOChild06.State = adStateClosed Or rstBookPOChild09.State = adStateClosed Or rstBookPOChild0901.State = adStateClosed Or rstBookPOChild07.State = adStateClosed Or rstBookPOChild08.State = adStateClosed Or rstBookPOChild0801.State = adStateClosed Then SSTab1.Tab = 0: Exit Sub
     If rstBookPOParent.State = adStateOpen Then rstBookPOParent.Close
     rstBookPOParent.CursorLocation = adUseServer
-    rstBookPOParent.Open "Select * From BookPOParent Where Code = '" & FixQuote(rstBookPOList.Fields("Code").Value) & "'", cnBookPrintOrder, adOpenKeyset, adLockBatchOptimistic ' adLockOptimistic ' adLockPessimistic
+    rstBookPOParent.Open "Select * From BookPOParent Where Code = '" & FixQuote(rstBookPOList.Fields("Code").Value) & "'", cnBookPrintOrder, adOpenKeyset, adLockOptimistic 'adLockBatchOptimistic ' adLockOptimistic ' adLockPessimistic
     MdiMainMenu.MousePointer = vbHourglass
     rstBookPOParent.Fields("Printstatus") = "N"
     MdiMainMenu.MousePointer = vbNormal
@@ -5650,7 +5798,7 @@ Public Sub PaperSlip(ByVal OrderCode As String, Optional ByVal Note As String, O
                 .Picture1.BottomLineStyle = crLSNoLine
             End If
         End With
-            If rstCompanyMaster.State = adStateClosed Then rstCompanyMaster.Open "SELECT PrintName,Address1,Address2,Address3,Address4,Phone,Fax,EMail,Website FROM CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
+            If rstCompanyMaster.State = adStateClosed Then rstCompanyMaster.Open "SELECT PrintName,Address1,Address2,Address3,Address4,Phone,Fax,EMail,Website FROM CompanyMaster Where FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
             rptPaperSlip.Text2.SetText Trim(rstCompanyMaster.Fields("PrintName").Value)
             rptPaperSlip.Text3.SetText Trim(rstCompanyMaster.Fields("Address1").Value) & Space(1) & Trim(rstCompanyMaster.Fields("Address2").Value) & Space(1) & Trim(rstCompanyMaster.Fields("Address3").Value) & Space(1) & Trim(rstCompanyMaster.Fields("Address4").Value)
             rptPaperSlip.Text24.SetText "Phone : " & Trim(rstCompanyMaster.Fields("Phone").Value) & Space(1) & "Fax : " & Trim(rstCompanyMaster.Fields("Fax").Value) & Space(1) & "e-Mail : " & Trim(rstCompanyMaster.Fields("EMail").Value)
@@ -5812,7 +5960,7 @@ Public Sub JobCard(ByVal OrderCode As String, Optional ByVal Note As String, Opt
             If rstBookPOChild06.State = adStateOpen Then rstBookPOChild06.Close
     If DatabaseType = "MS SQL" Then
             rstBookPOChild06.Open "SELECT (SELECT PrintName FROM ElementMaster WHERE Code=C.Element) As Element,LTrim(M1.PrintName)+iif(M1.Price=0,'',' (Price : Rs. '+Format(M1.Price,'0.00')+')') As Item,M2.PrintName As FinishSize,LTrim(LTrim(M1.Pages)+'pages/'+LTrim(M1.Forms)+'f ('+IIF(M1.OneColorForms=0,'','1-Col_'+LTrim(M1.OneColorForms)+'f  +')+IIF(M1.TwoColorForms=0,'',' 2-Col_'+LTrim(M1.TwoColorForms)+'f ')+IIF(M1.FourColorForms=0,'','+ 4-Col_'+LTrim(M1.FourColorForms)+'f '))+' )' As Forme,LTrim(P.Name) As OrderNo,P.Date As OrderDate,(SELECT PrintName FROM AccountMaster WHERE Code=P.TitlePrinter) As CoverPrinter,C.ActualQuantity,C.BillingQuantity,C.FrontPrintingType,C.BackPrintingType,Imposition,(SELECT PrintName FROM GeneralMaster WHERE Code=C.[Size]) As [Size],CHOOSE(CONVERT(NUMERIC,PlateType),'Deep-etch','PS','Wipe-on','CTP') As Plate,PrintRate,PrintAmount,PlateRate,PlateAmount," & _
-                                  "(SELECT LTrim(M3.PrintName)FROM PaperMaster M3 INNER JOIN GeneralMaster M4 ON M3.UOM=M4.Code WHERE M3.Code=C.Paper) As PaperName,[PaperWastage%],PaperConsumptionOther,Adjustment,PAdjustment,[VAT%],VAT,[PVAT%],PVAT,BillAmount,PBillAmount,C.Remarks,(SELECT LTrim(eMail) FROM AccountMaster WHERE Code=P.TitlePrinter) As EMailId,M1.Narration,P.TitlePrinter,PlateMaker,PaperWastageMin,PaperRate,PaperAmount,RBillAmount,RAdjustment,[RVAT%],RVAT,C.Processing,C.ProcessingBack,C.[Titles/sheet1] As Ups,(SELECT '('+LTrim(M6.PrintName)+')' FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C.Paper) As UOM,P.EstQty01 As FinalQuantity,C.Sets,C.TotalPlates,C.TotalPlatesBack,C.Ref,CHOOSE(CONVERT(NUMERIC,PlateTypeBack),'Deep-etch','PS','Wipe-on','CTP') As PlateBack,C.Pages  " & _
+                                  "(SELECT LTrim(M3.PrintName)FROM PaperMaster M3 INNER JOIN GeneralMaster M4 ON M3.UOM=M4.Code WHERE M3.Code=C.Paper) As PaperName,[PaperWastage%],PaperConsumptionOther,Adjustment,PAdjustment,[VAT%],VAT,[PVAT%],PVAT,BillAmount,PBillAmount,C.Remarks,(SELECT LTrim(eMail) FROM AccountMaster WHERE Code=P.TitlePrinter) As EMailId,M1.Narration,P.TitlePrinter,PlateMaker,PaperWastageMin,PaperRate,PaperAmount,RBillAmount,RAdjustment,[RVAT%],RVAT,C.Processing,C.ProcessingBack,C.[Titles/sheet1] As Ups,(SELECT '('+LTrim(M6.PrintName)+')' FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C.Paper) As UOM,P.EstQty01 As FinalQuantity,C.Sets,C.TotalPlates,C.TotalPlatesBack,C.Ref,CHOOSE(CONVERT(NUMERIC,PlateTypeBack),'Deep-etch','PS','Wipe-on','CTP') As PlateBack,C.Pages,C.PaperConsumptionsheets  " & _
                                   "FROM ((BookPOParent P INNER JOIN BookPOChild06 C ON P.Code=C.Code) INNER JOIN BookMaster M1 ON P.Book=M1.Code) INNER JOIN GeneralMaster M2 ON M1.FinishSize=M2.Code WHERE P.Code='" & OrderCode & "' AND P.TitlePrinter='" & rstBookPOChild0801.Fields("Vendor").Value & "'", cnDatabase, adOpenKeyset, adLockOptimistic
     Else
             rstBookPOChild06.Open "SELECT (SELECT PrintName FROM ElementMaster WHERE Code=C.Element) As Element,LTrim(M1.PrintName)+iif(M1.Price=0,'',' (Price : Rs. '+Format(M1.Price,'0.00')+')') As Item,M2.PrintName As FinishSize,LTrim(LTrim(M1.Pages)+'pages/'+LTrim(M1.Forms)+'f ('+IIF(M1.OneColorForms=0,'','1-Col_'+LTrim(M1.OneColorForms)+'f  +')+IIF(M1.TwoColorForms=0,'',' 2-Col_'+LTrim(M1.TwoColorForms)+'f ')+IIF(M1.FourColorForms=0,'','+ 4-Col_'+LTrim(M1.FourColorForms)+'f '))+' )' As Forme,LTrim(P.Name) As OrderNo,P.Date As OrderDate,(SELECT PrintName FROM AccountMaster WHERE Code=P.TitlePrinter) As CoverPrinter,C.ActualQuantity,C.BillingQuantity,C.FrontPrintingType,C.BackPrintingType,Imposition,(SELECT PrintName FROM GeneralMaster WHERE Code=C.[Size]) As [Size],CHOOSE(VAL(PlateType),'Deep-etch','PS','Wipe-on','CTP') As Plate,PrintRate,PrintAmount,PlateRate,PlateAmount,(SELECT LTrim(M3.PrintName)FROM PaperMaster M3 INNER JOIN GeneralMaster M4 ON M3.UOM=M4.Code WHERE M3.Code=C.Paper) As PaperName," & _
@@ -5975,7 +6123,7 @@ Public Sub JobCard(ByVal OrderCode As String, Optional ByVal Note As String, Opt
                 .Picture1.BottomLineStyle = crLSNoLine
             End If
         End With
-        If rstCompanyMaster.State = adStateClosed Then rstCompanyMaster.Open "SELECT PrintName,Address1,Address2,Address3,Address4,Phone,Fax,EMail,Website FROM CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
+        If rstCompanyMaster.State = adStateClosed Then rstCompanyMaster.Open "SELECT PrintName,Address1,Address2,Address3,Address4,Phone,Fax,EMail,Website FROM CompanyMaster Where FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
         rptJobCard.Text2.SetText Trim(rstCompanyMaster.Fields("PrintName").Value)
         rptJobCard.Text3.SetText Trim(rstCompanyMaster.Fields("Address1").Value) & Space(1) & Trim(rstCompanyMaster.Fields("Address2").Value) & Space(1) & Trim(rstCompanyMaster.Fields("Address3").Value) & Space(1) & Trim(rstCompanyMaster.Fields("Address4").Value)
         rptJobCard.Text24.SetText "Phone : " & Trim(rstCompanyMaster.Fields("Phone").Value) & Space(1) & "Fax : " & Trim(rstCompanyMaster.Fields("Fax").Value) & Space(1) & "e-Mail : " & Trim(rstCompanyMaster.Fields("EMail").Value)
@@ -6359,7 +6507,7 @@ Public Sub PrintBookPrintOrder01(ByVal OrderCode As String, Optional ByVal Note 
                 .Picture1.BottomLineStyle = crLSNoLine
             End If
         End With
-        If rstCompanyMaster.State = adStateClosed Then rstCompanyMaster.Open "SELECT PrintName,Address1,Address2,Address3,Address4,Phone,Fax,EMail,Website FROM CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
+        If rstCompanyMaster.State = adStateClosed Then rstCompanyMaster.Open "SELECT PrintName,Address1,Address2,Address3,Address4,Phone,Fax,EMail,Website FROM CompanyMaster Where FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
         rptBookPrintOrder01.Text2.SetText Trim(rstCompanyMaster.Fields("PrintName").Value)
         rptBookPrintOrder01.Text3.SetText Trim(rstCompanyMaster.Fields("Address1").Value) & Space(1) & Trim(rstCompanyMaster.Fields("Address2").Value) & Space(1) & Trim(rstCompanyMaster.Fields("Address3").Value) & Space(1) & Trim(rstCompanyMaster.Fields("Address4").Value)
         rptBookPrintOrder01.Text24.SetText "Phone : " & Trim(rstCompanyMaster.Fields("Phone").Value) & Space(1) & "Fax : " & Trim(rstCompanyMaster.Fields("Fax").Value) & Space(1) & "e-Mail : " & Trim(rstCompanyMaster.Fields("EMail").Value)
@@ -6725,7 +6873,7 @@ Public Sub PrintQuotationFormat(ByVal OrderCode As String, Optional ByVal Note A
                 .Picture1.BottomLineStyle = crLSNoLine
             End If
         End With
-        If rstCompanyMaster.State = adStateClosed Then rstCompanyMaster.Open "SELECT PrintName,Address1,Address2,Address3,Address4,Phone,Fax,EMail,Website FROM CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
+        If rstCompanyMaster.State = adStateClosed Then rstCompanyMaster.Open "SELECT PrintName,Address1,Address2,Address3,Address4,Phone,Fax,EMail,Website FROM CompanyMaster Where FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
         rptQuotationFormat.Text2.SetText Trim(rstCompanyMaster.Fields("PrintName").Value)
         rptQuotationFormat.Text3.SetText Trim(rstCompanyMaster.Fields("Address1").Value) & Space(1) & Trim(rstCompanyMaster.Fields("Address2").Value) & Space(1) & Trim(rstCompanyMaster.Fields("Address3").Value) & Space(1) & Trim(rstCompanyMaster.Fields("Address4").Value)
         rptQuotationFormat.Text24.SetText "Phone : " & Trim(rstCompanyMaster.Fields("Phone").Value) & Space(1) & "Fax : " & Trim(rstCompanyMaster.Fields("Fax").Value) & Space(1) & "e-Mail : " & Trim(rstCompanyMaster.Fields("EMail").Value)
@@ -7221,7 +7369,7 @@ Public Sub PrintBookPrintOrder02(ByVal OrderCode As String, Optional ByVal Note 
             End If
         End With
 
-        If rstCompanyMaster.State = adStateClosed Then rstCompanyMaster.Open "SELECT PrintName,Address1,Address2,Address3,Address4,Phone,Fax,EMail,Website FROM CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
+        If rstCompanyMaster.State = adStateClosed Then rstCompanyMaster.Open "SELECT PrintName,Address1,Address2,Address3,Address4,Phone,Fax,EMail,Website FROM CompanyMaster Where FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
         rptBookPrintOrder02.Text2.SetText LTrim(rstCompanyMaster.Fields("PrintName").Value)
         rptBookPrintOrder02.Text3.SetText LTrim(rstCompanyMaster.Fields("Address1").Value) & Space(1) & LTrim(rstCompanyMaster.Fields("Address2").Value) & Space(1) & LTrim(rstCompanyMaster.Fields("Address3").Value) & Space(1) & LTrim(rstCompanyMaster.Fields("Address4").Value)
         rptBookPrintOrder02.Text24.SetText "Phone : " & LTrim(rstCompanyMaster.Fields("Phone").Value) & Space(1) & "Fax : " & LTrim(rstCompanyMaster.Fields("Fax").Value) & Space(1) & "e-Mail : " & LTrim(rstCompanyMaster.Fields("EMail").Value)
@@ -7412,7 +7560,7 @@ Public Sub PrintBookPrintOrder03(ByVal OrderCode As String, Optional ByVal Note 
                 .Picture1.BottomLineStyle = crLSNoLine
             End If
         End With
-        If rstCompanyMaster.State = adStateClosed Then rstCompanyMaster.Open "SELECT PrintName,Address1,Address2,Address3,Address4,Phone,Fax,EMail,Website FROM CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
+        If rstCompanyMaster.State = adStateClosed Then rstCompanyMaster.Open "SELECT PrintName,Address1,Address2,Address3,Address4,Phone,Fax,EMail,Website FROM CompanyMaster Where FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
         rptBookPlateOrder.Text2.SetText Trim(rstCompanyMaster.Fields("PrintName").Value)
         rptBookPlateOrder.Text3.SetText Trim(rstCompanyMaster.Fields("Address1").Value) & Space(1) & Trim(rstCompanyMaster.Fields("Address2").Value) & Space(1) & Trim(rstCompanyMaster.Fields("Address3").Value) & Space(1) & Trim(rstCompanyMaster.Fields("Address4").Value)
         rptBookPlateOrder.Text24.SetText "Phone : " & Trim(rstCompanyMaster.Fields("Phone").Value) & Space(1) & "Fax : " & Trim(rstCompanyMaster.Fields("Fax").Value) & Space(1) & "e-Mail : " & Trim(rstCompanyMaster.Fields("EMail").Value)
@@ -7523,7 +7671,7 @@ Public Sub PrintTitlePrintingOrder(ByVal OrderCode As String, Optional ByVal Not
         TotalTax = TotalTax + rstBookPOChild07.Fields("VAT").Value
         TotalAmount = TotalAmount + rstBookPOChild07.Fields("BillAmount").Value
     End If
-    If rstCompanyMaster.State = adStateClosed Then rstCompanyMaster.Open "SELECT PrintName,Address1,Address2,Address3,Address4,Phone,Fax,EMail,Website FROM CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
+    If rstCompanyMaster.State = adStateClosed Then rstCompanyMaster.Open "SELECT PrintName,Address1,Address2,Address3,Address4,Phone,Fax,EMail,Website FROM CompanyMaster Where FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
     rptTitlePrintingOrder.Text2.SetText Trim(rstCompanyMaster.Fields("PrintName").Value)
     rptTitlePrintingOrder.Text3.SetText Trim(rstCompanyMaster.Fields("Address1").Value) & Space(1) & Trim(rstCompanyMaster.Fields("Address2").Value) & Space(1) & Trim(rstCompanyMaster.Fields("Address3").Value) & Space(1) & Trim(rstCompanyMaster.Fields("Address4").Value)
     rptTitlePrintingOrder.Text24.SetText "Phone : " & Trim(rstCompanyMaster.Fields("Phone").Value) & Space(1) & "Fax : " & Trim(rstCompanyMaster.Fields("Fax").Value) & Space(1) & "e-Mail : " & Trim(rstCompanyMaster.Fields("EMail").Value)
@@ -7619,7 +7767,7 @@ Public Sub PrintTitlePlateOrder(ByVal OrderCode As String, Optional ByVal Note A
         End With
     
     If rstBookPOChild06.RecordCount = 0 Then On Error GoTo 0: Exit Sub
-    If rstCompanyMaster.State = adStateClosed Then rstCompanyMaster.Open "SELECT PrintName,Address1,Address2,Address3,Address4,Phone,Fax,EMail,Website FROM CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
+    If rstCompanyMaster.State = adStateClosed Then rstCompanyMaster.Open "SELECT PrintName,Address1,Address2,Address3,Address4,Phone,Fax,EMail,Website FROM CompanyMaster Where FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
     rptTitlePlateOrder.Text2.SetText Trim(rstCompanyMaster.Fields("PrintName").Value)
     rptTitlePlateOrder.Text3.SetText Trim(rstCompanyMaster.Fields("Address1").Value) & Space(1) & Trim(rstCompanyMaster.Fields("Address2").Value) & Space(1) & Trim(rstCompanyMaster.Fields("Address3").Value) & Space(1) & Trim(rstCompanyMaster.Fields("Address4").Value)
     rptTitlePlateOrder.Text24.SetText "Phone : " & Trim(rstCompanyMaster.Fields("Phone").Value) & Space(1) & "Fax : " & Trim(rstCompanyMaster.Fields("Fax").Value) & Space(1) & "e-Mail : " & Trim(rstCompanyMaster.Fields("EMail").Value)
@@ -7832,7 +7980,6 @@ Public Sub PrintCostSheet(ByVal OrderCode As String)
     On Error GoTo 0
 End Sub
 Public Sub PrintPlanning(ByVal OrderCode As String)
-    Dim StartColumn As String, StartRow As String, EndColumn As String, EndRow As String
     Dim oExcel As Object, i As Integer
     Dim oBook As Object
     On Error Resume Next
@@ -8363,28 +8510,136 @@ Private Sub cmdProceed_Click()
 End Sub
 Private Sub PushVch() 'PushPO2Busy
 'To Be Confirm---FI.FormatDate,FI.GetRecordset
+    
     Dim VchSeriesName, VchDate, VchNo, STName, AccountCode, AccountName, MCName, XMLStr
     Dim ItemCode, ItemName, Qty, Price
-    AccountCode = IIf(Not CheckEmpty(BookPrinterCode, False), BookPrinterCode, BinderCode)
-    If CheckEmpty(AccountCode, False) Then Set FI = Nothing: Exit Sub
-    VchSeriesName = IIf(Left(BookPOType, 1) = "F", "Main", "Repair"): MCName = "Noida Godown": VchNo = Trim(Text2.Text): VchDate = FI.FormatDate(MhDateInput1.Text): Qty = Val(MhRealInput3.Value)
-    Set rstEasyPublish = FI.GetRecordset("SELECT Name,GSTNo FROM Master1 P INNER JOIN MasterAddressInfo C ON P.Code=C.MasterCode WHERE Code=" & AccountCode)
-    AccountName = Replace(rstEasyPublish.Fields("Name").Value, "&", "&amp;", 1)
-    STName = IIf(Left(rstEasyPublish.Fields("GSTNo").Value, 2) = "07", "L/GST-Exempt", "I/GST-Exempt")
-    ItemCode = Mid(ItemCode, 2, 6)
-    Set rstEasyPublish = FI.GetRecordset("SELECT Name,D3 As Price FROM Master1 WHERE Code=" & ItemCode)
-    ItemName = Replace(rstEasyPublish.Fields("Name").Value, "&", "&amp;", 1): Price = Val(rstEasyPublish.Fields("Price").Value)
-    XMLStr = "<PurchaseOrder>"
-        XMLStr = XMLStr & "<VchSeriesName>" & VchSeriesName & "</VchSeriesName><Date>" & VchDate & "</Date><VchType>13</VchType><VchNo>" & VchNo & "</VchNo><STPTName>" & STName & "</STPTName><MasterName1>" & AccountName & "</MasterName1><MasterName2>" & MCName & "</MasterName2>"
-        XMLStr = XMLStr & "<ItemEntries>"
-        XMLStr = XMLStr & "<ItemDetail><SrNo>1</SrNo><ItemName>" & ItemName & "</ItemName><UnitName>Nos</UnitName><Qty>" & Trim(Qty) & "</Qty><QtyMainUnit>" & Trim(Qty) & "</QtyMainUnit><QtyAltUnit>" & Trim(Qty) & "</QtyAltUnit><Price>" & Trim(Price) & "</Price><Amt>" & Trim(Qty * Price) & "</Amt><STAmount>0</STAmount><STPercent>0</STPercent><TaxBeforeSurcharge>0</TaxBeforeSurcharge><MC>" & MCName & "</MC></ItemDetail>"
-        XMLStr = XMLStr & "</ItemEntries>"
-        XMLStr = XMLStr & "<PendingOrders>"
-            XMLStr = XMLStr & "<OrderDetail><MasterName1>" & ItemName & "</MasterName1><MasterName2>" & AccountName & "</MasterName2>"
-            XMLStr = XMLStr & "<OrderRefs><Method>1</Method><SrNo>1</SrNo><RefNo>" & VchNo & "</RefNo><Date>" & VchDate & "</Date><DueDate>" & VchDate & "</DueDate><Value1>" & Trim(0 - Qty) & "</Value1><Value2>" & Trim(0 - Qty) & "</Value2><ItemSrNo>1</ItemSrNo><tmpMasterCode1>" & Trim(ItemCode) & "</tmpMasterCode1><tmpMasterCode2>" & Trim(AccountCode) & "</tmpMasterCode2></OrderRefs>"
-            XMLStr = XMLStr & "</OrderDetail>"
-        XMLStr = XMLStr & "</PendingOrders>"
-    XMLStr = XMLStr & "</PurchaseOrder>"
-    If Not FI.SaveVchFromXML(13, XMLStr, Err, True, 2) Then DisplayError (Err)
+    
+    Dim FI As Busy2L21.CFixedInterface ' Create valid object reference.
+    Set FI = CreateObject("Busy2L21.CFixedInterface") ' Create valid object reference.
+    Set FI = New Busy2L21.CFixedInterface ' Create valid object reference.
+    With FI
+        AccountCode = IIf(Not CheckEmpty(BookPrinterCode, False), BookPrinterCode, BinderCode)
+        If CheckEmpty(AccountCode, False) Then Set FI = Nothing: Exit Sub
+        VchSeriesName = IIf(Left(BookPOType, 1) = "F", "Main", "Repair"): MCName = "Noida Godown": VchNo = Trim(Text2.Text):
+        VchDate = .FormatDate(MhDateInput1.Text):
+        VchDate = MhDateInput1.Text
+        Qty = Val(MhRealInput3.Value)
+        
+        Set rstEasyPublish = .GetRecordset("SELECT Name,GSTNo FROM Master1 P INNER JOIN MasterAddressInfo C ON P.Code=C.MasterCode WHERE Code=" & AccountCode)
+        AccountName = Replace(rstEasyPublish.Fields("Name").Value, "&", "&amp;", 1)
+        STName = IIf(Left(rstEasyPublish.Fields("GSTNo").Value, 2) = "07", "L/GST-Exempt", "I/GST-Exempt")
+        ItemCode = Mid(ItemCode, 2, 6)
+        Set rstEasyPublish = .GetRecordset("SELECT Name,D3 As Price FROM Master1 WHERE Code=" & ItemCode)
+        ItemName = Replace(rstEasyPublish.Fields("Name").Value, "&", "&amp;", 1): Price = Val(rstEasyPublish.Fields("Price").Value)
+        XMLStr = "<PurchaseOrder>"
+            XMLStr = XMLStr & "<VchSeriesName>" & VchSeriesName & "</VchSeriesName><Date>" & VchDate & "</Date><VchType>13</VchType><VchNo>" & VchNo & "</VchNo><STPTName>" & STName & "</STPTName><MasterName1>" & AccountName & "</MasterName1><MasterName2>" & MCName & "</MasterName2>"
+            XMLStr = XMLStr & "<ItemEntries>"
+            XMLStr = XMLStr & "<ItemDetail><SrNo>1</SrNo><ItemName>" & ItemName & "</ItemName><UnitName>Nos</UnitName><Qty>" & Trim(Qty) & "</Qty><QtyMainUnit>" & Trim(Qty) & "</QtyMainUnit><QtyAltUnit>" & Trim(Qty) & "</QtyAltUnit><Price>" & Trim(Price) & "</Price><Amt>" & Trim(Qty * Price) & "</Amt><STAmount>0</STAmount><STPercent>0</STPercent><TaxBeforeSurcharge>0</TaxBeforeSurcharge><MC>" & MCName & "</MC></ItemDetail>"
+            XMLStr = XMLStr & "</ItemEntries>"
+            XMLStr = XMLStr & "<PendingOrders>"
+                XMLStr = XMLStr & "<OrderDetail><MasterName1>" & ItemName & "</MasterName1><MasterName2>" & AccountName & "</MasterName2>"
+                XMLStr = XMLStr & "<OrderRefs><Method>1</Method><SrNo>1</SrNo><RefNo>" & VchNo & "</RefNo><Date>" & VchDate & "</Date><DueDate>" & VchDate & "</DueDate><Value1>" & Trim(0 - Qty) & "</Value1><Value2>" & Trim(0 - Qty) & "</Value2><ItemSrNo>1</ItemSrNo><tmpMasterCode1>" & Trim(ItemCode) & "</tmpMasterCode1><tmpMasterCode2>" & Trim(AccountCode) & "</tmpMasterCode2></OrderRefs>"
+                XMLStr = XMLStr & "</OrderDetail>"
+            XMLStr = XMLStr & "</PendingOrders>"
+        XMLStr = XMLStr & "</PurchaseOrder>"
+        If Not .SaveVchFromXML(13, XMLStr, Err, True, 2) Then DisplayError (Err)
+End With
 End Sub
+Private Sub CmdPrint_Click()
+PrintFlag = True
+On Error GoTo errHandler_print
+cmdexport_click
+    On Error GoTo 0
+Exit Sub
+errHandler_print:
+  On Error GoTo 0
+  Exit Sub
+End Sub
+Private Sub cmdexport_click()
+Screen.MousePointer = vbHourglass
+Dim oExcel As Object
+Dim oPdf As Object
+Dim oBook As Object
+Dim oSheet As Object
+Dim j As Integer, i As Integer, Cnt As Long
+   Set oExcel = CreateObject("Excel.Application")
+   Set oBook = oExcel.Workbooks.Add
+   Set oSheet = oBook.Worksheets(1)
+   On Error GoTo errcode
+   With oBook.Worksheets("sheet1").Rows(1)
+        .Font.Bold = True
+        .Font.Size = 16
+        oBook.Worksheets("sheet1").Cells(1, j + 1).Value = "Order List"
+        .Range("A1:O1").Merge
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlCenter
+        oBook.Worksheets("sheet1").Rows(2).Font.Bold = True
+        For j = 0 To DataGrid1.Columns.Count - 1
+            oBook.Worksheets("sheet1").Cells(2, j + 1).Value = DataGrid1.Columns(j).Caption
+           MdiMainMenu.StatusBar1.Panels(2).Text = "Processed record #" & Trim(Str(Cnt)) & " of " & Trim(Str(rstBookPOList.RecordCount)) & " !!!"
+        Cnt = Cnt + 1
+        Next j
+    'Next i
+   End With
+ 'Save Data
+   oSheet.Range("A3").CopyFromRecordset rstBookPOList
+     
+   With oExcel
+            StartColumn = "A"
+            StartRow = 1
+            EndColumn = "O"
+            EndRow = rstBookPOList.RecordCount + 1
+            oBook.Activate
+            oExcel.Visible = True
+            oBook.Worksheets("sheet1").Cells(2, 1).Value = " Order Code"
+            oBook.Worksheets("sheet1").Cells(2, 2).Value = " Order No."
+            oBook.Worksheets("sheet1").Cells(2, 3).Value = " Ref. No."
+            oBook.Worksheets("sheet1").Cells(2, 4).Value = " Order Date"
+            oBook.Worksheets("sheet1").Cells(2, 5).Value = " Item Name."
+            oBook.Worksheets("sheet1").Cells(2, 6).Value = " email-Text"
+            oBook.Worksheets("sheet1").Cells(2, 7).Value = " email-Title"
+            oBook.Worksheets("sheet1").Cells(2, 8).Value = " email-Lamination"
+            oBook.Worksheets("sheet1").Cells(2, 9).Value = " email-Binding"
+            oBook.Worksheets("sheet1").Cells(2, 10).Value = " Receipt Qty."
+            oBook.Worksheets("sheet1").Cells(2, 11).Value = " Text Party"
+            oBook.Worksheets("sheet1").Cells(2, 12).Value = " Title Party"
+            oBook.Worksheets("sheet1").Cells(2, 13).Value = " Misc. Operation  Party"
+            oBook.Worksheets("sheet1").Cells(2, 14).Value = " Binding Party"
+            oBook.Worksheets("sheet1").Cells(2, 15).Value = " Unit Rate"
+            .Columns("A:O").EntireColumn.AutoFit
+            .ActiveSheet.pagesetup.Orientation = xlLandscape
+            .ActiveSheet.pagesetup.LeftMargin = .InchesToPoints(0.36)
+            .ActiveSheet.pagesetup.RightMargin = .InchesToPoints(0.25)
+            .ActiveSheet.pagesetup.TopMargin = .InchesToPoints(0.5)
+            .ActiveSheet.pagesetup.BottomMargin = .InchesToPoints(0.5)
+            .ActiveSheet.pagesetup.HeaderMargin = .InchesToPoints(0.25)
+            .ActiveSheet.pagesetup.FooterMargin = .InchesToPoints(0.25)
+            .ActiveSheet.pagesetup.PrintArea = StartColumn & StartRow & ":" & EndColumn & EndRow + 1
+            .ActiveSheet.pagesetup.Zoom = False
+            .ActiveSheet.pagesetup.FitToPagesTall = False
+            .ActiveSheet.pagesetup.FitToPagesWide = 1
+            .ActiveSheet.pagesetup.PrintGridlines = True
+            .ActiveSheet.pagesetup.PrintTitleRows = "$1:$2"
+            .ActiveSheet.ExportAsFixedFormat Type:=xlTypePDF
+            If PrintFlag Then
+                With CommonDialog1
+                    .Copies = 1
+                    .flags = &H0&
+                    .ShowPrinter
+                    oExcel.ActiveSheet.PrintOut
+'                    oBook.SaveAs
+'                    oBook.Close
+'                    oExcel.Quit
+                End With
+            End If
+   End With
+   PrintFlag = False
+   Screen.MousePointer = vbDefault
+   Exit Sub
+errcode:
+   MsgBox Err.Description, , Err.Source
+   PrintFlag = False
+   Screen.MousePointer = vbDefault
+End Sub
+
 

@@ -129,11 +129,11 @@ Begin VB.Form FrmProjectTracker
          TabCaption(1)   =   "&Details"
          TabPicture(1)   =   "ProjectTracker.frx":0038
          Tab(1).ControlEnabled=   0   'False
-         Tab(1).Control(0)=   "Mh3dFrame5"
+         Tab(1).Control(0)=   "Mh3dFrame3"
          Tab(1).Control(0).Enabled=   0   'False
          Tab(1).Control(1)=   "Mh3dFrame2"
          Tab(1).Control(1).Enabled=   0   'False
-         Tab(1).Control(2)=   "Mh3dFrame3"
+         Tab(1).Control(2)=   "Mh3dFrame5"
          Tab(1).Control(2).Enabled=   0   'False
          Tab(1).ControlCount=   3
          Begin VB.PictureBox Picture1 

@@ -155,7 +155,7 @@ Begin VB.Form frmLicenceAgreement
       ClipControls    =   0   'False
       Height          =   1020
       Left            =   106
-      Picture         =   "LicenceAgreement.frx":20FF
+      Picture         =   "LicenceAgreement.frx":2129
       ScaleHeight     =   674.24
       ScaleMode       =   0  'User
       ScaleWidth      =   674.24
@@ -350,7 +350,7 @@ Begin VB.Form frmLicenceAgreement
       Width           =   12045
    End
    Begin VB.Label lblDisclaimer 
-      Caption         =   $"LicenceAgreement.frx":2C5C
+      Caption         =   $"LicenceAgreement.frx":2C86
       BeginProperty Font 
          Name            =   "Calibri"
          Size            =   11.25

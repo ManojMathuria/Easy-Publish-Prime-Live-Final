@@ -5938,6 +5938,10 @@ Private Sub GetPrinterRates(ByVal RateType As String, Optional ByVal Position As
         Col = IIf(MhRealInput19.Value <= 2, MhRealInput19.Value, IIf(MhRealInput19.Value <= 4, "4", "6"))
         If rstFetchRate.State = adStateOpen Then rstFetchRate.Close
         rstFetchRate.Open "SELECT TOP 1 P.* FROM AccountChild05 P INNER JOIN SizeGroupChild C ON P.[Size]=C.Code WHERE P.Code='" & PartyCode & "' AND C.[Size]='" & SizeCode & "' AND Range" & Col & ">=" & MhRealInput6.Value & " ORDER BY Range" & Col, cnDatabase, adOpenKeyset, adLockReadOnly
+    If rstFetchRate.RecordCount = 0 Then
+        If rstFetchRate.State = adStateOpen Then rstFetchRate.Close
+        rstFetchRate.Open "SELECT TOP 1 * FROM AccountChild05 WHERE Code = '" & PartyCode & "' And Left((Select Name From GeneralMaster where code=[Size]),5)*Convert(numeric,Substring((Select Name From GeneralMaster where code=[Size]),7,5))>=Left((Select Name From GeneralMaster WHERE Code='" & SizeCode & "'),5)*Convert(numeric,Substring((Select Name From GeneralMaster WHERE Code='" & SizeCode & "'),7,5)) AND Range" & Col & ">=" & MhRealInput6.Value & " ORDER BY Range" & Col, cnDatabase, adOpenKeyset, adLockReadOnly
+    End If
         If rstFetchRate.RecordCount = 0 Then
             If rstFetchRate.State = adStateOpen Then rstFetchRate.Close
             rstFetchRate.Open "SELECT TOP 1 C1.* FROM (AccountMaster P INNER JOIN AccountChild05 C1 ON P.Code=C1.Code) INNER JOIN SizeGroupChild C2 ON C1.[Size]=C2.Code WHERE Name LIKE '%Rate%' AND C2.[Size]='" & SizeCode & "' AND Range" & Col & ">=" & MhRealInput6.Value & " ORDER BY Range" & Col, cnDatabase, adOpenKeyset, adLockReadOnly

@@ -1372,7 +1372,7 @@ Private Sub PrintPaperDebitNote(ByVal VchNo As String, ByVal OutputTo As String)
     'On Error Resume Next
     Screen.MousePointer = vbHourglass
     If rstCompanyMaster.State = adStateOpen Then rstCompanyMaster.Close
-    rstCompanyMaster.Open "SELECT PrintName,Address1,Address2,Address3,Address4,Phone,Fax,eMail FROM CompanyMaster", cnxPaperDebitNote, adOpenKeyset, adLockOptimistic
+    rstCompanyMaster.Open "SELECT PrintName,Address1,Address2,Address3,Address4,Phone,Fax,eMail FROM CompanyMaster Where FYCode='" & FYCode & "'", cnxPaperDebitNote, adOpenKeyset, adLockOptimistic
     rstCompanyMaster.ActiveConnection = Nothing
     If rstPaperDebitNote.State = adStateOpen Then rstPaperDebitNote.Close
     rstPaperDebitNote.Open "SELECT '" & IIf(VchType = "D", "DN/", "CN/") & Right(Year(FinancialYearFrom), 2) + "-" + Right(Year(FinancialYearTo), 2) & "/'+LTRIM(P.Name) As VchNo,P.Date As VchDate,P.Remarks,M2.PrintName As AccountName,LTRIM(M1.PrintName)+' (UOM : '+LTRIM(M3.Name)+')' As PaperName,Quantity,[Weight/Unit],Weight,Rate,C.Amount,P.Amount As DNAmt,eMail FROM (((PaperDNParent P INNER JOIN PaperDNChild C ON P.Code=C.Code) INNER JOIN PaperMaster M1 ON C.Paper=M1.Code) INNER JOIN AccountMaster M2 ON P.Account=M2.Code) INNER JOIN GeneralMaster M3 ON M1.UOM=M3.Code WHERE P.Code='" & VchNo & "' ORDER BY M1.PrintName", cnxPaperDebitNote, adOpenKeyset, adLockOptimistic

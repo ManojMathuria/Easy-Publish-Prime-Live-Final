@@ -87,18 +87,21 @@ Begin VB.Form frmJobworkBill
          Tab(0).ControlEnabled=   -1  'True
          Tab(0).Control(0)=   "Label1"
          Tab(0).Control(0).Enabled=   0   'False
-         Tab(0).Control(1)=   "Mh3dLabel1(2)"
+         Tab(0).Control(1)=   "Mh3dLabel1(3)"
          Tab(0).Control(1).Enabled=   0   'False
-         Tab(0).Control(2)=   "DataGrid1"
+         Tab(0).Control(2)=   "Mh3dLabel1(2)"
          Tab(0).Control(2).Enabled=   0   'False
-         Tab(0).Control(3)=   "Text1"
+         Tab(0).Control(3)=   "DataGrid1"
          Tab(0).Control(3).Enabled=   0   'False
-         Tab(0).ControlCount=   4
+         Tab(0).Control(4)=   "Text1"
+         Tab(0).Control(4).Enabled=   0   'False
+         Tab(0).ControlCount=   5
          TabCaption(1)   =   "&Details"
          TabPicture(1)   =   "JobworkBill.frx":0038
          Tab(1).ControlEnabled=   0   'False
          Tab(1).Control(0)=   "Mh3dFrame2"
-         Tab(1).ControlCount=   1
+         Tab(1).Control(1)=   "Mh3dLabel55"
+         Tab(1).ControlCount=   2
          Begin VB.TextBox Text1 
             Appearance      =   0  'Flat
             BackColor       =   &H00FFFFFF&
@@ -353,7 +356,7 @@ Begin VB.Form frmJobworkBill
                MaxLength       =   40
                TabIndex        =   0
                Top             =   120
-               Width           =   2130
+               Width           =   2370
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel11 
                Height          =   330
@@ -630,11 +633,11 @@ Begin VB.Form frmJobworkBill
                   Strikethrough   =   0   'False
                EndProperty
                Height          =   330
-               Left            =   4980
+               Left            =   5220
                MaxLength       =   25
                TabIndex        =   1
                Top             =   120
-               Width           =   2610
+               Width           =   2250
             End
             Begin VB.TextBox Text4 
                Appearance      =   0  'Flat
@@ -679,12 +682,13 @@ Begin VB.Form frmJobworkBill
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel5 
                Height          =   330
-               Left            =   3900
+               Index           =   0
+               Left            =   4260
                TabIndex        =   22
                Top             =   120
-               Width           =   1095
+               Width           =   975
                _Version        =   65536
-               _ExtentX        =   1931
+               _ExtentX        =   1720
                _ExtentY        =   582
                _StockProps     =   77
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -697,7 +701,7 @@ Begin VB.Form frmJobworkBill
                   Strikethrough   =   0   'False
                EndProperty
                TintColor       =   16711935
-               Caption         =   " Vch No."
+               Caption         =   "  Vch No."
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
@@ -736,9 +740,9 @@ Begin VB.Form frmJobworkBill
                Left            =   8520
                TabIndex        =   2
                Top             =   120
-               Width           =   1455
+               Width           =   1335
                _Version        =   65536
-               _ExtentX        =   2566
+               _ExtentX        =   2355
                _ExtentY        =   582
                Calendar        =   "JobworkBill.frx":03C0
                Caption         =   "JobworkBill.frx":04D8
@@ -862,7 +866,7 @@ Begin VB.Form frmJobworkBill
                   Strikethrough   =   0   'False
                EndProperty
                TintColor       =   16711935
-               Caption         =   " Vch Date"
+               Caption         =   "  Vch Date"
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
@@ -1846,6 +1850,64 @@ Begin VB.Form frmJobworkBill
             Picture         =   "JobworkBill.frx":2297
             Picture         =   "JobworkBill.frx":22B3
          End
+         Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
+            Height          =   330
+            Index           =   3
+            Left            =   13800
+            TabIndex        =   50
+            Top             =   0
+            Width           =   2535
+            _Version        =   65536
+            _ExtentX        =   4471
+            _ExtentY        =   582
+            _StockProps     =   77
+            BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+               Name            =   "Calibri"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            TintColor       =   16711935
+            Caption         =   " Alt+V-> Preveiw Voucher"
+            Alignment       =   0
+            FillColor       =   8421504
+            TextColor       =   16777215
+            Picture         =   "JobworkBill.frx":22CF
+            Picture         =   "JobworkBill.frx":22EB
+         End
+         Begin Mh3dlblLib.Mh3dLabel Mh3dLabel55 
+            Height          =   330
+            Left            =   -61320
+            TabIndex        =   51
+            Top             =   0
+            Width           =   2655
+            _Version        =   65536
+            _ExtentX        =   4683
+            _ExtentY        =   582
+            _StockProps     =   77
+            BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+               Name            =   "Calibri"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            TintColor       =   16711935
+            Caption         =   "  -> Get Jobwork Paper Cost <-"
+            Alignment       =   0
+            BevelStyle      =   1
+            BorderStyle     =   2
+            FillColor       =   8421504
+            TextColor       =   16777215
+            Picture         =   "JobworkBill.frx":2307
+            BevelStyleInside=   1
+            Picture         =   "JobworkBill.frx":2323
+         End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat
             BackColor       =   &H008BD6FE&
@@ -1982,7 +2044,7 @@ Private Sub Form_Load()
     cnJobworkBill.CursorLocation = adUseClient: cnTally.CursorLocation = adUseClient
     cnJobworkBill.Open cnDatabase.ConnectionString
     LoadMasterList
-    rstJobworkBVList.Open "SELECT T.Code,T.Name,Date,T.Type,P.Name As PartyName,C.Name As ConsigneeName,Amount,(Select Name From VchSeriesMaster Where Code=VchSeries) As VchSeriesName,(Select Name From AccountMaster Where Code=MaterialCentre) As MaterialCentre,(Select Name From AccountMaster Where Code=SalesType) As SalesType,IntegrationStatus FROM (JobworkBVParent T INNER JOIN AccountMaster P ON T.Party=P.Code) INNER JOIN AccountMaster C ON T.Consignee=C.Code INNER JOIN AccountMaster C1 ON T.MaterialCentre=C1.Code LEFT JOIN AccountMaster C2 ON T.SalesType=C2.Code WHERE RIGHT(Type,2)='" & VchType & "' AND FYCode='" & FYCode & "' ORDER BY T.Code", cnJobworkBill, adOpenKeyset, adLockPessimistic
+    rstJobworkBVList.Open "SELECT T.Code,T.Name,Date,T.Type,P.Name As PartyName,C.Name As ConsigneeName,Amount,(Select Name From VchSeriesMaster Where Code=VchSeries) As VchSeriesName,(Select Name From AccountMaster Where Code=MaterialCentre) As MaterialCentre,(Select Name From AccountMaster Where Code=SalesType) As SalesType,IntegrationStatus FROM (JobworkBVParent T INNER JOIN AccountMaster P ON T.Party=P.Code) INNER JOIN AccountMaster C ON T.Consignee=C.Code INNER JOIN AccountMaster C1 ON T.MaterialCentre=C1.Code LEFT JOIN AccountMaster C2 ON T.SalesType=C2.Code WHERE RIGHT(Type,2)='" & VchType & "' AND T.FYCode='" & FYCode & "' ORDER BY T.Code", cnJobworkBill, adOpenKeyset, adLockPessimistic
     rstJobworkBVParent.CursorLocation = adUseClient
     rstJobworkBVList.Filter = adFilterNone
     If rstJobworkBVList.RecordCount > 0 Then rstJobworkBVList.MoveLast
@@ -2010,9 +2072,10 @@ Private Sub Form_Load()
     fpSpread1.TextTip = TextTipFloating
     If InStr(1, "Q_Z", Left(VchType, 1)) > 0 Then
         Mh3dLabel15.Visible = False: Text10.Visible = False
-        Mh3dLabel5.Left = 4620: Mh3dLabel5.Width = 1215: Text2.Left = 5820: Text2.Width = 2850
-        Mh3dLabel1(0).Left = 10960: MhDateInput1.Left = 11805
-        Mh3dLabel6.Visible = False: cmbBillingType.Visible = False: Text5.Width = 7455
+        'Mh3dLabel5.Left = 4620: Mh3dLabel5.Width = 1215: Text2.Left = 5820:
+        Text2.Width = 4650: Mh3dLabel1(0).Width = 1815
+        Mh3dLabel1(0).Left = 9960: MhDateInput1.Left = 11760: 'MhDateInput1.Width = 1815
+        Mh3dLabel6.Visible = False: cmbBillingType.Visible = False: Text5.Width = 9000 '3425 '7455
         cmbBillingType.ListIndex = 0
     End If
     Load frmDlvChDespatchDetails
@@ -2145,6 +2208,9 @@ Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
         If Me.ActiveControl.Name <> "fpSpread1" Then KeyCode = 0
     End If
 End Sub
+Private Sub Mh3dLabel55_Click()
+Call GetJobWorkPaperCost
+End Sub
 Public Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
     Dim HiLiteRecord As Boolean
     Dim UpdateFlag As Integer
@@ -2233,8 +2299,11 @@ Public Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
             Timer1.Enabled = True
             Call MsgBox("Record updated !!!", vbInformation, App.Title)
             If Left(VchType, 1) = "S" Then
-                If BusyIntegration Or TallyIntegration Then
-                    If MsgBox("Are you sure to export the Voucher?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Export !") = vbYes Then PushVch
+                    If MsgBox("Are you Wants to Generate the JSON File For 'e-Invoice' ?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Export !") = vbYes Then Get_JSON ("INV")
+                If BusyIntegration Then
+                    If MsgBox("Are you sure to export the Voucher in Busy?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Export !") = vbYes Then PushVch
+                ElseIf TallyIntegration Then
+                    If MsgBox("Are you sure to export the Voucher in Tally?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Export !") = vbYes Then PushVch
                 End If
             End If
             SSTab1.Tab = 0
@@ -3003,7 +3072,7 @@ Private Sub CalculateTotal()
         MhRealInput5.Value = (MhRealInput3.Value * MhRealInput4.Value) / 100
         MhRealInput8.Value = ((MhRealInput3.Value - MhRealInput5.Value + MhRealInput6.Value + MhRealInput12.Value) * MhRealInput7.Value) / 100
         MhRealInput10.Value = ((MhRealInput3.Value - MhRealInput5.Value + MhRealInput6.Value + MhRealInput12.Value) * MhRealInput9.Value) / 100
-        MhRealInput11.Value = MhRealInput3.Value - MhRealInput5.Value + MhRealInput6.Value + MhRealInput8.Value + MhRealInput10.Value + MhRealInput12.Value
+        MhRealInput11.Value = Round(MhRealInput3.Value - MhRealInput5.Value + MhRealInput6.Value + MhRealInput8.Value + MhRealInput10.Value + MhRealInput12.Value, 0)
     End With
 End Sub
 Private Sub ViewRecord()
@@ -3173,51 +3242,52 @@ Private Sub LoadOrderList()
     Dim SQL As String
     If rstOrderList.State = adStateOpen Then rstOrderList.Close
     If InStr(1, "U_C", Right(VchType, 1)) > 0 Then 'Unit/Jobwork Unit Cost
-        SQL = "SELECT DISTINCT P.Code+'XXXXXXXXXXXXFI' As VchCode,LTRIM(P.Name)+'/'+" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "+'O/FI' As VchNo,P.Date As VchDate,I.Name As Item,P.EstQty01 As OrderedQty,P.BilledAllC As BilledQtyC,P.BilledAllB As BilledQtyD,P.DeliveredQuantityC As ChallanQty,P.DeliveredQuantityB As DirectQty FROM (BookPOParent P INNER JOIN BookMaster I ON P.Book=I.Code) LEFT JOIN BookPOChild0801 C ON P.Code=C.Code WHERE (P.BookPrinter='" & BuyerCode & "' OR P.TitlePrinter='" & BuyerCode & "' OR P.Laminator='" & BuyerCode & "' OR P.Binder='" & BuyerCode & "' OR C.Vendor='" & BuyerCode & "') AND " & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "='" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "O", Left(VchType, 1)) & "' AND P.Code NOT IN (SELECT Ref FROM JobworkBVChild WHERE Ref=P.Code AND RIGHT(BOM,2)<>'FI' AND LEFT(BOM,2)='" & TranType & "') AND "
+        SQL = "SELECT DISTINCT P.Code+'XXXXXXXXXXXXFI' As VchCode,LTRIM(P.Name)+'/'+" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "+'O/FI' As VchNo,P.Date As VchDate,I.Name As Item,P.EstQty01 As OrderedQty,P.BilledAllC As BilledQtyC,P.BilledAllB As BilledQtyD,P.DeliveredQuantityC As ChallanQty,P.DeliveredQuantityB As DirectQty,ISNULL(J.Quantity,0) As ClearQty "
+        SQL = SQL + "FROM (BookPOParent P INNER JOIN BookMaster I ON P.Book=I.Code) LEFT JOIN BookPOChild0801 C ON P.Code=C.Code LEFT JOIN JobworkBVClear J ON P.Code=J.RefCode WHERE (P.BookPrinter='" & BuyerCode & "' OR P.TitlePrinter='" & BuyerCode & "' OR P.Laminator='" & BuyerCode & "' OR P.Binder='" & BuyerCode & "' OR C.Vendor='" & BuyerCode & "') AND " & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "='" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "O", Left(VchType, 1)) & "' AND P.Code NOT IN (SELECT Ref FROM JobworkBVChild WHERE Ref=P.Code AND RIGHT(BOM,2)<>'FI' AND LEFT(BOM,2)='" & TranType & "') AND "
         If cmbBillingType.ListIndex = 0 Then 'Direct
-            SQL = SQL + "(P.EstQty01-P.DeliveredQuantityC-P.BilledAllB)>0" 'Ordered-Delivered(Challan)-Billed(Direct)=Pending Quantity
+            SQL = SQL + "(P.EstQty01-P.DeliveredQuantityC-P.BilledAllB-ISNULL(J.Quantity,0))>0" 'Ordered-Delivered(Challan)-Billed(Direct)=Pending Quantity
         ElseIf cmbBillingType.ListIndex = 1 Then 'Against Challan
-            SQL = SQL + "(P.DeliveredQuantityC-P.BilledAllC)>0" 'Delivered(Challan)-Billed(Challan)=Pending Quantity
+            SQL = SQL + "(P.DeliveredQuantityC-P.BilledAllC-ISNULL(J.Quantity,0))>0" 'Delivered(Challan)-Billed(Challan)=Pending Quantity
         End If
         SQL = SQL + " ORDER BY I.Name,P.Date,VchNo"
     ElseIf Right(VchType, 1) = "J" Then 'Jobwork
-'       SQL = "SELECT P.Code+E.Code+'XXXXXXMF' As VchCode,LTRIM(P.Name)+'/'+" & iif(instr(1,"Q_Z",LEFT(VchType,1))>0,"LEFT(P.Type,1)","RIGHT(P.Type,1)") & "+'O/MF' As VchNo,P.Date As VchDate,I.Name+'_'+E.Name+'_Printing' As Item,C.ActualQuantity As OrderedQty,C.BilledMFC As BilledQtyC,C.BilledMFB As BilledQtyD,C.DeliveredQuantityC As ChallanQty,C.DeliveredQuantityB As DirectQty FROM ((BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code) INNER JOIN BookMaster I ON P.Book=I.Code) INNER JOIN ElementMaster E ON C.Element=E.Code WHERE P.BookPrinter='" & BuyerCode & "' AND " & iif(instr(1,"Q_Z",LEFT(VchType,1))>0,"LEFT(P.Type,1)","RIGHT(P.Type,1)") & "='" & iif(instr(1,"Q_Z",LEFT(VchType,1))>0,"O",Left(VchType, 1)) & "' AND P.Code NOT IN (SELECT Ref FROM JobworkBVChild WHERE Ref=P.Code AND RIGHT(BOM,2)='FI' AND LEFT(BOM,2)='" & TranType & "') AND "
-        SQL = "SELECT P.Code AS oCode,P.Code+'XXXXXXXXXXXXMF' As VchCode,LTRIM(P.Name)+'/'+" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "+'O/MF' As VchNo,P.Date As VchDate,I.Name+'_Printing' As Item,C.ActualQuantity As OrderedQty,C.BilledMFC As BilledQtyC,C.BilledMFB As BilledQtyD,C.DeliveredQuantityC As ChallanQty,C.DeliveredQuantityB As DirectQty FROM (BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code) INNER JOIN BookMaster I ON P.Book=I.Code WHERE P.BookPrinter='" & BuyerCode & "' AND " & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "='" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "O", Left(VchType, 1)) & "' AND P.Code NOT IN (SELECT Ref FROM JobworkBVChild WHERE Ref=P.Code AND RIGHT(BOM,2)='FI' AND LEFT(BOM,2)='" & TranType & "') AND "
+'       SQL = "SELECT P.Code+E.Code+'XXXXXXMF' As VchCode,LTRIM(P.Name)+'/'+" & iif(instr(1,"Q_Z",LEFT(VchType,1))>0,"LEFT(P.Type,1)","RIGHT(P.Type,1)") & "+'O/MF' As VchNo,P.Date As VchDate,I.Name+'_'+E.Name+'_Printing' As Item,C.ActualQuantity As OrderedQty,C.BilledMFC As BilledQtyC,C.BilledMFB As BilledQtyD,C.DeliveredQuantityC As ChallanQty,C.DeliveredQuantityB As DirectQty,0 As ClearQty FROM ((BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code) INNER JOIN BookMaster I ON P.Book=I.Code) INNER JOIN ElementMaster E ON C.Element=E.Code WHERE P.BookPrinter='" & BuyerCode & "' AND " & iif(instr(1,"Q_Z",LEFT(VchType,1))>0,"LEFT(P.Type,1)","RIGHT(P.Type,1)") & "='" & iif(instr(1,"Q_Z",LEFT(VchType,1))>0,"O",Left(VchType, 1)) & "' AND P.Code NOT IN (SELECT Ref FROM JobworkBVChild WHERE Ref=P.Code AND RIGHT(BOM,2)='FI' AND LEFT(BOM,2)='" & TranType & "') AND "
+        SQL = "SELECT P.Code AS oCode,P.Code+'XXXXXXXXXXXXMF' As VchCode,LTRIM(P.Name)+'/'+" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "+'O/MF' As VchNo,P.Date As VchDate,I.Name+'_Printing' As Item,C.ActualQuantity As OrderedQty,C.BilledMFC As BilledQtyC,C.BilledMFB As BilledQtyD,C.DeliveredQuantityC As ChallanQty,C.DeliveredQuantityB As DirectQty,0 As ClearQty FROM (BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code) INNER JOIN BookMaster I ON P.Book=I.Code WHERE P.BookPrinter='" & BuyerCode & "' AND " & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "='" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "O", Left(VchType, 1)) & "' AND P.Code NOT IN (SELECT Ref FROM JobworkBVChild WHERE Ref=P.Code AND RIGHT(BOM,2)='FI' AND LEFT(BOM,2)='" & TranType & "') AND "
         If cmbBillingType.ListIndex = 0 Then 'Direct
             SQL = SQL + "(C.ActualQuantity-C.DeliveredQuantityC-C.BilledMFB)>0" 'Ordered-Delivered(Challan)-Billed(Direct)
         ElseIf cmbBillingType.ListIndex = 1 Then 'Against Challan
             SQL = SQL + "(C.DeliveredQuantityC-C.BilledMFC)>0" 'Delivered(Challan)-Billed(Challan)
         End If
         SQL = SQL + " UNION ALL "
-        SQL = SQL + "SELECT P.Code AS oCode,P.Code+E.Code+'XXXXXXME' As VchCode,LTRIM(P.Name)+'/'+" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "+'O/ME' As VchNo,P.Date As VchDate,I.Name+'_'+E.Name+'_Printing' As Item,C.ActualQuantity As OrderedQty,C.BilledMEC As BilledQtyC,C.BilledMEB As BilledQtyD,C.DeliveredQuantityC As ChallanQty,C.DeliveredQuantityB As DirectQty FROM ((BookPOParent P INNER JOIN BookPOChild06 C ON P.Code=C.Code) INNER JOIN BookMaster I ON P.Book=I.Code) INNER JOIN ElementMaster E ON C.Element=E.Code WHERE P.TitlePrinter='" & BuyerCode & "' AND " & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "='" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "O", Left(VchType, 1)) & "' AND P.Code NOT IN (SELECT Ref FROM JobworkBVChild WHERE Ref=P.Code AND RIGHT(BOM,2)='FI' AND LEFT(BOM,2)='" & TranType & "') AND "
+        SQL = SQL + "SELECT P.Code AS oCode,P.Code+E.Code+'XXXXXXME' As VchCode,LTRIM(P.Name)+'/'+" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "+'O/ME' As VchNo,P.Date As VchDate,I.Name+'_'+E.Name+'_Printing' As Item,C.ActualQuantity As OrderedQty,C.BilledMEC As BilledQtyC,C.BilledMEB As BilledQtyD,C.DeliveredQuantityC As ChallanQty,C.DeliveredQuantityB As DirectQty,0 As ClearQty FROM ((BookPOParent P INNER JOIN BookPOChild06 C ON P.Code=C.Code) INNER JOIN BookMaster I ON P.Book=I.Code) INNER JOIN ElementMaster E ON C.Element=E.Code WHERE P.TitlePrinter='" & BuyerCode & "' AND " & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "='" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "O", Left(VchType, 1)) & "' AND P.Code NOT IN (SELECT Ref FROM JobworkBVChild WHERE Ref=P.Code AND RIGHT(BOM,2)='FI' AND LEFT(BOM,2)='" & TranType & "') AND "
         If cmbBillingType.ListIndex = 0 Then 'Direct
             SQL = SQL + "(C.ActualQuantity-C.DeliveredQuantityC-C.BilledMEB)>0" 'Ordered-Delivered(Challan)-Billed(Direct)
         ElseIf cmbBillingType.ListIndex = 1 Then 'Against Challan
             SQL = SQL + "(C.DeliveredQuantityC-C.BilledMEC)>0" 'Delivered(Challan)-Billed(Challan)
         End If
         SQL = SQL + " UNION ALL "
-        SQL = SQL + "SELECT P.Code AS oCode,P.Code+E.Code+'XXXXXXCF' As VchCode,LTRIM(P.Name)+'/'+" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "+'O/CF' As VchNo,P.Date As VchDate,I.Name+'_'+E.Name+'_Printing' As Item,C.ActualQuantity As OrderedQty,C.BilledCFC As BilledQtyC,C.BilledCFB As BilledQtyD,C.DeliveredQuantityC As ChallanQty,C.DeliveredQuantityB As DirectQty FROM ((BookPOParent P INNER JOIN BookPOChild0901 C ON P.Code=C.Code) INNER JOIN BookMaster I ON P.Book=I.Code) INNER JOIN BookMaster E ON C.Book=E.Code WHERE P.TitlePrinter='" & BuyerCode & "' AND " & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "='" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "O", Left(VchType, 1)) & "' AND P.Code NOT IN (SELECT Ref FROM JobworkBVChild WHERE Ref=P.Code AND RIGHT(BOM,2)='FI' AND LEFT(BOM,2)='" & TranType & "') AND "
+        SQL = SQL + "SELECT P.Code AS oCode,P.Code+E.Code+'XXXXXXCF' As VchCode,LTRIM(P.Name)+'/'+" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "+'O/CF' As VchNo,P.Date As VchDate,I.Name+'_'+E.Name+'_Printing' As Item,C.ActualQuantity As OrderedQty,C.BilledCFC As BilledQtyC,C.BilledCFB As BilledQtyD,C.DeliveredQuantityC As ChallanQty,C.DeliveredQuantityB As DirectQty,0 As ClearQty FROM ((BookPOParent P INNER JOIN BookPOChild0901 C ON P.Code=C.Code) INNER JOIN BookMaster I ON P.Book=I.Code) INNER JOIN BookMaster E ON C.Book=E.Code WHERE P.TitlePrinter='" & BuyerCode & "' AND " & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "='" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "O", Left(VchType, 1)) & "' AND P.Code NOT IN (SELECT Ref FROM JobworkBVChild WHERE Ref=P.Code AND RIGHT(BOM,2)='FI' AND LEFT(BOM,2)='" & TranType & "') AND "
         If cmbBillingType.ListIndex = 0 Then 'Direct
             SQL = SQL + "(C.ActualQuantity-C.DeliveredQuantityC-C.BilledCFB)>0" 'Ordered-Delivered(Challan)-Billed(Direct)
         ElseIf cmbBillingType.ListIndex = 1 Then 'Against Challan
             SQL = SQL + "(C.DeliveredQuantityC-C.BilledCFC)>0" 'Delivered(Challan)-Billed(Challan)
         End If
         SQL = SQL + " UNION ALL "
-        SQL = SQL + "SELECT P.Code AS oCode,P.Code+E.Code+O.Code+'MO' As VchCode,LTRIM(P.Name)+'/'+" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "+'O/MO' As VchNo,P.Date As VchDate,I.Name+'_'+E.Name+'_'+O.Name As Item,C.Quantity As OrderedQty,C.BilledMOC As BilledQtyC,C.BilledMOB As BilledQtyD,C.DeliveredQuantityC As ChallanQty,C.DeliveredQuantityB As DirectQty FROM (((BookPOParent P INNER JOIN BookPOChild07 C ON P.Code=C.Code) INNER JOIN BookMaster I ON P.Book=I.Code) INNER JOIN ElementMaster E ON C.Element=E.Code) INNER JOIN GeneralMaster O ON C.Operation=O.Code WHERE P.Laminator='" & BuyerCode & "' AND " & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "='" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "O", Left(VchType, 1)) & "' AND P.Code NOT IN (SELECT Ref FROM JobworkBVChild WHERE Ref=P.Code AND RIGHT(BOM,2)='FI' AND LEFT(BOM,2)='" & TranType & "') AND "
+        SQL = SQL + "SELECT P.Code AS oCode,P.Code+E.Code+O.Code+'MO' As VchCode,LTRIM(P.Name)+'/'+" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "+'O/MO' As VchNo,P.Date As VchDate,I.Name+'_'+E.Name+'_'+O.Name As Item,C.Quantity As OrderedQty,C.BilledMOC As BilledQtyC,C.BilledMOB As BilledQtyD,C.DeliveredQuantityC As ChallanQty,C.DeliveredQuantityB As DirectQty,0 As ClearQty FROM (((BookPOParent P INNER JOIN BookPOChild07 C ON P.Code=C.Code) INNER JOIN BookMaster I ON P.Book=I.Code) INNER JOIN ElementMaster E ON C.Element=E.Code) INNER JOIN GeneralMaster O ON C.Operation=O.Code WHERE P.Laminator='" & BuyerCode & "' AND " & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "='" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "O", Left(VchType, 1)) & "' AND P.Code NOT IN (SELECT Ref FROM JobworkBVChild WHERE Ref=P.Code AND RIGHT(BOM,2)='FI' AND LEFT(BOM,2)='" & TranType & "') AND "
         If cmbBillingType.ListIndex = 0 Then 'Direct
             SQL = SQL + "(C.Quantity-C.DeliveredQuantityC-C.BilledMOB)>0" 'Ordered-Delivered(Challan)-Billed(Direct)
         ElseIf cmbBillingType.ListIndex = 1 Then 'Against Challan
             SQL = SQL + "(C.DeliveredQuantityC-C.BilledMOC)>0" 'Delivered(Challan)-Billed(Challan)
         End If
         SQL = SQL + " UNION ALL "
-        SQL = SQL + "SELECT P.Code AS oCode,P.Code+'XXXXXXXXXXXXBN' As VchCode,LTRIM(P.Name)+'/'+" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "+'O/BN' As VchNo,P.Date As VchDate,I.Name+'_Binding' As Item,C.ActualQuantity As OrderedQty,C.BilledBNC As BilledQtyC,C.BilledBNB As BilledQtyD,C.DeliveredQuantityC As ChallanQty,C.DeliveredQuantityB As DirectQty FROM (BookPOParent P INNER JOIN BookPOChild08 C ON P.Code=C.Code) INNER JOIN BookMaster I ON P.Book=I.Code WHERE P.Binder='" & BuyerCode & "' AND " & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "='" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "O", Left(VchType, 1)) & "' AND P.Code NOT IN (SELECT Ref FROM JobworkBVChild WHERE Ref=P.Code AND RIGHT(BOM,2)='FI' AND LEFT(BOM,2)='" & TranType & "') AND "
+        SQL = SQL + "SELECT P.Code AS oCode,P.Code+'XXXXXXXXXXXXBN' As VchCode,LTRIM(P.Name)+'/'+" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "+'O/BN' As VchNo,P.Date As VchDate,I.Name+'_Binding' As Item,C.ActualQuantity As OrderedQty,C.BilledBNC As BilledQtyC,C.BilledBNB As BilledQtyD,C.DeliveredQuantityC As ChallanQty,C.DeliveredQuantityB As DirectQty,0 As ClearQty FROM (BookPOParent P INNER JOIN BookPOChild08 C ON P.Code=C.Code) INNER JOIN BookMaster I ON P.Book=I.Code WHERE P.Binder='" & BuyerCode & "' AND " & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "='" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "O", Left(VchType, 1)) & "' AND P.Code NOT IN (SELECT Ref FROM JobworkBVChild WHERE Ref=P.Code AND RIGHT(BOM,2)='FI' AND LEFT(BOM,2)='" & TranType & "') AND "
         If cmbBillingType.ListIndex = 0 Then 'Direct
             SQL = SQL + "(C.ActualQuantity-C.DeliveredQuantityC-C.BilledBNB)>0" 'Ordered-Delivered(Challan)-Billed(Direct)
         ElseIf cmbBillingType.ListIndex = 1 Then 'Against Challan
             SQL = SQL + "(C.DeliveredQuantityC-C.BilledBNC)>0" 'Delivered(Challan)-Billed(Challan)
         End If
         SQL = SQL + " UNION ALL "
-        SQL = SQL + "SELECT P.Code AS oCode,P.Code+C.Item+'XXXXX'+C.Category+'BM' As VchCode,LTRIM(P.Name)+'/'+" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "+'O/BM' As VchNo,P.Date As VchDate,I.Name+'_'+CASE WHEN C.Category='1' THEN O.Name WHEN C.Category='2' THEN R.Name ELSE U.Name END As Item,C.OrderQuantity As OrderedQty,C.BilledBMC As BilledQtyC,C.BilledBMB As BilledQtyD,C.DeliveredQuantityC As ChallanQty,C.DeliveredQuantityB As DirectQty FROM ((((BookPOParent P INNER JOIN BookPOChild0801 C ON P.Code=C.Code) INNER JOIN BookMaster I ON P.Book=I.Code) LEFT JOIN OutsourceItemMaster O ON C.Category+C.Item='1'+O.Code) LEFT JOIN PaperMaster R ON C.Category+C.Item='2'+R.Code) LEFT JOIN BookMaster U ON C.Category+C.Item='3'+U.Code WHERE C.Vendor='" & BuyerCode & "' AND " & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "='" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "O", Left(VchType, 1)) & "' AND C.Amount<>0 " & _
+        SQL = SQL + "SELECT P.Code AS oCode,P.Code+C.Item+'XXXXX'+C.Category+'BM' As VchCode,LTRIM(P.Name)+'/'+" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "+'O/BM' As VchNo,P.Date As VchDate,I.Name+'_'+CASE WHEN C.Category='1' THEN O.Name WHEN C.Category='2' THEN R.Name ELSE U.Name END As Item,C.OrderQuantity As OrderedQty,C.BilledBMC As BilledQtyC,C.BilledBMB As BilledQtyD,C.DeliveredQuantityC As ChallanQty,C.DeliveredQuantityB As DirectQty,0 As ClearQty FROM ((((BookPOParent P INNER JOIN BookPOChild0801 C ON P.Code=C.Code) INNER JOIN BookMaster I ON P.Book=I.Code) LEFT JOIN OutsourceItemMaster O ON C.Category+C.Item='1'+O.Code) LEFT JOIN PaperMaster R ON C.Category+C.Item='2'+R.Code) LEFT JOIN BookMaster U ON C.Category+C.Item='3'+U.Code WHERE C.Vendor='" & BuyerCode & "' AND " & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "LEFT(P.Type,1)", "RIGHT(P.Type,1)") & "='" & IIf(InStr(1, "Q_Z", Left(VchType, 1)) > 0, "O", Left(VchType, 1)) & "' AND C.Amount<>0 " & _
                                 "AND P.Code NOT IN (SELECT Ref FROM JobworkBVChild WHERE Ref=P.Code AND RIGHT(BOM,2)='FI' AND LEFT(BOM,2)='" & TranType & "') AND "
         If cmbBillingType.ListIndex = 0 Then 'Direct
             SQL = SQL + "(C.OrderQuantity-C.DeliveredQuantityC-C.BilledBMB)>0" 'Ordered-Delivered(Challan)-Billed(Direct)
@@ -3242,9 +3312,9 @@ Private Sub LoadOrderList()
         i = 0
         Do Until .EOF
             If cmbBillingType.ListIndex = 0 Then 'Direct
-                Pending = Val(.Fields("OrderedQty").Value) - Val(.Fields("ChallanQty").Value) - Val(.Fields("BilledQtyD").Value) 'Pending=Ordered-Delivered(Challan)-Billed(Direct)
+                Pending = Val(.Fields("OrderedQty").Value) - Val(.Fields("ChallanQty").Value) - Val(.Fields("BilledQtyD").Value) - Val(.Fields("ClearQty").Value) 'Pending=Ordered-Delivered(Challan)-Billed(Direct)-ClearQty
             ElseIf cmbBillingType.ListIndex = 1 Then 'Against Challan
-                Pending = Val(.Fields("ChallanQty").Value) - Val(.Fields("BilledQtyC").Value) 'Pending=Delivered(Challan)-Billed(Challan)
+                Pending = Val(.Fields("ChallanQty").Value) - Val(.Fields("BilledQtyC").Value) - Val(.Fields("ClearQty").Value) 'Pending=Delivered(Challan)-Billed(Challan)-ClearQty
             End If
             i = i + 1
             FrmOrderList.fpSpread1.SetText 1, i, .Fields("Item").Value
@@ -3344,12 +3414,71 @@ Private Sub LoadOrderList()
                     .SetText 7, i, Mid(rstOrderList.Fields("Narration").Value, InStr(1, rstOrderList.Fields("Narration").Value, "-") + 1, 40): .SetText 13, i, Left(rstOrderList.Fields("Narration").Value, InStr(1, rstOrderList.Fields("Narration").Value, "-") - 1)
                     rstOrderList.MoveNext
                 Loop
+                If VchType <> "SU" Then GetJobWorkPaperCost
                 Call CalculateTotal
             End With
         End If
     End If
     CloseForm FrmOrderList
 End Sub
+Private Function GetJobWorkPaperCost()
+Dim i As Long, SQLwt As String, Rate As Variant, CellVal(1 To 8) As Variant, n As Long, K As Long
+            With fpSpread1
+            For i = 1 To .DataRowCnt
+            .SetActiveCell 8, i
+            .GetText 14, fpSpread1.ActiveRow, vtCode: vtCode = Right(vtCode, 2)
+        If VchType = "SU" Then Exit Function
+        If InStr(1, "MF_ME_CF_BM_FI", vtCode) > 0 Then
+            .GetText 14, fpSpread1.ActiveRow, vtCode: vtCode = Left(vtCode, 6)
+                SQLwt = "SELECT ISNUll(C5.PaperConsumptionsheets1/(Select Value1 From GeneralMAster Where Code=PM1.UOM)*PM1.[Weight/Unit]/P.EstQty01,0) +"
+                SQLwt = SQLwt + "ISNUll(C5.PaperConsumptionsheets2/(Select Value1 From GeneralMAster Where Code=PM2.UOM)*PM2.[Weight/Unit]/P.EstQty01,0) +"
+                SQLwt = SQLwt + "ISNUll(C5.PaperConsumptionsheets4/(Select Value1 From GeneralMAster Where Code=PM4.UOM)*PM4.[Weight/Unit]/P.EstQty01,0) +"
+                SQLwt = SQLwt + "ISNUll(C6.PaperConsumptionKg/P.EstQty01,0) +"
+                SQLwt = SQLwt + "ISNULL(C9.PaperConsumptionSheets/(Select Value1 From GeneralMAster Where Code=PM9.UOM)*PM9.[Weight/Unit]/P.EstQty01,0) As Pwt "
+                SQLwt = SQLwt + "FROM ((((((((BookPOParent P LEFT JOIN BookPOChild05 C5 ON P.Code=C5.Code) LEFT JOIN BookPOChild06 C6 ON P.Code=C6.Code) LEFT JOIN BookPOChild08 C8 ON P.Code=C8.Code) LEFT JOIN BookPOChild09 C9 ON P.Code=C9.Code) LEFT JOIN PaperMaster PM1 ON C5.Paper1=PM1.Code) LEFT JOIN PaperMaster PM2 ON C5.Paper2=PM2.Code) LEFT JOIN PaperMaster PM4 ON C5.Paper4=PM4.Code) LEFT JOIN PaperMaster PM6 ON C6.Paper=PM6.Code) LEFT JOIN PaperMaster PM9 ON C9.Paper=PM9.Code "
+                SQLwt = SQLwt + "WHERE P.Code='" & vtCode & "'"
+                If rstOrderList.State = adStateOpen Then rstOrderList.Close
+                rstOrderList.Open SQLwt, cnJobworkBill, adOpenKeyset, adLockReadOnly
+                .GetText 4, fpSpread1.ActiveRow, CellVal(1) 'Qty
+                .GetText 5, fpSpread1.ActiveRow, CellVal(2) 'Jobwork Rate
+                .GetText 8, fpSpread1.ActiveRow, CellVal(3) 'LongNarration01
+                .GetText 9, fpSpread1.ActiveRow, CellVal(4) 'LongNarration02
+                .GetText 10, fpSpread1.ActiveRow, CellVal(5) 'LongNarration03
+                .GetText 11, fpSpread1.ActiveRow, CellVal(6) 'LongNarration04
+                .GetText 12, fpSpread1.ActiveRow, CellVal(7) 'LongNarration05
+                K = 0
+                For n = 3 To 7
+                    If CellVal(n) <> "" And InStr(1, "Paper Suply By Party Cost Aprox Rs.:", Left(CellVal(n), 36)) = 0 Then
+                        If InStr(1, "Jobwork Cost Rs.:", Left(CellVal(n), 17)) = 0 Then K = K + 1
+                    End If
+                Next
+                If K < 4 Then
+                    K = 10
+                    For n = 3 To 7
+                        If CellVal(n) <> "" And InStr(1, "Paper Suply By Party Cost Aprox Rs.:", Left(CellVal(n), 36)) = 0 Then
+                            If K < 13 And InStr(1, "Jobwork Cost Rs.:", Left(CellVal(n), 17)) = 0 Then .SetText K, i, CellVal(n): K = K + 1
+                        End If
+                    Next
+                Else
+                    If MsgBox("Do You Want's To Replace Old Long Narrations ?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Quit !") = vbYes Then
+                    K = 10
+                    For n = 3 To 7
+                        If CellVal(n) <> "" And InStr(1, "Paper Suply By Party Cost Aprox Rs.:", Left(CellVal(n), 36)) = 0 Then
+                            If K < 13 And InStr(1, "Jobwork Cost Rs.:", Left(CellVal(n), 17)) = 0 Then .SetText K, i, CellVal(n): K = K + 1
+                        End If
+                    Next
+                    Else
+                        Exit For
+                    End If
+                End If
+                Rate = InputBox("Paper Rate @..", , Val(Rate), 12490, 6940)
+                If Val(Rate) = 0 Then Exit Function
+                    .SetText 8, i, "Paper Suply By Party Cost Aprox Rs.: " & Format(Val(rstOrderList.Fields("Pwt")) * CellVal(1) * Val(Rate), "##,##,##,###") & " /-"
+                    .SetText 9, i, "Jobwork Cost Rs.: " & Format(CellVal(1) * CellVal(2), "##,##,##,###") & " /-"
+        End If
+            Next
+            End With
+End Function
 Private Sub LoadMasterList()
     If rstAccountList.State = adStateOpen Then rstAccountList.Close
     rstAccountList.Open "SELECT Name As Col0,Code FROM AccountMaster ORDER BY Name", cnJobworkBill, adOpenKeyset, adLockReadOnly
@@ -3377,7 +3506,7 @@ Private Sub LoadMasterList()
     rstItemList.Open "SELECT I.Name As Col0,I.Price,I.Code,H.Code As HSNCode,H.Name As HSNName FROM BookMaster I INNER JOIN GeneralMaster H ON I.HSNCode=H.Code ORDER BY I.Name", cnJobworkBill, adOpenKeyset, adLockReadOnly
     rstItemList.ActiveConnection = Nothing
     If rstVchSeriesList.State = adStateOpen Then rstVchSeriesList.Close
-    rstVchSeriesList.Open "SELECT Name As Col0,Prefix,Suffix,VchNumbering,Code FROM VchSeriesMaster WHERE VchType='" & Switch(Left(VchType, 1) = "S", "04", Left(VchType, 1) = "P", "01", Left(VchType, 1) = "Z", "23", Left(VchType, 1) = "Q", "24") & VchType & "' ORDER BY Name", cnJobworkBill, adOpenKeyset, adLockReadOnly
+    rstVchSeriesList.Open "SELECT Name As Col0,Prefix,Suffix,VchNumbering,Code FROM VchSeriesMaster WHERE Left(FYCode,2)='" & Left(FYCode, 2) & "' AND VchType ='" & Switch(Left(VchType, 1) = "S", "04", Left(VchType, 1) = "P", "01", Left(VchType, 1) = "Z", "23", Left(VchType, 1) = "Q", "24") & VchType & "' ORDER BY Name", cnJobworkBill, adOpenKeyset, adLockReadOnly
     rstVchSeriesList.ActiveConnection = Nothing
 End Sub
 Private Sub DisplayMenu(ByVal OutputTo As String)
@@ -3404,7 +3533,7 @@ Private Sub Timer1_Timer()
     End If
 End Sub
 Private Sub PushVch()
-    Dim XMLStr, SaleAccount, UOM, i
+    Dim XMLStr, SaleAccount, UOM, i, ChallanTbl
     With rstCompanyMaster
         If .State = adStateOpen Then .Close
         '.Open "SELECT VchSeries,Account,UOM FROM AppConfig WHERE VchType='SF'", cnJobworkBill, adOpenKeyset, adLockReadOnly
@@ -3416,13 +3545,28 @@ Private Sub PushVch()
         .Open "SELECT * FROM CompanyMaster WHERE FYCode='" & FYCode & "'", cnJobworkBill, adOpenKeyset, adLockReadOnly
     End With
     With rstJobworkBVChild
+        ChallanTbl = "": XMLStr = ""
+        
+    If Mid(rstJobworkBVList.Fields("Type").Value, 3, 2) <> "10" Then
+        ChallanTbl = ChallanTbl + "SELECT BOM,(Select Sum(STRC1.Quantity) FROM JobworkBVParent STRP1 INNER JOIN JobworkBVChild STRC1 On STRC1.code=STRP1.Code WHERE STRC1.Ref = D.Ref AND Ref <>''AND (RefCode='XXXXXX' OR RefCode='') AND STRP1.Type IN ('0110PU','0110PC','0110PJ','0310PU','0310PC','0310PJ','0510FR','0710FR','0210OU','0210OC','0210OJ','0410TU','0410TC','0410TJ','0610FI','0810FI') AND Ref IN (SELECT Code FROM BookPOParent) AND Ref <>''AND (RefCode='XXXXXX' OR RefCode='')) AS DeliveredQty,"
+        ChallanTbl = ChallanTbl + " (Select VchDetails From (SELECT DISTINCT STRC.Ref As TRef,(Select  Ltrim(Name) From BookPOParent Where Code=STRC.Ref) PO,RIGHT((Select TYPE From BookPOParent Where Code=Ref),1)+'O/'+LTRIM((Select Name From BookPOParent Where Code=Ref))+'/JW/'+IIF(FORMAT((Select Date From BookPOParent Where Code=Ref),'MM')<4,Convert(Nvarchar,(Convert(int,FORMAT((Select Date From BookPOParent Where Code=Ref),'yy'))-1)) +'-'+Convert(Nvarchar,FORMAT((Select Date From BookPOParent Where Code=Ref),'yy')),Convert(Nvarchar,FORMAT((Select Date From BookPOParent Where Code=Ref),'yy')) +'-'+ Convert(Nvarchar,Convert(int,FORMAT((Select Date From BookPOParent Where Code=Ref),'yy'))+1)) As VchBillNo,"
+        ChallanTbl = ChallanTbl + "SUBSTRING((SELECT ',  '+STRP1.Name AS [text()]  FROM dbo.JobworkBVParent STRP1 INNER JOIN JobworkBVChild STRC1 On STRC1.code=STRP1.Code "
+        ChallanTbl = ChallanTbl + "WHERE STRC1.Ref = STRC.Ref AND Ref <>''AND (RefCode='XXXXXX' OR RefCode='') AND STRP1.Type IN ('0110PU','0110PC','0110PJ','0310PU','0310PC','0310PJ','0510FR','0710FR','0210OU','0210OC','0210OJ','0410TU','0410TC','0410TJ','0610FI','0810FI') AND Ref IN (SELECT Code FROM BookPOParent) AND Ref <>''AND (RefCode='XXXXXX' OR RefCode='') "
+        ChallanTbl = ChallanTbl + "ORDER BY STRC1.Ref,STRC1.Code "
+        ChallanTbl = ChallanTbl + "FOR XML PATH (''), TYPE).value('text()[1]','nvarchar(max)'), 2, 1000) VchDetails "
+        ChallanTbl = ChallanTbl + "FROM dbo.JobworkBVParent STRP INNER JOIN JobworkBVChild STRC On STRC.Code=STRP.Code WHERE Ref <>''AND (RefCode='XXXXXX' OR RefCode='') AND STRP.Type IN ('0110PU','0110PC','0110PJ','0310PU','0310PC','0310PJ','0510FR','0710FR','0210OU','0210OC','0210OJ','0410TU','0410TC','0410TJ','0610FI','0810FI') "
+        ChallanTbl = ChallanTbl + "AND Ref IN (SELECT Code FROM BookPOParent)) As Challan Where  TRef=D.Ref) As VchDetails,"
+    Else
+        ChallanTbl = ChallanTbl + "Select '' As DeliveredQty,'' As VchDetails,"
+    End If
         If .State = adStateOpen Then .Close
-        XMLStr = "SELECT Left((Select V.Prefix From VchSeriesMaster V Where Code=VchSeries),2)+'/'+'" & Right(VchType, 2) & "'+'/'+Ltrim(AutoVchNo)+'/'+ '" & FYFromTo & "'  As BillNo,H.Date As BillDate,M.PrintName As MatCentre," + _
+        XMLStr = XMLStr + ChallanTbl
+        XMLStr = XMLStr + "G.Name As State,N.Name As cState,'India' As CountryOfResidence,Left((Select V.Prefix From VchSeriesMaster V Where Code=VchSeries),2)+'/'+'" & Right(VchType, 2) & "'+'/'+Ltrim(AutoVchNo)+'/'+ '" & FYFromTo & "'  As BillNo,H.Date As BillDate,M.PrintName As MatCentre," + _
                         "B.PrintName As Buyer,Party As AccountCode,B.Address1 As bAddress1,B.Address2 As bAddress2,B.Address3 As bAddress3,B.Address4 As bAddress4,B.TIN As bGSTIN,(Select Name From GeneralMaster Where Code= B.State) AS State,C.PrintName As Consignee,C.Address1 As cAddress1,C.Address2 As cAddress2,C.Address3 As cAddress3,C.Address4 As cAddress4,C.TIN As cGSTIN," + _
                         "H.TaxableAmount,H.[Rebate%],H.Rebate,H.Freight,H.Adjustment,H.Tax,H.[IGST%],H.IGST,H.[SGST%],H.SGST,H.[CGST%],H.CGST,H.Amount As FinalAmount,H.Remarks," + _
-                        "I.Name As ItemName,(Select PrintName From GeneralMaster Where Code=I.IntegrationUnit) As IntegrationUnit,I.ItemIntegrationName As Item,I.BusyCode As ItemAlias,D.Rate,D.[Disc%],ABS(D.Quantity) As Quantity,D.Amount,H.Name As DeliveryNoteNo,ISNULL(H.GRNo,'') As DispatchDocNo,ISNULL(H.Transport,'') As DishpatchThrough,ISNULL(H.Station,'') As Destination,ISNULL(H.Transport,'') As [CarrierName/Agent],ISNULL(H.GRNo,'') As [BillofLoading/LR-RRNO],ISNULL(H.GRDate,'') As GRDate,ISNULL(H.VehicleNo,'') As MotorVehicleNo,ISNULL(H.eWayBill,'') As eWayBill,ISNULL(H.eWayBillDate,'') As eWayBillDate,IIF((Select Name From AccountMaster Where Code=H.SalesType)='Sales','Bill of Supply','Bill of Supply') As DocType,'Supply' As SubType,'Generated by me' As BILLSTATUS,D.Item As ItemCode,D.LongNarration01,D.LongNarration02,D.LongNarration03,D.LongNarration04,D.LongNarration05,CASE WHEN Ref IS NULL THEN '' ELSE 'Ref. No.: '+LTRIM(R.Name)+'/'+RIGHT(R.Type,1)+'O/'+RIGHT(D.BOM,2) END As RefOrderNo," & _
+                        "I.Name As ItemName,(Select PrintName From GeneralMaster Where Code=I.IntegrationUnit) As IntegrationUnit,I.ItemIntegrationName As Item,I.BusyCode As ItemAlias,D.Rate,D.[Disc%],ABS(D.Quantity) As Quantity,D.Amount,'' As DeliveryNoteNo,ISNULL(H.GRNo,'') As DispatchDocNo,ISNULL(H.Transport,'') As DishpatchThrough,ISNULL(H.Station,'') As Destination,ISNULL(H.Transport,'') As [CarrierName/Agent],ISNULL(H.GRNo,'') As [BillofLoading/LR-RRNO],ISNULL(H.GRDate,'') As GRDate,ISNULL(H.VehicleNo,'') As MotorVehicleNo,ISNULL(H.eWayBill,'') As eWayBill,ISNULL(H.eWayBillDate,'') As eWayBillDate,IIF((Select Name From AccountMaster Where Code=H.SalesType)='Sales','Bill of Supply','Bill of Supply') As DocType,'Supply' As SubType,'Generated by me' As BILLSTATUS,D.Item As ItemCode,D.LongNarration01,D.LongNarration02,D.LongNarration03,D.LongNarration04,D.LongNarration05,CASE WHEN Ref IS NULL THEN '' ELSE 'Ref. No.: '+LTRIM(R.Name)+'/'+RIGHT(R.Type,1)+'O/'+RIGHT(D.BOM,2) END As RefOrderNo," & _
                         "(Convert(nvarchar,(ISNULL((Select PaperConsumptionsheets1 From BookPOChild05 Where Code=R.Code),0)+ISNULL((Select PaperConsumptionsheets2 From BookPOChild05 Where Code=R.Code),0)+ISNULL((Select PaperConsumptionsheets4 From BookPOChild05 Where Code=R.Code),0)+ISNULL((Select PaperConsumptionsheets From BookPOChild06 Where Code=R.Code),0)+ISNULL((Select PaperConsumptionsheets From BookPOChild09 Where Code=R.Code),0)))+' Sheets') As PaperConsumptionsheets " & _
-                        "FROM (((((JobWorkBVParent H INNER JOIN AccountMaster B ON H.Party=B.Code) INNER JOIN AccountMaster C ON H.Consignee=C.Code) INNER JOIN AccountMaster M ON H.MaterialCentre=M.Code) INNER JOIN JobWorkBVChild D ON H.Code=D.Code) INNER JOIN BookMaster I ON D.Item=I.Code) Left JOIN BookPOParent R ON D.Ref=R.Code " + _
+                        "FROM (((((((JobWorkBVParent H INNER JOIN AccountMaster B ON H.Party=B.Code) INNER JOIN AccountMaster C ON H.Consignee=C.Code) INNER JOIN AccountMaster M ON H.MaterialCentre=M.Code) INNER JOIN JobWorkBVChild D ON H.Code=D.Code) INNER JOIN BookMaster I ON D.Item=I.Code) Left JOIN BookPOParent R ON D.Ref=R.Code) LEFT Join GeneralMaster G ON B.State=G.Code ) INNER Join GeneralMaster N ON C.State=N.Code " + _
                         "WHERE H.Code='" + rstJobworkBVList.Fields("Code").Value + "'"
         .Open XMLStr, cnJobworkBill, adOpenKeyset, adLockReadOnly
         XMLStr = ""
@@ -3445,6 +3589,8 @@ Private Sub PushVch()
             XMLStr = XMLStr + "<REQUESTDATA>"
             XMLStr = XMLStr + "<TALLYMESSAGE xmlns:UDF=""TallyUDF"">"
             XMLStr = XMLStr + "<VOUCHER ACTION=""Create"">"
+            XMLStr = XMLStr + "<STATENAME>" + Replace(Trim(.Fields("State").Value), "&", "&amp;") + "</STATENAME>" 'State
+            XMLStr = XMLStr + "<COUNTRYOFRESIDENCE>" + Replace(Trim(.Fields("COUNTRYOFRESIDENCE").Value), "&", "&amp;") + "</COUNTRYOFRESIDENCE>" 'State
             XMLStr = XMLStr + "<VOUCHERTYPENAME>" + Replace(Trim(VchSeries), "&", "&amp;") + "</VOUCHERTYPENAME>" 'VchSeries
             XMLStr = XMLStr + "<VOUCHERNUMBER>" + Replace(Trim(.Fields("BillNo").Value), "&", "&amp;") + "</VOUCHERNUMBER>" 'Vch No.
             XMLStr = XMLStr + "<DATE>" + Format(.Fields("BillDate").Value, "yyyyMMdd") + "</DATE>" 'Vch Date
@@ -3465,6 +3611,8 @@ Private Sub PushVch()
             If Not CheckEmpty(Trim(.Fields("bGSTIN").Value), False) Then XMLStr = XMLStr + "<PARTYGSTIN>" + Replace(Trim(.Fields("bGSTIN").Value), "&", "&amp;") + "</PARTYGSTIN>"
             'Consignee Info
             XMLStr = XMLStr + "<BASICBUYERNAME>" + Replace(Trim(.Fields("Consignee").Value), "&", "&amp;") + "</BASICBUYERNAME>"
+            XMLStr = XMLStr + "<CONSIGNEESTATENAME>" + Replace(Trim(.Fields("cState").Value), "&", "&amp;") + "</CONSIGNEESTATENAME>"
+            XMLStr = XMLStr + "<CONSIGNEECOUNTRYNAME>" + Replace(Trim(.Fields("COUNTRYOFRESIDENCE").Value), "&", "&amp;") + "</CONSIGNEECOUNTRYNAME>"
             If Not CheckEmpty(Trim(.Fields("cAddress1").Value) + Trim(.Fields("cAddress2").Value) + Trim(.Fields("cAddress3").Value) + Trim(.Fields("cAddress4").Value), False) Then
                 XMLStr = XMLStr + "<BASICBUYERADDRESS.LIST TYPE=""String"">"
                 If Not CheckEmpty(Trim(.Fields("cAddress1").Value), False) Then XMLStr = XMLStr + "<BASICBUYERADDRESS>" + Replace(Trim(.Fields("cAddress1").Value), "&", "&amp;") + "</BASICBUYERADDRESS>"
@@ -3477,11 +3625,13 @@ Private Sub PushVch()
             If Not CheckEmpty(Trim(.Fields("cGSTIN").Value), False) Then XMLStr = XMLStr + "<CONSIGNEEGSTIN>" + Replace(Trim(.Fields("cGSTIN").Value), "&", "&amp;") + "</CONSIGNEEGSTIN>"
             'Dishpatch Details
             'Delivery Note No (s)
-            If Not CheckEmpty(Trim(.Fields("DeliveryNoteNo").Value), False) Then XMLStr = XMLStr + "<BASICSHIPDELIVERYNOTE>" + Replace(Trim(.Fields("DeliveryNoteNo").Value), "&", "&amp;") + "</BASICSHIPDELIVERYNOTE>"
+            If Not CheckEmpty(Trim(.Fields("VchDetails").Value), False) Then XMLStr = XMLStr + "<BASICSHIPDELIVERYNOTE>" + Replace(Trim(.Fields("VchDetails").Value), "&", "&amp;") + "</BASICSHIPDELIVERYNOTE>"
+        If cmbBillingType.ListIndex = 0 Then
             'Delivery Note Date
             If Not CheckEmpty(Trim(.Fields("BillDate").Value), False) Then XMLStr = XMLStr + "<BASICSHIPPINGDATE>" + Replace(Trim(.Fields("BillDate").Value), "&", "&amp;") + "</BASICSHIPPINGDATE>"
             'Despatch Doc No
             If Not CheckEmpty(Trim(.Fields("BillNo").Value), False) Then XMLStr = XMLStr + "<BASICSHIPDOCUMENTNO>" + Replace(Trim(.Fields("BillNo").Value), "&", "&amp;") + "</BASICSHIPDOCUMENTNO>"
+        End If
             'Despatched Through
             If Not CheckEmpty(Trim(.Fields("DishpatchThrough").Value), False) Then XMLStr = XMLStr + "<BASICSHIPPEDBY>" + Replace(Trim(.Fields("DishpatchThrough").Value), "&", "&amp;") + "</BASICSHIPPEDBY>"
             'Destination
@@ -3497,20 +3647,20 @@ Private Sub PushVch()
             XMLStr = XMLStr + "<REFERENCE>" + Replace(Trim(.Fields("BillNo").Value), "&", "&amp;") + "</REFERENCE>"
             'e-Way Bill Details
             If Not CheckEmpty(Trim(.Fields("eWayBill").Value), False) Then
-            XMLStr = XMLStr + "<EWAYBILLDETAILS.LIST>"
-            
-            'CONSIGNOR Info
-            XMLStr = XMLStr + "<CONSIGNORNAME>" + Replace(Trim(rstCompanyMaster.Fields("Name").Value), "&", "&amp;") + "</CONSIGNORNAME>" 'CONSIGNOR Info
-            XMLStr = XMLStr + "<CONSIGNORPINCODE>" + Replace(Trim(rstCompanyMaster.Fields("Address4").Value), "&", "&amp;") + "</CONSIGNORPINCODE>"
-            XMLStr = XMLStr + "<CONSIGNORGSTIN>" + Replace(Trim(rstCompanyMaster.Fields("GSTIN").Value), "&", "&amp;") + "</CONSIGNORGSTIN>"
-            'xmlstr = xmlstr + "<CONSIGNORSTATENAME>" + Replace(Trim(rstCompanyMaster.Fields("Address3").Value), "&", "&amp;") + "</CONSIGNORSTATENAME>"
-            If Not CheckEmpty(Trim(rstCompanyMaster.Fields("Address1").Value) + Trim(rstCompanyMaster.Fields("Address2").Value) + Trim(rstCompanyMaster.Fields("Address3").Value) + Trim(rstCompanyMaster.Fields("Address4").Value), False) Then
-                XMLStr = XMLStr + "<CONSIGNORADDRESS.LIST TYPE=""String"">"
-                If Not CheckEmpty(Trim(rstCompanyMaster.Fields("Address1").Value), False) Then XMLStr = XMLStr + "<CONSIGNORADDRESS>" + Replace(Trim(rstCompanyMaster.Fields("Address1").Value), "&", "&amp;") + "</CONSIGNORADDRESS>"
-                If Not CheckEmpty(Trim(rstCompanyMaster.Fields("Address2").Value), False) Then XMLStr = XMLStr + "<CONSIGNORADDRESS>" + Replace(Trim(rstCompanyMaster.Fields("Address2").Value), "&", "&amp;") + "</CONSIGNORADDRESS>"
-                If Not CheckEmpty(Trim(rstCompanyMaster.Fields("Address3").Value), False) Then XMLStr = XMLStr + "<CONSIGNORADDRESS>" + Replace(Trim(rstCompanyMaster.Fields("Address3").Value), "&", "&amp;") + "</CONSIGNORADDRESS>"
-                If Not CheckEmpty(Trim(rstCompanyMaster.Fields("Address4").Value), False) Then XMLStr = XMLStr + "<CONSIGNORADDRESS>" + Replace(Trim(rstCompanyMaster.Fields("Address4").Value), "&", "&amp;") + "</CONSIGNORADDRESS>"
-                XMLStr = XMLStr + "</CONSIGNORADDRESS.LIST>"
+                XMLStr = XMLStr + "<EWAYBILLDETAILS.LIST>"
+                
+                'CONSIGNOR Info
+                XMLStr = XMLStr + "<CONSIGNORNAME>" + Replace(Trim(rstCompanyMaster.Fields("Name").Value), "&", "&amp;") + "</CONSIGNORNAME>" 'CONSIGNOR Info
+                XMLStr = XMLStr + "<CONSIGNORPINCODE>" + Replace(Trim(rstCompanyMaster.Fields("Address4").Value), "&", "&amp;") + "</CONSIGNORPINCODE>"
+                XMLStr = XMLStr + "<CONSIGNORGSTIN>" + Replace(Trim(rstCompanyMaster.Fields("GSTIN").Value), "&", "&amp;") + "</CONSIGNORGSTIN>"
+                'xmlstr = xmlstr + "<CONSIGNORSTATENAME>" + Replace(Trim(rstCompanyMaster.Fields("Address3").Value), "&", "&amp;") + "</CONSIGNORSTATENAME>"
+                If Not CheckEmpty(Trim(rstCompanyMaster.Fields("Address1").Value) + Trim(rstCompanyMaster.Fields("Address2").Value) + Trim(rstCompanyMaster.Fields("Address3").Value) + Trim(rstCompanyMaster.Fields("Address4").Value), False) Then
+                    XMLStr = XMLStr + "<CONSIGNORADDRESS.LIST TYPE=""String"">"
+                    If Not CheckEmpty(Trim(rstCompanyMaster.Fields("Address1").Value), False) Then XMLStr = XMLStr + "<CONSIGNORADDRESS>" + Replace(Trim(rstCompanyMaster.Fields("Address1").Value), "&", "&amp;") + "</CONSIGNORADDRESS>"
+                    If Not CheckEmpty(Trim(rstCompanyMaster.Fields("Address2").Value), False) Then XMLStr = XMLStr + "<CONSIGNORADDRESS>" + Replace(Trim(rstCompanyMaster.Fields("Address2").Value), "&", "&amp;") + "</CONSIGNORADDRESS>"
+                    If Not CheckEmpty(Trim(rstCompanyMaster.Fields("Address3").Value), False) Then XMLStr = XMLStr + "<CONSIGNORADDRESS>" + Replace(Trim(rstCompanyMaster.Fields("Address3").Value), "&", "&amp;") + "</CONSIGNORADDRESS>"
+                    If Not CheckEmpty(Trim(rstCompanyMaster.Fields("Address4").Value), False) Then XMLStr = XMLStr + "<CONSIGNORADDRESS>" + Replace(Trim(rstCompanyMaster.Fields("Address4").Value), "&", "&amp;") + "</CONSIGNORADDRESS>"
+                    XMLStr = XMLStr + "</CONSIGNORADDRESS.LIST>"
             End If
             
             'CONSIGNEE
@@ -3554,15 +3704,28 @@ Private Sub PushVch()
             Do Until .EOF
                 XMLStr = XMLStr + "<INVENTORYENTRIES.LIST>"
                 XMLStr = XMLStr + "<BASICUSERDESCRIPTION.LIST TYPE=""String"">"
-                
-                XMLStr = XMLStr + "<BASICUSERDESCRIPTION>" + Replace(Trim(.Fields("LongNarration01").Value), "&", "&amp;") + "</BASICUSERDESCRIPTION>" 'LongNarration01
                 XMLStr = XMLStr + "<BASICUSERDESCRIPTION>" + "StockItem:" + Replace(Trim(.Fields("ItemName").Value), "&", "&amp;") + "</BASICUSERDESCRIPTION>" 'StockItemName
+                XMLStr = XMLStr + "<BASICUSERDESCRIPTION>" + Replace(Trim(.Fields("LongNarration01").Value), "&", "&amp;") + "</BASICUSERDESCRIPTION>" 'LongNarration01
                 XMLStr = XMLStr + "<BASICUSERDESCRIPTION>" + Replace(Trim(.Fields("LongNarration02").Value), "&", "&amp;") + "</BASICUSERDESCRIPTION>" 'LongNarration02
                 XMLStr = XMLStr + "<BASICUSERDESCRIPTION>" + Replace(Trim(.Fields("LongNarration03").Value), "&", "&amp;") + "</BASICUSERDESCRIPTION>" 'LongNarration03
                 XMLStr = XMLStr + "<BASICUSERDESCRIPTION>" + Replace(Trim(.Fields("LongNarration04").Value), "&", "&amp;") + "</BASICUSERDESCRIPTION>" 'LongNarration04
                 XMLStr = XMLStr + "<BASICUSERDESCRIPTION>" + Replace(Trim(.Fields("LongNarration05").Value), "&", "&amp;") + "</BASICUSERDESCRIPTION>" 'LongNarration05
-                XMLStr = XMLStr + "<BASICUSERDESCRIPTION>" + "Paper Consumption : " + Replace(Trim(.Fields("PaperConsumptionsheets").Value), "&", "&amp;") + "</BASICUSERDESCRIPTION>" 'PaperConsumptionsheets
+        If VchType <> "SU" Then
+            If InStr(1, "MF_ME_CF_BM", Right(Trim(.Fields("BOM").Value), 2)) > 0 Then
+                If MsgBox("Print Paper Consumption Sheets ?", vbYesNo + vbQuestion + vbDefaultButton1, "Confirm Quit !") = vbYes Then
+                     XMLStr = XMLStr + "<BASICUSERDESCRIPTION>" + "Paper Consumption : " + Replace(Trim(.Fields("PaperConsumptionsheets").Value), "&", "&amp;") + "</BASICUSERDESCRIPTION>" 'PaperConsumptionsheets
+                End If
+            End If
+        End If
+            If MsgBox("Print Order Reference ?", vbYesNo + vbQuestion + vbDefaultButton1, "Confirm Quit !") = vbYes Then
                 XMLStr = XMLStr + "<BASICUSERDESCRIPTION>" + Replace(Trim(.Fields("RefOrderNo").Value), "&", "&amp;") + "</BASICUSERDESCRIPTION>" 'RefOrderNo
+            End If
+    If Trim(.Fields("DeliveredQty").Value) <> "" Then
+            If MsgBox("Print Delivered Quantity And Challan Details ?", vbYesNo + vbQuestion + vbDefaultButton1, "Confirm Quit !") = vbYes Then
+                XMLStr = XMLStr + "<BASICUSERDESCRIPTION>" + "Quantity Delivered : " + Replace(Trim(.Fields("DeliveredQty").Value), "&", "&amp;") + "</BASICUSERDESCRIPTION>" 'Challan Details
+                XMLStr = XMLStr + "<BASICUSERDESCRIPTION>" + "Against Challans : " + Replace(Trim(.Fields("VchDetails").Value), "&", "&amp;") + "</BASICUSERDESCRIPTION>" 'Challan Details
+            End If
+    End If
                 XMLStr = XMLStr + "</BASICUSERDESCRIPTION.LIST>"
                 
                 XMLStr = XMLStr + "<STOCKITEMNAME>" + Replace(Trim(.Fields("Item").Value), "&", "&amp;") + "</STOCKITEMNAME>"
@@ -3599,9 +3762,9 @@ Private Sub PushVch()
                 XMLStr = XMLStr + "</BATCHALLOCATIONS.LIST>"
                 
                  XMLStr = XMLStr + "<ACCOUNTINGALLOCATIONS.LIST>"
-'                XMLStr = XMLStr + "<OLDAUDITENTRYIDS.LIST TYPE=""Number"">"
-'                XMLStr = XMLStr + "<OLDAUDITENTRYIDS>-1</OLDAUDITENTRYIDS>"
-'                XMLStr = XMLStr + "</OLDAUDITENTRYIDS.LIST>"
+                XMLStr = XMLStr + "<OLDAUDITENTRYIDS.LIST TYPE=""Number"">"
+                XMLStr = XMLStr + "<OLDAUDITENTRYIDS>-1</OLDAUDITENTRYIDS>"
+                XMLStr = XMLStr + "</OLDAUDITENTRYIDS.LIST>"
                 
                 XMLStr = XMLStr + "<LEDGERNAME>" + Replace(SaleAccount, "&", "&amp;") + "</LEDGERNAME>"
                 XMLStr = XMLStr + "<GSTCLASS/>"
@@ -3657,7 +3820,7 @@ Private Sub PushVch()
             End If
             rstTaxList.MoveFirst
             rstTaxList.Find "[Code]='" & .Fields("Tax").Value & "'"
-            If rstTaxList.Fields("Region").Value = "I" Then
+If rstTaxList.Fields("Region").Value = "I" Then
     If GSTMethod = "1" Then
     'Case-1
                 XMLStr = XMLStr + "<LEDGERENTRIES.LIST>"
@@ -3771,12 +3934,12 @@ End If
                     If Err.Number = -2147012867 Then
                         If MsgBox(Err.Description + "Tally is not open. Would you like to continue?", vbQuestion + vbYesNo + vbDefaultButton1, "Confirm Proceed !") = vbNo Then Exit Do
                     Else
-                        .WaitForResponse 4000
-                        Dom.Loadxml .responseText
-                        If Dom.SelectSingleNode("//CREATED").Text = "1" Then
+                        .waitForResponse 4000
+                        Dom.loadXML .responseText
+                        If Dom.selectSingleNode("//CREATED").Text = "1" Then
                             MsgBox "Voucher Exported to Tally !!!", vbInformation, App.Title: UpdateIntegration: Exit Do
                         Else
-                            If MsgBox(Dom.SelectSingleNode("//LINEERROR").Text + " Would you like to continue?", vbQuestion + vbYesNo + vbDefaultButton1, "Confirm Proceed !") = vbNo Then Exit Do
+                            If MsgBox(Dom.selectSingleNode("//LINEERROR").Text + " Would you like to continue?", vbQuestion + vbYesNo + vbDefaultButton1, "Confirm Proceed !") = vbNo Then Exit Do
                         End If
                     End If
                 Loop
@@ -3822,15 +3985,15 @@ Private Sub DelOldVch(ByVal dspMsg As Boolean)
                 If Err.Number = -2147012867 Then
                     If MsgBox(Err.Description + "Tally is not open. Would you like to continue?", vbQuestion + vbYesNo + vbDefaultButton1, "Confirm Proceed !") = vbNo Then Exit Do
                 Else
-                    .WaitForResponse 4000
-                    Dom.Loadxml .responseText
-                    If Dom.SelectSingleNode("//DELETED").Text = "1" Then
+                    .waitForResponse 4000
+                    Dom.loadXML .responseText
+                    If Dom.selectSingleNode("//DELETED").Text = "1" Then
                         If dspMsg Then MsgBox "Voucher from Tally Deleted !!!", vbInformation, App.Title: Exit Do
                     Else
-                        If Dom.SelectSingleNode("//LINEERROR").Text = "Voucher does not exist!" Then
+                        If Dom.selectSingleNode("//LINEERROR").Text = "Voucher does not exist!" Then
                             Exit Do
                         Else
-                            If MsgBox(Dom.SelectSingleNode("//LINEERROR").Text + " Would you like to continue?", vbQuestion + vbYesNo + vbDefaultButton1, "Confirm Proceed !") = vbNo Then Exit Do
+                            If MsgBox(Dom.selectSingleNode("//LINEERROR").Text + " Would you like to continue?", vbQuestion + vbYesNo + vbDefaultButton1, "Confirm Proceed !") = vbNo Then Exit Do
                         End If
                     End If
                 End If
@@ -3839,9 +4002,8 @@ Private Sub DelOldVch(ByVal dspMsg As Boolean)
     End If
 End Sub
 Public Sub PrintJobworkBillVch(ByVal VchCode As String, ByVal VchType As String, ByVal BillType As String, Optional ByVal OutputType As String)
-    Dim SQL As String, oSQL As String, FS01 As String, FS02 As String, FS03 As String, FS04 As String, FS05 As String, FS06 As String, FS07 As String, FS08 As String, FS09 As String, FS10 As String, FS11 As String, FS12 As String, FS13 As String, FS14 As String, FS15 As String, FS16 As String, FS17 As String
+    Dim ChallanTbl  As String, SQL As String, oSQL As String, FS01 As String, FS02 As String, FS03 As String, FS04 As String, FS05 As String, FS06 As String, FS07 As String, FS08 As String, FS09 As String, FS10 As String, FS11 As String, FS12 As String, FS13 As String, FS14 As String, FS15 As String, FS16 As String, FS17 As String
     FS01 = "'Size: '+LTRIM(S.PrintName) "
-    '+IIf(I.Pages = 0, '', ', '+LTRIM(I.Pages)+' pages/'+LTRIM(I.Forms)+'f ('+LTRIM(IIF(OneColorForms<>0,LTRIM(OneColorForms)+'f-1Col','')+' '+IIF(TwoColorForms<>0,LTRIM(TwoColorForms)+'f-2Col','')+' '+IIF(FourColorForms<>0,LTRIM(FourColorForms)+'f-4Col',''))+')')" 'Direct Billing
     FS02 = "'Size: '+LTRIM(S.PrintName)+IIf(I.Pages = 0 AND (ISNull(C2.Pages1) = True OR C2.Pages1+C2.Pages2+C2.Pages4 = 0), '', ', '+LTRIM(IIF(ISNULL(C2.Pages1)=True,I.Pages,C2.Pages1+C2.Pages2+C2.Pages4))+' pages/'+LTRIM(IIF(ISNULL(C2.Pages1)=True,I.Forms,C2.Forms1+C2.Forms2+C2.Forms4))+'f ('+IIF(ISNULL(C2.Pages1)=True,LTRIM(IIF(I.OneColorForms<>0,LTRIM(I.OneColorForms)+'f-1Col','')+' '+IIF(I.TwoColorForms<>0,LTRIM(I.TwoColorForms)+'f-2Col','')+' '+IIF(I.FourColorForms<>0,LTRIM(I.FourColorForms)+'f-4Col','')),LTRIM(IIF(C2.Forms1<>0,LTRIM(C2.Forms1)+'f-1Col','')+' '+IIF(C2.Forms2<>0,LTRIM(C2.Forms2)+'f-2Col','')+' '+IIF(C2.Forms4<>0,LTRIM(C2.Forms4)+'f-4Col','')))+')')" 'Billing Against Sale Order
     FS03 = "'MF-Text Plates: '+LTRIM((C2.[TotalPlates1-¼]+C2.[TotalPlates1-½]+C2.[TotalPlates1-1]+C2.[RevisedPlates1])*1)+ '-plates- 1Col, '+LTRIM((C2.[TotalPlates2-¼]+C2.[TotalPlates2-½]+C2.[TotalPlates2-1]+C2.[RevisedPlates2])*2)+ '-plates- 2Col, '+LTRIM((C2.[TotalPlates4-¼]+C2.[TotalPlates4-½]+C2.[TotalPlates4-1]+C2.[RevisedPlates4])*4)+ '-plates- 4Col  = ' +LTRIM(((C2.[TotalPlates1-¼]+C2.[TotalPlates1-½]+C2.[TotalPlates1-1]+C2.[RevisedPlates1])*1)+((C2.[TotalPlates2-¼]+C2.[TotalPlates2-½]+C2.[TotalPlates2-1]+C2.[RevisedPlates2])*2)+((C2.[TotalPlates4-¼]+C2.[TotalPlates4-½]+C2.[TotalPlates4-1]+C2.[RevisedPlates4])*4))+'  Nos.'"
     FS04 = "'MF-Text Ptg.  : '+LTRIM(Forms1)+ 'forms- 1Col, '+LTRIM(Forms2)+ 'forms- 2Col, '+LTRIM(Forms4)+ 'forms- 4Col  = ' +LTRIM(Forms1+Forms2+forms4)+'  Nos.'"
@@ -3858,6 +4020,16 @@ Public Sub PrintJobworkBillVch(ByVal VchCode As String, ByVal VchType As String,
     FS15 = "'Paper-(ME) : '+LTRIM(PM5.Name)"
     FS16 = "'Paper-(CF) : '+LTRIM(PM6.Name)"
     FS17 = "'Paper : '+' Total Paper Value '"
+    If Mid(VchType, 3, 2) <> "10" Then
+    ChallanTbl = ChallanTbl + "' Delivered Quantity: '+(Select Convert(nvarchar,Convert(float,Sum(STRC1.Quantity))) FROM JobworkBVParent STRP1 INNER JOIN JobworkBVChild STRC1 On STRC1.code=STRP1.Code WHERE STRC1.Ref = C1.Ref AND Ref <>''AND (RefCode='XXXXXX' OR RefCode='') AND STRP1.Type IN ('0110PU','0110PC','0110PJ','0310PU','0310PC','0310PJ','0510FR','0710FR','0210OU','0210OC','0210OJ','0410TU','0410TC','0410TJ','0610FI','0810FI') AND Ref IN (SELECT Code FROM BookPOParent) AND Ref <>''AND (RefCode='XXXXXX' OR RefCode='')) AS DeliveredQty,"
+    ChallanTbl = ChallanTbl + "'Against Challan Details: '+(Select VchDetails From (SELECT DISTINCT STRC.Ref As TRef,(Select  Ltrim(Name) From BookPOParent Where Code=STRC.Ref) PO,RIGHT((Select TYPE From BookPOParent Where Code=Ref),1)+'O/'+LTRIM((Select Name From BookPOParent Where Code=Ref))+'/JW/'+IIF(FORMAT((Select Date From BookPOParent Where Code=Ref),'MM')<4,Convert(Nvarchar,(Convert(int,FORMAT((Select Date From BookPOParent Where Code=Ref),'yy'))-1)) +'-'+Convert(Nvarchar,FORMAT((Select Date From BookPOParent Where Code=Ref),'yy')),Convert(Nvarchar,FORMAT((Select Date From BookPOParent Where Code=Ref),'yy')) +'-'+ Convert(Nvarchar,Convert(int,FORMAT((Select Date From BookPOParent Where Code=Ref),'yy'))+1)) As VchBillNo,"
+    ChallanTbl = ChallanTbl + "SUBSTRING((SELECT ',  '+STRP1.Name AS [text()]  FROM dbo.JobworkBVParent STRP1 INNER JOIN JobworkBVChild STRC1 On STRC1.code=STRP1.Code "
+    ChallanTbl = ChallanTbl + "WHERE STRC1.Ref = STRC.Ref AND Ref <>''AND (RefCode='XXXXXX' OR RefCode='') AND STRP1.Type IN ('0110PU','0110PC','0110PJ','0310PU','0310PC','0310PJ','0510FR','0710FR','0210OU','0210OC','0210OJ','0410TU','0410TC','0410TJ','0610FI','0810FI') AND Ref IN (SELECT Code FROM BookPOParent) AND Ref <>''AND (RefCode='XXXXXX' OR RefCode='') "
+    ChallanTbl = ChallanTbl + "ORDER BY STRC1.Ref,STRC1.Code "
+    ChallanTbl = ChallanTbl + "FOR XML PATH (''), TYPE).value('text()[1]','nvarchar(max)'), 2, 1000) VchDetails "
+    ChallanTbl = ChallanTbl + "FROM dbo.JobworkBVParent STRP INNER JOIN JobworkBVChild STRC On STRC.Code=STRP.Code WHERE Ref <>''AND (RefCode='XXXXXX' OR RefCode='') AND STRP.Type IN ('0110PU','0110PC','0110PJ','0310PU','0310PC','0310PJ','0510FR','0710FR','0210OU','0210OC','0210OJ','0410TU','0410TC','0410TJ','0610FI','0810FI') "
+    ChallanTbl = ChallanTbl + "AND Ref IN (SELECT Code FROM BookPOParent)) As Challan Where  TRef=C1.Ref) As VchDetails,"
+    End If
     On Error Resume Next
     Screen.MousePointer = vbHourglass
     If rstJobworkBVChild.State = adStateOpen Then rstJobworkBVChild.Close
@@ -3872,9 +4044,11 @@ Public Sub PrintJobworkBillVch(ByVal VchCode As String, ByVal VchType As String,
     cnJobworkBill.CommandTimeout = 300
     If InStr(1, "SC_PC_QC_ZC", Right(VchType, 2)) > 0 Then
                                                                 SQL = SQL + "'' As cmbTitle," & FS01 & " As FinishSize,LongNarration01,LongNarration02,LongNarration03,LongNarration04,LongNarration05,"
-                                                                SQL = SQL + "ISNULL('Paper Consumption : '+(Convert(nvarchar,Round(Format((ISNULL((Select PaperConsumptionsheets1 From BookPOChild05 Where Code=P2.Code),0)+ISNULL((Select PaperConsumptionsheets2 From BookPOChild05 Where Code=P2.Code),0)+ISNULL((Select PaperConsumptionsheets4 From BookPOChild05 Where Code=P2.Code),0)+ISNULL((Select PaperConsumptionsheets From BookPOChild06 Where Code=P2.Code),0)+ISNULL((Select PaperConsumptionsheets From BookPOChild09 Where Code=P2.Code),0))/P2.EstQty01*C1.Quantity,'00.00'),.5))+' Sheets'),'') As PaperConsumptionsheets,"
-                                                                SQL = SQL + "IIF(C1.Ref IS NULL,'','Ref. No. :')+(CASE WHEN C1.Ref IS NULL THEN '' ELSE LTRIM(P2.Name)+'/'+RIGHT(P2.Type,1)+'O/'+RIGHT(C1.BOM,2) END) As RefOrderNo,"
-                                                                SQL = SQL + "IIF(Len(I.ISBN)=0,'','ISBN - '+I.ISBN) As ISBN,'' AS FS04,'' AS FS05,'' AS FS06,'' AS FS07,Left((Select V.Prefix From VchSeriesMaster V Where Code=VchSeries),2)+'/'+'" & Right(VchType, 2) & "'+'/'+Ltrim(AutoVchNo) As VchNo,P.ChallanNo,P.ChallanDate,P.Transport,P.GRNo,P.GRDate,P.VehicleNo,P.Station,eWayBill,eWayBillDate "
+                                                                SQL = SQL + "IIF((ISNULL((Select PaperConsumptionsheets1 From BookPOChild05 Where Code=P2.Code),0)+ISNULL((Select PaperConsumptionsheets2 From BookPOChild05 Where Code=P2.Code),0)+ISNULL((Select PaperConsumptionsheets4 From BookPOChild05 Where Code=P2.Code),0)+ISNULL((Select Sum(PaperConsumptionsheets) From BookPOChild06 Where Code=P2.Code),0)+ISNULL((Select PaperConsumptionsheets From BookPOChild09 Where Code=P2.Code),0))=0,'',"
+                                                                SQL = SQL + "ISNULL('Paper Consumption : '+(Convert(nvarchar,Round(Format((ISNULL((Select PaperConsumptionsheets1 From BookPOChild05 Where Code=P2.Code),0)+ISNULL((Select PaperConsumptionsheets2 From BookPOChild05 Where Code=P2.Code),0)+ISNULL((Select PaperConsumptionsheets4 From BookPOChild05 Where Code=P2.Code),0)+ISNULL((Select Sum(PaperConsumptionsheets) From BookPOChild06 Where Code=P2.Code),0)+ISNULL((Select PaperConsumptionsheets From BookPOChild09 Where Code=P2.Code),0))/P2.EstQty01*C1.Quantity,'00.00'),.5))+' Sheets'),'')) As PaperConsumptionsheets,"
+                                                                SQL = SQL + "IIF(C1.Ref IS NULL,'','Ref. No. :')+(CASE WHEN C1.Ref IS NULL THEN '' ELSE LTRIM(P2.Name)+'/'+IIF(P2.Type='OP','CRN/',RIGHT(P2.Type,1)+'O/')+RIGHT(C1.BOM,2) END) As RefOrderNo,"
+                                                                SQL = SQL + "IIF(Len(I.ISBN)=0,'','ISBN - '+I.ISBN) As ISBN,"
+                                                                SQL = SQL + ChallanTbl + "'' AS FS05,'' AS FS06,'' AS FS07,Left((Select V.Prefix From VchSeriesMaster V Where Code=VchSeries),2)+'/'+'" & Right(VchType, 2) & "'+'/'+Ltrim(AutoVchNo) As VchNo,P.ChallanNo,P.ChallanDate,P.Transport,P.GRNo,P.GRDate,P.VehicleNo,P.Station,eWayBill,eWayBillDate "
                                                                 SQL = SQL + "FROM((((((((((((((((JobworkBVParent P INNER JOIN JobworkBVChild C1 ON P.Code=C1.Code) LEFT JOIN BookMaster I ON C1.Item=I.Code) LEFT JOIN GeneralMaster N ON C1.Narration=N.Code) LEFT JOIN GeneralMaster H ON C1.HSNCode=H.Code) LEFT JOIN (BookPOParent P2 LEFT JOIN BookPOChild05 C2 ON P2.Code=C2.Code) ON C1.Ref=P2.Code) LEFT JOIN BookPOChild06 C3 ON P2.Code=C3.Code) LEFT JOIN BookPOChild08 C4 ON P2.Code=C4.Code) LEFT JOIN BookPOChild09 C5 ON P2.Code=C5.Code) LEFT JOIN GeneralMaster B ON C4.BindingType=B.Code) LEFT JOIN PaperMaster PM1 ON C2.Paper1=PM1.Code) LEFT JOIN PaperMaster PM2 ON C2.Paper1=PM2.Code) LEFT JOIN PaperMaster PM4 ON C2.Paper1=PM4.Code) LEFT JOIN PaperMaster PM5 ON C3.Paper=PM5.Code) LEFT JOIN PaperMaster PM6 ON C5.Paper=PM6.Code) LEFT JOIN GeneralMaster S ON I.FinishSize=S.Code) LEFT JOIN AccountMaster A ON P.Party=A.Code) LEFT JOIN AccountMaster C ON P.Consignee=C.Code "
                                                                 SQL = SQL + "WHERE P.Code='" + VchCode + "' ORDER BY Item,Ref " ', cnJobworkBill, adOpenKeyset, adLockReadOnly
     ElseIf InStr(1, "SX_PX_QX_ZX", Right(VchType, 2)) > 0 Then
@@ -3886,10 +4060,15 @@ Public Sub PrintJobworkBillVch(ByVal VchCode As String, ByVal VchType As String,
                                                                 "WHERE P.Code='" + VchCode + "' AND BOM='BD' ORDER BY Item,SrNo,cmbTitle", cnJobworkBill, adOpenKeyset, adLockOptimistic
     ElseIf InStr(1, "SU_PU_QU_ZU", Right(VchType, 2)) > 0 Then
                                                             SQL = SQL + "'' As cmbTitle," & FS01 & " As FinishSize,LongNarration01,LongNarration02,LongNarration03,LongNarration04,LongNarration05,"
-                                                            SQL = SQL + "IIF((ISNULL((Select PaperConsumptionsheets1 From BookPOChild05 Where Code=P2.Code),0)+ISNULL((Select PaperConsumptionsheets2 From BookPOChild05 Where Code=P2.Code),0)+ISNULL((Select PaperConsumptionsheets4 From BookPOChild05 Where Code=P2.Code),0)+ISNULL((Select PaperConsumptionsheets From BookPOChild06 Where Code=P2.Code),0)+ISNULL((Select PaperConsumptionsheets From BookPOChild09 Where Code=P2.Code),0))=0,'',"
-                                                            SQL = SQL + "ISNULL('Paper Consumption : '+(Convert(nvarchar,Round(Format((ISNULL((Select PaperConsumptionsheets1 From BookPOChild05 Where Code=P2.Code),0)+ISNULL((Select PaperConsumptionsheets2 From BookPOChild05 Where Code=P2.Code),0)+ISNULL((Select PaperConsumptionsheets4 From BookPOChild05 Where Code=P2.Code),0)+ISNULL((Select PaperConsumptionsheets From BookPOChild06 Where Code=P2.Code),0)+ISNULL((Select PaperConsumptionsheets From BookPOChild09 Where Code=P2.Code),0))/P2.EstQty01*C1.Quantity,'00.00'),.5))+' Sheets'),'')) As PaperConsumptionsheets,"
-                                                            SQL = SQL + "IIF(C1.Ref IS NULL,'','Ref. No. :')+(CASE WHEN Ref IS NULL THEN '' ELSE LTRIM(P2.Name)+'/'+RIGHT(P2.Type,1)+'O/'+RIGHT(C1.BOM,2) END) As RefOrderNo,"
-                                                            SQL = SQL + "IIF(Len(I.ISBN)=0,'','ISBN - '+I.ISBN) As ISBN,'' AS FS04,'' AS FS05,'' AS FS06,'' AS FS07,Left((Select V.Prefix From VchSeriesMaster V Where Code=VchSeries),2)+'/'+'" & Right(VchType, 2) & "'+'/'+Ltrim(AutoVchNo) As VchNo,P.ChallanNo,P.ChallanDate,P.Transport,P.GRNo,P.GRDate,P.VehicleNo,P.Station,eWayBill,eWayBillDate "
+                                                If MsgBox("Print Paper Details ?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Quit !") = vbYes Then
+                                                            SQL = SQL + "IIF((ISNULL((Select PaperConsumptionsheets1 From BookPOChild05 Where Code=P2.Code),0)+ISNULL((Select PaperConsumptionsheets2 From BookPOChild05 Where Code=P2.Code),0)+ISNULL((Select PaperConsumptionsheets4 From BookPOChild05 Where Code=P2.Code),0)+ISNULL((Select Sum(PaperConsumptionsheets) From BookPOChild06 Where Code=P2.Code),0)+ISNULL((Select PaperConsumptionsheets From BookPOChild09 Where Code=P2.Code),0))=0,'',"
+                                                            SQL = SQL + "ISNULL('Paper Consumption : '+(Convert(nvarchar,Round(Format((ISNULL((Select PaperConsumptionsheets1 From BookPOChild05 Where Code=P2.Code),0)+ISNULL((Select PaperConsumptionsheets2 From BookPOChild05 Where Code=P2.Code),0)+ISNULL((Select PaperConsumptionsheets4 From BookPOChild05 Where Code=P2.Code),0)+ISNULL((Select SUM(PaperConsumptionsheets) From BookPOChild06 Where Code=P2.Code),0)+ISNULL((Select PaperConsumptionsheets From BookPOChild09 Where Code=P2.Code),0))/P2.EstQty01*C1.Quantity,'00.00'),.5))+' Sheets'),'')) As PaperConsumptionsheets,"
+                                                Else
+                                                            SQL = SQL + "'' As PaperConsumptionsheets,"
+                                                End If
+                                                            SQL = SQL + "IIF(C1.Ref IS NULL,'','Ref. No. :')+(CASE WHEN Ref IS NULL THEN '' ELSE LTRIM(P2.Name)+'/'+IIF(P2.Type='OP','CRN/',RIGHT(P2.Type,1)+'O/')+RIGHT(C1.BOM,2) END) As RefOrderNo,"
+                                                            SQL = SQL + "IIF(Len(I.ISBN)=0,'','ISBN - '+I.ISBN) As ISBN,"
+                                                            SQL = SQL + ChallanTbl + "'' AS FS05,'' AS FS06,'' AS FS07,Left((Select V.Prefix From VchSeriesMaster V Where Code=VchSeries),2)+'/'+'" & Right(VchType, 2) & "'+'/'+Ltrim(AutoVchNo) As VchNo,P.ChallanNo,P.ChallanDate,P.Transport,P.GRNo,P.GRDate,P.VehicleNo,P.Station,eWayBill,eWayBillDate "
                                                             SQL = SQL + "FROM (((((((JobworkBVParent P INNER JOIN JobworkBVChild C1 ON P.Code=C1.Code) INNER JOIN BookMaster I ON C1.Item=I.Code) INNER JOIN GeneralMaster N ON C1.Narration=N.Code) INNER JOIN GeneralMaster H ON C1.HSNCode=H.Code) INNER JOIN GeneralMaster S ON I.FinishSize=S.Code) INNER JOIN AccountMaster A ON P.Party=A.Code) INNER JOIN AccountMaster C ON P.Consignee=C.Code) LEFT JOIN BookPOParent P2 ON C1.Ref=P2.Code WHERE P.Code='" + VchCode + "'  ORDER BY Item,Ref "    ', cnJobworkBill, adOpenKeyset, adLockOptimistic 'AND BOM='WS'
     ElseIf InStr(1, "SJ_PJ_QJ_ZJ", Right(VchType, 2)) > 0 Then
                                                             'MF
@@ -3901,7 +4080,7 @@ Public Sub PrintJobworkBillVch(ByVal VchCode As String, ByVal VchType As String,
                                                             SQL = SQL + "'Forms: '+IIF(Forms1=0,'',LTRIM(Forms1))+ ' forms, 1Col, '+IIF(Forms2=0,'',LTRIM(Forms2))+ ' forms, 2Col, '+IIF(Forms4=0,'',LTRIM(Forms4))+ ' forms, 4Col  = ' +LTRIM(Forms1+Forms2+forms4)+' forms.'  As ptgSets, "
                                                             SQL = SQL + "IIF((ISNULL((Select PaperConsumptionsheets1 From BookPOChild05 Where Code=P2.Code),0)+ISNULL((Select PaperConsumptionsheets2 From BookPOChild05 Where Code=P2.Code),0)+ISNULL((Select PaperConsumptionsheets4 From BookPOChild05 Where Code=P2.Code),0))=0,'',"
                                                             SQL = SQL + "ISNULL('Paper Consumption : '+(Convert(nvarchar,Round(Format((ISNULL((Select PaperConsumptionsheets1 From BookPOChild05 Where Code=P2.Code),0)+ISNULL((Select PaperConsumptionsheets2 From BookPOChild05 Where Code=P2.Code),0)+ISNULL((Select PaperConsumptionsheets4 From BookPOChild05 Where Code=P2.Code),0))/P2.EstQty01*C1.Quantity,'00.00'),.5))+' Sheets'),'')) As PaperConsumptionsheets,"
-                                                            SQL = SQL + "IIF(C1.Ref IS NULL,'','Ref. No. :')+(CASE WHEN C1.Ref IS NULL THEN '' ELSE LTRIM(P2.Name)+'/'+RIGHT(P2.Type,1)+'O/'+RIGHT(C1.BOM,2) END) As RefOrderNo,"
+                                                            SQL = SQL + "IIF(C1.Ref IS NULL,'','Ref. No. :')+(CASE WHEN C1.Ref IS NULL THEN '' ELSE LTRIM(P2.Name)+'/'+IIF(P2.Type='OP','CRN/',RIGHT(P2.Type,1)+'O/')+RIGHT(C1.BOM,2) END) As RefOrderNo,"
                                                             SQL = SQL + "IIF(Len(I.ISBN)=0,'','ISBN - '+I.ISBN) As ISBN,'' AS FS04,'' AS FS05,'' AS FS06,'' AS FS07,Left((Select V.Prefix From VchSeriesMaster V Where Code=VchSeries),2)+'/'+'" & Right(VchType, 2) & "'+'/'+Ltrim(AutoVchNo) As VchNo,P.ChallanNo,P.ChallanDate,P.Transport,P.GRNo,P.GRDate,P.VehicleNo,P.Station,eWayBill,eWayBillDate "
                                                             SQL = SQL + "FROM((((((((JobworkBVParent P INNER JOIN JobworkBVChild C1 ON P.Code=C1.Code) LEFT JOIN BookMaster I ON C1.Item=I.Code) LEFT JOIN GeneralMaster N ON C1.Narration=N.Code) LEFT JOIN GeneralMaster H ON C1.HSNCode=H.Code) Left JOIN GeneralMaster S ON I.FinishSize=S.Code)LEFT JOIN BookPOParent P2 ON C1.Ref=P2.Code)LEFT JOIN BookPOChild05 C2 ON C2.Code=P2.Code)LEFT JOIN AccountMaster A ON P.Party=A.Code) LEFT JOIN AccountMaster C ON P.Consignee=C.Code "
                                                             SQL = SQL + "WHERE Right(C1.BOM,2)='MF' AND P.Code='" + VchCode + "'"
@@ -3912,7 +4091,7 @@ Public Sub PrintJobworkBillVch(ByVal VchCode As String, ByVal VchType As String,
                                                             SQL = SQL + "'Sets: '+Convert(nvarchar,Sets)+' - Nos ( '+LTRIM(C3.FrontPrintingType)+' + '+LTRIM(C3.BackPrintingType)+' ) - Color Printing' As ptgSets,"
                                                             SQL = SQL + "IIF((ISNULL((Select PaperConsumptionsheets From BookPOChild06 Where Code=P2.Code AND Code=SubString(BOM,5,6) And Right(C1.BOM,2)='ME'),0))=0,'',"
                                                             SQL = SQL + "ISNULL('Paper Consumption : '+(Convert(nvarchar,Round(Format((ISNULL((Select PaperConsumptionsheets From BookPOChild06 Where Code=P2.Code AND Code=SubString(BOM,5,6) And Right(C1.BOM,2)='ME'),0))/P2.EstQty01*C1.Quantity,'00.00'),.5))+' Sheets'),'')) As PaperConsumptionsheets,"
-                                                            SQL = SQL + "IIF(C1.Ref IS NULL,'','Ref. No. :')+(CASE WHEN C1.Ref IS NULL THEN '' ELSE LTRIM(P2.Name)+'/'+RIGHT(P2.Type,1)+'O/'+RIGHT(C1.BOM,2) END) As RefOrderNo,"
+                                                            SQL = SQL + "IIF(C1.Ref IS NULL,'','Ref. No. :')+(CASE WHEN C1.Ref IS NULL THEN '' ELSE LTRIM(P2.Name)+'/'+IIF(P2.Type='OP','CRN/',RIGHT(P2.Type,1)+'O/')+RIGHT(C1.BOM,2) END) As RefOrderNo,"
                                                             SQL = SQL + "IIF(Len(I.ISBN)=0,'','ISBN - '+I.ISBN) As ISBN,'' AS FS04,'' AS FS05,'' AS FS06,'' AS FS07,Left((Select V.Prefix From VchSeriesMaster V Where Code=VchSeries),2)+'/'+'" & Right(VchType, 2) & "'+'/'+Ltrim(AutoVchNo) As VchNo,P.ChallanNo,P.ChallanDate,P.Transport,P.GRNo,P.GRDate,P.VehicleNo,P.Station,eWayBill,eWayBillDate "
                                                             SQL = SQL + "FROM(((((((((JobworkBVParent P LEFT JOIN JobworkBVChild C1 ON P.Code=C1.Code) LEFT JOIN BookMaster I ON C1.Item=I.Code) LEFT JOIN GeneralMaster N ON C1.Narration=N.Code) LEFT JOIN GeneralMaster H ON C1.HSNCode=H.Code) Left JOIN GeneralMaster S ON I.FinishSize=S.Code)LEFT JOIN BookPOParent P2 ON C1.Ref=P2.Code)LEFT JOIN BookPOChild06 C3 ON C3.Code=P2.Code) Left JOIN ElementMaster E ON E.Code=C3.Element And Right(C1.BOM,2)='ME')LEFT JOIN AccountMaster A ON P.Party=A.Code) LEFT JOIN AccountMaster C ON P.Consignee=C.Code "
                                                             SQL = SQL + "WHERE Right(C1.BOM,2)='ME' AND P.Code='" + VchCode + "'"
@@ -3923,7 +4102,7 @@ Public Sub PrintJobworkBillVch(ByVal VchCode As String, ByVal VchType As String,
                                                             SQL = SQL + "'Sets: '+IIF(Calculation='S','1',Convert(nvarchar,(Select Count(Code) From BookPOChild0901 Where Code=C5.code)))+' - Nos ( '+LTRIM(C5.FrontPrintingColor)+' + '+LTRIM(C5.BackPrintingColor)+' ) - Color Printing' As ptgSets,"
                                                             SQL = SQL + "IIF((ISNULL((Select PaperConsumptionsheets From BookPOChild09 Where Code=P2.Code),0))=0,'',"
                                                             SQL = SQL + "ISNULL('Paper Consumption : '+(Convert(nvarchar,Round(Format((ISNULL((Select PaperConsumptionsheets From BookPOChild09 Where Code=P2.Code),0))/P2.EstQty01*C1.Quantity,'00.00'),.5))+' Sheets'),'')) As PaperConsumptionsheets,"
-                                                            SQL = SQL + "IIF(C1.Ref IS NULL,'','Ref. No. :')+(CASE WHEN C1.Ref IS NULL THEN '' ELSE LTRIM(P2.Name)+'/'+RIGHT(P2.Type,1)+'O/'+RIGHT(C1.BOM,2) END) As RefOrderNo,"
+                                                            SQL = SQL + "IIF(C1.Ref IS NULL,'','Ref. No. :')+(CASE WHEN C1.Ref IS NULL THEN '' ELSE LTRIM(P2.Name)+'/'+IIF(P2.Type='OP','CRN/',RIGHT(P2.Type,1)+'O/')+RIGHT(C1.BOM,2) END) As RefOrderNo,"
                                                             SQL = SQL + "IIF(Len(I.ISBN)=0,'','ISBN - '+I.ISBN) As ISBN,'' AS FS04,'' AS FS05,'' AS FS06,'' AS FS07,Left((Select V.Prefix From VchSeriesMaster V Where Code=VchSeries),2)+'/'+'" & Right(VchType, 2) & "'+'/'+Ltrim(AutoVchNo) As VchNo,P.ChallanNo,P.ChallanDate,P.Transport,P.GRNo,P.GRDate,P.VehicleNo,P.Station,eWayBill,eWayBillDate "
                                                             SQL = SQL + "FROM((((((((JobworkBVParent P LEFT JOIN JobworkBVChild C1 ON P.Code=C1.Code) LEFT JOIN BookMaster I ON C1.Item=I.Code) LEFT JOIN GeneralMaster N ON C1.Narration=N.Code) LEFT JOIN GeneralMaster H ON C1.HSNCode=H.Code) Left JOIN GeneralMaster S ON I.FinishSize=S.Code)LEFT JOIN BookPOParent P2 ON C1.Ref=P2.Code)LEFT JOIN BookPOChild09 C5 ON C5.Code=P2.Code)LEFT JOIN AccountMaster A ON P.Party=A.Code) LEFT JOIN AccountMaster C ON P.Consignee=C.Code "
                                                             SQL = SQL + "WHERE Right(C1.BOM,2)='CF' AND P.Code='" + VchCode + "'"
@@ -3931,7 +4110,7 @@ Public Sub PrintJobworkBillVch(ByVal VchCode As String, ByVal VchType As String,
                                                             'MO
                                                             SQL = SQL + oSQL + "'' As cmbTitle," & FS01 & " As FinishSize,LongNarration01,LongNarration02,LongNarration03,LongNarration04,LongNarration05,"
                                                             SQL = SQL + "(Select Name From ElementMaster Where Code=SubString(BOM,5,6) And Right(C1.BOM,2)='MO')+' : '+(Select Name From GeneralMaster Where Code=SubString(BOM,11,6) And Right(C1.BOM,2)='MO') AS Plates,Convert(nvarchar,Format(Number,'0'))+' : '+OperationCountName As ptgSets,'' As PaperConsumptionsheets,"
-                                                            SQL = SQL + "IIF(C1.Ref IS NULL,'','Ref. No. :')+(CASE WHEN C1.Ref IS NULL THEN '' ELSE LTRIM(P2.Name)+'/'+RIGHT(P2.Type,1)+'O/'+RIGHT(C1.BOM,2) END) As RefOrderNo,"
+                                                            SQL = SQL + "IIF(C1.Ref IS NULL,'','Ref. No. :')+(CASE WHEN C1.Ref IS NULL THEN '' ELSE LTRIM(P2.Name)+'/'+IIF(P2.Type='OP','CRN/',RIGHT(P2.Type,1)+'O/')+RIGHT(C1.BOM,2) END) As RefOrderNo,"
                                                             SQL = SQL + "IIF(Len(I.ISBN)=0,'','ISBN - '+I.ISBN) As ISBN,'' AS FS04,'' AS FS05,'' AS FS06,'' AS FS07,Left((Select V.Prefix From VchSeriesMaster V Where Code=VchSeries),2)+'/'+'" & Right(VchType, 2) & "'+'/'+Ltrim(AutoVchNo) As VchNo,P.ChallanNo,P.ChallanDate,P.Transport,P.GRNo,P.GRDate,P.VehicleNo,P.Station,eWayBill,eWayBillDate "
                                                             SQL = SQL + "FROM((((((((JobworkBVParent P LEFT JOIN JobworkBVChild C1 ON P.Code=C1.Code) LEFT JOIN BookMaster I ON C1.Item=I.Code) LEFT JOIN GeneralMaster N ON C1.Narration=N.Code) LEFT JOIN GeneralMaster H ON C1.HSNCode=H.Code) Left JOIN GeneralMaster S ON I.FinishSize=S.Code)LEFT JOIN BookPOParent P2 ON C1.Ref=P2.Code)LEFT JOIN BookPOChild07 C6 ON C6.Code=P2.Code)LEFT JOIN AccountMaster A ON P.Party=A.Code) LEFT JOIN AccountMaster C ON P.Consignee=C.Code "
                                                             SQL = SQL + "WHERE Right(C1.BOM,2)='MO' AND P.Code='" + VchCode + "'"
@@ -3947,7 +4126,7 @@ Public Sub PrintJobworkBillVch(ByVal VchCode As String, ByVal VchType As String,
                                                             SQL = SQL + "+ IIF(C4.BoxPackRate=0,'','( Box Packing: '+Convert(nvarchar,(C4.TotalBoxes))+' X '+Convert(nvarchar,C4.BoxPackRate)+'@ = Rs.'+Convert(nvarchar,Format(C4.TotalBoxes*C4.BoxPackRate,'#####00'))+' ) + ')"
                                                             SQL = SQL + "+ IIF(C4.CartageRate=0,'','( Cartage: '+Convert(nvarchar,(C4.TotalBoxes))+' X '+Convert(nvarchar,C4.CartageRate)+'@ = Rs.'+Convert(nvarchar,Format(C4.TotalBoxes*C4.CartageRate,'#####00'))+' )') "
                                                             SQL = SQL + " As ptgSets,'' As PaperConsumptionsheets,"
-                                                            SQL = SQL + "IIF(C1.Ref IS NULL,'','Ref. No. :')+(CASE WHEN C1.Ref IS NULL THEN '' ELSE LTRIM(P2.Name)+'/'+RIGHT(P2.Type,1)+'O/'+RIGHT(C1.BOM,2) END) As RefOrderNo,"
+                                                            SQL = SQL + "IIF(C1.Ref IS NULL,'','Ref. No. :')+(CASE WHEN C1.Ref IS NULL THEN '' ELSE LTRIM(P2.Name)+'/'+IIF(P2.Type='OP','CRN/',RIGHT(P2.Type,1)+'O/')+RIGHT(C1.BOM,2) END) As RefOrderNo,"
                                                             SQL = SQL + "IIF(Len(I.ISBN)=0,'','ISBN - '+I.ISBN) As ISBN,'' AS FS04,'' AS FS05,'' AS FS06,'' AS FS07,Left((Select V.Prefix From VchSeriesMaster V Where Code=VchSeries),2)+'/'+'" & Right(VchType, 2) & "'+'/'+Ltrim(AutoVchNo) As VchNo,P.ChallanNo,P.ChallanDate,P.Transport,P.GRNo,P.GRDate,P.VehicleNo,P.Station,eWayBill,eWayBillDate "
                                                             SQL = SQL + "FROM((((((((JobworkBVParent P LEFT JOIN JobworkBVChild C1 ON P.Code=C1.Code) LEFT JOIN BookMaster I ON C1.Item=I.Code) LEFT JOIN GeneralMaster N ON C1.Narration=N.Code) LEFT JOIN GeneralMaster H ON C1.HSNCode=H.Code) Left JOIN GeneralMaster S ON I.FinishSize=S.Code)LEFT JOIN BookPOParent P2 ON C1.Ref=P2.Code)LEFT JOIN BookPOChild08 C4 ON C4.Code=P2.Code)LEFT JOIN AccountMaster A ON P.Party=A.Code) LEFT JOIN AccountMaster C ON P.Consignee=C.Code "
                                                             SQL = SQL + "WHERE Right(C1.BOM,2)='BN' AND P.Code='" + VchCode + "'"
@@ -3956,7 +4135,7 @@ Public Sub PrintJobworkBillVch(ByVal VchCode As String, ByVal VchType As String,
                                                             SQL = SQL + oSQL + "'' As cmbTitle," & FS01 & " As FinishSize,LongNarration01,LongNarration02,LongNarration03,LongNarration04,LongNarration05,"
                                                             SQL = SQL + "IIF(C7.Category='1','OutSource: '+(SELECT Name FROM OutsourceItemMaster WHERE Code=C7.Item),IIF(C7.Category='2','Paper: '+(SELECT P.Name+' (UOM : '+LTRIM(U.Name)+')' As Name FROM PaperMaster P INNER JOIN GeneralMaster U ON P.UOM=U.Code WHERE P.Code=C7.Item),'BOM: '+(SELECT Name FROM BookMaster WHERE Code=C7.Item)))+' ( '+Convert(nvarchar,C7.OrderQuantity)+' Qty. X '+Convert(nvarchar,C7.[Consumption/Item])+' Nos. = '+Convert(nvarchar,C7.TotalConsumption)+' Nos.) ' AS Plates,"
                                                             SQL = SQL + "'Amount:= ( '+Convert(nvarchar,C7.TotalConsumption)+' Qty. X '+Convert(nvarchar,C7.[Rate])+' @. = Rs. '+Convert(nvarchar,C7.Amount)+' ) ' As ptgSets,'' As PaperConsumptionsheets,"
-                                                            SQL = SQL + "IIF(C1.Ref IS NULL,'','Ref. No. :')+(CASE WHEN C1.Ref IS NULL THEN '' ELSE LTRIM(P2.Name)+'/'+RIGHT(P2.Type,1)+'O/'+RIGHT(C1.BOM,2) END) As RefOrderNo,"
+                                                            SQL = SQL + "IIF(C1.Ref IS NULL,'','Ref. No. :')+(CASE WHEN C1.Ref IS NULL THEN '' ELSE LTRIM(P2.Name)+'/'+IIF(P2.Type='OP','CRN/',RIGHT(P2.Type,1)+'O/')+RIGHT(C1.BOM,2) END) As RefOrderNo,"
                                                             SQL = SQL + "IIF(Len(I.ISBN)=0,'','ISBN - '+I.ISBN) As ISBN,'' AS FS04,'' AS FS05,'' AS FS06,'' AS FS07,Left((Select V.Prefix From VchSeriesMaster V Where Code=VchSeries),2)+'/'+'" & Right(VchType, 2) & "'+'/'+Ltrim(AutoVchNo) As VchNo,P.ChallanNo,P.ChallanDate,P.Transport,P.GRNo,P.GRDate,P.VehicleNo,P.Station,eWayBill,eWayBillDate "
                                                             SQL = SQL + "FROM((((((((JobworkBVParent P LEFT JOIN JobworkBVChild C1 ON P.Code=C1.Code) LEFT JOIN BookMaster I ON C1.Item=I.Code) LEFT JOIN GeneralMaster N ON C1.Narration=N.Code) LEFT JOIN GeneralMaster H ON C1.HSNCode=H.Code) Left JOIN GeneralMaster S ON I.FinishSize=S.Code)LEFT JOIN BookPOParent P2 ON C1.Ref=P2.Code)LEFT JOIN BookPOChild0801 C7 ON C7.Code=P2.Code)LEFT JOIN AccountMaster A ON P.Party=A.Code) LEFT JOIN AccountMaster C ON P.Consignee=C.Code "
                                                             SQL = SQL + "WHERE Right(C1.BOM,2)='BM' AND P.Code='" + VchCode + "'"
@@ -3966,6 +4145,10 @@ Public Sub PrintJobworkBillVch(ByVal VchCode As String, ByVal VchType As String,
     If MsgBox("Print Item Detail?", vbYesNo + vbQuestion + vbDefaultButton1, "Confirm Quit !") = vbNo Then rptJobworkBill.Section25.Suppress = True
     rstJobworkBVChild.ActiveConnection = Nothing
         With rptJobworkBill
+                .Field17.DecimalPlaces = 3
+                .Field25.DecimalPlaces = 0
+                .Text35.Font.Size = 8
+                .Field25.ThousandsSeparators = True
             If FYFromToFlag = "True" Then
                 .Field58.Suppress = True
                 .Text45.Suppress = False
@@ -4007,16 +4190,87 @@ Public Sub PrintJobworkBillVch(ByVal VchCode As String, ByVal VchType As String,
         rptJobworkBill.Text4.SetText "E-Mail : " & Trim(rstCompanyMaster.Fields("eMail").Value)
     End If
     rptJobworkBill.Text8.SetText "GSTIN/UIN : " & Trim(rstCompanyMaster.Fields("GSTIN").Value)
-    
-    If Trim(rstJobworkBVChild.Fields("ChallanNo").Value) <> "" Then .Text37.SetText Trim(rstJobworkBVChild.Fields("ChallanNo").Value) + " Dt : " & Format(rstJobworkBVChild.Fields("ChallanDate").Value, "dd-MM-yy") Else .Text33.SetText ""
-    If Trim(rstJobworkBVChild.Fields("GRNo").Value) = "" And rstJobworkBVChild.Fields("VehicleNo").Value <> "" Then .Text38.SetText Trim(rstJobworkBVChild.Fields("VehicleNo").Value): .Text34.SetText "Vehicle NO.  :"
-    If Trim(rstJobworkBVChild.Fields("GRNo").Value) = "" And rstJobworkBVChild.Fields("VehicleNo").Value = "" Then .Text34.SetText ""
-    If Trim(rstJobworkBVChild.Fields("GRNo").Value) = "Null" Or rstJobworkBVChild.Fields("VehicleNo").Value = "Null" Then .Text34.SetText ""
-    If Trim(rstJobworkBVChild.Fields("GRNo").Value) <> "" Then .Text38.SetText Trim(rstJobworkBVChild.Fields("GRNo").Value) + " Dt : " & Format(rstJobworkBVChild.Fields("GRDate").Value, "dd-MM-yy")
-    If rstJobworkBVChild.Fields("Transport").Value Then .Text39.SetText Trim(rstJobworkBVChild.Fields("Transport").Value) Else .Text36.SetText ""
-    If Trim(rstJobworkBVChild.Fields("Station").Value) <> "" Then .Text41.SetText Trim(rstJobworkBVChild.Fields("Station").Value) Else .Text42.SetText ""
-    If Trim(rstJobworkBVChild.Fields("eWayBill").Value) <> "" Then .Text32.SetText Trim(rstJobworkBVChild.Fields("eWayBill").Value) + " Dt : " & Format(rstJobworkBVChild.Fields("eWayBillDate").Value, "dd-MM-yy") Else .Text43.SetText ""
-    
+'    If Trim(rstJobworkBVChild.Fields("ChallanNo").Value) <> "" Then .Text37.SetText Trim(rstJobworkBVChild.Fields("ChallanNo").Value) + " Dt : " & Format(rstJobworkBVChild.Fields("ChallanDate").Value, "dd-MM-yy") Else .Text33.SetText ""
+'    If Trim(rstJobworkBVChild.Fields("GRNo").Value) = "" And rstJobworkBVChild.Fields("VehicleNo").Value <> "" Then .Text38.SetText Trim(rstJobworkBVChild.Fields("VehicleNo").Value): .Text34.SetText "Vehicle NO.  :"
+'    If Trim(rstJobworkBVChild.Fields("GRNo").Value) = "" And rstJobworkBVChild.Fields("VehicleNo").Value = "" Then .Text34.SetText ""
+'    If Trim(rstJobworkBVChild.Fields("GRNo").Value) = "Null" Or rstJobworkBVChild.Fields("VehicleNo").Value = "Null" Then .Text34.SetText ""
+'    If Trim(rstJobworkBVChild.Fields("GRNo").Value) <> "" Then .Text38.SetText Trim(rstJobworkBVChild.Fields("GRNo").Value) + " Dt : " & Format(rstJobworkBVChild.Fields("GRDate").Value, "dd-MM-yy")
+'    If rstJobworkBVChild.Fields("Transport").Value Then .Text39.SetText Trim(rstJobworkBVChild.Fields("Transport").Value) Else .Text36.SetText ""
+'    If Trim(rstJobworkBVChild.Fields("Station").Value) <> "" Then .Text41.SetText Trim(rstJobworkBVChild.Fields("Station").Value) Else .Text42.SetText ""
+'    If Trim(rstJobworkBVChild.Fields("eWayBill").Value) <> "" Then .Text32.SetText Trim(rstJobworkBVChild.Fields("eWayBill").Value) + " Dt : " & Format(rstJobworkBVChild.Fields("eWayBillDate").Value, "dd-MM-yy") Else .Text43.SetText ""
+            .Text33.SetText "": .Text36.SetText "": .Text34.SetText "": .Text42.SetText "": .Text43.SetText ""
+'Challan No.
+        If .Text33.Text = "" Then
+            If Trim(rstJobworkBVChild.Fields("ChallanNo").Value) <> "" Then .Text33.SetText "Challan No.     :": .Text37.SetText Trim(rstJobworkBVChild.Fields("ChallanNo").Value) + " Dt : " & Format(rstJobworkBVChild.Fields("ChallanDate").Value, "dd-MM-yy") Else .Text33.SetText ""
+        ElseIf .Text36.Text = "" Then
+            If Trim(rstJobworkBVChild.Fields("ChallanNo").Value) <> "" Then .Text36.SetText "Challan No.     :": .Text39.SetText Trim(rstJobworkBVChild.Fields("ChallanNo").Value) + " Dt : " & Format(rstJobworkBVChild.Fields("ChallanDate").Value, "dd-MM-yy") Else .Text36.SetText ""
+        ElseIf .Text34.Text = "" Then
+            If Trim(rstJobworkBVChild.Fields("ChallanNo").Value) <> "" Then .Text34.SetText "Challan No.     :": .Text38.SetText Trim(rstJobworkBVChild.Fields("ChallanNo").Value) + " Dt : " & Format(rstJobworkBVChild.Fields("ChallanDate").Value, "dd-MM-yy") Else .Text34.SetText ""
+        ElseIf .Text42.Text = "" Then
+            If Trim(rstJobworkBVChild.Fields("ChallanNo").Value) <> "" Then .Text42.SetText "Challan No.     :": .Text41.SetText Trim(rstJobworkBVChild.Fields("ChallanNo").Value) + " Dt : " & Format(rstJobworkBVChild.Fields("ChallanDate").Value, "dd-MM-yy") Else .Text42.SetText ""
+        ElseIf .Text43.Text = "" Then
+            If Trim(rstJobworkBVChild.Fields("ChallanNo").Value) <> "" Then .Text43.SetText "Challan No.     :": .Text32.SetText Trim(rstJobworkBVChild.Fields("ChallanNo").Value) + " Dt : " & Format(rstJobworkBVChild.Fields("ChallanDate").Value, "dd-MM-yy") Else .Text43.SetText ""
+        End If
+'Transport
+        If .Text33.Text = "" Then
+            If Trim(rstJobworkBVChild.Fields("Transport").Value) <> "" Then .Text33.SetText "Transport        :": .Text37.SetText Trim(rstJobworkBVChild.Fields("Transport").Value) Else .Text33.SetText ""
+        ElseIf .Text36.Text = "" Then
+            If Trim(rstJobworkBVChild.Fields("Transport").Value) <> "" Then .Text36.SetText "Transport        :": .Text39.SetText Trim(rstJobworkBVChild.Fields("Transport").Value) Else .Text36.SetText ""
+        ElseIf .Text34.Text = "" Then
+            If Trim(rstJobworkBVChild.Fields("Transport").Value) <> "" Then .Text34.SetText "Transport        :": .Text38.SetText Trim(rstJobworkBVChild.Fields("Transport").Value) Else .Text34.SetText ""
+        ElseIf .Text42.Text = "" Then
+            If Trim(rstJobworkBVChild.Fields("Transport").Value) <> "" Then .Text42.SetText "Transport        :": .Text41.SetText Trim(rstJobworkBVChild.Fields("Transport").Value) Else .Text42.SetText ""
+        ElseIf .Text43.Text = "" Then
+            If Trim(rstJobworkBVChild.Fields("Transport").Value) <> "" Then .Text43.SetText "Transport        :": .Text32.SetText Trim(rstJobworkBVChild.Fields("Transport").Value) Else .Text43.SetText ""
+        End If
+'Gr/RR No.
+        If .Text33.Text = "" Then
+            If Trim(rstJobworkBVChild.Fields("GRNo").Value) <> "" Then .Text33.SetText "Gr/RR No.       :": .Text37.SetText Trim(rstJobworkBVChild.Fields("GRNo").Value) + " Dt : " & Format(rstJobworkBVChild.Fields("GRDate").Value, "dd-MM-yy") Else .Text33.SetText ""
+        ElseIf .Text36.Text = "" Then
+            If Trim(rstJobworkBVChild.Fields("GRNo").Value) <> "" Then .Text36.SetText "Gr/RR No.       :": .Text39.SetText Trim(rstJobworkBVChild.Fields("GRNo").Value) + " Dt : " & Format(rstJobworkBVChild.Fields("GRDate").Value, "dd-MM-yy") Else .Text36.SetText ""
+        ElseIf .Text34.Text = "" Then
+            If Trim(rstJobworkBVChild.Fields("GRNo").Value) <> "" Then .Text34.SetText "Gr/RR No.       :": .Text38.SetText Trim(rstJobworkBVChild.Fields("GRNo").Value) + " Dt : " & Format(rstJobworkBVChild.Fields("GRDate").Value, "dd-MM-yy") Else .Text34.SetText ""
+        ElseIf .Text42.Text = "" Then
+            If Trim(rstJobworkBVChild.Fields("GRNo").Value) <> "" Then .Text42.SetText "Gr/RR No.       :": .Text41.SetText Trim(rstJobworkBVChild.Fields("GRNo").Value) + " Dt : " & Format(rstJobworkBVChild.Fields("GRDate").Value, "dd-MM-yy") Else .Text42.SetText ""
+        ElseIf .Text43.Text = "" Then
+            If Trim(rstJobworkBVChild.Fields("GRNo").Value) <> "" Then .Text43.SetText "Gr/RR No.       :": .Text32.SetText Trim(rstJobworkBVChild.Fields("GRNo").Value) + " Dt : " & Format(rstJobworkBVChild.Fields("GRDate").Value, "dd-MM-yy") Else .Text43.SetText ""
+        End If
+'Station
+        If .Text33.Text = "" Then
+            If Trim(rstJobworkBVChild.Fields("Station").Value) <> "" Then .Text33.SetText "Station            :": .Text37.SetText Trim(rstJobworkBVChild.Fields("Station").Value) Else .Text33.SetText ""
+        ElseIf .Text36.Text = "" Then
+            If Trim(rstJobworkBVChild.Fields("Station").Value) <> "" Then .Text36.SetText "Station            :": .Text39.SetText Trim(rstJobworkBVChild.Fields("Station").Value) Else .Text36.SetText ""
+        ElseIf .Text34.Text = "" Then
+            If Trim(rstJobworkBVChild.Fields("Station").Value) <> "" Then .Text34.SetText "Station            :": .Text38.SetText Trim(rstJobworkBVChild.Fields("Station").Value) Else .Text34.SetText ""
+        ElseIf .Text42.Text = "" Then
+            If Trim(rstJobworkBVChild.Fields("Station").Value) <> "" Then .Text42.SetText "Station            :": .Text41.SetText Trim(rstJobworkBVChild.Fields("Station").Value) Else .Text42.SetText ""
+        ElseIf .Text43.Text = "" Then
+            If Trim(rstJobworkBVChild.Fields("Station").Value) <> "" Then .Text43.SetText "Station            :": .Text32.SetText Trim(rstJobworkBVChild.Fields("Station").Value) Else .Text43.SetText ""
+        End If
+'e-way Bill No.
+        If .Text33.Text = "" Then
+            If Trim(rstJobworkBVChild.Fields("eWayBill").Value) <> "" Then .Text33.SetText "e-way Bill#   :": .Text37.SetText Trim(rstJobworkBVChild.Fields("eWayBill").Value) + " Dt : " & Format(rstJobworkBVChild.Fields("eWayBillDate").Value, "dd-MM-yy") Else .Text33.SetText ""
+        ElseIf .Text36.Text = "" Then
+            If Trim(rstJobworkBVChild.Fields("eWayBill").Value) <> "" Then .Text36.SetText "e-way Bill#   :": .Text39.SetText Trim(rstJobworkBVChild.Fields("eWayBill").Value) + " Dt : " & Format(rstJobworkBVChild.Fields("eWayBillDate").Value, "dd-MM-yy") Else .Text36.SetText ""
+        ElseIf .Text34.Text = "" Then
+            If Trim(rstJobworkBVChild.Fields("eWayBill").Value) <> "" Then .Text34.SetText "e-way Bill#   :": .Text38.SetText Trim(rstJobworkBVChild.Fields("eWayBill").Value) + " Dt : " & Format(rstJobworkBVChild.Fields("eWayBillDate").Value, "dd-MM-yy") Else .Text34.SetText ""
+        ElseIf .Text42.Text = "" Then
+            If Trim(rstJobworkBVChild.Fields("eWayBill").Value) <> "" Then .Text42.SetText "e-way Bill#   :": .Text41.SetText Trim(rstJobworkBVChild.Fields("eWayBill").Value) + " Dt : " & Format(rstJobworkBVChild.Fields("eWayBillDate").Value, "dd-MM-yy") Else .Text42.SetText ""
+        ElseIf .Text43.Text = "" Then
+            If Trim(rstJobworkBVChild.Fields("eWayBill").Value) <> "" Then .Text43.SetText "e-way Bill#   :": .Text32.SetText Trim(rstJobworkBVChild.Fields("eWayBill").Value) + " Dt : " & Format(rstJobworkBVChild.Fields("eWayBillDate").Value, "dd-MM-yy") Else .Text43.SetText ""
+        End If
+'VehicleNo
+        If .Text33.Text = "" Then
+            If Trim(rstJobworkBVChild.Fields("VehicleNo").Value) <> "" Then .Text33.SetText "Vehicle No.     :": .Text37.SetText Trim(rstJobworkBVChild.Fields("VehicleNo").Value) Else .Text33.SetText ""
+        ElseIf .Text36.Text = "" Then
+            If Trim(rstJobworkBVChild.Fields("VehicleNo").Value) <> "" Then .Text36.SetText "Vehicle No.     :": .Text39.SetText Trim(rstJobworkBVChild.Fields("VehicleNo").Value) Else .Text36.SetText ""
+        ElseIf .Text34.Text = "" Then
+            If Trim(rstJobworkBVChild.Fields("VehicleNo").Value) <> "" Then .Text34.SetText "Vehicle No.     :": .Text38.SetText Trim(rstJobworkBVChild.Fields("VehicleNo").Value) Else .Text34.SetText ""
+        ElseIf .Text42.Text = "" Then
+            If Trim(rstJobworkBVChild.Fields("VehicleNo").Value) <> "" Then .Text42.SetText "Vehicle No.     :": .Text41.SetText Trim(rstJobworkBVChild.Fields("VehicleNo").Value) Else .Text42.SetText ""
+        ElseIf .Text43.Text = "" Then
+            If Trim(rstJobworkBVChild.Fields("VehicleNo").Value) <> "" Then .Text43.SetText "Vehicle No.     :": .Text32.SetText Trim(rstJobworkBVChild.Fields("VehicleNo").Value) Else .Text43.SetText ""
+        End If
     rptJobworkBill.Text10.SetText "(" & UCase(Trim(NumberToWords(rstJobworkBVChild.Fields("TotalAmount").Value, False))) & ")"
     rptJobworkBill.Text11.SetText "for " & Trim(rstCompanyMaster.Fields("PrintName").Value)
     rptJobworkBill.Text26.SetText CheckNull(rstCompanyMaster.Fields("Declaration01").Value)
@@ -4029,7 +4283,7 @@ Public Sub PrintJobworkBillVch(ByVal VchCode As String, ByVal VchType As String,
     rptJobworkBill.Text330.SetText "Bank Name             : " & CheckNull(rstCompanyMaster.Fields("BankName").Value)
     rptJobworkBill.Text340.SetText "A/c No.                    : " & CheckNull(rstCompanyMaster.Fields("AccountNo").Value)
     rptJobworkBill.Text360.SetText "Branch & IFS Code : " & CheckNull(rstCompanyMaster.Fields("IFSC").Value)
-End With
+
     rptJobworkBill.Database.SetDataSource rstJobworkBVChild, 3, 1
     'rptJobworkBill.DiscardSavedData
     Screen.MousePointer = vbNormal
@@ -4045,6 +4299,7 @@ End With
             rptJobworkBill.PrintOut
         End If
     End If
+End With
     Set rptJobworkBill = Nothing
     If rstJobworkBVList.State = adStateClosed Then Call CloseRecordset(rstCompanyMaster) 'For Print Utility
     Call CloseRecordset(rstJobworkBVChild)
@@ -4053,3 +4308,249 @@ End Sub
 Private Sub UpdateIntegration()
 cnJobworkBill.Execute "Update JobworkBVParent Set IntegrationStatus='True' WHERE Code='" & rstJobworkBVList.Fields("Code").Value & "' AND RIGHT(Type,2)='" & VchType & "' AND FYCode='" & FYCode & "'"
 End Sub
+Private Function Get_JSON(Doc As String)
+    Dim xmlHttp As New MSXML2.XMLHTTP60
+    Dim URL As String
+    Dim jsonName, jsonData As String
+    Dim Response As String
+    Dim jsonFile As Integer
+    jsonFile = FreeFile
+    Dim SQL, SaleAccount, UOM, i, ChallanTbl
+    Dim SNo As Integer
+    With rstCompanyMaster
+        If .State = adStateOpen Then .Close
+        .Open "SELECT Name+'-'+VchNAme As VchSeries,VchNAme As Account,'No.' As UOM FROM VchSeriesMaster WHERE Right(VchType,2)='" & VchType & "'", cnJobworkBill, adOpenKeyset, adLockReadOnly
+        VchSeries = .Fields("VchSeries").Value: SaleAccount = .Fields("Account").Value: UOM = .Fields("UOM").Value
+    End With
+    With rstCompanyMaster
+        If .State = adStateOpen Then .Close
+        .Open "SELECT GSTIN AS GSTIN ,C.Name AS SupName,Address1+' '+Address2 AS SupAdd1,Address3 AS SupAdd2,Convert(nchar,G.Name) AS SupStateName,Convert(nchar,G.PrintName) AS SupStateCode,C.Address4 AS SupPincode,C.eMail,C.Phone FROM CompanyMaster C Inner Join GeneralMaster G ON G.Code=C.State  WHERE FYCode='" & FYCode & "'", cnJobworkBill, adOpenKeyset, adLockReadOnly
+    End With
+    With rstJobworkBVChild
+        ChallanTbl = "": SQL = ""
+        ChallanTbl = ChallanTbl + "Select '' As DeliveredQty,'' As VchDetails,"
+        If .State = adStateOpen Then .Close
+        SQL = SQL + ChallanTbl
+        SQL = SQL + "b.TIN As BGSTIN,B.Name As Buyer,G.Name As BStateName,b.Address1+' '+b.Address2 As bAddress1,b.Address3 As bAddress2,b.Address4 As bPinCode,G.PrintName As BStateCode,B.Phone as bPhone,B.eMail As beMail,N.Name As cState,'India' As CountryOfResidence,Left((Select V.Prefix From VchSeriesMaster V Where Code=VchSeries),3)+'/'+'" & Right(VchType, 2) & "'+'/'+Ltrim(AutoVchNo)+'/'+ '" & FYFromTo & "'  As BillNo,Format(H.Date,'dd/MM/yyyy') As BillDate,M.PrintName As MatCentre," & _
+                        "H.TaxableAmount,H.[Rebate%],H.Rebate,H.Freight,H.Adjustment,H.Tax,H.[IGST%],H.IGST,H.[SGST%],H.SGST,H.[CGST%],H.CGST,H.Amount As FinalAmount,H.Remarks,(Select PrintName From GeneralMaster Where Code=I.HSNCode) As HSNCode, " & _
+                        "I.Name As ItemName,(Select PrintName From GeneralMaster Where Code=I.IntegrationUnit) As IntegrationUnit,I.ItemIntegrationName As Item,I.BusyCode As ItemAlias,D.Rate,D.[Disc%],ABS(D.Quantity) As Quantity,D.Amount,IIF(H.[Rebate%]<>0,Format(D.Amount/H.[Rebate%],'#######0.00'),'0') As Discount,'' As DeliveryNoteNo,ISNULL(H.GRNo,'') As DispatchDocNo,ISNULL(H.Transport,'') As DishpatchThrough,ISNULL(H.Station,'') As Destination,ISNULL(H.Transport,'') As [CarrierName/Agent],ISNULL(H.GRNo,'') As [BillofLoading/LR-RRNO],ISNULL(H.GRDate,'') As GRDate,ISNULL(H.VehicleNo,'') As MotorVehicleNo," & _
+                        "ISNULL(H.eWayBill,'') As eWayBill,ISNULL(H.eWayBillDate,'') As eWayBillDate,IIF((Select Name From AccountMaster Where Code=H.SalesType)='Sales','Bill of Supply','Bill of Supply') As DocType,'Supply' As SubType,'Generated by me' As BILLSTATUS,D.Item As ItemCode,D.LongNarration01,D.LongNarration02,D.LongNarration03,D.LongNarration04,D.LongNarration05,CASE WHEN Ref IS NULL THEN '' ELSE 'Ref. No.: '+LTRIM(R.Name)+'/'+RIGHT(R.Type,1)+'O/'+RIGHT(D.BOM,2) END As RefOrderNo,(Convert(nvarchar,(ISNULL((Select PaperConsumptionsheets1 From BookPOChild05 Where Code=R.Code),0)+ISNULL((Select PaperConsumptionsheets2 From BookPOChild05 Where Code=R.Code),0)+ISNULL((Select PaperConsumptionsheets4 From BookPOChild05 Where Code=R.Code),0)+ISNULL((Select PaperConsumptionsheets From BookPOChild06 Where Code=R.Code),0)+ISNULL((Select PaperConsumptionsheets From BookPOChild09 Where Code=R.Code),0)))+' Sheets') As PaperConsumptionsheets,Ltrim(AutoVchNo) As AutoVchNo " & _
+                        "FROM (((((((JobWorkBVParent H INNER JOIN AccountMaster B ON H.Party=B.Code) INNER JOIN AccountMaster C ON H.Consignee=C.Code) INNER JOIN AccountMaster M ON H.MaterialCentre=M.Code) INNER JOIN JobWorkBVChild D ON H.Code=D.Code) INNER JOIN BookMaster I ON D.Item=I.Code) Left JOIN BookPOParent R ON D.Ref=R.Code) LEFT Join GeneralMaster G ON B.State=G.Code ) INNER Join GeneralMaster N ON C.State=N.Code " & _
+                        "WHERE H.Code='" + rstJobworkBVList.Fields("Code").Value + "'"
+        .Open SQL, cnJobworkBill, adOpenKeyset, adLockReadOnly
+        'Print E-Invoice.json
+        
+        If Dir(App.Path & "\JSON\EINV_" & FYCode & .Fields("AutoVchNo").Value & "_EISI" & ".json", vbDirectory) <> "" Then
+        If MsgBox("Are you Wants to Over-write the existing JSON File For 'e-Invoice' ?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Export !") = vbYes Then Exit Function
+        End If
+        jsonName = App.Path & "\JSON\EINV_" & FYCode & .Fields("AutoVchNo").Value & "_EISI" & ".json"
+              Close jsonFile
+        Open jsonName For Output As jsonFile
+        jsonData = jsonData + "["
+        jsonData = jsonData + "{"
+        jsonData = jsonData + """" + "Version" + """" + " : " + """" + "1.1" + """" + ","
+        
+        jsonData = jsonData + """" + "TranDtls" + """" + " : " + "{"
+        
+            jsonData = jsonData + """" + "TaxSch" + """" + " : "
+            jsonData = jsonData + """" + "GST" + """" + ","
+            jsonData = jsonData + """" + "SupTyp" + """" + " : "
+            User_Input ("2")
+            jsonData = jsonData + """" + FrmDialog.uInput + """" + ","
+            jsonData = jsonData + """" + "IgstOnIntra" + """" + " : "
+            User_Input ("3")
+            jsonData = jsonData + """" + FrmDialog.uInput + """" + ","
+            jsonData = jsonData + """" + "RegRev" + """" + " : "
+            User_Input ("4")
+            jsonData = jsonData + """" + FrmDialog.uInput + """" + ","
+            jsonData = jsonData + """" + "EcmGstin" + """" + " : "
+            User_Input ("5")
+            jsonData = jsonData + """" + FrmDialog.uInput + """" + "},"
+
+        jsonData = jsonData + """" + "DocDtls" + """" + " : " + "{"
+            jsonData = jsonData + """" + "Typ" + """" + " : "
+            jsonData = jsonData + """" + "INV" + """" + "," 'Invoice,Credit Note,Debit Note
+            jsonData = jsonData + """" + "No" + """" + " : "
+            jsonData = jsonData + """" + .Fields("BillNo").Value + """" + ","
+            jsonData = jsonData + """" + "Dt" + """" + " : "
+            jsonData = jsonData + """" + .Fields("BillDate").Value + """" + "},"
+        
+        jsonData = jsonData + """" + "SellerDtls" + """" + " : " + "{"
+            jsonData = jsonData + """" + "Gstin" + """" + " : "
+            jsonData = jsonData + """" + Trim(rstCompanyMaster.Fields("GSTIN").Value) + """" + ","
+            jsonData = jsonData + """" + "LglNm" + """" + " : "
+            jsonData = jsonData + """" + Trim(rstCompanyMaster.Fields("SupName").Value) + """" + ","
+            jsonData = jsonData + """" + "TrdNm" + """" + " : "
+            jsonData = jsonData + """" + Trim(rstCompanyMaster.Fields("SupName").Value) + """" + ","
+            jsonData = jsonData + """" + "Addr1" + """" + " : "
+            jsonData = jsonData + """" + Trim(rstCompanyMaster.Fields("SupAdd1").Value) + """" + ","
+            jsonData = jsonData + """" + "Addr2" + """" + " : "
+            jsonData = jsonData + """" + Trim(rstCompanyMaster.Fields("SupAdd2").Value) + """" + ","
+            jsonData = jsonData + """" + "Loc" + """" + " : "
+            jsonData = jsonData + """" + Trim(rstCompanyMaster.Fields("SupStateName").Value) + """" + ","
+            jsonData = jsonData + """" + "Pin" + """" + " : "
+            jsonData = jsonData + """" + Trim(rstCompanyMaster.Fields("SupPinCode").Value) + """" + ","
+            jsonData = jsonData + """" + "Stcd" + """" + " : "
+            jsonData = jsonData + """" + Trim(rstCompanyMaster.Fields("SupStateCode").Value) + """" + ","
+            jsonData = jsonData + """" + "Ph" + """" + " : "
+            jsonData = jsonData + """" + Trim(rstCompanyMaster.Fields("Phone").Value) + """" + ","
+            jsonData = jsonData + """" + "Em" + """" + " : "
+            jsonData = jsonData + """" + Trim(rstCompanyMaster.Fields("email").Value) + """" + "},"
+            
+        jsonData = jsonData + """" + "BuyerDtls" + """" + " : " + "{"
+            jsonData = jsonData + """" + "Gstin" + """" + " : "
+            jsonData = jsonData + """" + Trim(.Fields("BGSTIN").Value) + """" + ","
+            jsonData = jsonData + """" + "LglNm" + """" + " : "
+            jsonData = jsonData + """" + Trim(.Fields("Buyer").Value) + """" + ","
+            jsonData = jsonData + """" + "TrdNm" + """" + " : "
+            jsonData = jsonData + """" + Trim(.Fields("Buyer").Value) + """" + ","
+            jsonData = jsonData + """" + "Pos" + """" + " : "
+            jsonData = jsonData + """" + Trim(.Fields("BStateName").Value) + """" + ","
+            jsonData = jsonData + """" + "Addr1" + """" + " : "
+            jsonData = jsonData + """" + Trim(.Fields("bAddress1").Value) + """" + ","
+            jsonData = jsonData + """" + "Addr2" + """" + " : "
+            jsonData = jsonData + """" + Trim(.Fields("bAddress2").Value) + """" + ","
+            jsonData = jsonData + """" + "Loc" + """" + " : "
+            jsonData = jsonData + """" + Trim(.Fields("BStateName").Value) + """" + ","
+            jsonData = jsonData + """" + "Pin" + """" + " : "
+            jsonData = jsonData + """" + Trim(.Fields("BPinCode").Value) + """" + ","
+            jsonData = jsonData + """" + "Stcd" + """" + " : "
+            jsonData = jsonData + """" + Trim(.Fields("BStateCode").Value) + """" + ","
+            jsonData = jsonData + """" + "Ph" + """" + " : "
+            jsonData = jsonData + """" + Trim(.Fields("BPhone").Value) + """" + ","
+            jsonData = jsonData + """" + "Em" + """" + " : "
+            jsonData = jsonData + """" + Trim(.Fields("Bemail").Value) + """" + "},"
+        
+        jsonData = jsonData + """" + "DispDtls" + """" + " : "
+        jsonData = jsonData + """" + "Null" + """" + ","
+        jsonData = jsonData + """" + "ShipDtls" + """" + " : "
+        jsonData = jsonData + """" + "Null" + """" + ","
+        
+        jsonData = jsonData + """" + "ValDtls" + """" + " : " + "{"
+            jsonData = jsonData + """" + "AssVal" + """" + " : "
+            jsonData = jsonData + """" + Trim(.Fields("TaxableAmount").Value) + """" + ","
+            jsonData = jsonData + """" + "IgstVal" + """" + " : "
+            jsonData = jsonData + """" + Trim(.Fields("IGST").Value) + """" + ","
+            jsonData = jsonData + """" + "CgstVal" + """" + " : "
+            jsonData = jsonData + """" + Trim(.Fields("CGST").Value) + """" + ","
+            jsonData = jsonData + """" + "SgstVal" + """" + " : "
+            jsonData = jsonData + """" + Trim(.Fields("SGST").Value) + """" + ","
+            jsonData = jsonData + """" + "CesVal" + """" + " : "
+            jsonData = jsonData + """" + "0" + """" + ","
+            jsonData = jsonData + """" + "StCesVal" + """" + " : "
+            jsonData = jsonData + """" + "0" + """" + ","
+            jsonData = jsonData + """" + "Discount" + """" + " : "
+            jsonData = jsonData + """" + Trim(.Fields("Rebate").Value) + """" + ","
+            jsonData = jsonData + """" + "OthChrg" + """" + " : "
+            jsonData = jsonData + """" + Trim(.Fields("Freight").Value + .Fields("Adjustment").Value) + """" + ","
+            jsonData = jsonData + """" + "RndOffAmt" + """" + " : "
+            jsonData = jsonData + """" + "0" + """" + ","
+            jsonData = jsonData + """" + "TotInvVal" + """" + " : "
+            jsonData = jsonData + """" + Trim(.Fields("FinalAmount").Value) + """" + "},"
+        
+        jsonData = jsonData + """" + "ExpDtls" + """" + " : " + "{"
+            jsonData = jsonData + """" + "ShipBNo" + """" + " : "
+            jsonData = jsonData + """" + "Null" + """" + ","
+            jsonData = jsonData + """" + "ShipBDt" + """" + " : "
+            jsonData = jsonData + """" + "Null" + """" + ","
+            jsonData = jsonData + """" + "Port" + """" + " : "
+            jsonData = jsonData + """" + "Null" + """" + ","
+            jsonData = jsonData + """" + "RefClm" + """" + " : "
+            jsonData = jsonData + """" + "Null" + """" + ","
+            jsonData = jsonData + """" + "ForCur" + """" + " : "
+            jsonData = jsonData + """" + "Null" + """" + ","
+            jsonData = jsonData + """" + "CntCode" + """" + " : "
+            jsonData = jsonData + """" + "Null" + """" + ","
+            jsonData = jsonData + """" + "ExpDuty" + """" + " : "
+            jsonData = jsonData + """" + "0" + """" + "},"
+        jsonData = jsonData + """" + "EwbDtls" + """" + " : "
+        jsonData = jsonData + """" + "Null" + """" + ","
+
+        jsonData = jsonData + """" + "ItemList" + """" + " : " + "["
+        .MoveFirst
+Do While Not .EOF
+            SNo = SNo + 1
+            jsonData = jsonData + "{"
+            jsonData = jsonData + """" + "SlNo" + """" + " : "
+            jsonData = jsonData + """" + CStr(SNo) + """" + ","
+            jsonData = jsonData + """" + "PrdDesc" + """" + " : "
+            jsonData = jsonData + """" + Trim(.Fields("ItemName").Value) + """" + ","
+            jsonData = jsonData + """" + "IsServc" + """" + " : " 'IS Service Y-Yes/N-No
+            jsonData = jsonData + """" + "Y" + """" + ","
+            jsonData = jsonData + """" + "HsnCd" + """" + " : "
+            jsonData = jsonData + """" + Trim(.Fields("HSNCode").Value) + """" + ","
+            jsonData = jsonData + """" + "Barcde" + """" + " : "
+            jsonData = jsonData + """" + "Null" + """" + ","
+            jsonData = jsonData + """" + "Qty" + """" + " : "
+            jsonData = jsonData + """" + Trim(.Fields("Quantity").Value) + """" + ","
+            jsonData = jsonData + """" + "Unit" + """" + " : "
+            jsonData = jsonData + """" + Trim(.Fields("IntegrationUnit").Value) + """" + ","
+            jsonData = jsonData + """" + "UnitPrice" + """" + " : "
+            jsonData = jsonData + """" + Trim(.Fields("Rate").Value) + """" + ","
+            jsonData = jsonData + """" + "TotAmt" + """" + " : "
+            jsonData = jsonData + """" + Trim(.Fields("Amount").Value) + """" + ","
+            jsonData = jsonData + """" + "Discount" + """" + " : "
+            jsonData = jsonData + """" + Trim(.Fields("Discount").Value) + """" + ","
+            jsonData = jsonData + """" + "PreTaxVal" + """" + " : "
+            jsonData = jsonData + """" + "0" + """" + ","
+            jsonData = jsonData + """" + "AssAmt" + """" + " : "
+            jsonData = jsonData + """" + Trim(.Fields("Amount").Value - .Fields("Discount").Value) + """" + ","
+            jsonData = jsonData + """" + "GstRt" + """" + " : "
+            jsonData = jsonData + """" + CStr(Trim(.Fields("IGST%").Value + .Fields("SGST%").Value + .Fields("CGST%").Value)) + """" + ","
+            jsonData = jsonData + """" + "IgstAmt" + """" + " : "
+            jsonData = jsonData + """" + Trim(.Fields("IGST").Value) + """" + ","
+            jsonData = jsonData + """" + "CgstAmt" + """" + " : "
+            jsonData = jsonData + """" + Trim(.Fields("CGST").Value) + """" + ","
+            jsonData = jsonData + """" + "SgstAmt" + """" + " : "
+            jsonData = jsonData + """" + Trim(.Fields("SGST").Value) + """" + ","
+            jsonData = jsonData + """" + "CesRt" + """" + " : "
+            jsonData = jsonData + """" + "0" + """" + ","
+            jsonData = jsonData + """" + "CesAmt" + """" + " : "
+            jsonData = jsonData + """" + "0" + """" + ","
+            jsonData = jsonData + """" + "CesNonAdvlAmt" + """" + " : "
+            jsonData = jsonData + """" + "0" + """" + ","
+            jsonData = jsonData + """" + "StateCesRt" + """" + " : "
+            jsonData = jsonData + """" + "0" + """" + ","
+            jsonData = jsonData + """" + "StateCesAmt" + """" + " : "
+            jsonData = jsonData + """" + "0" + """" + ","
+            jsonData = jsonData + """" + "StateCesNonAdvlAmt" + """" + " : "
+            jsonData = jsonData + """" + "0" + """" + ","
+            jsonData = jsonData + """" + "OthChrg" + """" + " : "
+            jsonData = jsonData + """" + "0" + """" + ","
+            jsonData = jsonData + """" + "TotItemVal" + """" + " : "
+            jsonData = jsonData + """" + Trim(.Fields("Amount").Value - .Fields("Discount").Value + .Fields("IGST").Value + .Fields("CGST").Value + .Fields("SGST").Value) + """" + ","
+            jsonData = jsonData + """" + "BchDtls" + """" + " : "
+            jsonData = jsonData + """" + "Null" + """"
+
+            If .RecordCount = SNo Then
+                jsonData = jsonData + "}"
+            ElseIf .RecordCount > SNo Then
+                jsonData = jsonData + "},"
+            End If
+            
+    .MoveNext
+    Loop
+            jsonData = jsonData + "]}]"
+        Print #jsonFile, jsonData
+        Close jsonFile
+'        'Print ewayBill.json
+'        Open App.Path & "\ewaybill.json" For Output As jsonFile
+    End With
+End Function
+Public Function User_Input(Find As Variant)
+    FrmDialog.uInput = ""
+    FrmDialog.Flag = Find
+    Load FrmDialog
+    Screen.MousePointer = vbNormal
+        If Find = 2 Then
+            FrmDialog.Frame1.Caption = "Select Supply Type"
+        ElseIf Find = 3 Then
+            FrmDialog.Frame1.Caption = "Select IGST on Intra"
+        ElseIf Find = 4 Then
+            FrmDialog.Frame1.Caption = "Select Reverse Charge Mechanism"
+        ElseIf Find = 5 Then
+            FrmDialog.Frame1.Caption = "E-Commerce GST"
+        End If
+    FrmDialog.Show vbModal
+End Function
+

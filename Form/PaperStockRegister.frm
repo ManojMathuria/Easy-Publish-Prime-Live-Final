@@ -636,7 +636,7 @@ Private Sub Form_Load()
                "SELECT Paper1 As Paper FROM BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' UNION " & _
                "SELECT Paper2 As Paper FROM BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' UNION " & _
                "SELECT Paper4 As Paper FROM BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*'"
-    rstCompanyMaster.Open "SELECT PrintName,Phone,eMail FROM CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstCompanyMaster.Open "SELECT PrintName,Phone,eMail FROM CompanyMaster Where FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
     Check3_Click
     MhDateInput1.Text = Format(FinancialYearFrom, "dd-mm-yyyy")
     MhDateInput2.Text = Format(IIf(Format(FinancialYearTo, "yyyymmdd") < Format(Date, "yyyymmdd"), FinancialYearTo, Date), "dd-mm-yyyy")

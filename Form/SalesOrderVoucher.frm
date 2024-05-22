@@ -1904,7 +1904,7 @@ Dim cnSalesOrderVoucher As New ADODB.Connection
 Dim rstCompanyMaster As New ADODB.Recordset
 Dim rstPartyList As New ADODB.Recordset, rstMaterialCentreList As New ADODB.Recordset, rstTaxList As New ADODB.Recordset, rstItemList As New ADODB.Recordset, rstHSNCodeList As New ADODB.Recordset, rstVchSeriesList As New ADODB.Recordset
 Dim rstSalesOrderVoucherList As New ADODB.Recordset, rstSalesOrderVoucherParent As New ADODB.Recordset, rstSalesOrderVoucherChild As New ADODB.Recordset, rstOrderList As New ADODB.Recordset
-Dim PartyCode As String, ConsigneeCode As String, MaterialCentreCode As String, TaxCode As String, VchPrefix As String, VchNumbering As String, VchSeriesCode As String, oVchSeriesCode As String, oVchNo As String, AutoVchNo As String
+Dim PartyCode As String, PartyStateCode As String, ConsigneeCode As String, MaterialCentreCode As String, TaxCode As String, VchPrefix As String, VchNumbering As String, VchSeriesCode As String, oVchSeriesCode As String, oVchNo As String, AutoVchNo As String
 Dim SortOrder, PrevStr, dblBookMark As Double, blnRecordExist As Boolean, EditMode As Boolean
 Dim frmSalesOrderTptDetails As New FrmDespatchDetails
 Private Sub Form_Load()
@@ -1922,7 +1922,7 @@ Private Sub Form_Load()
     rstSalesOrderVoucherParent.CursorLocation = adUseClient
     LoadMasterList
     With rstSalesOrderVoucherList
-        .Open "SELECT T.Code,T.Name,V.Code As VchSeriesCode,V.Name As VchSeriesName,Date,T.Type,P.Name As PartyName,M.Name As MaterialCentreName,Amount FROM ((JobworkBVParent T INNER JOIN AccountMaster P ON T.Party=P.Code) INNER JOIN AccountMaster M ON T.MaterialCentre=M.Code) INNER JOIN VchSeriesMaster V ON T.VchSeries=V.Code WHERE RIGHT(Type,2)='" & VchType & "' AND FYCode='" & FYCode & "' ORDER BY T.Name", cnSalesOrderVoucher, adOpenKeyset, adLockPessimistic
+        .Open "SELECT T.Code,T.Name,V.Code As VchSeriesCode,V.Name As VchSeriesName,Date,T.Type,P.Name As PartyName,M.Name As MaterialCentreName,Amount FROM ((JobworkBVParent T INNER JOIN AccountMaster P ON T.Party=P.Code) INNER JOIN AccountMaster M ON T.MaterialCentre=M.Code) INNER JOIN VchSeriesMaster V ON T.VchSeries=V.Code WHERE RIGHT(Type,2)='" & VchType & "' AND T.FYCode='" & FYCode & "' ORDER BY T.Name", cnSalesOrderVoucher, adOpenKeyset, adLockPessimistic
         .Filter = adFilterNone
         If .RecordCount > 0 Then
             .MoveLast
@@ -2421,10 +2421,14 @@ Private Sub Text3_KeyDown(KeyCode As Integer, Shift As Integer)
         FrmAccountMaster.SL = True
         FrmAccountMaster.AccountType = "01": FrmAccountMaster.AccountGroup = IIf(VchType = "ST", "*99999", "")
         FrmAccountMaster.MasterCode = PartyCode
+        FrmAccountMaster.StateCode = PartyStateCode
         Load FrmAccountMaster
         If Err.Number <> 364 Then FrmAccountMaster.Show vbModal
         On Error GoTo 0
         PartyCode = slCode: Text3.Text = slName
+        If Not IsNull(slStateCode) Then
+        PartyStateCode = slStateCode
+        End If
         If Not CheckEmpty(PartyCode, False) Then
             If Not blnRecordExist Then Text9.Text = Text3.Text: ConsigneeCode = PartyCode
             LoadMasterList
@@ -2470,6 +2474,7 @@ End Sub
 Private Sub Text5_KeyDown(KeyCode As Integer, Shift As Integer)
     If KeyCode = vbKeySpace Then
         On Error Resume Next
+        slStateCode = PartyStateCode
         FrmTaxMaster.SL = True
         FrmTaxMaster.MasterCode = TaxCode
         Load FrmTaxMaster
@@ -2512,7 +2517,7 @@ End Sub
 Private Sub FindRecord()
     With rstSalesOrderVoucherParent
         If .State = adStateOpen Then .Close
-        .Open "SELECT * FROM JobworkBVParent WHERE Code='" & FixQuote(rstSalesOrderVoucherList.Fields("Code").Value) & "'", cnSalesOrderVoucher, adOpenKeyset, adLockOptimistic
+        .Open "SELECT * , (Select State From AccountMaster Where Code=Party) AS State FROM JobworkBVParent WHERE Code='" & FixQuote(rstSalesOrderVoucherList.Fields("Code").Value) & "'", cnSalesOrderVoucher, adOpenKeyset, adLockOptimistic
         If .RecordCount = 0 Then Call DisplayError("This Record has been deleted by Another User ! Click Ok To Refresh the Recordset"): Toolbar1_ButtonClick Toolbar1.Buttons.Item(6)
     End With
 End Sub
@@ -2538,6 +2543,7 @@ Private Sub ClearFields()
     MhRealInput8.Value = 0
     MhRealInput10.Value = 0
     MhRealInput11.Value = 0
+    PartyStateCode = ""
     PartyCode = "": ConsigneeCode = "": MaterialCentreCode = "": TaxCode = "": VchSeriesCode = "": oVchSeriesCode = "": oVchNo = "": AutoVchNo = ""
     frmSalesOrderTptDetails.Text1.Text = "": frmSalesOrderTptDetails.Text2.Text = "": frmSalesOrderTptDetails.Text3.Text = "": frmSalesOrderTptDetails.Text4.Text = "": frmSalesOrderTptDetails.MhDateInput1.Value = Null
 End Sub
@@ -2553,6 +2559,7 @@ Private Sub LoadFields()
         oVchNo = Trim(Text2.Text)
         MhDateInput1.Text = Format(.Fields("Date").Value, "dd-MM-yyyy")
         PartyCode = .Fields("Party").Value
+        PartyStateCode = .Fields("State").Value
         If rstPartyList.RecordCount > 0 Then rstPartyList.MoveFirst
         rstPartyList.Find "[Code] = '" & PartyCode & "'"
         If Not rstPartyList.EOF Then Text3.Text = rstPartyList.Fields("Col0").Value
@@ -2798,9 +2805,11 @@ Private Sub fpSpread1_KeyDown(KeyCode As Integer, Shift As Integer)
         If (Shift = vbCtrlMask And KeyCode = vbKeyD) Or (Shift = 0 And KeyCode = vbKeyF9) Then
             .GetText 11, .ActiveRow, Item 'current Tran ref
             If Not CheckEmpty(Item, False) Then
-                If chkRef("SELECT RefCode FROM JobworkBVRef WHERE RefCode='" & Item & "' AND VchCode<>'" & rstSalesOrderVoucherParent.Fields("Code").Value & "'") Then DisplayError ("Failed to delete the record"): .SetFocus
-            ElseIf MsgBox("Are you sure to delete the Record?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Delete !") = vbYes Then
-                .DeleteRows .ActiveRow, 1: .SetFocus: CalculateTotal
+                If chkRef("SELECT RefCode FROM JobworkBVRef WHERE RefCode='" & Item & "' AND VchCode<>'" & rstSalesOrderVoucherParent.Fields("Code").Value & "'") Then
+                    DisplayError ("Failed to delete the record"): .SetFocus
+                 ElseIf MsgBox("Are you sure to delete the Record?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Delete !") = vbYes Then
+                    .DeleteRows .ActiveRow, 1: .SetFocus: CalculateTotal
+                End If
             End If
         ElseIf KeyCode = vbKeyF3 Then
             If .ActiveCol = 1 Then
@@ -2942,7 +2951,6 @@ Private Sub CalculateTotal()
     End With
 End Sub
 Private Sub LoadMasterList(Optional ByVal LoadSelected As Boolean)
-
     If rstPartyList.State = adStateOpen Then rstPartyList.Close
     rstPartyList.Open "SELECT Name As Col0,Code FROM AccountMaster ORDER BY Name", cnSalesOrderVoucher, adOpenKeyset, adLockReadOnly
     rstPartyList.ActiveConnection = Nothing
@@ -2950,7 +2958,11 @@ Private Sub LoadMasterList(Optional ByVal LoadSelected As Boolean)
     rstMaterialCentreList.Open "SELECT Name As Col0,Code FROM AccountMaster WHERE [Group]='*99999' ORDER BY Name", cnSalesOrderVoucher, adOpenKeyset, adLockReadOnly
     rstMaterialCentreList.ActiveConnection = Nothing
     If rstTaxList.State = adStateOpen Then rstTaxList.Close
-    rstTaxList.Open "SELECT Name As Col0,[IGST%],[SGST%],[CGST%],Code FROM TaxMaster ORDER BY Name", cnSalesOrderVoucher, adOpenKeyset, adLockReadOnly
+    If PartyStateCode = "" Or PartyStateCode = Null Then
+    rstTaxList.Open "SELECT Name As Col0,[IGST%],[SGST%],[CGST%],Region,Code FROM TaxMaster ORDER BY Name", cnSalesOrderVoucher, adOpenKeyset, adLockReadOnly
+    Else
+    rstTaxList.Open "SELECT Name As Col0,[IGST%],[SGST%],[CGST%],Region,Code FROM TaxMaster Where Region='" & IIf(CompStateCode = PartyStateCode, "L", "I") & "' ORDER BY Name", cnSalesOrderVoucher, adOpenKeyset, adLockReadOnly
+    End If
     rstTaxList.ActiveConnection = Nothing
     If rstHSNCodeList.State = adStateOpen Then rstHSNCodeList.Close
     rstHSNCodeList.Open "SELECT Name As Col0,Code FROM GeneralMaster WHERE Type='18' ORDER BY Name", cnSalesOrderVoucher, adOpenKeyset, adLockReadOnly
@@ -2980,7 +2992,7 @@ Private Sub LoadMasterList(Optional ByVal LoadSelected As Boolean)
     End If
     rstItemList.ActiveConnection = Nothing
     If rstVchSeriesList.State = adStateOpen Then rstVchSeriesList.Close
-    rstVchSeriesList.Open "SELECT Name As Col0,Prefix,Suffix,VchNumbering,Code FROM VchSeriesMaster WHERE VchType='" & Switch(VchType = "SQ", "24", VchType = "PQ", "23", VchType = "SO", "18", VchType = "PO", "17", VchType = "ST", "19") & VchType & "' ORDER BY Name", cnSalesOrderVoucher, adOpenKeyset, adLockReadOnly
+    rstVchSeriesList.Open "SELECT Name As Col0,Prefix,Suffix,VchNumbering,Code FROM VchSeriesMaster WHERE Left(FYCode,2)='" & Left(FYCode, 2) & "' AND VchType ='" & Switch(VchType = "SQ", "24", VchType = "PQ", "23", VchType = "SO", "18", VchType = "PO", "17", VchType = "ST", "19") & VchType & "' ORDER BY Name", cnSalesOrderVoucher, adOpenKeyset, adLockReadOnly
     rstVchSeriesList.ActiveConnection = Nothing
 End Sub
 Private Sub LoadOrderList()
@@ -3143,10 +3155,11 @@ Public Sub PrintSalesOrderVoucher(ByVal VchCode As String, ByVal VchType As Stri
         rstCompanyMaster.Open "SELECT PrintName,Address1,Address2,Address3,Address4,Phone,Mobile,EMail,Website,GSTIN,Declaration01,Declaration02,Declaration03,Declaration04,Declaration05,Declaration06,Declaration07,Prefix,Suffix FROM CompanyMaster P INNER JOIN CompChild C ON P.Code=C.Code WHERE VchType= " & Switch(Right(VchType, 2) = "SQ", "24", Right(VchType, 2) = "PQ", "23", Right(VchType, 2) = "SO", "18", Right(VchType, 2) = "PO", "17", Right(VchType, 2) = "ST", "19"), cnSalesOrderVoucher, adOpenKeyset, adLockReadOnly
         rstCompanyMaster.ActiveConnection = Nothing
         If Original Then
-            .Open "SELECT LTrim(P.Name)+'/' +'" & Right(Year(FinancialYearFrom), 2) + "-" + Right(Year(FinancialYearTo), 2) & "' As BillNo,P.Date As BillDate,A.PrintName As Party,A.Address1 As PartyAddress1,A.Address2 As PartyAddress2,A.Address3 As PartyAddress3,A.Address4 As PartyAddress4,A.TIN As PartyGSTIN,A.Mobile As Mobile,A.EMail As EMail,IIF(CHARINDEX(RIGHT(P.Type,2),'SO_SQ_PO_PQ')>0,S.PrintName,M.PrintName) As Consignee,IIF(CHARINDEX(RIGHT(P.Type,2),'SO_SQ_PO_PQ')>0,S.Address1,M.Address1) As ConsigneeAddress1,IIF(CHARINDEX(RIGHT(P.Type,2),'SO_SQ_PO_PQ')>0,S.Address2,M.Address2) As ConsigneeAddress2,IIF(CHARINDEX(RIGHT(P.Type,2),'SO_SQ_PO_PQ')>0,S.Address3,M.Address3) As ConsigneeAddress3,IIF(CHARINDEX(RIGHT(P.Type,2),'SO_SQ_PO_PQ')>0,S.Address4,M.Address4) As ConsigneeAddress4,IIF(CHARINDEX(RIGHT(P.Type,2),'SO_SQ_PO_PQ')>0,S.TIN,M.TIN) As ConsigneeGSTIN," & _
+        If rstSalesOrderVoucherChild.State = adStateOpen Then rstSalesOrderVoucherChild.Close
+            .Open "SELECT Distinct LTrim(P.Name)+'/' +'" & Right(Year(FinancialYearFrom), 2) + "-" + Right(Year(FinancialYearTo), 2) & "' As BillNo,P.Date As BillDate,A.PrintName As Party,A.Address1 As PartyAddress1,A.Address2 As PartyAddress2,A.Address3 As PartyAddress3,A.Address4 As PartyAddress4,A.TIN As PartyGSTIN,A.Mobile As Mobile,A.EMail As EMail,IIF(CHARINDEX(RIGHT(P.Type,2),'SO_SQ_PO_PQ')>0,S.PrintName,M.PrintName) As Consignee,IIF(CHARINDEX(RIGHT(P.Type,2),'SO_SQ_PO_PQ')>0,S.Address1,M.Address1) As ConsigneeAddress1,IIF(CHARINDEX(RIGHT(P.Type,2),'SO_SQ_PO_PQ')>0,S.Address2,M.Address2) As ConsigneeAddress2,IIF(CHARINDEX(RIGHT(P.Type,2),'SO_SQ_PO_PQ')>0,S.Address3,M.Address3) As ConsigneeAddress3,IIF(CHARINDEX(RIGHT(P.Type,2),'SO_SQ_PO_PQ')>0,S.Address4,M.Address4) As ConsigneeAddress4,IIF(CHARINDEX(RIGHT(P.Type,2),'SO_SQ_PO_PQ')>0,S.TIN,M.TIN) As ConsigneeGSTIN," & _
             "IIF(CHARINDEX(RIGHT(P.Type,2),'SO_SQ_PO_PQ')>0,S.Mobile,M.Mobile) As CMobile,IIF(CHARINDEX(RIGHT(P.Type,2),'SO_SQ_PO_PQ')>0,S.EMail,M.EMail) As CEMail," & _
-                         "P.[Rebate%],P.Rebate,P.Freight,P.Adjustment,P.TaxableAmount,P.[IGST%],P.IGST,P.[SGST%],P.SGST,P.[CGST%],P.CGST,P.Amount As TotalAmount,P.Remarks,'' As Narration,I.PrintName As Item,H.PrintName As HSNCode,C.Quantity,C.Rate,C.Amount,'' As SrNo,'' As cmbTitle,LTRIM(C.Code)+LTRIM(C.SrNo) As Ref,C.[Disc%] As Disc,LongNarration01,LongNarration02,LongNarration03,LongNarration04,LongNarration05 FROM (((((JobworkBVParent P INNER JOIN JobworkBVChild C ON P.Code=C.Code) INNER JOIN BookMaster I ON C.Item=I.Code) INNER JOIN AccountMaster A ON P.Party=A.Code) INNER JOIN AccountMaster S ON P.Consignee=S.Code) LEFT JOIN AccountMaster M ON P.MaterialCentre=M.Code) LEFT JOIN GeneralMaster H ON C.HSNCode=H.Code WHERE P.Code='" + Left(VchCode, 6) + "' ORDER BY I.PrintName", cnSalesOrderVoucher, adOpenKeyset, adLockOptimistic
-            If .RecordCount = 0 Then On Error GoTo 0: Exit Sub
+                         "P.[Rebate%],P.Rebate,P.Freight,P.Adjustment,P.TaxableAmount,P.[IGST%],P.IGST,P.[SGST%],P.SGST,P.[CGST%],P.CGST,P.Amount As TotalAmount,P.Remarks,'' As Narration,I.PrintName As Item,H.PrintName As HSNCode,ABS(C.Quantity) AS Quantity,C.Rate,C.Amount,'' As SrNo,'' As cmbTitle,LTRIM(C.Code)+LTRIM(C.SrNo) As Ref,C.[Disc%] As Disc,LongNarration01,LongNarration02,LongNarration03,LongNarration04,LongNarration05 FROM (((((JobworkBVParent P INNER JOIN JobworkBVChild C ON P.Code=C.Code) INNER JOIN BookMaster I ON C.Item=I.Code) INNER JOIN AccountMaster A ON P.Party=A.Code) INNER JOIN AccountMaster S ON P.Consignee=S.Code) LEFT JOIN AccountMaster M ON P.MaterialCentre=M.Code) LEFT JOIN GeneralMaster H ON C.HSNCode=H.Code WHERE P.Code='" + Left(VchCode, 6) + "' ORDER BY I.PrintName", cnSalesOrderVoucher, adOpenKeyset, adLockOptimistic
+            If .RecordCount = 0 Then On Error GoTo 0: Screen.MousePointer = vbNormal: Exit Sub
         Else
             .Open "SELECT * FROM (SELECT LTrim(P.Name)+'/' +'" & Right(Year(FinancialYearFrom), 2) + "-" + Right(Year(FinancialYearTo), 2) & "' As BillNo,P.Date As BillDate,A.PrintName As Party,A.Address1 As PartyAddress1,A.Address2 As PartyAddress2,A.Address3 As PartyAddress3,A.Address4 As PartyAddress4,A.TIN As PartyGSTIN,A.Mobile As Mobile,A.EMail As EMail,IIF(CHARINDEX(RIGHT(P.Type,2),'SO_SQ_PO_PQ')>0,S.PrintName,M.PrintName) As Consignee,IIF(CHARINDEX(RIGHT(P.Type,2),'SO_SQ_PO_PQ')>0,S.Address1,M.Address1) As ConsigneeAddress1,IIF(CHARINDEX(RIGHT(P.Type,2),'SO_SQ_PO_PQ')>0,S.Address2,M.Address2) As ConsigneeAddress2,IIF(CHARINDEX(RIGHT(P.Type,2),'SO_SQ_PO_PQ')>0,S.Address3,M.Address3) As ConsigneeAddress3,IIF(CHARINDEX(RIGHT(P.Type,2),'SO_SQ_PO_PQ')>0,S.Address4,M.Address4) As ConsigneeAddress4,IIF(CHARINDEX(RIGHT(P.Type,2),'SO_SQ_PO_PQ')>0,S.TIN,M.TIN) As ConsigneeGSTIN," & _
             "IIF(CHARINDEX(RIGHT(P.Type,2),'SO_SQ_PO_PQ')>0,S.Mobile,M.Mobile) As CMobile,IIF(CHARINDEX(RIGHT(P.Type,2),'SO_SQ_PO_PQ')>0,S.EMail,M.EMail) As CEMail," & _
@@ -3235,5 +3248,6 @@ Public Sub PrintSalesOrderVoucher(ByVal VchCode As String, ByVal VchType As Stri
     End If
     Call CloseRecordset(rstSalesOrderVoucherChild)
     On Error GoTo 0
+    Screen.MousePointer = vbNormal
 End Sub
 'Sales Quotation : -ve/Sales Order : +ve/Purchase Quotation : +ve/Purchase Order : -ve

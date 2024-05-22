@@ -2,9 +2,9 @@ VERSION 5.00
 Object = "{3AE5AE83-A6DA-101B-9313-00AA00575482}#1.0#0"; "mhfram32.ocx"
 Object = "{A49CE0E0-C0F9-11D2-B0EA-00A024695830}#1.0#0"; "tidate8.ocx"
 Object = "{886939C3-7807-101C-BB03-00AA00575482}#1.0#0"; "mhlabl32.ocx"
-Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDatGrd.ocx"
+Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "mscomctl.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
 Begin VB.Form FrmPrintPlanning 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Print Planning"
@@ -938,7 +938,7 @@ Private Sub Form_Load()
     End If
     cnPrintPlanning.CursorLocation = adUseClient
     cnPrintPlanning.Open cnDatabase.ConnectionString
-    rstCompanyMaster.Open "Select PrintName, Address1, Address2, Address3, Address4, Phone, Fax, EMail, Website From CompanyMaster", cnPrintPlanning, adOpenKeyset, adLockReadOnly
+    rstCompanyMaster.Open "Select PrintName, Address1, Address2, Address3, Address4, Phone, Fax, EMail, Website FROM CompanyMaster WHERE FYCode='" & FYCode & "'", cnPrintPlanning, adOpenKeyset, adLockReadOnly
     rstPrintPVList.Open "Select PrintPVParent.Code, PrintPVParent.Name, Date, Particulars From PrintPVParent Where PlanningType = '" & PlanningType & "' AND FYCode='" & FYCode & "' Order By PrintPVParent.Name", cnPrintPlanning, adOpenKeyset, adLockOptimistic
     rstPrintPVParent.CursorLocation = adUseClient
     Set rstPrintPVChild = New ADODB.Recordset

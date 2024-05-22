@@ -1,0 +1,99 @@
+Private Sub GetPrinterRates(ByVal RateFor As String)
+    Dim PlateRate As Double, PrintRateFront As Double, PrintRateBack As Double, PaperWastageRate As Double, PaperWastageMin As Long
+    If MhRealInput2.Value = 0 Then Exit Sub
+    On Error GoTo ErrorHandler
+    With rstPrinterRates
+        If .State = adStateOpen Then .Close
+        .Open "SELECT TOP 1 P.* FROM AccountChild05 P INNER JOIN SizeGroupChild C ON P.[SizeGroup]=C.Code WHERE C.[Size]='" & SizeCode & "' AND P.Code='" & PrinterCode & "'  AND Range>=" & MhRealInput2.Value & " ORDER BY Range", cnDatabase, adOpenKeyset, adLockReadOnly
+        If .RecordCount = 0 Then
+            If .State = adStateOpen Then .Close
+            .Open "SELECT TOP 1 C1.* FROM (AccountMaster P INNER JOIN AccountChild05 C1 ON P.Code=C1.Code) INNER JOIN SizeGroupChild C2 ON C1.[SizeGroup]=C2.Code WHERE Name LIKE '%Rate%' AND C2.[Size]='" & SizeCode & "' AND Range>= " & MhRealInput2.Value & " ORDER BY Range", cnDatabase, adOpenKeyset, adLockReadOnly
+        End If
+        If .RecordCount > 0 Then
+            If RateFor = "L" Then   'Plate
+                PlateRate = Val(.Fields(Choose(Combo2.ListIndex + 1, "DeepatchPlateRate1", "PSPlateRate1", "WipeonPlateRate1", "CTPPlateRate1")).Value)
+            ElseIf RateFor = "W" Then   'Wastage
+                If Combo3.ListIndex = 0 Then    'F&B
+                    If MhRealInput19.Value > 0 Then PaperWastageRate = PaperWastageRate + Val(.Fields("PaperWastageRate" & Trim(MhRealInput19.Text)).Value): PaperWastageMin = PaperWastageMin + Val(.Fields("PaperWastageMin" & Trim(MhRealInput19.Text)).Value)
+                    If MhRealInput20.Value > 0 Then PaperWastageRate = PaperWastageRate + Val(.Fields("PaperWastageRate" & Trim(MhRealInput20.Text)).Value): PaperWastageMin = PaperWastageMin + Val(.Fields("PaperWastageMin" & Trim(MhRealInput20.Text)).Value)
+                Else    'W&T
+                    If MhRealInput19.Value > 0 And MhRealInput20.Value > 0 Then
+                        If MhRealInput19.Value > MhRealInput20.Value Then PaperWastageRate = Val(.Fields("PaperWastageRate" & Trim(MhRealInput19.Text)).Value): PaperWastageMin = PaperWastageMin + Val(.Fields("PaperWastageMin" & Trim(MhRealInput19.Text)).Value)
+                        If MhRealInput20.Value > MhRealInput19.Value Then PaperWastageRate = Val(.Fields("PaperWastageRate" & Trim(MhRealInput20.Text)).Value): PaperWastageMin = PaperWastageMin + Val(.Fields("PaperWastageMin" & Trim(MhRealInput20.Text)).Value)
+                    End If
+                End If
+            Else    'All
+                PlateRate = Val(.Fields(Choose(Combo2.ListIndex + 1, "DeepatchPlateRate1", "PSPlateRate1", "WipeonPlateRate1", "CTPPlateRate1")).Value)
+                If MhRealInput19.Value > 0 Then PrintRateFront = Val(.Fields("PrintRate" & Trim(MhRealInput19.Text)).Value)
+                If MhRealInput20.Value > 0 Then PrintRateBack = Val(.Fields("PrintRate" & Trim(MhRealInput20.Text)).Value)
+                If Combo3.ListIndex = 0 Then
+                    If MhRealInput19.Value > 0 Then PaperWastageRate = PaperWastageRate + Val(.Fields("PaperWastageRate" & Trim(MhRealInput19.Text)).Value): PaperWastageMin = PaperWastageMin + Val(.Fields("PaperWastageMin" & Trim(MhRealInput19.Text)).Value)
+                    If MhRealInput20.Value > 0 Then PaperWastageRate = PaperWastageRate + Val(.Fields("PaperWastageRate" & Trim(MhRealInput20.Text)).Value): PaperWastageMin = PaperWastageMin + Val(.Fields("PaperWastageMin" & Trim(MhRealInput20.Text)).Value)
+                Else
+                    If MhRealInput19.Value > 0 And MhRealInput20.Value > 0 Then
+                        If MhRealInput19.Value > MhRealInput20.Value Then PaperWastageRate = Val(.Fields("PaperWastageRate" & Trim(MhRealInput19.Text)).Value): PaperWastageMin = PaperWastageMin + Val(.Fields("PaperWastageMin" & Trim(MhRealInput19.Text)).Value)
+                        If MhRealInput20.Value > MhRealInput19.Value Then PaperWastageRate = Val(.Fields("PaperWastageRate" & Trim(MhRealInput20.Text)).Value): PaperWastageMin = PaperWastageMin + Val(.Fields("PaperWastageMin" & Trim(MhRealInput20.Text)).Value)
+                    End If
+                End If
+            End If
+        End If
+        If RateFor = "L" Then
+            If MhRealInput4.Value <> PlateRate Then
+                If MhRealInput4.Value = 0 Then
+                    MhRealInput4.Value = PlateRate
+                ElseIf MhRealInput4.Value <> PlateRate Then
+                    If MsgBox("Variation in Current (" & Trim(MhRealInput4.Value) & ") and Master (" & Trim(PlateRate) & ") Plate Rate !!! Change rate?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then MhRealInput4.Value = PlateRate
+                End If
+            End If
+        ElseIf RateFor = "W" Then
+            If MhRealInput11.Value = 0 Then
+                MhRealInput11.Value = PaperWastageRate
+            ElseIf MhRealInput11.Value <> PaperWastageRate Then
+                If MsgBox("Variation in Current (" & Trim(MhRealInput11.Value) & ") and Master (" & Trim(PaperWastageRate) & ") Paper Wastage Rate !!! Change rate?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then MhRealInput11.Value = PaperWastageRate
+            End If
+            If MhRealInput23.Value = 0 Then
+                MhRealInput23.Value = PaperWastageMin
+            ElseIf MhRealInput23.Value <> PaperWastageMin Then
+                If MsgBox("Variation in Current (" & Trim(MhRealInput23.Value) & ") and Master (" & Trim(PaperWastageMin) & ") Paper Wastage Minimum !!! Change rate?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then MhRealInput23.Value = PaperWastageMin
+            End If
+        Else
+            If MhRealInput5.Value = 0 Then
+                MhRealInput5.Value = PrintRateFront
+            ElseIf MhRealInput5.Value <> PrintRateFront Then
+                If MsgBox("Variation in Current (" & Trim(MhRealInput5.Value) & ") and Master (" & Trim(PrintRateFront) & ") Print Rate [Front] !!! Change rate?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then MhRealInput5.Value = PrintRateFront
+            End If
+            If MhRealInput8.Value = 0 Then
+                MhRealInput8.Value = PrintRateBack
+            ElseIf MhRealInput8.Value <> PrintRateBack Then
+                If MsgBox("Variation in Current (" & Trim(MhRealInput8.Value) & ") and Master (" & Trim(PrintRateBack) & ") Print Rate [Back] !!! Change rate?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then MhRealInput8.Value = PrintRateBack
+            End If
+            If MhRealInput4.Value <> PlateRate Then
+                If MhRealInput4.Value = 0 Then
+                    MhRealInput4.Value = PlateRate
+                ElseIf MhRealInput4.Value <> PlateRate Then
+                    If MsgBox("Variation in Current (" & Trim(MhRealInput4.Value) & ") and Master (" & Trim(PlateRate) & ") Plate Rate !!! Change rate?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then MhRealInput4.Value = PlateRate
+                End If
+            End If
+            If MhRealInput11.Value = 0 Then
+                MhRealInput11.Value = PaperWastageRate
+            ElseIf MhRealInput11.Value <> PaperWastageRate Then
+                If MsgBox("Variation in Current (" & Trim(MhRealInput11.Value) & ") and Master (" & Trim(PaperWastageRate) & ") Paper Wastage Rate !!! Change rate?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then MhRealInput11.Value = PaperWastageRate
+            End If
+            If MhRealInput23.Value = 0 Then
+                MhRealInput23.Value = PaperWastageMin
+            ElseIf MhRealInput23.Value <> PaperWastageMin Then
+                If MsgBox("Variation in Current (" & Trim(MhRealInput23.Value) & ") and Master (" & Trim(PaperWastageMin) & ") Paper Wastage Minimum !!! Change rate?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then MhRealInput23.Value = PaperWastageMin
+            End If
+        End If
+        If RateFor = "L" Then
+            Call CalculatePlateAmount
+        ElseIf RateFor = "W" Then
+            Call CalculateConsumption
+        Else
+            Call CalculatePrintAmount: Call CalculatePlateAmount: Call CalculateConsumption
+        End If
+    End With
+Exit Sub
+ErrorHandler:
+    DisplayError ("Failed to Fetch Printer Rates")
+End Sub
